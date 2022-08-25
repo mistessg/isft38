@@ -29,8 +29,11 @@ class HorarioController extends Controller
      {
          return view('frontend\horarios\porDiaHora');
      }
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
     /**
      * Show the form for creating a new resource.
      *
