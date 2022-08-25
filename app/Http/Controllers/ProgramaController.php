@@ -14,7 +14,7 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        //
+        $programas = Programa
     }
 
     /**
