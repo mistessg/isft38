@@ -15,7 +15,24 @@
 </head>
 
 <body>
-  <p>hola</p>
+  <nav class="navv navbar navbar navbar-expand-lg " style="background-color: #F5F5F5; color: white;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="	http://www.isft38.edu.ar/image/logo.png" width="35px" height="60px" alt="" srcset=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link active" href="#">Inicio</a>
+          <a class="nav-link" href="#">Carreras</a>
+          <a class="nav-link" href="#">Horarios</a>
+          <a class="nav-link" href="#">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <p>IVÁAN</p>
   @yield('content')
 </body>
 
