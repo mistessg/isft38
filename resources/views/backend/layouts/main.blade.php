@@ -32,7 +32,6 @@
     </div>
   </nav>
 
-  <p>IVÁAN</p>
   @yield('content')
 </body>
 

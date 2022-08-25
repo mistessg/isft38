@@ -18,6 +18,7 @@ use App\Http\Controllers\SedetelefonosController;
  /// https://prod.liveshare.vsengsaas.visualstudio.com/join?742FD580CF56B9B316F755DF6AB909453F40
 //Brian
 //Alejo
+//Ale
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,3 +59,4 @@ Route::resource('sede', SedeController::class);
 
 Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor']);
 Route::get('/horarios/porCarrera', [HorarioController::class, 'porCarrera']);
+Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora']);
