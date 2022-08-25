@@ -25,6 +25,11 @@ class HorarioController extends Controller
      {
          return view('frontend\horarios\porCarerra');
      }
+     public function porDiaHora()
+     {
+         return view('frontend\horarios\porDiaHora');
+     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +38,7 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend\horario\create');
     }
 
     /**

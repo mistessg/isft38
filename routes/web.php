@@ -51,3 +51,4 @@ Route::resource('sede', SedeController::class);
 
 Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor']);
 Route::get('/horarios/porCarrera', [HorarioController::class, 'porCarrera']);
+Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora']);
