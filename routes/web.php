@@ -32,6 +32,12 @@ use App\Http\Controllers\SedetelefonosController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/main', function () {
+    return view('frontend.layout.main');
+
+});Route::get('/home', function () {
+    return view('frontend.home.home');
+});
 
 /*
 |--------------------------------------------------------------------------
