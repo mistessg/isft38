@@ -14,8 +14,14 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('frontend.horarios.tablaCarreras');
     }
+
+    // public function porProfesor()
+    // {
+    //     return view('frontend.horarios.porProfesor');
+    // }
+
 
     /**
      * Show the form for creating a new resource.

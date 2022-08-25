@@ -48,3 +48,7 @@ Route::resource('objetivo', objetivoController::class);
 Route::resource('profesor', ProfesorController::class);
 Route::resource('programa', ProgramaController::class);
 Route::resource('sede', SedeController::class);
+
+Route::get('/horarios/porProfesor', function(){
+    return view('frontend\horarios\porProfesor');
+});

@@ -14,7 +14,8 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa
+        $programas = Programa::paginate(10);
+        return view('backend.programa.index', compact('programas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
