@@ -38,7 +38,7 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        return view('backend\horario\create');
+        return view('backend\horario\index');
     }
 
     /**
