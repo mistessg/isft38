@@ -3,6 +3,13 @@
 @section('title', 'Horarios por Carreras')
 
 @section('content')
+
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-md">
+        <a class="navbar-brand" href="#">Cargar horarios</a>
+      </div>
+    </nav>
+
     <div class="container my-4">
     
         <div class="card">
@@ -52,4 +59,5 @@
         </div>
           
     </div>
+
 @endsection
