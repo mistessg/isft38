@@ -1,3 +1,10 @@
+@extends('backend.layouts.main')
+
+@section('title', 'Horarios por Carreras')
+
+@section('content')
+
+
 <div class="container my-4">
     
         <div class="card">
@@ -51,3 +58,5 @@
         </div>
           
     </div>
+
+    @endsection
