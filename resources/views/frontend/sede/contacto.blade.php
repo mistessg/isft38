@@ -3,10 +3,9 @@
 <style>
     form{
             width: 70%;
-            padding: 40px;
             margin:50px auto;
             background: rgba( 253, 253, 253, 0 );
-            box-shadow: 0 8px 32px 0 rgba(168, 16, 16, 0.37);
+            box-shadow: 0 4px 20px 0 rgba(168, 16, 16, 0.37);
             backdrop-filter: blur( 11.5px );
             -webkit-backdrop-filter: blur( 11.5px );
             border-radius: 10px;
@@ -49,22 +48,25 @@
             outline: 0 none;
         }
 </style>
-<h1 style="text-align:center;margin:40px 0px; font-weight:bold;color: rgb(175, 34, 34);">CONTACTO</h1>
+<!-- <h1 style="text-align:center;margin:40px 0px; font-weight:bold;color: rgb(175, 34, 34);">CONTACTO</h1> -->
 <form>
+    <div class="card">
+        <p class="card-header" style=" background-color:black;margin:0;text-align:center;font-weight:bold;color: white;font-size:1.2em;">CONTACTO</p>
     <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="text" class="form-label">Mensaje</label>
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="text" class="form-label">Mensaje</label>
         <input id="text" class="form-control" placeholder="Escriba su mensaje" cols="10" rows="3" />
     </div>
     <div class="boton">
         <button type="submit" class="btn"  >Enviar</button>
+    </div>
     </div>
 </form>
 @endsection
