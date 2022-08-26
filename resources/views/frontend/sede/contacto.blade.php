@@ -49,6 +49,8 @@
         }
 </style>
 <!-- <h1 style="text-align:center;margin:40px 0px; font-weight:bold;color: rgb(175, 34, 34);">CONTACTO</h1> -->
+<a href="https://preview.colorlib.com/theme/bootstrap/contact-form-06/">https://preview.colorlib.com/theme/bootstrap/contact-form-06/</a><br>
+<a href="http://isft38.edu.ar/index.php?page=contactenos">http://isft38.edu.ar/index.php?page=contactenos</a>
 <form>
     <div class="card">
         <p class="card-header" style=" background-color:black;margin:0;text-align:center;font-weight:bold;color: white;font-size:1.2em;">CONTACTO</p>
