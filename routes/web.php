@@ -35,9 +35,9 @@ Route::get('/', function () {
 });
 Route::get('/main', function () {
     return view('frontend.layout.main');
-
-});Route::get('/home', function () {
-    return view('frontend.home.home');
+});
+Route::get('/main/contacto', function () {
+    return view('frontend.sede.contacto');
 });
 
 /*
