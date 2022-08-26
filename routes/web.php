@@ -45,6 +45,7 @@ Route::get('/main', function () {
 | Resource
 |--------------------------------------------------------------------------
 */
+
 Route::resource('anio', AnioController::class);
 Route::resource('carrera', CarreraController::class);
 Route::resource('comision', ComisionController::class);
