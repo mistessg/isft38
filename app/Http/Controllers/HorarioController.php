@@ -43,10 +43,7 @@ class HorarioController extends Controller
     {  $carreras = Carrera::pluck('descripcion','id');
         $anios = Anio::pluck('anio', 'id');
         $comisions = Comision::pluck('comision', 'id');
-
-        return view('backend.horario.create', compact('carreras', 'anios', 'comisions'));
-
-        $sedes = Sede::pluck('descipcion', 'id');
+        $sedes = Sede::pluck('descripcion', 'id');
         return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
 
     }
