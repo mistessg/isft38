@@ -14,7 +14,8 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        //
+        $programas = Programa::paginate(10);
+        return view('frontend.programa.programa', compact('programas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

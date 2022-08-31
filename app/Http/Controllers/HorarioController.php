@@ -14,8 +14,21 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('frontend.horarios.tablaCarreras');
     }
+
+     public function porProfesor()
+     {
+         return view('frontend.horarios.porProfesor');
+     }
+     public function porCarrera()
+     {
+         return view('frontend\horarios\porCarerra');
+     }
+     public function porDiaHora()
+     {
+         return view('frontend\horarios\porDiaHora');
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +37,7 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.horario.index');
     }
 
     /**

@@ -15,8 +15,10 @@ use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\SedeemailController;
 use App\Http\Controllers\SedetelefonosController;
-
-
+ /// https://prod.liveshare.vsengsaas.visualstudio.com/join?742FD580CF56B9B316F755DF6AB909453F40
+//Brian
+//Alejo
+//Ale
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,12 +32,19 @@ use App\Http\Controllers\SedetelefonosController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/main', function () {
+    return view('frontend.layout.main');
+});
+Route::get('/main/contacto', function () {
+    return view('frontend.sede.contacto');
+});
 
 /*
 |--------------------------------------------------------------------------
 | Resource
 |--------------------------------------------------------------------------
 */
+
 Route::resource('anio', AnioController::class);
 Route::resource('carrera', CarreraController::class);
 Route::resource('comision', ComisionController::class);
@@ -47,3 +56,7 @@ Route::resource('objetivo', objetivoController::class);
 Route::resource('profesor', ProfesorController::class);
 Route::resource('programa', ProgramaController::class);
 Route::resource('sede', SedeController::class);
+
+Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor']);
+Route::get('/horarios/porCarrera', [HorarioController::class, 'porCarrera']);
+Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora']);
