@@ -61,7 +61,7 @@
     <!-- FOOTER -->
 
     <footer class="bg-primary p-4">
-        avaer ejemplo
+        
     </footer>
 
     <!-- FOOTER -->

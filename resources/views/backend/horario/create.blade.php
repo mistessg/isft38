@@ -4,9 +4,9 @@
 
 @section('content')
 
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container-md">
-        <a class="navbar-brand" href="#">Cargar horarios</a>
+        <a class="navbar-brand text-white" href="#">Cargar horarios</a>
       </div>
     </nav>
 
