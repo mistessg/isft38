@@ -53,15 +53,18 @@
         </span>
     </nav>
    HEADER -->
+   
    <header>
+   <!-- <img src="{{ asset('img/logo.png') }}" class="" alt="..." width="50">  -->
     <div class="px-3 py-2 text-bg-dark">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
             <img src="https://www.apollo.io/companies/Instituto-Superior-de-Formaci-n-T-cnica-N--38/556962db73696425a3131a00"  alt="">
           </a>
-
+         
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+        
           <li>
               <a href="#" class="nav-link text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
