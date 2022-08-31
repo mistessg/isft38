@@ -38,7 +38,7 @@
     <!-- HEADER -->
     <nav class="d-flex justify-content-between bg-primary p-4" style="color:white;">
         <div>
-            "LOGO" header
+            "LOGO " header
         </div>
         <span class="d-flex gap-3 px-3">
             <div>
