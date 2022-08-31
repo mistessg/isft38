@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrera;
 use App\Models\Horario;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,8 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('backend.horario.index');
+    {  $carreras = Carrera::pluck('descripcion','id');
+        return view('backend.horario.createCopia', compact('carreras'));
     }
 
     /**
