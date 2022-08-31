@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anio;
 use App\Models\Carrera;
+use App\Models\Comision;
 use App\Models\Horario;
 use Illuminate\Http\Request;
 
@@ -38,7 +40,9 @@ class HorarioController extends Controller
      */
     public function create()
     {  $carreras = Carrera::pluck('descripcion','id');
-        return view('backend.horario.createCopia', compact('carreras'));
+        $anios = Anio::pluck('anio', 'id');
+        $comisions = Comision::pluck('comision', 'id');
+        return view('backend.horario.createCopia', compact('carreras', 'anios', 'comisions'));
     }
 
     /**
