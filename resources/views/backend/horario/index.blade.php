@@ -3,10 +3,5 @@
 @section('content')
 
 
-
-
-
-
-
-</div> 
+ 
 @endsection
