@@ -6,6 +6,7 @@ use App\Models\Anio;
 use App\Models\Carrera;
 use App\Models\Comision;
 use App\Models\Horario;
+use App\Models\Sede;
 use Illuminate\Http\Request;
 
 class HorarioController extends Controller
@@ -42,7 +43,12 @@ class HorarioController extends Controller
     {  $carreras = Carrera::pluck('descripcion','id');
         $anios = Anio::pluck('anio', 'id');
         $comisions = Comision::pluck('comision', 'id');
+
         return view('backend.horario.create', compact('carreras', 'anios', 'comisions'));
+
+        $sedes = Sede::pluck('descipcion', 'id');
+        return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
+
     }
 
     /**
