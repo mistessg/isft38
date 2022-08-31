@@ -44,6 +44,10 @@ Route::get('/main/contacto', function () {
 | Resource
 |--------------------------------------------------------------------------
 */
+//programa
+Route::get('/programa/cargarPrograma', [ProgramaController::class, 'CargarPrograma']);
+Route::get('/programa/programasPendientes', [ProgramaController::class, 'ProgramasPendientes']);
+
 
 Route::resource('anio', AnioController::class);
 Route::resource('carrera', CarreraController::class);
@@ -57,6 +61,8 @@ Route::resource('profesor', ProfesorController::class);
 Route::resource('programa', ProgramaController::class);
 Route::resource('sede', SedeController::class);
 
+//horarios
 Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor']);
 Route::get('/horarios/porCarrera', [HorarioController::class, 'porCarrera']);
 Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora']);
+
