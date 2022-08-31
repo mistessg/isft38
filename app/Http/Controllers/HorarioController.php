@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anio;
+use App\Models\Carrera;
+use App\Models\Comision;
 use App\Models\Horario;
+use App\Models\Sede;
 use Illuminate\Http\Request;
 
 class HorarioController extends Controller
@@ -36,9 +40,12 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        
-        return view('backend.horario.index');
+    {  $carreras = Carrera::pluck('descripcion','id');
+        $anios = Anio::pluck('anio', 'id');
+        $comisions = Comision::pluck('comision', 'id');
+        $sedes = Sede::pluck('descripcion', 'id');
+        return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
+
     }
 
     /**
@@ -58,10 +65,9 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Horario $horario)
     {
-        $horario = Horario::findOrFail($id);
-        return view('backend.horario.show',compact('horario'));
+        //
     }
 
     /**
@@ -70,10 +76,9 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Horario $horario)
     {
-        $horario = Horario::findOrFail($id);
-        return view('backend.horario.edit',compact('horario'));
+        //
     }
 
     /**
@@ -83,26 +88,9 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Horario $horario)
     {
-        $horario = Horario::findOrFail($id);
-        $validateData = $request->validate(
-            [
-                'sede_id' => ['required'],
-                'carrera_id' => ['required'],
-                'anio_id' => ['required'],
-                'profesor_id' => ['required'],
-                'materia_id' => ['required'],
-                'comision_id' => ['required'],
-                'dia' => ['required'],
-                'modulohorario_id' => ['required'],
-                'duracion' => ['required']
-            ]
-
-            $horario->save();
-            $request->session()->flash('status','Se modificó correctamente el horario');
-            return redirect()->route('backend.horario.edit',$horario->$id);
-        );
+        //
     }
 
     /**
@@ -111,12 +99,8 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Horario $horario)
     {
-        $horario = Horario::findOrFail($id);
-        $horario->delete();
-        $busqueda->save();
-        $request->session()->flash('status','Se eliminó correctamente el horario');
-        return redirect()->route('backend.horario.index',$horario->$id);
+        //
     }
 }
