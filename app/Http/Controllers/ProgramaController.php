@@ -15,7 +15,15 @@ class ProgramaController extends Controller
     public function index()
     {
         $programas = Programa::paginate(10);
-        return view('frontend.programa.consulta_programa', compact('programas'));
+        return view('frontend.programa.listado_programa', compact('programas'));
+    }
+
+    public function CargarPrograma(){
+        return view('frontend.programa.cargar_programa');
+    }
+
+    public function ProgramasPendientes(){
+        return view('frontend.programa.programas_pendientes');
     }
 
     /**
