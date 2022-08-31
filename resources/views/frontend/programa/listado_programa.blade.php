@@ -1,6 +1,6 @@
 @extends('backend.layouts.main')
 
-@section('title', 'Horarios por Carreras')
+@section('title', 'Listado de materias')
 
 @section('content')
 
