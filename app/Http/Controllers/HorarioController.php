@@ -45,7 +45,10 @@ class HorarioController extends Controller
         $comisions = Comision::pluck('comision', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
 
     /**
