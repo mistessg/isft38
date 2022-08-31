@@ -48,6 +48,25 @@
             outline: 0 none;
         }
 </style>
+<<<<<<< HEAD
+
+
+    
+<form class="card">
+        <h5 class="card-header mb-5" style=" background-color: #181818; color: white;">Contacto</h5>
+        <div class="card-body">
+
+        <div class="mb-5">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-5">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-5">
+        <label for="text" class="form-label">Mensaje</label>
+=======
 <!-- <h1 style="text-align:center;margin:40px 0px; font-weight:bold;color: rgb(175, 34, 34);">CONTACTO</h1> -->
 El miércoles vemos estos ejemplos - Gisela
 <a href="https://preview.colorlib.com/theme/bootstrap/contact-form-06/">https://preview.colorlib.com/theme/bootstrap/contact-form-06/</a><br>
@@ -66,11 +85,16 @@ El miércoles vemos estos ejemplos - Gisela
         </div>
         <div class="mb-3">
             <label for="text" class="form-label">Mensaje</label>
+>>>>>>> ee946438700ec5fe37774f6e1865ac5a3b90db68
         <input id="text" class="form-control" placeholder="Escriba su mensaje" cols="10" rows="3" />
     </div>
     <div class="boton">
         <button type="submit" class="btn"  >Enviar</button>
     </div>
+<<<<<<< HEAD
+    </form>
+=======
     </div>
 </form>
+>>>>>>> ee946438700ec5fe37774f6e1865ac5a3b90db68
 @endsection
