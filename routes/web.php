@@ -108,3 +108,7 @@ Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
