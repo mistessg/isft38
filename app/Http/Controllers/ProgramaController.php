@@ -20,13 +20,19 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-      $anio = Anio::pluck('anio', 'id');
+        $anios = array();
+        $anio = Anio::pluck('anio', 'id');
         $carreras = Carrera::pluck('descripcion','id');
         $comisiones = Comision::pluck('comision', 'id');
         $materias = Materia::pluck('descripcion', 'id');
         $profesores = Profesor::pluck('nombre','apellido','id');
         $sedes = Sede::pluck('descripcion','id');
-        return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores'));
+        $anio = date("Y");
+        
+        for ($i = $anio - 10; $i <= $anio; $i++) {
+            $anios[] = $i;
+        }
+        return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
 
     public function CargarPrograma(){

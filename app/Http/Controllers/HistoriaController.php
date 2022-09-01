@@ -14,7 +14,8 @@ class HistoriaController extends Controller
      */
     public function index()
     {
-        //
+        $historia = Historia::paginate(1);
+        return view ('backend.historia.index', compact('historia'));
     }
 
     /**
@@ -24,7 +25,7 @@ class HistoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.historia.create');
     }
 
     /**
@@ -57,7 +58,8 @@ class HistoriaController extends Controller
      */
     public function edit(Historia $historia)
     {
-        //
+        $historia = Historia::findOrFail($id);
+        return view('backend.historia.edit', compact('historia'));
     }
 
     /**
