@@ -13,9 +13,9 @@
         <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
         <div class="card-body">
 
-        {{ Form::open(['route' => 'programa.store']) }}
+        {{ Form::open(['route' => 'programa.search']) }}
         @csrf  
-        <div class="input-group mb-3">
+        <!-- <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
         <select class="form-select" id="carrera">
         <option value="" selected>Seleccione un periodo</option>
@@ -25,7 +25,13 @@
         <option value="2021">2021</option>
         <option value="2022">2022</option>
         </select>
-        </div>
+        </div> -->
+        <div class="input-group mb-3">
+        {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
+        {{Form::select("anio_id", $anio, null, ["class" => "form-select", "placeholder" => "Seleccione un periodo"]) }}           
+          @error('anio')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror 
 
         <div class="input-group mb-3">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}

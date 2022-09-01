@@ -15,14 +15,14 @@
         <div class="card">
         <h5 class="card-header" style=" background-color: #181818; color: white;">Horarios por Carrera</h5>
         <div class="card-body">
-
+        {{ Form::open(['route' => 'horario.search']) }}
         <div class="input-group mb-3">
         <label class="input-group-text" for="#">Sede</label>
-        {{Form::select("sede", $sedes, null, ["class" => "form-control", "placeholder" => "Seleccione la sede" ]) }} 
+        {{Form::select("sede_id", $sedes, null, ["class" => "form-control", "placeholder" => "Seleccione la sede" ]) }} 
         </div>
 
         <div class="input-group mb-3">
-        {{Form::select("descripcion", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera" ]) }}    
+        {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera" ]) }}    
         </select>
         </div>
 
@@ -37,10 +37,8 @@
         {{Form::select("comision", $comisions, null, ["class" => "form-control", "placeholder" => "Seleccione la comision" ]) }} 
         </div>
     
-        <div class="d-grid gap-2">
-        <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
-        </div>
-          
+        </br><button type="submit" style="width: 100%;" class="btn btn-primary">Consultar</button></div>
+         {!!Form::close()!!}  
     </div>
-
+   
 @endsection
