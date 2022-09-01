@@ -14,7 +14,7 @@ class SedeController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**

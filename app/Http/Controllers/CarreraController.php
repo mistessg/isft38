@@ -14,17 +14,12 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.carrera.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $carreras = Carrera::all();
+        return view('backend.carrera.create', compact('carreras'));
     }
 
     /**
@@ -35,7 +30,7 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('backend.carrera.store', compact('materias'));
     }
 
     /**

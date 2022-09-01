@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.blog')
 @section('title', 'Etiquetas')
 @section('content')
   <h1>Etiqueta</h1>

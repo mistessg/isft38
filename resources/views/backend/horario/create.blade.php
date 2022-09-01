@@ -1,57 +1,46 @@
 @extends('backend.layouts.main')
-@section('title', 'Horarios')
-@section('content')
-  <h1>Horarios :: {{$carreras->carrera}} :: {{$anio}}° año</h1>
-  <div>
-    @if(Session::has('status'))
-    <div class="alert alert-success">{{ Session('status')}}</div>
-    @endif
-  </div>
-  <div class="links">
- {{ Form::open(['route' => 'horarios.store', 'files' => true]) }}
-  @csrf <!-- {{ csrf_field() }} -->
-           <div class="form-group">
- 
-          {{Form::text("carrera_id", $carreras->id, ["class" => "form-control", "hidden" ]) }}                       
-          @error('materia')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>  
-    <div class="form-group">
-          {{ Form::label("modulo", 'Módulo', ['class' => 'control-label']) }}
-          {{Form::select("modulo", $modulos, $modulo, ["class" => "form-control", "placeholder" => "Seleccione un módulo", "readonly"] ) }}                       
-          @error('modulo')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>      
-    <div class="form-group">
-          {{ Form::label("dia", 'Día', ['class' => 'control-label']) }}
-          {{Form::select("dia", $dias, $dia, ["class" => "form-control", "placeholder" => "Seleccione un día", "readonly" ]) }}                       
-          @error('dia')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>   
 
-    <div class="form-group">
-          {{ Form::label("materia_id", 'Materia', ['class' => 'control-label']) }}
-          {{Form::select("materia_id", $materias, null, ["class" => "form-control", "placeholder" => "Seleccione una materia" ]) }}                       
-          @error('materia')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>      
-    <div class="form-group">
-          {{ Form::label("user_id", 'Profesor', ['class' => 'control-label']) }}
-          {{Form::select("user_id", $users, null, ["class" => "form-control", "placeholder" => "Seleccione un profesor"  ]) }}                       
-          @error('user_id')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>     
-    <div class="form-group">
-          {{ Form::label("comentarios", 'Comentarios', ['class' => 'control-label']) }}
-          {{Form::text("comentarios", old("comentarios"), ["class" => "form-control", "placeholder" => "", ])}}                        
-          @error('comentarios')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>    </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
-{!!Form::close()!!}
+@section('title', 'Horarios por Carreras')
+
+@section('content')
+
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-md">
+        <a class="navbar-brand text-white" href="#">Cargar horarios</a>
+      </div>
+    </nav>
+
+    <div class="container my-4">
+    
+        <div class="card">
+        <h5 class="card-header" style=" background-color: #181818; color: white;">Horarios por Carrera</h5>
+        <div class="card-body">
+
+        <div class="input-group mb-3">
+        <label class="input-group-text" for="#">Sede</label>
+        {{Form::select("sede", $sedes, null, ["class" => "form-control", "placeholder" => "Seleccione la sede" ]) }} 
+        </div>
+
+        <div class="input-group mb-3">
+        {{Form::select("descripcion", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera" ]) }}    
+        </select>
+        </div>
+
+        <div class="input-group mb-3">
+        <label class="input-group-text" for="#">Año</label>
+        {{Form::select("anio", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione el año" ]) }} 
+        </select>
+        </div>
+
+        <div class="input-group mb-3">
+        <label class="input-group-text" for="#">Comision</label>
+        {{Form::select("comision", $comisions, null, ["class" => "form-control", "placeholder" => "Seleccione la comision" ]) }} 
+        </div>
+    
+        <div class="d-grid gap-2">
+        <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
+        </div>
+          
+    </div>
+
 @endsection

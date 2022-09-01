@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Programa;
+use App\Models\Carrera;
+use App\Models\Sede;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProgramaController extends Controller
 {
@@ -14,7 +17,25 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa
+      /*  $leagues = DB::table('programas')
+            ->select('*')
+            ->join('sedes', 'programas.sede_id', '=', 'sedes.id')
+            ->get();*/
+        
+        
+
+       // $programas = Programa::paginate(10);
+        $carreras = Carrera::pluck('descripcion','id');
+        $sedes = Sede::pluck('descripcion','id');
+        return view('frontend.programa.listado_programa', compact('carreras','sedes'));
+    }
+
+    public function CargarPrograma(){
+        return view('frontend.programa.cargar_programa');
+    }
+
+    public function ProgramasPendientes(){
+        return view('frontend.programa.programas_pendientes');
     }
 
     /**
@@ -24,7 +45,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
