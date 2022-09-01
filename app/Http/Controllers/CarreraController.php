@@ -14,7 +14,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        return view('backend.carrera.index');
+        $carreras = Carrera::all();
+        return view('backend.carrera.index', compact('carreras'));
     }
     public function create()
     {
@@ -45,7 +46,8 @@ class CarreraController extends Controller
         $carrera->anios = $request->input('anios'); 
         $carrera->texto = $request->input('texto'); 
         $carrera->nombre_carpeta = $request->input('nombre_carpeta'); 
-        $carrera->imagen = 'test'; //$request->file('imagen'); 
+        $carrera->imagen = 'test'; 
+        $request->file('imagen'); 
          // dd($carrera);
         $carrera->save();
         
