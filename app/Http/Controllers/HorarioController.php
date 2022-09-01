@@ -58,10 +58,10 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $horario = Horario::findOrFail($id);
-        return view('backend.horario.show',compact('horario'));
+        $horarios = Horario::all();
+        return view('backend.horario.show',compact('horarios'));
     }
 
     /**
@@ -72,8 +72,8 @@ class HorarioController extends Controller
      */
     public function edit($id)
     {
-        $horario = Horario::findOrFail($id);
-        return view('backend.horario.edit',compact('horario'));
+        $horarios = Horario::findOrFail($id);
+        return view('backend.horario.edit',compact('horarios'));
     }
 
     /**
@@ -85,7 +85,7 @@ class HorarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $horario = Horario::findOrFail($id);
+        $horarios = Horario::findOrFail($id);
         $validateData = $request->validate(
             [
                 'sede_id' => ['required'],
@@ -98,11 +98,12 @@ class HorarioController extends Controller
                 'modulohorario_id' => ['required'],
                 'duracion' => ['required']
             ]
-
-            $horario->save();
-            $request->session()->flash('status','Se modificó correctamente el horario');
-            return redirect()->route('backend.horario.edit',$horario->$id);
         );
+        
+            $horarios->save();
+            $request->session()->flash('status','Se modificó correctamente el horario');
+            return redirect()->route('backend.horario.edit', $horarios->$id);
+        
     }
 
     /**
@@ -113,10 +114,10 @@ class HorarioController extends Controller
      */
     public function destroy($id)
     {
-        $horario = Horario::findOrFail($id);
-        $horario->delete();
-        $busqueda->save();
+        $horarios = Horario::findOrFail($id);
+        $horarios->delete();
+        $horarios->save();
         $request->session()->flash('status','Se eliminó correctamente el horario');
-        return redirect()->route('backend.horario.index',$horario->$id);
+        return redirect()->route('backend.horario.index', $horarios->$id);
     }
 }
