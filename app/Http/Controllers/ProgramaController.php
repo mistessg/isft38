@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Programa;
 use App\Models\Carrera;
 use App\Models\Sede;
+use App\Models\Anio;
+use App\Models\Profesor;
+use App\Models\Materia;
+use App\Models\Comision;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProgramaController extends Controller
 {
@@ -17,17 +20,13 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-      /*  $leagues = DB::table('programas')
-            ->select('*')
-            ->join('sedes', 'programas.sede_id', '=', 'sedes.id')
-            ->get();*/
-        
-        
-
-       // $programas = Programa::paginate(10);
+      $anio = Anio::pluck('anio', 'id');
         $carreras = Carrera::pluck('descripcion','id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
         $sedes = Sede::pluck('descripcion','id');
-        return view('frontend.programa.listado_programa', compact('carreras','sedes'));
+        return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores'));
     }
 
     public function CargarPrograma(){
@@ -57,6 +56,17 @@ class ProgramaController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+        /**
+     * Search a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+     dd($request);
     }
 
     /**
