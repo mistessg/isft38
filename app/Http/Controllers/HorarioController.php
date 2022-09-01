@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anio;
+use App\Models\Carrera;
+use App\Models\Sede;
+use App\Models\Comision;
 use App\Models\Horario;
 use Illuminate\Http\Request;
 
@@ -36,9 +40,12 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        
-        return view('backend.horario.index');
+    {  $carreras = Carrera::pluck('descripcion','id');
+        $anios = Anio::pluck('anio', 'id');
+        $comisions = Comision::pluck('comision', 'id');
+        $sedes = Sede::pluck('descripcion', 'id');
+        return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
+ 
     }
 
     /**
@@ -117,7 +124,7 @@ class HorarioController extends Controller
         $horarios = Horario::findOrFail($id);
         $horarios->delete();
         $horarios->save();
-        $request->session()->flash('status','Se eliminó correctamente el horario');
+        $horarios->session()->flash('status','Se eliminó correctamente el horario');
         return redirect()->route('backend.horario.index', $horarios->$id);
     }
 }
