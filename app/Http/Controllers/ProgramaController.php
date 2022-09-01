@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Programa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProgramaController extends Controller
 {
@@ -14,8 +15,16 @@ class ProgramaController extends Controller
      */
     public function index()
     {
+        $leagues = DB::table('programas')
+            ->select('*')
+            ->join('sedes', 'programas.sede_id', '=', 'sedes.id')
+            ->get();
+        
+        
+
         $programas = Programa::paginate(10);
-        return view('frontend.programa.listado_programa', compact('programas'));
+        
+        return view('frontend.programa.listado_programa', compact('leagues'));
     }
 
     public function CargarPrograma(){
