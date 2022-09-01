@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/styles.css');}}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css');}}">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
@@ -35,36 +35,16 @@
         }
     </style>
 <body>
-    <!-- HEADER 
-    <nav class="d-flex justify-content-between bg-primary p-4" style="color:white;">
-        <div>
-            "LOGO " header
-        </div>
-        <span class="d-flex gap-3 px-3">
-            <div>
-                <a href="/main">Inicio</a>
-            </div>
-            <div>
-                <a href="main/contacto">Contacto</a>
-            </div>
-            <div>
-                <a href="main/contacto">qsy otra cosa</a>
-            </div>
-        </span>
-    </nav>
-   HEADER -->
-   
-   <header>
-   <!-- <img src="{{ asset('img/logo.png') }}" class="" alt="..." width="50">  -->
+    <!-- HEADER -->
+    <header>
     <div class="px-3 py-2 text-bg-dark">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <img src="https://www.apollo.io/companies/Instituto-Superior-de-Formaci-n-T-cnica-N--38/556962db73696425a3131a00"  alt="">
+          <a href="/main" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <img src="https://zenprospect-production.s3.amazonaws.com/uploads/pictures/605b144a8b21fa0001991836/picture" width="60px" height="60px" alt=""/>
           </a>
-         
+
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-        
           <li>
               <a href="#" class="nav-link text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
@@ -90,10 +70,9 @@
                 Carreras
               </a>
             </li>
-        <!--  <div>
-                <a href="main/contacto">qsy otra cosa</a>-->
+            
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href="/main/contacto" class="nav-link text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
                 </svg>
@@ -109,15 +88,35 @@
                 Campus
               </a>
             </li>
-            <!-- </div> -->
-        </span>
-   <!-- </nav> -->
+            
           </ul>
         </div>
       </div>
     </div>
     
   </header>
+    <!-- HEADER -->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../../../../public/img/imagen1.jpg" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../../public/img/imagen2.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{asset('img')}}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 
     @yield('content')
@@ -125,9 +124,18 @@
 
     <!-- FOOTER -->
 
-    <footer class="bg-primary p-4">
-        
-    </footer>
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+            <p class="text-center text-muted">&copy; 2022 Company, Inc</p>
+        </footer>
+    </div>
 
     <!-- FOOTER -->
 

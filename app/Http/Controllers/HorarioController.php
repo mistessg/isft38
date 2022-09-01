@@ -40,12 +40,12 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {  $carreras = Carrera::pluck('descripcion','id');
+    {  
+        $carreras = Carrera::pluck('descripcion','id');
         $anios = Anio::pluck('anio', 'id');
         $comisions = Comision::pluck('comision', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
- 
     }
 
     /**

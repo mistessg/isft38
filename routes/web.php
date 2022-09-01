@@ -86,7 +86,7 @@ Auth::routes();
 //programa
 Route::get('/programa/cargarPrograma', [ProgramaController::class, 'CargarPrograma']);
 Route::get('/programa/programasPendientes', [ProgramaController::class, 'ProgramasPendientes']);
-
+Route::resource('programa', ProgramaController::class);
 
 Route::resource('anio', AnioController::class);
 Route::resource('carrera', CarreraController::class);
@@ -97,7 +97,6 @@ Route::resource('materia', MateriaController::class);
 Route::resource('modulo', moduloController::class);
 Route::resource('objetivo', objetivoController::class);
 Route::resource('profesor', ProfesorController::class);
-Route::resource('programa', ProgramaController::class);
 Route::resource('sede', SedeController::class);
 
 //horarios
