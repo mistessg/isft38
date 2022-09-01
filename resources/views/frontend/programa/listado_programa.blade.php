@@ -4,16 +4,17 @@
 
 @section('content')
 
-@foreach($leagues as $programa)
+{{-- @foreach($leagues as $programa)
 {{$programa}}
-@endforeach
+@endforeach --}}
 <div class="container my-4">
     
         <div class="card">
         <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
         <div class="card-body">
 
-       
+        {{ Form::open(['route' => 'programa.store']) }}
+        @csrf  
         <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
         <select class="form-select" id="carrera">
@@ -27,15 +28,28 @@
         </div>
 
         <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Sede</label>
+        {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
+        {{Form::select("sede_id", $sedes, null, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}           
+          @error('sede')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror 
+
+        <!--<label class="input-group-text" for="inputGroupSelect01">Sede</label>
         <select class="form-select" id="sede">
         <option value="" selected>Seleccione una sede </option>
         <option value="sede_sn">Sede Central San Nicolas</option>
-        </select>
+        </select>-->
         </div>
 
         <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Carrera</label>
+        <div class="input-group mb-3">
+        {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
+        {{Form::select("carrera_id", $carreras, null, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}           
+          @error('carrera')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror 
+
+        <!--<label class="input-group-text" for="inputGroupSelect01">Carrera</label>
         <select class="form-select" id="carrera">
         <option value="" selected>Seleccione una carrera</option>
         <option value="logistica">Tecnicatura Superior en Logistica</option>
@@ -46,7 +60,7 @@
         <option value="higiene_seguridad">Tecnicatura Superior en Higiene y Seguridad en el Trabajo</option>
         <option value="laboratorio">Tecnicatura Superior en Laboratorio de Analisis Clinicos</option>
         <option value="sistemas">Tecnicatura Superior en Analisis en Sistemas</option>
-        </select>
+        </select>-->
         </div>
 
         <div class="input-group mb-3">
