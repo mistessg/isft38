@@ -12,7 +12,7 @@
     </head>
     <body>
         <div class="container-fluid">      
-      <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
         <h3 class="navbar-brand text-info" href="#">Blog</h3>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -87,7 +87,6 @@
         </div>
       </nav>
      <div class="jumbotron">
-
           @yield('content')
         </div>
       </div>

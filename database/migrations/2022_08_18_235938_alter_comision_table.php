@@ -46,7 +46,9 @@ class AlterComisionTable extends Migration
         Schema::table('comisions', function (Blueprint $table) {
             $table->dropForeign('comisions_sede_id_foreign');
             $table->dropForeign('comisions_carrera_id_foreign');
-            $table->dropForeign('comisions_materia_id_foreign');
+            if (Schema::hasColumn('comisions', 'materia_id')) {            
+             $table->dropForeign('comisions_materia_id_foreign');
+            }
         });
     }
 }
