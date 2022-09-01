@@ -60,7 +60,7 @@ Route::resource('sede', SedeController::class);
     Route::resource('anio', AnioController::class);
     Route::resource('carrera', CarreraController::class);
     Route::resource('comision', ComisionController::class);
-    oute::resource('objetivo', objetivoController::class);
+    Route::resource('objetivo', objetivoController::class);
     Route::resource('profesor', ProfesorController::class);
     Route::resource('programa', ProgramaController::class);
     Route::resource('sede', SedeController::class);
