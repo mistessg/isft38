@@ -87,7 +87,7 @@ Auth::routes();
 Route::get('/programa/cargarPrograma', [ProgramaController::class, 'CargarPrograma']);
 Route::get('/programa/programasPendientes', [ProgramaController::class, 'ProgramasPendientes']);
 Route::resource('programa', ProgramaController::class);
-Route::post('horario/search', [HorarioController::class, 'search'])->name('horario.search');;
+Route::post('horario/search', [HorarioController::class, 'search'])->name('horario.search');
 
 Route::resource('anio', AnioController::class);
 Route::resource('carrera', CarreraController::class);
