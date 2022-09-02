@@ -110,8 +110,10 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carrera $carrera)
+    public function destroy($id)
     {
-        //
+         $carrera = carrera::findOrFail($id);    
+         $carrera->delete();
+         return redirect()->route('backend.carrera.index');
     }
 }
