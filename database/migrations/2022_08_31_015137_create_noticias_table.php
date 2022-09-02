@@ -20,6 +20,7 @@ class CreateNoticiasTable extends Migration
             $table->string('imagen',255)->nullable();
             $table->timestamps();
             $table->unique('titulo');
+            $table->bigInteger('carrera_id')->unsigned();
             $table->bigInteger('autor')->unsigned();
             $table->softDeletes();
             $table->foreign('autor')
@@ -27,6 +28,11 @@ class CreateNoticiasTable extends Migration
                     ->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
+            $table->foreign('carrera_id')
+                    ->references('id')
+                    ->on('carreras')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');                    
         });
     }
     /**

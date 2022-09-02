@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.blog')
 @section('title', 'Usuarios')
 @section('content')
   <h1>Nuevo Usuario</h1>

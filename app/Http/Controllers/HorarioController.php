@@ -55,10 +55,23 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+    { 
 
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {  // dd($request);
+        $sede = Sede::findOrFail($request->input('sede_id'));
+        $sedes = Sede::pluck('descripcion','id');
+        $carrera = Carrera::findOrFail($request->input('carrera_id'));
+        return view('backend.horario.show', compact('sede','carrera', 'sedes'));
+ 
+    }
     /**
      * Display the specified resource.
      *

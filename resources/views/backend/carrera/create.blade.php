@@ -1,5 +1,6 @@
 @extends('backend.layouts.main')
 @section('title', 'Carreras')
+
 @section('content')
   <h1>Nueva Carrera</h1>
   <div>
@@ -8,29 +9,50 @@
     @endif
   </div>
   <div class="links">
- {{ Form::open(['route' => 'carreras.store', 'files' => true]) }}
+ {{ Form::open(['route' => 'carrera.store', 'files' => true]) }}
   @csrf <!-- {{ csrf_field() }} -->
-    <div class="form-group">
-          {{ Form::label("carrera", 'Carrera', ['class' => 'control-label']) }}
-          {{Form::text("carrera", old("carrera"), ["class" => "form-control", "placeholder" => "Ingrese la Carrera", ])}}                        
-          @error('carrera')
+  <div class="form-group">
+          {{ Form::label("descripcion", __('carrera.descripcion'), ['class' => 'control-label']) }}
+          {{Form::text("descripcion", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la descripcion", ])}}     
+          @error('descripcion')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
+          @enderror                          
     </div>
     <div class="form-group">
-          {{ Form::label("resolucion", 'Resolución', ['class' => 'control-label']) }}
-          {{Form::text("resolucion", old("resolucion"), ["class" => "form-control", "placeholder" => "Ingrese la Resolucion", ])}}                        
+          {{ Form::label("anios", __('carrera.anios'), ['class' => 'control-label']) }}
+          {{Form::text("anios", old("anios"), ["class" => "form-control", "placeholder" => "Ingrese años", ])}}     
+          @error('anios')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror                          
+    </div>
+    <div class="form-group">
+          {{ Form::label("resolucion", __('carrera.resolucion'), ['class' => 'control-label']) }}
+          {{Form::text("resolucion", old("resolucion"), ["class" => "form-control", "placeholder" => "Ingrese la resolucion", ])}}     
           @error('resolucion')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>  
+          @enderror                          
+    </div>
     <div class="form-group">
-          {{ Form::label("res_archivo", 'Resolución PDF', ['class' => 'control-label']) }}
-           {{ Form::file("res_archivo") }}                  
-          @error('res_archivo')
+          {{ Form::label("texto", __('carrera.texto'), ['class' => 'control-label']) }}
+          {{Form::textarea("texto", old("texto"), ["class" => "form-control", "placeholder" => "Ingrese texto", ])}}     
+          @error('texto')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>       
-    </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
+          @enderror                          
+    </div>
+    <div class="form-group">
+          {{ Form::label("texto", __('carrera.nombre_carpeta'), ['class' => 'control-label']) }}
+          {{Form::text("nombre_carpeta", old("nombre_carpeta"), ["class" => "form-control", "placeholder" => "Ingrese texto", ])}}     
+          @error('nombre_carpeta')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror                          
+    </div>
+    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif">
+           {{ Form::label("imagen", __('carrera.imagen'), ['class' => 'control-label']) }}
+           {{ Form::file("imagen") }}
+          @error('image')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror 
+</div>              
+    </br><button type="submit" style="width: 60%;" class="btn btn-primary">{{__('carrera.guardar')}}</button></div>
 {!!Form::close()!!}
 @endsection

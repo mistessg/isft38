@@ -14,7 +14,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.materia.index');
     }
 
     /**
@@ -24,7 +24,8 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        $materias = Materia::paginate(10);
+        return view('backend.materia.create', compact('materias'));
     }
 
     /**
@@ -35,7 +36,7 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('backend.materia.store', compact('materias'));
     }
 
     /**
