@@ -41,17 +41,7 @@ Route::get('/', function () {
 | Resource
 |--------------------------------------------------------------------------
 */
-Route::resource('anio', AnioController::class);
-Route::resource('carrera', CarreraController::class);
-Route::resource('comision', ComisionController::class);
-Route::resource('historia', HistoriaController::class);
-Route::resource('horario', HorarioController::class);
-Route::resource('materia', MateriaController::class);
-Route::resource('modulo', moduloController::class);
-Route::resource('objetivo', objetivoController::class);
-Route::resource('profesor', ProfesorController::class);
-Route::resource('programa', ProgramaController::class);
-Route::resource('sede', SedeController::class);
+
 
  //programa
 Route::get('/programa/cargarPrograma', [ProgramaController::class, 'CargarPrograma']);
@@ -93,7 +83,19 @@ Route::get('blog', [NoticiaController::class, 'blog'])->name('noticias.blog');
 Route::get('blog/autor/{autor}/{page?}', [NoticiaController::class, 'porAutorBlog'])->name('blog.autor');
 Route::get('blog/etiqueta/{etiqueta}/{page?}', [NoticiaController::class, 'porEtiquetaBlog'])->name('blog.etiqueta');
 Route::get('blog/carrera/{carrera}/{page?}', [NoticiaController::class, 'deCarreraBlog'])->name('blog.carrera');
-        
+
+Route::resource('anio', AnioController::class);
+Route::resource('carrera', CarreraController::class);
+Route::resource('comision', ComisionController::class);
+Route::resource('historia', HistoriaController::class);
+Route::resource('horario', HorarioController::class);
+Route::resource('materia', MateriaController::class);
+Route::resource('modulo', moduloController::class);
+Route::resource('objetivo', objetivoController::class);
+Route::resource('profesor', ProfesorController::class);
+Route::resource('programa', ProgramaController::class);
+Route::resource('sede', SedeController::class);
+
 /*
 |--------------------------------------------------------------------------
 | Autorizaciones
