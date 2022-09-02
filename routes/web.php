@@ -96,7 +96,7 @@ Route::resource('profesor', ProfesorController::class);
 Route::resource('programa', ProgramaController::class);
 Route::resource('sede', SedeController::class);
 
-/*
+/*martin
 |--------------------------------------------------------------------------
 | Autorizaciones
 |
