@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anio;
+use App\Models\Profesor;
 use App\Models\Carrera;
 use App\Models\Sede;
+use App\Models\Materia;
 use App\Models\Comision;
 use App\Models\Horario;
 use Illuminate\Http\Request;
@@ -16,37 +18,40 @@ class HorarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /*public function index()
     {
         return view('frontend.horarios.tablaCarreras');
+    }*/
+    public function index()
+    {
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $anios = Anio::pluck('anio', 'id');
+        $comisions = Comision::pluck('comision', 'id');
+        $sedes = Sede::pluck('descripcion', 'id');
+        return view('backend.horario.index', compact('carreras', 'anios', 'comisions', 'sedes'));
     }
-
-     public function porProfesor()
-     {
-         return view('frontend.horarios.porProfesor');
-     }
-     public function porCarrera()
-     {
-         return view('frontend\horarios\porCarerra');
-     }
-     public function porDiaHora()
-     {
-         return view('frontend\horarios\porDiaHora');
-     }
-
+    public function porProfesor()
+    {
+        return view('frontend.horarios.porProfesor');
+    }
+    public function porCarrera()
+    {
+        return view('frontend\horarios\porCarerra');
+    }
+    public function porDiaHora()
+    {
+        return view('frontend\horarios\porDiaHora');
+    }
+    public function create()
+    {
+        //
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {  $carreras = Carrera::pluck('descripcion','id');
-        $anios = Anio::pluck('anio', 'id');
-        $comisions = Comision::pluck('comision', 'id');
-        $sedes = Sede::pluck('descripcion', 'id');
-        return view('backend.horario.create', compact('carreras', 'anios', 'comisions', 'sedes'));
- 
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +60,7 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
 
     }
     /**
@@ -66,10 +71,28 @@ class HorarioController extends Controller
      */
     public function search(Request $request)
     {  // dd($request);
-        $sede = Sede::findOrFail($request->input('sede_id'));
+         $sede = Sede::findOrFail($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion','id');
-        $carrera = Carrera::findOrFail($request->input('carrera_id'));
-        return view('backend.horario.show', compact('sede','carrera', 'sedes'));
+     
+         $carrera = Carrera::findOrFail($request->input('carrera_id'));
+        $anio = Anio::findOrFail($request->input('anio_id'));
+         $profesor = Profesor::findOrFail($request->input('profesor_id'));
+         $materia = Materia::findOrFail($request->input('materia_id'));
+         $dia = Horario::findOrFail($request->input('dia'));
+         $moduloHorario = Horario::findOrFail($request->input('moduloHorario_id'));
+         $comentario = Horario::findOrFail($request->input('comentario'));
+ dd($request);
+
+        $horarios = Horario::where('sede_id',$sede->id)
+                           ->where('carrera_id',$carrera->id)
+                            ->where('anio_id',$anio->id)
+                          ->where('profesor_id',$profesor->id)
+                           ->where('dia',$dia)
+                            ->where('moduloHorario_id',$moduloHorario->id)->get();
+        
+         return view('backend.horario.show', compact('sede','carrera', 'sedes', 'horarios', 'anio', 
+         'profesor', 'materia', 'dia', 'moduloHorario', 'comentario'));
+        return view('backend.horario.show');
  
     }
     /**
@@ -80,8 +103,8 @@ class HorarioController extends Controller
      */
     public function show()
     {
-        $horarios = Horario::all();
-        return view('backend.horario.show',compact('horarios'));
+        // $horarios = Horario::all();
+        // return view('backend.horario.show', compact('horarios'));
     }
 
     /**
@@ -93,7 +116,7 @@ class HorarioController extends Controller
     public function edit($id)
     {
         $horarios = Horario::findOrFail($id);
-        return view('backend.horario.edit',compact('horarios'));
+        return view('backend.horario.edit', compact('horarios'));
     }
 
     /**
@@ -119,11 +142,10 @@ class HorarioController extends Controller
                 'duracion' => ['required']
             ]
         );
-        
-            $horarios->save();
-            $request->session()->flash('status','Se modificó correctamente el horario');
-            return redirect()->route('backend.horario.edit', $horarios->$id);
-        
+
+        $horarios->save();
+        $request->session()->flash('status', 'Se modificó correctamente el horario');
+        return redirect()->route('backend.horario.edit', $horarios->$id);
     }
 
     /**
@@ -137,7 +159,7 @@ class HorarioController extends Controller
         $horarios = Horario::findOrFail($id);
         $horarios->delete();
         $horarios->save();
-        $horarios->session()->flash('status','Se eliminó correctamente el horario');
+        $horarios->session()->flash('status', 'Se eliminó correctamente el horario');
         return redirect()->route('backend.horario.index', $horarios->$id);
     }
 }
