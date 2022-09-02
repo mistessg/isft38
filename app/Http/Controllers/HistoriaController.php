@@ -14,7 +14,7 @@ class HistoriaController extends Controller
      */
     public function index()
     {
-        $historia = Historia::paginate(1);
+        $historia = Historia::all();
         return view ('backend.historia.index', compact('historia'));
     }
 
@@ -56,9 +56,9 @@ class HistoriaController extends Controller
      * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Historia $historia)
+    public function edit($historia)
     {
-        $historia = Historia::findOrFail($id);
+        $historia = Historia;
         return view('backend.historia.edit', compact('historia'));
     }
 

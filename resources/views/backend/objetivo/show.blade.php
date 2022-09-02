@@ -1,5 +1,5 @@
 @extends('backend.layouts.main')
-@section('title', 'Carreras')
+@section('title', 'Objetivo')
 @section('content')
   <h1>Carrera</h1>
   <div>
