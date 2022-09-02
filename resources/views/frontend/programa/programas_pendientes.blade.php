@@ -4,14 +4,15 @@
 
 @section('content')
  
-
-<h4 align="center">Sede San Nicolas</h4>
-
+@foreach($programas as $programa)
+@if($loop->first)
+  <h4 align="center">{{ $programa->sede->descripcion }}</h4>
+@endif
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        1- Tecnicatura Superior de Analisis de Sistemas
+      {{ $programa->carrera->descripcion }}
       </button>
     </h2>
     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -30,7 +31,7 @@
     <tr>
       <th scope="row">1</th>
       <td>Mark</td>
-      <td>Otto</td>
+      <td>{{ $programa->materia->descripcion }}</td>
       <td>@mdo</td>
     </tr>
     <tr >
@@ -48,7 +49,7 @@
 </table>
 
       </div>
-    </div>
+    </div>@endforeach
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
