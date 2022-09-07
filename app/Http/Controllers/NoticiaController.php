@@ -271,6 +271,6 @@ class NoticiaController extends Controller
          $noticia = Noticia::findOrFail($id);
          $noticia->etiquetas()->detach();     
          $noticia->delete();
-         return redirect()->route('noticias');
+         return redirect()->route('noticias.index');
     }
 }
