@@ -46,18 +46,17 @@ class CarreraController extends Controller
         $carrera->anios = $request->input('anios'); 
         $carrera->texto = $request->input('texto'); 
         $carrera->nombre_carpeta = $request->input('nombre_carpeta'); 
-        $carrera->imagen = 'test'; 
-        $request->file('imagen'); 
+        $archivoImagen = $request->file('imagen'); 
          // dd($carrera);
         $carrera->save();
         
-       /* if ($request->hasFile('imagen')) {
+        if ($request->hasFile('imagen')) {
             $archivoImagen = $request->file('imagen');
             $path = $archivoImagen->storeAs('public/carreras/' . $carrera->id, $archivoImagen->getClientOriginalName() ); 
             $savedPath  =str_replace("public/", "", $path);
             $carrera->imagen = $savedPath;   
             $carrera->save();   
-       }*/
+       }
 
        // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
        // return redirect()->route('backend.carrera.create'); 
@@ -111,8 +110,10 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carrera $carrera)
+    public function destroy($id)
     {
-        //
+         $carrera = carrera::findOrFail($id);    
+         $carrera->delete();
+         return redirect()->route('backend.carrera.index');
     }
 }

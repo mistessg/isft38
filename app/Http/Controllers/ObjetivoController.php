@@ -14,7 +14,7 @@ class ObjetivoController extends Controller
      */
     public function index()
     {
-        $objetivo = Objetivos::paginate(1);
+        $objetivo = Objetivo;
         return view ('backend.objetivo.index', compact('objetivo'));
     }
 
@@ -58,7 +58,7 @@ class ObjetivoController extends Controller
      */
     public function edit(Objetivo $objetivo)
     {
-        $objetivo = Objetivo::findOrFail($id);
+        $objetivo = Objetivo;
         return view('backend.objetivo.edit', compact('objetivo'));
     }
 

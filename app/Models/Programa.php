@@ -35,4 +35,16 @@ class Programa extends Model
     	return $this->belongsTo(Materia::class, 'materia_id');
     } 
 
+    public function anio(){
+    	return $this->belongsTo(Anio::class, 'anio_id');
+    } 
+
+    public function comision(){
+    	return $this->belongsTo(Comision::class, 'comision_id');
+    } 
+
+    public function profesor(){
+    	return $this->belongsTo(Profesor::class, 'profesor_id');
+    } 
+
 }
