@@ -32,6 +32,7 @@ class ProgramaController extends Controller
         for ($i = $anio - 10; $i <= $anio; $i++) {
             $anios[] = $i;
         }
+        
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
 
@@ -40,7 +41,8 @@ class ProgramaController extends Controller
 
         $programa = Programa::where('sede_id', $request->sede_id)
                             ->where('carrera_id', $request->carrera_id)
-                            
+                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
+                            dd($programa);
     }
 
     public function CargarPrograma(Request $request){
@@ -85,11 +87,7 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
-    {
-        
-     dd($request);
-    }
+    
 
     /**
      * Display the specified resource.
