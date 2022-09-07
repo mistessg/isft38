@@ -81,7 +81,8 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        //
+        $carreras = Carrera::all();
+        return view('backend.carrera.edit', compact('carreras'));
     }
 
     /**
