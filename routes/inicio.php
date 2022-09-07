@@ -6,6 +6,6 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.layout.main');
+    return view('frontend.carrousel.carrousel');
 });
  

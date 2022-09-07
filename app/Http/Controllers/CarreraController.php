@@ -79,9 +79,10 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carrera $carrera)
+    public function edit($id)
     {
-        //
+        $carreras = Carrera::find($id);
+        return view('backend.carrera.edit', compact('carreras'));
     }
 
     /**

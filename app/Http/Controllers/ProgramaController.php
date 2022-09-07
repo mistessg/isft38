@@ -32,10 +32,25 @@ class ProgramaController extends Controller
         for ($i = $anio - 10; $i <= $anio; $i++) {
             $anios[] = $i;
         }
+        
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
 
-    public function CargarPrograma(){
+    public function search(Request $request)
+    {
+
+        $programa = Programa::where('sede_id', $request->sede_id)
+<<<<<<< HEAD
+                            ->where('carrera_id', $request->carrera_id);
+                            
+=======
+                            ->where('carrera_id', $request->carrera_id)
+                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
+                            dd($programa);
+>>>>>>> cfd061122cdf822227ed08485c333a4a4736211b
+    }
+
+    public function CargarPrograma(Request $request){
         return view('frontend.programa.cargar_programa');
     }
 
@@ -45,8 +60,8 @@ class ProgramaController extends Controller
         $materias = Materia::pluck('descripcion', 'id');
         $programas = Programa::all();
          //dd($programas);
-         dd($carreras);
-         dd($materias);
+         //dd($carreras);
+         //dd($materias);
         return view('frontend.programa.programas_pendientes', compact('programas'));
     }
 
@@ -77,11 +92,10 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
-    {
-        
-     dd($request);
-    }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> cfd061122cdf822227ed08485c333a4a4736211b
 
     /**
      * Display the specified resource.
