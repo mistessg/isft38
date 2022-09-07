@@ -55,8 +55,8 @@ class ProgramaController extends Controller
         $materias = Materia::pluck('descripcion', 'id');
         $programas = Programa::all();
          //dd($programas);
-         dd($carreras);
-         dd($materias);
+         //dd($carreras);
+         //dd($materias);
         return view('frontend.programa.programas_pendientes', compact('programas'));
     }
 
