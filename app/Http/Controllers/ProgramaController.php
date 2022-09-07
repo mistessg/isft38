@@ -39,7 +39,7 @@ class ProgramaController extends Controller
     {
 
         $programa = Programa::where('sede_id', $request->sede_id)
-                            ->where('carrera_id', $request->carrera_id)
+                            ->where('carrera_id', $request->carrera_id);
                             
     }
 
@@ -85,11 +85,6 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
-    {
-        
-     dd($request);
-    }
 
     /**
      * Display the specified resource.
