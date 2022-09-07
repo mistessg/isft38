@@ -35,7 +35,15 @@ class ProgramaController extends Controller
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
 
-    public function CargarPrograma(){
+    public function search(Request $request)
+    {
+
+        $programa = Programa::where('sede_id', $request->sede_id)
+                            ->where('carrera_id', $request->carrera_id)
+                            
+    }
+
+    public function CargarPrograma(Request $request){
         return view('frontend.programa.cargar_programa');
     }
 

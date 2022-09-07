@@ -90,7 +90,6 @@ class HorarioController extends Controller
 
         $comentario = Horario::find($request->input('comentario'));
 
-
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
