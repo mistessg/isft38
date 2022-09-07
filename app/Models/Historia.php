@@ -9,3 +9,7 @@ class Historia extends Model
 {
     use HasFactory;
 }
+
+public function sede(){
+    return $this->belongsTo(Sede::class, 'sede_id');
+}

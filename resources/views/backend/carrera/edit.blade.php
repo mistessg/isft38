@@ -29,7 +29,7 @@
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>     
- </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button>    
+ </br><button type="submit" style="width: 100%;" class="btn btn-success btn-block container-fluid p-3">Guardar</button>    
     </div>
 {!!Form::close()!!}
 @endsection
