@@ -12,6 +12,13 @@ class Horario extends Model
 {
     use HasFactory;
 
+ 
+    protected $fillable = [
+        'comentario'
+        
+    ];
+
+
     public function materia(){
     	return $this->belongsTo(Materia::class, 'materia_id');
     } 
