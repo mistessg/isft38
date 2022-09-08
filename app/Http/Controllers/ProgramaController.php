@@ -47,13 +47,20 @@ class ProgramaController extends Controller
         $materias = Materia::pluck('descripcion', 'id');
         $profesores = Profesor::pluck('nombre','apellido','id');
         $sede = Sede::pluck('descripcion','id');
-        $programas = Programa::pluck('nombrearchivo', 'ruta');
+        $programas = Programa::all();
+        //dd($programas);
         //dd($programas);
          //dd($programas[1]->carrera->descripcion);
          //dd($carreras);
          //dd($materias);
          return view('frontend.programa.programas_pendientes', compact('carreras','sede','comisiones','materias','profesores', 'anio', 'programas'));
 
+    }
+
+    public function store(Request $request){
+        $programa = new Programa(){
+            
+        }
     }
 
     /**
