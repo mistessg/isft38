@@ -142,7 +142,7 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $horario, $id)
     {
         $horarios = Horario::findOrFail($id);
         $validateData = $request->validate(

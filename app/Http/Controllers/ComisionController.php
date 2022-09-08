@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comision;
 use Illuminate\Http\Request;
-
+use App\Models\Carrera;
+use App\Models\Sede;
 class ComisionController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class ComisionController extends Controller
      */
     public function index()
     {
-        //
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $sedes = Sede::pluck('descripcion', 'id');
+        return view('backend.comision.index', compact('carreras', 'sedes'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ComisionController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -55,9 +58,10 @@ class ComisionController extends Controller
      * @param  \App\Models\Comision  $comision
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comision $comision)
+    public function edit(Request $id)
     {
-        //
+        $comision = Horario::findOrFail($id);
+        return view('backend.horario.edit', compact('comision'));
     }
 
     /**
@@ -67,9 +71,20 @@ class ComisionController extends Controller
      * @param  \App\Models\Comision  $comision
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comision $comision)
+    public function update(Request $comision, $id)
     {
-        //
+        $comision = Horario::findOrFail($id);
+        $validateData = $request->validate(
+            [
+                'sede_id' => ['required'],
+                'carrera_id' => ['required'],
+                'materia_id' => ['required'],
+                'comision' => ['required']
+        );
+
+        $horarios->save();
+        $request->session()->flash('status', 'Se modificó correctamente el horario');
+        return redirect()->route('backend.comision.edit', $comision->$id);
     }
 
     /**
@@ -78,8 +93,12 @@ class ComisionController extends Controller
      * @param  \App\Models\Comision  $comision
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comision $comision)
+    public function destroy($id)
     {
-        //
+        $comision = Comision::FindOrFail($id);
+        $comision -> delete();
+        $comision -> save();
+        $comision->session()->flash('status', 'Se eliminó correctamente la comision');
+        return redirect()->route('backend.comision.index', $comision->$id);
     }
 }
