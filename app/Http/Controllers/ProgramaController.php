@@ -32,22 +32,10 @@ class ProgramaController extends Controller
         for ($i = $anio - 10; $i <= $anio; $i++) {
             $anios[] = $i;
         }
-        
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
 
-    public function search(Request $request)
-    {
-
-        $programa = Programa::where('sede_id', $request->sede_id)
-                            ->where('carrera_id', $request->carrera_id)
-                            
-                            ->where('carrera_id', $request->carrera_id)
-                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
-                            dd($programa);
-    }
-
-    public function CargarPrograma(Request $request){
+    public function CargarPrograma(){
         return view('frontend.programa.cargar_programa');
     }
 
@@ -55,11 +43,21 @@ class ProgramaController extends Controller
      
         $carreras = Carrera::pluck('descripcion', 'id');
         $materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sede = Sede::pluck('descripcion','id');
         $programas = Programa::all();
-         //dd($programas);
+        //dd($programas);
+        //dd($programas);
+         //dd($programas[1]->carrera->descripcion);
          //dd($carreras);
          //dd($materias);
         return view('frontend.programa.programas_pendientes', compact('programas'));
+    }
+
+    public function store(Request $request){
+        $programa = new Programa(){
+            
+        }
     }
 
     /**
@@ -89,7 +87,16 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+    public function search(Request $request)
+    {
+
+        $programa = Programa::where('sede_id', $request->sede_id)
+                            ->where('carrera_id', $request->carrera_id)
+                            
+                            ->where('carrera_id', $request->carrera_id)
+                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
+                            dd($programa);
+    }
 
     /**
      * Display the specified resource.
