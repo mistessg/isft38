@@ -11,7 +11,8 @@
     }
     .links{
         padding:25px;
-        margin: 10px;
+        width: 70%;
+        margin: 0 auto;
     }
     .form-group{
         margin-top:10px;
@@ -76,7 +77,7 @@
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror                          
     </div>
-    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif">
+    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif" style="text-align:center;">
            {{ Form::label("imagen", __('IMÁGEN'), ['class' => 'control-label']) }}
            <br>
            {{ Form::file("imagen") }}
