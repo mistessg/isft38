@@ -40,14 +40,11 @@ class ProgramaController extends Controller
     {
 
         $programa = Programa::where('sede_id', $request->sede_id)
-<<<<<<< HEAD
-                            ->where('carrera_id', $request->carrera_id);
+                            ->where('carrera_id', $request->carrera_id)
                             
-=======
                             ->where('carrera_id', $request->carrera_id)
                             ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
                             dd($programa);
->>>>>>> cfd061122cdf822227ed08485c333a4a4736211b
     }
 
     public function CargarPrograma(Request $request){
@@ -92,10 +89,7 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-=======
     
->>>>>>> cfd061122cdf822227ed08485c333a4a4736211b
 
     /**
      * Display the specified resource.
