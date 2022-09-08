@@ -20,6 +20,12 @@
 .card-img-top{
   height: 200px;
 }
+.fondoCards{
+  background-color: lightcyan;
+  padding: 20px;
+}
+
+
 </style>
 
 
@@ -62,49 +68,51 @@
   </button>
 </div>
 
-<div class="containerss">
-  <div class="titulo">
-    <h1>Información</h1>
-  </div>
-  <div class="texto">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum repellat laboriosam sit sint, nam delectus nihil, reiciendis rem fuga hic iste. Debitis, dignissimos! Amet laboriosam quos consequuntur doloribus placeat provident! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum aliquid illo asperiores dolorem rem corporis omnis maiores vitae dolore illum, corrupti quidem molestias, magnam aliquam fuga, ad sint nisi itaque.</p>
-  </div>
-</div>
-
-
-<div>
-<div class="carditas">
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="http://www.corneliadelange.es/wp-content/uploads/2018/01/objetivo-congresos.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Objetivos</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="fondoCards">
+  <div class="containerss">
+    <div class="titulo">
+      <h1>Información</h1>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Titulo</li>
-      <li class="list-group-item">Subtitulo</li>
-      <li class="list-group-item">Texto</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
+    <div class="texto" >
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum repellat laboriosam sit sint, nam delectus nihil, reiciendis rem fuga hic iste. Debitis, dignissimos! Amet laboriosam quos consequuntur doloribus placeat provident! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum aliquid illo asperiores dolorem rem corporis omnis maiores vitae dolore illum, corrupti quidem molestias, magnam aliquam fuga, ad sint nisi itaque.</p>
     </div>
   </div>
- <!--CARD 2-->
-  <div class="card" style="width: 18rem; ">
-  <img class="card-img-top" src="https://images.vexels.com/media/users/3/188413/isolated/preview/bd351f1048225a84afdb2575d4a6e8fd-icono-de-historia-de-materia-escolar-de-lapiz-de-color.png" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Historia</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+
+
+  <div class="carditas">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="http://www.corneliadelange.es/wp-content/uploads/2018/01/objetivo-congresos.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Objetivos</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Titulo</li>
+        <li class="list-group-item">Subtitulo</li>
+        <li class="list-group-item">Texto</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+      </div>
+    </div>
+  <!--CARD 2-->
+    <div class="card" style="width: 18rem; ">
+      <img class="card-img-top" src="https://images.vexels.com/media/users/3/188413/isolated/preview/bd351f1048225a84afdb2575d4a6e8fd-icono-de-historia-de-materia-escolar-de-lapiz-de-color.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Historia</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Titulo</li>
+        <li class="list-group-item">Subtitulo</li>
+        <li class="list-group-item">Texto</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+      </div>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Titulo</li>
-    <li class="list-group-item">Subtitulo</li>
-    <li class="list-group-item">Texto</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-  </div>
-</div>
 </div>
 
 
