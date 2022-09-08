@@ -36,7 +36,7 @@
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-  @foreach($novedades as $novedad)
+  @forelse($novedades as $novedad)
   @if($loop->first)  
   <div class="carousel-item active">
   @else
@@ -56,8 +56,11 @@
         <p>{!!substr($novedad->cuerpo, 0, 300)!!}... <a href="{{route('blog.noticias.leer',$novedad->id)}}" target="_blank">Seguir Leyendo »</a></p>
       </div>
     </div>
-    @endforeach
     <div class="carousel-item">
+    @empty
+    <div class="carousel-item active">
+    @endforelse
+    
       <img src="https://www.diferencias.cc/wp-content/uploads/2021/06/diferencia-entre-facultad-y-universidad.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
