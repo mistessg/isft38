@@ -22,6 +22,7 @@
         </div>
 
         <div class="input-group mb-3">
+        <label class="input-group-text" for="#">Carreras</label>
         {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera" ]) }}    
         </select>
         </div>
@@ -33,11 +34,11 @@
         </div>
 
         <div class="input-group mb-3">
-        <label class="input-group-text" for="#">Comision</label>
+        <label class="input-group-text" for="#">Comisión</label>
         {{Form::select("comision_id", $comisions, null, ["class" => "form-control", "placeholder" => "Seleccione la comision" ]) }} 
         </div>
     
-        </br><button type="submit" style="width: 100%;" class="btn btn-primary">Consultar</button></div>
+        </br><button type="submit" style="width: 100%;" class="btn btn-dark">Consultar</button></div>
          {!!Form::close()!!}  
     </div>
    

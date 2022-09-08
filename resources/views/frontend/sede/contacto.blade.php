@@ -1,14 +1,14 @@
 @extends('frontend.layout.main')
 @section('content')
 <style>
-        .form-control{
-            background: transparent;
+        .form-control, .form-select{
+            /* background:transparent ; */
             border: none;
             /* border-bottom: 1px solid rgb(175, 34, 34); */
             border-bottom: 1px solid black;
             border-radius:0px;
         }
-        .form-control::placeholder{
+        .form-control::placeholder, .form-select::placeholder{
             /* color: rgb(175, 34, 34); */
             color: grey;
         }
@@ -27,7 +27,7 @@
         .form-control:hover {
             background: transparent;
         }
-        .form-control:focus{
+        .form-control:focus , .form-select:focus{
             border-color:transparent;
             border-bottom:1px solid black;
             box-shadow: none;
@@ -35,7 +35,7 @@
         }
 
         /*  */
-
+        
         .container-padre{
             display:flex;
             flex-wrap:wrap;
@@ -46,13 +46,28 @@
         }
         .container-padre .container-map_icons{
             width:40%;
+            display:flex;
+            align-items:center;
+            flex-direction:column;
+            flex-wrap:wrap;
+            gap:2em;
+        }
+        .container-3img{
+            display:flex;
+            border:1px solid gray;
+            border-radius:10px;
+            padding:20px;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+            gap:1em;
+            margin:50px 0;
         }
         .icon-text{
             width:200px;
             text-align:left;
             margin-left:10px;
         }
-
         @media screen and (max-width:1100px){
             .container-padre{
                 flex-direction:column;
@@ -62,16 +77,18 @@
             }
             .container-padre .container-map_icons{
                 width:100%;
+                flex-direction:row;
+                justify-content:space-around;
             }
         }
-
         @media screen and (max-width:768px) {
             .icon-text{
-                width:auto;
             }
-            
             .container-3img{
-                flex-direction:column;
+
+            }
+            .container-3img svg{
+              
             }
         }
 </style>
@@ -96,10 +113,10 @@
         <input type="email" name="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
     </div>
 
-    <div class="mb-5">
+    <div class="mb-5" >
         <label for="sede" class="form-label">Sede <i style="font-weight:normal;">(Elija una)</i></label>
         <!-- <select type="number" class="form-control" id="sede"> -->
-        <select name="sede" class="form-control" name="sede" id="sede" placeholder="Elija la sede">
+        <select name="sede" style="cursor:pointer;" class="form-select" name="sede" id="sede" placeholder="Elija la sede">
             <option value="">ISFT N°38 - San Nicolás</option>
             <option value="">Otro</option>
             <option value="">Otro</option>
@@ -140,9 +157,9 @@
 
 <!-- <hr style="margin:50px"> -->
 
-<div class="my-4 container-map_icons" style="display:flex;align-items:center;flex-direction:column;flex-wrap:wrap;">
+<div class="my-4 container-map_icons">
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13326.864819671318!2d-60.1787278!3d-33.3784744!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x832238dce218af32!2sInstituto%20Superior%20de%20Formaci%C3%B3n%20T%C3%A9cnica%20N%C2%B038!5e0!3m2!1ses!2sar!4v1661981270143!5m2!1ses!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="container-3img" style="display:flex;border:1px solid gray;border-radius:10px;padding:20px;flex-direction:column;align-items:center;text-align:center;gap:1em;margin:50px 0;">
+    <div class="container-3img" style="">
 
         <div style="display:flex;align-items:center;">
             <div style="border:1px solid black;border-radius:50px;padding:20px;">
@@ -156,9 +173,9 @@
 
         <div style="display:flex;align-items:center;">
             <div style="border:1px solid black;border-radius:50px;padding:20px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+            </svg>
             </div>
             <p class="pt-3 icon-text" style="font-weight:bold;">Email: </p>
         </div>

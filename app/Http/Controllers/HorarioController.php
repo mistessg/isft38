@@ -43,9 +43,41 @@ class HorarioController extends Controller
     {
         return view('frontend\horarios\porDiaHora');
     }
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $sede = Sede::find($request->input('sede_id'));
+        $sedes = Sede::pluck('descripcion', 'id');
+
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $anios = Anio::pluck('anio', 'id');
+        $comisions = Comision::pluck('comision', 'id');
+
+        $carrera = Carrera::find($request->input('carrera_id'));
+        $anio = Anio::find($request->input('anio_id'));
+        $profesor = Profesor::find($request->input('profesor_id'));
+        $materia = Materia::find($request->input('materia_id'));
+        $dia = Horario::find($request->input('dia'));
+        $moduloHorario = Modulo::find($request->input('moduloHorario_id'));
+        $comision = Comision::find($request->input('comision_id'));
+
+        $horarios = Horario::where('sede_id', $sede->id)
+            ->where('carrera_id', $carrera->id)
+            ->where('anio_id', $anio->id)
+         ->where('comision_id',$comision->id)->get();
+
+         return view('backend.horario.create', compact(
+            'sede',
+            'carrera',
+            'sedes',
+            'horarios',
+            'anio',
+            'profesor',
+            'materia',
+            'dia',
+            'moduloHorario',
+            'comentario',
+            'dias'
+        ));
     }
     /**
      * Show the form for creating a new resource.
@@ -90,7 +122,6 @@ class HorarioController extends Controller
 
         $comentario = Horario::find($request->input('comentario'));
 
-
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
@@ -107,9 +138,10 @@ class HorarioController extends Controller
             'materia',
             'dia',
             'moduloHorario',
-            'comentario'
+            'comentario',
+            'dias'
         ));
-        return view('backend.horario.show');
+        
     }
     /**
      * Display the specified resource.

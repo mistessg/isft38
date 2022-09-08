@@ -16,6 +16,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
 Route::get('blog', [NoticiaController::class, 'blog'])->name('noticias.blog');
+Route::get('blog/noticia/{id}', [NoticiaController::class, 'leerNoticia'])->name('blog.noticias.leer');
 Route::get('blog/autor/{autor}/{page?}', [NoticiaController::class, 'porAutorBlog'])->name('blog.autor');
 Route::get('blog/etiqueta/{etiqueta}/{page?}', [NoticiaController::class, 'porEtiquetaBlog'])->name('blog.etiqueta');
 Route::get('blog/carrera/{carrera}/{page?}', [NoticiaController::class, 'deCarreraBlog'])->name('blog.carrera');

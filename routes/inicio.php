@@ -1,4 +1,6 @@
 <?php
+use App\Models\Etiqueta;
+
 /*
 |--------------------------------------------------------------------------
 | Inicio                                                    | Iván, Martín
@@ -6,6 +8,8 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.layout.main');
+    $e = Etiqueta::where('nombre','novedades')->first();
+    $novedades = $e->novedades()->get();
+    return view('frontend.carrousel.carrousel', compact('novedades'));
 });
  

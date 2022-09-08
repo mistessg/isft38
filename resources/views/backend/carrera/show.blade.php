@@ -8,7 +8,7 @@
     @endif
   </div>
   <div class="links">
-   {{ Form::model($carrera, [ 'method' => 'get' , 'route' => ['carreras.show', $carrera->id]]) }}
+   {{ Form::model($carrera, [ 'method' => 'get' , 'route' => ['carrera.show', $carrera->id]]) }}
     <div class="form-group @if($errors->has('carrera')) has-error has-feedback @endif">
           {{ Form::label("carrera", 'Carrera', ['class' => 'control-label']) }}
           {{Form::text("carrera", null , ["class" => "form-control", "readonly" ])}}                        

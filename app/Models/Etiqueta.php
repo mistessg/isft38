@@ -23,4 +23,9 @@ class Etiqueta extends Model
           ->using(NoticiaEtiqueta::class);
     }
 
-}
+    public function novedades(){
+        return $this->belongsToMany(Noticia::class, 'noticias_etiquetas')
+          ->withTimestamps()
+          ->using(NoticiaEtiqueta::class);
+    }
+    }

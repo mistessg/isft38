@@ -273,4 +273,17 @@ class NoticiaController extends Controller
          $noticia->delete();
          return redirect()->route('noticias.index');
     }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function leerNoticia($id)
+    { 
+      $e = Etiqueta::where('nombre','novedades')->first();
+      $noticias = $e->novedades()->paginate(6);
+      return view('frontend.noticia.noticias', compact('noticias'));  
+    }
 }
