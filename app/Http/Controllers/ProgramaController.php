@@ -41,13 +41,19 @@ class ProgramaController extends Controller
 
     public function ProgramasPendientes(){
      
-        $carreras = Carrera::pluck('descripcion', 'id');
+        $anio = Anio::pluck('anio', 'id');
+        $carreras = Carrera::pluck('descripcion','id');
+        $comisiones = Comision::pluck('comision', 'id');
         $materias = Materia::pluck('descripcion', 'id');
-        $programas = Programa::all();
-         dd($programas[1]->carrera->descripcion);
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sede = Sede::pluck('descripcion','id');
+        $programas = Programa::pluck('nombrearchivo', 'ruta');
+        //dd($programas);
+         //dd($programas[1]->carrera->descripcion);
          //dd($carreras);
          //dd($materias);
-        return view('frontend.programa.programas_pendientes', compact('programas'));
+         return view('frontend.programa.programas_pendientes', compact('carreras','sede','comisiones','materias','profesores', 'anio', 'programas'));
+
     }
 
     /**
@@ -82,10 +88,9 @@ class ProgramaController extends Controller
 
         $programa = Programa::where('sede_id', $request->sede_id)
                             ->where('carrera_id', $request->carrera_id)
-                            
                             ->where('carrera_id', $request->carrera_id)
                             ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
-                            dd($programa);
+        dd($programa);
     }
 
     /**
