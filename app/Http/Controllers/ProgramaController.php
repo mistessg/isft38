@@ -44,7 +44,7 @@ class ProgramaController extends Controller
         $carreras = Carrera::pluck('descripcion', 'id');
         $materias = Materia::pluck('descripcion', 'id');
         $programas = Programa::all();
-         dd($programas[1]->carrera->descripcion);
+         //dd($programas[1]->carrera->descripcion);
          //dd($carreras);
          //dd($materias);
         return view('frontend.programa.programas_pendientes', compact('programas'));
