@@ -43,15 +43,11 @@ class ProgramaController extends Controller
      
         $carreras = Carrera::pluck('descripcion', 'id');
         $materias = Materia::pluck('descripcion', 'id');
-<<<<<<< HEAD
         $profesores = Profesor::pluck('nombre','apellido','id');
         $sede = Sede::pluck('descripcion','id');
         $programas = Programa::all();
         //dd($programas);
         //dd($programas);
-=======
-        $programas = Programa::all();
->>>>>>> ab738b8a8dff0b999d0f1488fed31c8d9ddf42ae
          //dd($programas[1]->carrera->descripcion);
          //dd($carreras);
          //dd($materias);
