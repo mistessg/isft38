@@ -10,6 +10,7 @@ use App\Models\Etiqueta;
 Route::get('/', function () {
     $e = Etiqueta::where('nombre','novedades')->first();
     $novedades = $e->novedades()->get();
+    
     return view('frontend.carrousel.carrousel', compact('novedades'));
 });
  

@@ -17,6 +17,11 @@ class ProfesorController extends Controller
         //return view('frontend.horarios.porProfesor');
     }
 
+    public function login()
+    {
+        return view('frontend\profesor\login');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

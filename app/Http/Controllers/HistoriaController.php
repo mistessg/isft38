@@ -14,8 +14,8 @@ class HistoriaController extends Controller
      */
     public function index()
     {
-        $historia = Historia::all();
-        return view ('backend.historia.index', compact('historia'));
+        $historias = Historia::all();
+        return view ('backend.historia.index', compact('historias'));
     }
 
     /**
@@ -36,7 +36,15 @@ class HistoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [ 'historia' => 'required']
+         );
+
+     $historia = new Historia();
+     $historia->historia = $request->input('historia');
+     $historia->save();
+     $request->session()->flash('status', 'Se guardó correctamente la Historia ');
+     return redirect()->route('historia.create');
     }
 
     /**
@@ -45,9 +53,10 @@ class HistoriaController extends Controller
      * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
-    public function show(Historia $historia)
+    public function show($id)
     {
-        //
+        $historia = Historia::findOrFail($id);
+        return view('backend.historia.show', compact('historia'));
     }
 
     /**
@@ -56,9 +65,9 @@ class HistoriaController extends Controller
      * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
-    public function edit($historia)
+    public function edit($id)
     {
-        $historia = Historia;
+        $historia = Historia::findOrFail($id);
         return view('backend.historia.edit', compact('historia'));
     }
 
@@ -69,9 +78,16 @@ class HistoriaController extends Controller
      * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Historia $historia)
+    public function update(Request $request, $id)
     {
-        //
+        $historia = Historia::findOrFail($id);
+        $validatedData = $request->validate(
+               [ 'historia' => 'required']);
+            $historia->update($validatedData);
+
+            $historia->historia = $request->input('historia');
+
+            $historia->save();
     }
 
     /**
@@ -80,8 +96,10 @@ class HistoriaController extends Controller
      * @param  \App\Models\Historia  $historia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Historia $historia)
+    public function destroy($id)
     {
-        //
+        $historia = Historia::findOrFail($id);
+         $historia->delete();
+         return redirect()->route('historia.index');
     }
 }
