@@ -148,6 +148,7 @@ class HorarioController extends Controller
         $materia = Materia::find($request->input('materia_id'));
         $dia = Horario::find($request->input('dia'));
         $moduloHorario = Modulo::find($request->input('moduloHorario_id'));
+        $modulosHorarios = Modulo::all();
         $comision = Comision::find($request->input('comision_id'));
  
         $comentario = Horario::find($request->input('comentario'));
@@ -170,7 +171,8 @@ class HorarioController extends Controller
             'moduloHorario',
             'comentario',
             'dias',
-            'comision'
+            'comision',
+            'modulosHorarios'
         ));
         
     }
