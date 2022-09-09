@@ -2,14 +2,11 @@
 @section('content')
 <style>
         .form-control, .form-select{
-            /* background:transparent ; */
             border: none;
-            /* border-bottom: 1px solid rgb(175, 34, 34); */
             border-bottom: 1px solid black;
             border-radius:0px;
         }
         .form-control::placeholder, .form-select::placeholder{
-            /* color: rgb(175, 34, 34); */
             color: grey;
         }
         form label{
@@ -19,7 +16,6 @@
             text-align: center;
         }
         .boton button{
-            /* background-color: rgb(175, 34, 34); */
             background-color: black;
             color: white;
             text-transform: uppercase;
@@ -33,16 +29,15 @@
             box-shadow: none;
             outline: 0 none;
         }
-
         /*  */
         
         .container-padre{
             display:flex;
-            flex-wrap:wrap;
-            margin:0 20px;
+            width:100%;
         }
-        .container-padre form{
-            width:60%;
+        .container-padre .container-hijo{
+            width:100%;
+            padding:0 20px;
         }
         .container-padre .container-map_icons{
             width:40%;
@@ -93,73 +88,81 @@
         }
 </style>
 
-<div class="alert alert-primary" style="margin:20px 40px;text-align:center;" role="alert">
-  <i>Atención de secretaría: Lunes a Viernes, de 17:45 a 22:00hs</i>
-</div>
+
 
 <div class="container-padre" >
+    <div class="container-hijo">
 
-<form class="container my-4">
-    <div class="card">
-        <h5 class="card-header" style=" background-color: #181818; color: white;font-weight:bold;">Contacto</h5>
-        <div class="card-body" style="border:none;border:1px solid grey;">
-        <div class="mb-5">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="nombre" name="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp">
+    <div class="alert alert-primary" style="margin:20px 40px;text-align:center;" role="alert">
+    <i>Atención de secretaría: Lunes a Viernes, de 17:45 a 22:00hs</i>
     </div>
 
-    <div class="mb-5">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
-    </div>
+    <form class="container ">
+        <div class="card">
+            <h5 class="card-header" style=" background-color: #181818; color: white;font-weight:bold;">Contacto</h5>
+            <div class="card-body" style="border:none;border:1px solid grey;">
+            <div class=" mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="nombre" name="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp">
+            </div>
 
-    <div class="mb-5" >
-        <label for="sede" class="form-label">Sede <i style="font-weight:normal;">(Elija una)</i></label>
-        <!-- <select type="number" class="form-control" id="sede"> -->
-        <select name="sede" style="cursor:pointer;" class="form-select" name="sede" id="sede" placeholder="Elija la sede">
-            <option value="">ISFT N°38 - San Nicolás</option>
-            <option value="">Otro</option>
-            <option value="">Otro</option>
-        </select>
-    </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
+        </div>
 
-    <div class="mb-5">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Escriba su teléfono" aria-describedby="emailHelp">
-    </div>
+        <div class="mb-3" >
+            <label for="sede" class="form-label">Sede <i style="font-weight:normal;">(Elija una)</i></label>
+            <select name="sede" style="cursor:pointer;" class="form-select" name="sede" id="sede" placeholder="Elija la sede">
+                <option value="">ISFT N°38 - San Nicolás</option>
+                <option value="">Otro</option>
+                <option value="">Otro</option>
+            </select>
+        </div>
 
-    <div class="mb-5">
-        <label for="message" class="form-label">Mensaje</label>
-    <div id="summernote"></div>
-    <script>
-      $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
-        tabsize: 2,
-        height: 120,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ]
-      });
-    </script>
-    </div>
-    <div class="boton">
-        <button type="submit" class="btn">Enviar</button>
-    </div>
-    </div>
-    </div>
-</form>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Escriba su teléfono" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Mensaje</label>
+            <div id="summernote"></div>
+            <script>
+            $('#summernote').summernote({
+                placeholder: 'Hello stand alone ui',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ]
+            });
+            </script>
+        </div>
+
+        <div class="boton"><button type="submit" class="btn">Enviar</button></div>
+
+        </div>
+        </div>
+    </form>
+</div>
+
 
 <!-- <hr style="margin:50px"> -->
 
-<div class="my-4 container-map_icons">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13326.864819671318!2d-60.1787278!3d-33.3784744!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x832238dce218af32!2sInstituto%20Superior%20de%20Formaci%C3%B3n%20T%C3%A9cnica%20N%C2%B038!5e0!3m2!1ses!2sar!4v1661981270143!5m2!1ses!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="container-3img" style="">
+<div class="bgImg" style="
+width:60%;
+border-radius:4px;
+background-image:url(https://img.huffingtonpost.com/asset/5b476ec01900002a00c65851.jpeg?ops=1200_630);
+background-size:cover;
+"></div>
+
+<!-- <div class="my-4 container-map_icons ">
+    <iframe style="border:1px solid grey;border-radius:10px;width:400px;height:300px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13326.864819671318!2d-60.1787278!3d-33.3784744!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x832238dce218af32!2sInstituto%20Superior%20de%20Formaci%C3%B3n%20T%C3%A9cnica%20N%C2%B038!5e0!3m2!1ses!2sar!4v1661981270143!5m2!1ses!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="container-3img" >
 
         <div style="display:flex;align-items:center;">
             <div style="border:1px solid black;border-radius:50px;padding:20px;">
@@ -189,7 +192,7 @@
             <p class="pt-3 icon-text" style="font-weight:bold;">Numero</p>
         </div>
     </div>
-</div>
+</div> -->
 </div>
 
 @endsection
