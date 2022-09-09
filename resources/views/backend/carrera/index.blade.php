@@ -40,12 +40,12 @@ a{
 .horario{
   color:black;
   border:1px solid black;
-  border-radius:20px;
+  border-radius:25px;
   padding: 10px;
 }
 .svg{
   padding: 15px;
-  border-radius:50px;
+  border-radius:70px;
 }
 
 
