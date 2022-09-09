@@ -64,7 +64,8 @@ class HorarioController extends Controller
         $materias = Materia::where('carrera_id', $carrera->id)
                            ->where('anio_id', $anio->id)
                            ->pluck('descripcion', 'id');
- 
+        $modulo = Modulo::find($request->input('modulohorario_id'));
+        $dia = $request->input('dia');
         $modulosHorario = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' ',modulos.horafin) as horariocompleto"))
         ->pluck('horariocompleto', 'id');
         $comision = Comision::find($request->input('comision_id'));
@@ -91,9 +92,9 @@ class HorarioController extends Controller
             'dias',
             'modulosHorario',
             'comision',
-            'profesores'
-            //'comentario',
-           // 'dias'
+            'profesores',
+            'modulo',
+            'dia'
         ));
     }
     /**
@@ -112,21 +113,30 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(
-            [ 'materia_id' => 'required',
-              'profesor_id' => 'required',
-              'dia' => 'required',
-              'modulohorario_id' => 'required' ]
+            [ 'sede_id' => 'required',
+            'carrera_id' => 'required',
+            'anio_id' => 'required',
+            'comision_id' => 'required',
+            'materia_id' => 'required',
+            'profesor_id' => 'required',
+            'dia' => 'required',
+            'modulohorario_id' => 'required' ]
          );
 
      $horario = new Horario(); 
      $horario->sede_id = $request->input('sede_id');
      $horario->carrera_id = $request->input('carrera_id');
-     $horario->duracion = 60;
-    // $horario->cometario = '-';
+     $horario->anio_id = $request->input('anio_id');
+     $horario->comision_id = $request->input('comision_id');
+     $horario->materia_id = $request->input('materia_id');
+     $horario->profesor_id = $request->input('profesor_id');
+     $horario->dia = $request->input('dia');
+     $horario->modulohorario_id = $request->input('modulohorario_id');
+     $horario->comentario = $request->input('comentario');
      $horario->save();
-   //$request->session()->flash('status', 'Se guardó correctamente la noticia '. $noticia->titulo);
-    return redirect()->route('horario.index'); 
-    
+   //$request->session()->flash('status', 'Se guardó correctamente el horario '. $noticia->titulo);
+    //return redirect()->route('horario.search'); 
+     return redirect()->action('App\Http\Controllers\HorarioController@search', ['sede_id' => $horario->sede_id]);
     }
     /**
      * Store a newly created resource in storage.
@@ -151,7 +161,7 @@ class HorarioController extends Controller
         $materia = Materia::find($request->input('materia_id'));
         $dia = Horario::find($request->input('dia'));
         $moduloHorario = Modulo::find($request->input('moduloHorario_id'));
-        $modulosHorarios = Modulo::all();
+        $modulosHorarios = Modulo::all()->sortBy('horainicio');
         $comision = Comision::find($request->input('comision_id'));
  
         $comentario = Horario::find($request->input('comentario'));

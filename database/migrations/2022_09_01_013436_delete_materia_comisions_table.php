@@ -13,7 +13,11 @@ class DeleteMateriaComisionsTable extends Migration
      */
     public function up()
     {
-        //
+        if (Schema::hasColumn('comisions', 'materia_id')) {
+            Schema::table('comisions', function($table) {
+                $table->dropForeign('comisions_materia_id_foreign');                
+                $table->dropColumn('materia_id');       
+            }); }
     }
 
     /**

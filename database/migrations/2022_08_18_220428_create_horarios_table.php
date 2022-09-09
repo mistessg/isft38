@@ -20,8 +20,8 @@ class CreateHorariosTable extends Migration
             $table->biginteger('profesor_id')->unsigned()->nullable();
             $table->biginteger('materia_id')->unsigned()->nullable();
             $table->biginteger('comision_id')->unsigned()->nullable();
-            $table->string('dia')->unsigned()->nullable();
-            $table->biginteger('modulohorario_id')->unsigned()->nullable();;
+            $table->biginteger('dia')->unsigned()->nullable();
+            $table->biginteger('modulohorario_id')->unsigned()->nullable();
             $table->biginteger('duracion');
             $table->string('comentario',255);
             $table->timestamps();             
