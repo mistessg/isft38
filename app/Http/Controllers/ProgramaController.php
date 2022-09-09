@@ -117,9 +117,10 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function show(Programa $programa)
+    public function show($id)
     {
-        //
+        $programa = Programa::findOrFail($id);
+        return view('backend.historia.show', compact('historia'));
     }
 
     /**
