@@ -40,26 +40,59 @@
  
 <table class="table table-dark">
     <tr>
-        <th class="text-center" scope="col">HORARIO</th>
+        <th class="text-left" scope="col">HORARIO</th>
         @foreach($dias as $dia)
-        <th class="text-center" scope="col">{{$dia}}</th>
+        <th class="text-left" scope="col">{{$dia}}</th>
         @endforeach
      </tr>
-     <!-- @foreach($horarios as $horario)
+   
      @foreach($modulosHorarios as $modulosHorario)
-
-     @foreach($dias as $dia)
-     @if($horario->dia == $dia && $horario->moduloHorario->id == $modulosHorario->id )
-            {{$horario->materia->descripcion} 
-     @endif -->
-    
+         <tr><td>{{$modulosHorario->horainicio}} a {{$modulosHorario->horafin}}
+     @foreach($dias as $index=>$dia)
+     <td>
+     @php ($a = 0)  
+     @foreach($horarios as $horario)
  
+     @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
+     @php ($a++)       
+     <strong>{{$horario->materia->descripcion}}</strong>  <br> {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
+        
+        {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
+            @csrf
+            <a href="{{ route('horario.edit', ['horario' =>  1] ) }}" class="btn btn-primary">
+                <img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar">
+            </a>
+            <button type="submit" class="btn btn-danger" onclick="if (!confirm('¿Esta seguro de borrar el horario?')) return false;">
+                <img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar">
+            </button>
+            {!!Form::close()!!}
+    
+     @endif 
+      @endforeach
+      @if($a == 0)
+     @php ($a++)  
+  
+        {{ Form::open(['route' => 'horario.createHorario']) }}
+    
+    {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("carrera_id", $carrera->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("modulohorario_id", $modulosHorario->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("dia", $index , ["class" => "form-control", "hidden" ])}}
+<button type="submit" class="btn btn-success"><img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear"></button></div>
+{!!Form::close()!!}
 
+        @endif 
+     </td>
+    @endforeach
+    </tr>
+@endforeach 
       
     <tr>
 
        
-<!-- 
+@if(1==2)
          <td>{{$horario->moduloHorario->horainicio}} - {{$horario->moduloHorario->horafin}}</td>
 
         <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
@@ -82,10 +115,10 @@
         <a href="{{ route('horario.create') }}" class="btn btn-success">
         <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
         </a></td>
-         -->
+        
 
         
-        <!-- <td>
+        <td>
             {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
             @csrf
             <a href="{{ route('horario.edit', ['horario' =>  1] ) }}" class="btn btn-primary">
@@ -95,11 +128,9 @@
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar">
             </button>
             {!!Form::close()!!}
-        </td>  -->
+        </td>  
     </tr>
-    <!-- @endforeach
-    @endforeach
-@endforeach -->
+@endif
 </table>
 <!-- {{ Form::open(['route' => 'horario.store']) }}
 <div class="input-group mb-3">

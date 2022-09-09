@@ -11,6 +11,7 @@ use App\Models\Comision;
 use App\Models\Horario;
 use App\Models\Modulo;
 use Illuminate\Http\Request;
+use DB;
 
 class HorarioController extends Controller
 {
@@ -57,13 +58,15 @@ class HorarioController extends Controller
 
         $carrera = Carrera::find($request->input('carrera_id'));
         $anio = Anio::find($request->input('anio_id'));
-        $profesores = Profesor::pluck('apellido','id');
+        $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
+        ->pluck('nombrecompleto', 'id');
         //$materias = Materia::pluck('descripcion', 'id');
         $materias = Materia::where('carrera_id', $carrera->id)
                            ->where('anio_id', $anio->id)
                            ->pluck('descripcion', 'id');
  
-        $modulosHorario = Modulo::pluck('horainicio', 'id');
+        $modulosHorario = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' ',modulos.horafin) as horariocompleto"))
+        ->pluck('horariocompleto', 'id');
         $comision = Comision::find($request->input('comision_id'));
         $dias = array();
         $dias[1] = 'Lunes';
