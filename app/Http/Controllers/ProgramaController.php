@@ -32,22 +32,10 @@ class ProgramaController extends Controller
         for ($i = $anio - 10; $i <= $anio; $i++) {
             $anios[] = $i;
         }
-        
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
 
-    public function search(Request $request)
-    {
-
-        $programa = Programa::where('sede_id', $request->sede_id)
-                            ->where('carrera_id', $request->carrera_id)
-                            
-                            ->where('carrera_id', $request->carrera_id)
-                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
-                            dd($programa);
-    }
-
-    public function CargarPrograma(Request $request){
+    public function CargarPrograma(){
         return view('frontend.programa.cargar_programa');
     }
 
@@ -55,12 +43,18 @@ class ProgramaController extends Controller
      
         $carreras = Carrera::pluck('descripcion', 'id');
         $materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sede = Sede::pluck('descripcion','id');
         $programas = Programa::all();
-         //dd($programas);
+        //dd($programas);
+        //dd($programas);
+         //dd($programas[1]->carrera->descripcion);
          //dd($carreras);
          //dd($materias);
         return view('frontend.programa.programas_pendientes', compact('programas'));
     }
+
+   
 
     /**
      * Show the form for creating a new resource.
@@ -80,7 +74,24 @@ class ProgramaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $programa = new Programa();
+        $programa->sede_id = $request->input('sede_id');
+        $programa->carrera_id = $request->input('carrera_id');
+        $programa->anio_id = $request->input('anio_id');
+        $programa->materia_id = $request->input('materia_id');
+        $programa->comision_id = $request->input('comision_id');
+        $programa->profesor_id = $request->input('profesor_id');
+        $programa->fechaentrega = $request->input('fechaentrega');
+
+        $programa->save();
+
+        if ($request->hasFile('nombrearchivo')) {
+            $archivo = $request->file('nombrearchivo');
+            $path = $archivo->storeAs('public/programa/' . $programa->id, $archivo->getClientOriginalName() ); 
+            $savedPath  =str_replace("public/", "", $path);
+            $programa->nombrearchivo = $savedPath;   
+            $programa->save();   
+       } 
     }
 
         /**
@@ -89,7 +100,16 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+    public function search(Request $request)
+    {
+
+        $programa = Programa::where('sede_id', $request->sede_id)
+                            ->where('carrera_id', $request->carrera_id)
+                            
+                            ->where('carrera_id', $request->carrera_id)
+                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
+                            dd($programa);
+    }
 
     /**
      * Display the specified resource.
@@ -97,9 +117,10 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function show(Programa $programa)
+    public function show($id)
     {
-        //
+        $programa = Programa::findOrFail($id);
+        return view('backend.historia.show', compact('historia'));
     }
 
     /**
