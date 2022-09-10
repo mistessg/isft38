@@ -60,7 +60,6 @@ class HorarioController extends Controller
         $anio = Anio::find($request->input('anio_id'));
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
         ->pluck('nombrecompleto', 'id');
-        //$materias = Materia::pluck('descripcion', 'id');
         $materias = Materia::where('carrera_id', $carrera->id)
                            ->where('anio_id', $anio->id)
                            ->pluck('descripcion', 'id');
@@ -79,7 +78,7 @@ class HorarioController extends Controller
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
-         ->where('comision_id',$comision->id)->get();
+            ->where('comision_id',$comision->id)->get();
        
          return view('backend.horario.create', compact(
             'sede',
@@ -97,12 +96,6 @@ class HorarioController extends Controller
             'dia'
         ));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 
     /**
      * Store a newly created resource in storage.
@@ -129,8 +122,8 @@ class HorarioController extends Controller
         ->where('comision_id',$request->input('comision_id'))
         ->where('dia',$request->input('dia'))
         ->where('modulohorario_id',$request->input('modulohorario_id'))->first();
-    if(empty($horario)){
-     $horario = new Horario(); }
+        
+    if(empty($horario)){ $horario = new Horario(); }
      $horario->sede_id = $request->input('sede_id');
      $horario->carrera_id = $request->input('carrera_id');
      $horario->anio_id = $request->input('anio_id');
@@ -153,50 +146,14 @@ class HorarioController extends Controller
      */
     public function search(Request $request)
     {
+        $validatedData = $request->validate(
+            [ 'sede_id' => 'required',
+            'carrera_id' => 'required',
+            'anio_id' => 'required',
+            'comision_id' => 'required',
+             ]
+         );
         return redirect()->route('horario.search.carrera',['sede'=>$request->input('sede_id'), 'carrera'=>$request->input('carrera_id'), 'anio'=>$request->input('anio_id'), 'comision'=>$request->input('comision_id')]); 
-
-        /*$sede = Sede::find($request->input('sede_id'));
-        $sedes = Sede::pluck('descripcion', 'id');
-        $dias = array();
-        $dias[1] = 'Lunes';
-        $dias[2] = 'Martes';
-        $dias[3] = 'Miércoles';
-        $dias[4] = 'Jueves';
-        $dias[5] = 'Viernes'; 
-        $dias[6] = 'Sábado';
-        $carrera = Carrera::find($request->input('carrera_id'));
-        $anio = Anio::find($request->input('anio_id'));
-        $profesor = Profesor::find($request->input('profesor_id'));
-        $materia = Materia::find($request->input('materia_id'));
-        $dia = Horario::find($request->input('dia'));
-        $moduloHorario = Modulo::find($request->input('moduloHorario_id'));
-        $modulosHorarios = Modulo::all()->sortBy('horainicio');
-        $comision = Comision::find($request->input('comision_id'));
- 
-        $comentario = Horario::find($request->input('comentario'));
-
-        $horarios = Horario::where('sede_id', $sede->id)
-            ->where('carrera_id', $carrera->id)
-            ->where('anio_id', $anio->id)
-         ->where('comision_id',$comision->id)->get();
-
-
-        return view('backend.horario.show', compact(
-            'sede',
-            'carrera',
-            'sedes',
-            'horarios',
-            'anio',
-            'profesor',
-            'materia',
-            'dia',
-            'moduloHorario',
-            'comentario',
-            'dias',
-            'comision',
-            'modulosHorarios'
-        ));
-        */
     }
 
     public function searchCarrera($sede,$carrera,$anio,$comision)
@@ -212,15 +169,9 @@ class HorarioController extends Controller
         $dias[6] = 'Sábado';
         $carrera = Carrera::find($carrera);
         $anio = Anio::find($anio);
-        //$profesor = Profesor::find($request->input('profesor_id'));
-        //$materia = Materia::find($request->input('materia_id'));
-        //$dia = Horario::find($request->input('dia'));
-        //$moduloHorario = Modulo::find($request->input('moduloHorario_id'));
         $modulosHorarios = Modulo::all()->sortBy('horainicio');
         $comision = Comision::find($comision);
  
-       // $comentario = Horario::find($request->input('comentario'));
-
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
@@ -232,11 +183,6 @@ class HorarioController extends Controller
             'sedes',
             'horarios',
             'anio',
-            //'profesor',
-            //'materia',
-           // 'dia',
-            //'moduloHorario',
-            //'comentario',
             'dias',
             'comision',
             'modulosHorarios'
@@ -249,7 +195,7 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         // $horarios = Horario::all();
         // return view('backend.horario.show', compact('horarios'));
