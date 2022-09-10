@@ -189,6 +189,51 @@ class HorarioController extends Controller
         ));
         
     }
+
+    public function searchCarrera($sede,$carrera,$anio,$comision)
+    {
+        $sede = Sede::find($sede);
+        $sedes = Sede::pluck('descripcion', 'id');
+        $dias = array();
+        $dias[1] = 'Lunes';
+        $dias[2] = 'Martes';
+        $dias[3] = 'Miércoles';
+        $dias[4] = 'Jueves';
+        $dias[5] = 'Viernes'; 
+        $dias[6] = 'Sábado';
+        $carrera = Carrera::find($carrera);
+        $anio = Anio::find($anio);
+        //$profesor = Profesor::find($request->input('profesor_id'));
+        //$materia = Materia::find($request->input('materia_id'));
+        //$dia = Horario::find($request->input('dia'));
+        //$moduloHorario = Modulo::find($request->input('moduloHorario_id'));
+        $modulosHorarios = Modulo::all()->sortBy('horainicio');
+        $comision = Comision::find($comision);
+ 
+       // $comentario = Horario::find($request->input('comentario'));
+
+        $horarios = Horario::where('sede_id', $sede->id)
+            ->where('carrera_id', $carrera->id)
+            ->where('anio_id', $anio->id)
+         ->where('comision_id',$comision->id)->get();
+ 
+        return view('backend.horario.show', compact(
+            'sede',
+            'carrera',
+            'sedes',
+            'horarios',
+            'anio',
+            //'profesor',
+            //'materia',
+           // 'dia',
+            //'moduloHorario',
+            //'comentario',
+            'dias',
+            'comision',
+            'modulosHorarios'
+        ));
+        
+    }
     /**
      * Display the specified resource.
      *
