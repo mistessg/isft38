@@ -11,7 +11,7 @@ Route::resource('modulo', moduloController::class);
 
 Route::resource('horario', HorarioController::class);
 Route::post('horario/search', [HorarioController::class, 'search'])->name('horario.search');
-Route::get('horario/buscar/{sede}/{carrera}/{anio}/{comision}', [HorarioController::class, 'searchCarrera'])->name('horario.search.carrera');
+Route::get('horario/{sede}/{carrera}/{anio}/{comision}', [HorarioController::class, 'searchCarrera'])->name('horario.search.carrera');
 Route::post('horario/createHorario', [HorarioController::class, 'createHorario'])->name('horario.createHorario');
 Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor']);
 Route::get('/horarios/porCarrera', [HorarioController::class, 'porCarrera']);

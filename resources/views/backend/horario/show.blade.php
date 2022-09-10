@@ -31,7 +31,7 @@
 </div>
 </div>
 <div class="container">   
-<button type="submit" style="width: 20%; float:right;" class="btn btn-primary">Crear horario</button></div>
+<!--<button type="submit" style="width: 20%; float:right;" class="btn btn-primary">Crear horario</button></div>-->
 </div>
 {!!Form::close()!!}
 
@@ -55,8 +55,9 @@
  
      @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
      @php ($a++)       
-     <strong>{{$horario->materia->descripcion}}</strong>  <br> {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        
+     <strong>{{$horario->materia->descripcion}}</strong>  
+     <br> {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} 
+     <br> {{$horario->comentario}}
         {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
             @csrf
             <a href="{{ route('horario.edit', ['horario' =>  1] ) }}" class="btn btn-primary">

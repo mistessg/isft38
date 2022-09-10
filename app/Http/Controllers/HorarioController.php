@@ -27,7 +27,7 @@ class HorarioController extends Controller
     public function index()
     {
         $carreras = Carrera::pluck('descripcion', 'id');
-        $anios = Anio::pluck('anio', 'id');
+        $anios = Anio::pluck('descripcion', 'id');
         $comisions = Comision::pluck('comision', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         return view('backend.horario.index', compact('carreras', 'anios', 'comisions', 'sedes'));
@@ -123,7 +123,14 @@ class HorarioController extends Controller
             'modulohorario_id' => 'required' ]
          );
 
-     $horario = new Horario(); 
+      $horario = Horario::where('sede_id', $request->input('sede_id'))
+        ->where('carrera_id', $request->input('carrera_id'))
+        ->where('anio_id', $request->input('anio_id'))
+        ->where('comision_id',$request->input('comision_id'))
+        ->where('dia',$request->input('dia'))
+        ->where('modulohorario_id',$request->input('modulohorario_id'))->first();
+    if(empty($horario)){
+     $horario = new Horario(); }
      $horario->sede_id = $request->input('sede_id');
      $horario->carrera_id = $request->input('carrera_id');
      $horario->anio_id = $request->input('anio_id');
@@ -135,8 +142,8 @@ class HorarioController extends Controller
      $horario->comentario = $request->input('comentario');
      $horario->save();
    //$request->session()->flash('status', 'Se guardó correctamente el horario '. $noticia->titulo);
-    //return redirect()->route('horario.search'); 
-     return redirect()->action('App\Http\Controllers\HorarioController@search', ['sede_id' => $horario->sede_id]);
+    return redirect()->route('horario.search.carrera',['sede'=>$horario->sede_id, 'carrera'=>$horario->carrera_id, 'anio'=>$horario->anio_id, 'comision'=>$horario->comision_id]); 
+         
     }
     /**
      * Store a newly created resource in storage.
@@ -146,7 +153,9 @@ class HorarioController extends Controller
      */
     public function search(Request $request)
     {
-        $sede = Sede::find($request->input('sede_id'));
+        return redirect()->route('horario.search.carrera',['sede'=>$request->input('sede_id'), 'carrera'=>$request->input('carrera_id'), 'anio'=>$request->input('anio_id'), 'comision'=>$request->input('comision_id')]); 
+
+        /*$sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
         $dias[1] = 'Lunes';
@@ -187,7 +196,7 @@ class HorarioController extends Controller
             'comision',
             'modulosHorarios'
         ));
-        
+        */
     }
 
     public function searchCarrera($sede,$carrera,$anio,$comision)
@@ -295,10 +304,12 @@ class HorarioController extends Controller
      */
     public function destroy($id)
     {
-        $horarios = Horario::findOrFail($id);
-        $horarios->delete();
-        $horarios->save();
-        $horarios->session()->flash('status', 'Se eliminó correctamente el horario');
-        return redirect()->route('backend.horario.index', $horarios->$id);
+        $horario = Horario::findOrFail($id);
+        $sede = $horario->sede_id;
+        $carrera = $horario->carrera_id;
+        $anio = $horario->anio_id;
+        $comision = $horario->comision_id;
+        $horario->delete();
+        return redirect()->route('horario.search.carrera',['sede'=>$sede, 'carrera'=>$carrera, 'anio'=>$anio, 'comision'=>$comision]); 
     }
 }
