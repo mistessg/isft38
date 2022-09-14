@@ -102,10 +102,8 @@ class ProgramaController extends Controller
      */
     public function search(Request $request)
     {
-
         $programa = Programa::where('sede_id', $request->sede_id)
                             ->where('carrera_id', $request->carrera_id)
-                            
                             ->where('carrera_id', $request->carrera_id)
                             ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
                             dd($programa);
