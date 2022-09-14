@@ -220,9 +220,9 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $horario, $id)
+    public function update(Request $request, $id)
     {
-        $horarios = Horario::findOrFail($id);
+        $horario = Horario::findOrFail($id);
         $validateData = $request->validate(
             [
                 'sede_id' => ['required'],
@@ -236,10 +236,19 @@ class HorarioController extends Controller
                 'duracion' => ['required']
             ]
         );
-
-        $horarios->save();
+        $horario->sede_id = $request->input('sede_id');    
+        $horario->carrera_id = $request->input('carrera_id');
+        $horario->anio_id = $request->input('anio_id');
+        $horario->profesor_id = $request->input('profesor_id');
+        $horario->materia_id = $request->input('materia_id');    
+        $horario->comision_id = $request->input('comision_id');    
+        $horario->dia = $request->input('dia');    
+        $horario->modulohorario_id = $request->input('modulohorario_id');    
+        $horario->duracion = $request->input('duracion');    
+        $horario->save();
+        
         $request->session()->flash('status', 'Se modificó correctamente el horario');
-        return redirect()->route('backend.horario.edit', $horarios->$id);
+        return redirect()->route('backend.horario.edit', $horario->$id);
     }
 
     /**
