@@ -217,7 +217,8 @@ class HorarioController extends Controller
         $dias[4] = 'Jueves';
         $dias[5] = 'Viernes'; 
         $dias[6] = 'Sábado';
-        $modulosHorarios = Modulo::all()->sortBy('horainicio');
+        $modulosHorarios = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' ',modulos.horafin) as horariocompleto"))
+        ->pluck('horariocompleto', 'id');
         $materias = Materia::where('carrera_id', $horarios->carrera->id)
         ->where('anio_id', $horarios->anio->id)
         ->pluck('descripcion', 'id');
