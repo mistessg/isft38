@@ -20,25 +20,25 @@
     {{ Form::open(['route' => 'horario.store']) }}
     <div class="input-group mt-5 mb-3">
     <label class="input-group-text" for="#">Sede</label>
-    {{Form::text("sede_id", $horarios->sede->id , ["class" => "form-control"])}}
+    {{Form::text("sede_id", $horarios->sede->descripcion , ["class" => "form-control"])}}
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Carrera</label>
  
-  {{Form::text("carrera_id",  $horarios->carrera->id , ["class" => "form-control" ])}}
+  {{Form::text("carrera_id",  $horarios->carrera->descripcion , ["class" => "form-control" ])}}
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Año</label>
  
-  {{Form::text("anio_id",  $horarios->anio->id , ["class" => "form-control" ])}}
+  {{Form::text("anio_id",  $horarios->anio->descripcion , ["class" => "form-control" ])}}
 
   </div>
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Comision</label>
  
-  {{Form::text("comision_id",  $horarios->comision->id , ["class" => "form-control" ])}}
+  {{Form::text("comision_id",  $horarios->comision->comision , ["class" => "form-control" ])}}
   </div>
 
   <div class="input-group mb-3">
