@@ -15,7 +15,6 @@ class Horario extends Model
  
     protected $fillable = [
         'comentario'
-        
     ];
 
 

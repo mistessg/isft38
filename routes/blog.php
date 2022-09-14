@@ -40,6 +40,7 @@ Route::get('noticias/carrera/{carrera}/{page?}', [NoticiaController::class, 'deC
 | npm install && npm run dev
 | Note: Add Bootstrap links in layout/app
 | php artisan storage:link  -> para imágenes
+| composer require doctrine/dbal   
 |--------------------------------------------------------------------------
 */
 Auth::routes();

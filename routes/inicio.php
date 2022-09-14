@@ -8,9 +8,12 @@ use App\Models\Etiqueta;
 */
 
 Route::get('/', function () {
+    $novedades = array();
     $e = Etiqueta::where('nombre','novedades')->first();
-    $novedades = $e->novedades()->get();
-    
+    if( !empty($e) ) {   
+      $novedades = $e->novedades()->get();     
+    }    
     return view('frontend.carrousel.carrousel', compact('novedades'));
+      
 });
  

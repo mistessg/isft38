@@ -26,15 +26,32 @@
 </div>
 <div class="input-group mb-3">
     <label class="input-group-text" for="#">Año</label>
-    {{Form::text("anio_id", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
+    {{Form::text("anio", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
     {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
 
 </div>
 <div class="input-group mb-3">
     <label class="input-group-text" for="#">Comision</label>
-    {{Form::text("comision_id", $comision->comision , ["class" => "form-control", "readonly" ])}}
+    {{Form::text("comision", $comision->comision , ["class" => "form-control", "readonly" ])}}
     {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
-
+</div>
+<div class="input-group mb-3">
+    <label class="input-group-text" for="#">Día</label>
+    @if(empty($dia))
+      {{Form::select("dia", $dias, null, ["class" => "form-control", "placeholder" => "Seleccione un día"]) }}   
+    @else
+      {{Form::text("dia_nombre", $dias[$dia] , ["class" => "form-control", "readonly" ])}}
+      {{Form::text("dia", $dia , ["class" => "form-control", "hidden" ])}}
+    @endif 
+</div>   
+<div class="input-group mb-3">
+    <label class="input-group-text" for="#">Horario</label>
+    @if(empty($modulo))
+    {{Form::select("modulohorario_id", $modulosHorario, null, ["class" => "form-control", "placeholder" => "Seleccione un horario"]) }}   
+    @else
+    {{Form::text("modulohorario", $modulo->horainicio . ' - ' . $modulo->horafin , ["class" => "form-control", "readonly" ])}}
+    {{Form::text("modulohorario_id", $modulo->id , ["class" => "form-control", "hidden" ])}}
+   @endif         
 </div>
 <div class="input-group mb-3">
     <label class="input-group-text" for="#">Materia</label>
@@ -45,15 +62,11 @@
     {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "placeholder" => "Seleccione un profesor"]) }}   
 </div>        
 <div class="input-group mb-3">
-    <label class="input-group-text" for="#">Día</label>
-    {{Form::select("dia", $dias, null, ["class" => "form-control", "placeholder" => "Seleccione un día"]) }}   
+    <label class="input-group-text" for="#">Comentario</label>
+    {{Form::text("comentario", null , ["class" => "form-control" ])}}
 </div>   
-<div class="input-group mb-3">
-    <label class="input-group-text" for="#">Horario</label>
-    {{Form::select("modulohorario_id", $modulosHorario, null, ["class" => "form-control", "placeholder" => "Seleccione un horario"]) }}   
-</div>
         </br><button type="submit" style="width: 100%;" class="btn btn-primary">Agregar</button></div>
          {!!Form::close()!!}  
     </div> 
-
+    {!!Form::close()!!}  
 @endsection
