@@ -1,13 +1,14 @@
 @extends('backend.layouts.main')
 @section('title', 'Horarios')
 @section('content')
-  <h1>Editar Horario</h1>
   <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
     @endif
   </div>
   <div class="links">
+
+  
 
 {{ Form::model($horarios, [ 'method' => 'put' , 'route' => ['horario.update', $horarios->id],  'files' => true]) }}
 
@@ -25,7 +26,6 @@
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Carrera</label>
- 
   {{Form::text("carrera_id",  $horarios->carrera->descripcion , ["class" => "form-control" ])}}
   </div>
 
@@ -74,7 +74,7 @@
   <label class="input-group-text" for="#">Comentario</label>
   {{Form::text("comentario", null , ["class" => "form-control" ])}}
   </div>   
-      </br><button type="submit" style="width: 100%;" class="btn btn-primary">Agregar</button></div>
+      </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
        {!!Form::close()!!}  
   </div> 
 

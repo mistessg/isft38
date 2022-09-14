@@ -2,6 +2,12 @@
 @section('title', 'Carreras')
 @section('content')
 
+<style>
+
+
+    
+</style>
+
 {{ Form::open(['route' => 'horario.createHorario']) }}
 <div class="container">   
 <div class="input-group mt-5 mb-3">
@@ -29,7 +35,7 @@
     {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
 
 </div>
-</div>
+
 <div class="container">   
 <!--<button type="submit" style="width: 20%; float:right;" class="btn btn-primary">Crear horario</button></div>-->
 </div>
@@ -54,7 +60,8 @@
      @foreach($horarios as $horario)
  
      @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
-     @php ($a++)       
+     @php ($a++)   
+     <div class="text-center">    
      <strong>{{$horario->materia->descripcion}}</strong>  
      <br> {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} 
      <br> {{$horario->comentario}}
@@ -67,7 +74,7 @@
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar">
             </button>
             {!!Form::close()!!}
-    
+    </div>
      @endif 
       @endforeach
       @if($a == 0)
@@ -96,3 +103,5 @@
 </table>
 <p>Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection
+
+</div>
