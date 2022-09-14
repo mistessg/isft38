@@ -60,7 +60,7 @@
      <br> {{$horario->comentario}}
         {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
             @csrf
-            <a href="{{ route('horario.edit', ['horario' =>  1] ) }}" class="btn btn-primary">
+            <a href="{{ route('horario.edit', ['horario' =>  $horario->id] ) }}" class="btn btn-primary">
                 <img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar">
             </a>
             <button type="submit" class="btn btn-danger" onclick="if (!confirm('¿Esta seguro de borrar el horario?')) return false;">
