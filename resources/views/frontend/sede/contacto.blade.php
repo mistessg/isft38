@@ -29,8 +29,9 @@
             box-shadow: none;
             outline: 0 none;
         }
+
         /*  */
-        
+
         .container-padre{
             display:flex;
             width:100%;
@@ -39,13 +40,10 @@
             width:100%;
             padding:0 20px;
         }
-        .container-padre .container-map_icons{
-            width:40%;
+        .container-map_icons{
             display:flex;
+            justify-content:space-evenly;
             align-items:center;
-            flex-direction:column;
-            flex-wrap:wrap;
-            gap:2em;
         }
         .container-3img{
             display:flex;
@@ -70,9 +68,9 @@
             .container-padre form{
                 width:100%;
             }
-            .container-padre .container-map_icons{
+            .container-map_icons{
                 width:100%;
-                flex-direction:row;
+                flex-direction:column;
                 justify-content:space-around;
             }
         }
@@ -87,8 +85,6 @@
             }
         }
 </style>
-
-
 
 <div class="container-padre" >
     <div class="container-hijo">
@@ -159,8 +155,9 @@ border-radius:4px;
 background-image:url(https://img.huffingtonpost.com/asset/5b476ec01900002a00c65851.jpeg?ops=1200_630);
 background-size:cover;
 "></div>
+</div>
 
-<!-- <div class="my-4 container-map_icons ">
+<div class="my-4 container-map_icons ">
     <iframe style="border:1px solid grey;border-radius:10px;width:400px;height:300px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13326.864819671318!2d-60.1787278!3d-33.3784744!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x832238dce218af32!2sInstituto%20Superior%20de%20Formaci%C3%B3n%20T%C3%A9cnica%20N%C2%B038!5e0!3m2!1ses!2sar!4v1661981270143!5m2!1ses!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="container-3img" >
 
@@ -192,7 +189,6 @@ background-size:cover;
             <p class="pt-3 icon-text" style="font-weight:bold;">Numero</p>
         </div>
     </div>
-</div> -->
 </div>
 
 @endsection

@@ -59,7 +59,7 @@ class CarreraController extends Controller
        }
 
        // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
-       // return redirect()->route('backend.carrera.create'); 
+       return redirect()->route('carrera.index'); 
     }
 
     /**
@@ -97,7 +97,7 @@ class CarreraController extends Controller
         $carrera = carrera::findOrFail($id);
         $validatedData = $request->validate(
             [ 'descripcion' => 'required',
-              'resolusion' => 'required|unique:carreras',
+              'resolucion' => 'required|unique:carreras',
               'anios' => 'required',
               'texto' => 'required',
               'image' => 'image|max:2048']
@@ -115,6 +115,6 @@ class CarreraController extends Controller
     {
          $carrera = carrera::findOrFail($id);    
          $carrera->delete();
-         return redirect()->route('backend.carrera.index');
+         return redirect()->route('carrera.index');
     }
 }
