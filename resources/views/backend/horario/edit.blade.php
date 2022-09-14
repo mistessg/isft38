@@ -1,7 +1,7 @@
 @extends('backend.layouts.main')
-@section('title', 'Carreras')
+@section('title', 'Horarios')
 @section('content')
-  <h1>Editar Carrera</h1>
+  <h1>Editar Horario</h1>
   <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
@@ -20,26 +20,25 @@
     {{ Form::open(['route' => 'horario.store']) }}
     <div class="input-group mt-5 mb-3">
     <label class="input-group-text" for="#">Sede</label>
-    {{Form::text("sede", $sede->descripcion , ["class" => "form-control", "readonly" ])}}
-    {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("sede_id", $horarios->sede->id , ["class" => "form-control"])}}
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Carrera</label>
-  {{Form::text("carrera", $carrera->descripcion , ["class" => "form-control", "readonly" ])}}
-  {{Form::text("carrera_id", $carrera->id , ["class" => "form-control", "hidden" ])}}
+ 
+  {{Form::text("carrera_id",  $horarios->carrera->id , ["class" => "form-control" ])}}
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Año</label>
-  {{Form::text("anio", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
-  {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
+ 
+  {{Form::text("anio_id",  $horarios->anio->id , ["class" => "form-control" ])}}
 
   </div>
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Comision</label>
-  {{Form::text("comision", $comision->comision , ["class" => "form-control", "readonly" ])}}
-  {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
+ 
+  {{Form::text("comision_id",  $horarios->comision->id , ["class" => "form-control" ])}}
   </div>
 
   <div class="input-group mb-3">
@@ -47,18 +46,17 @@
   @if(empty($dia))
     {{Form::select("dia", $dias, null, ["class" => "form-control", "placeholder" => "Seleccione un día"]) }}   
   @else
-    {{Form::text("dia_nombre", $dias[$dia] , ["class" => "form-control", "readonly" ])}}
-    {{Form::text("dia", $dia , ["class" => "form-control", "hidden" ])}}
+ 
+    {{Form::text("dia", $dia , ["class" => "form-control" ])}}
   @endif 
   </div>   
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Horario</label>
   @if(empty($modulo))
-  {{Form::select("modulohorario_id", $modulosHorario, null, ["class" => "form-control", "placeholder" => "Seleccione un   horario"]) }}   
+  {{Form::select("modulohorario_id", $modulosHorarios, null, ["class" => "form-control", "placeholder" => "Seleccione un   horario"]) }}   
   @else
-  {{Form::text("modulohorario", $modulo->horainicio . ' - ' . $modulo->horafin , ["class" => "form-control", "readonly" ])}}
-  {{Form::text("modulohorario_id", $modulo->id , ["class" => "form-control", "hidden" ])}}
+  {{Form::text("modulohorario_id", $horarios->moduloHorario->id , ["class" => "form-control" ])}}
   @endif         
   </div>
 
