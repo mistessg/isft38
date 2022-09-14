@@ -14,8 +14,8 @@ class ObjetivoController extends Controller
      */
     public function index()
     {
-        $objetivo = Objetivo;
-        return view ('backend.objetivo.index', compact('objetivo'));
+        $objetivo = Objetivo::all();
+        return view ('backend.objetivo.index', compact('objetivos'));
     }
 
     /**
@@ -36,8 +36,17 @@ class ObjetivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [ 'objetivo' => 'required']
+         );
+
+     $objetivo = new Objetivo();
+     $objetivo->objetivo = $request->input('objetivo');
+     $objetivo->save();
+     $request->session()->flash('status', 'Se guardó correctamente el Objetivo ');
+     return redirect()->route('objetivo.create');
     }
+
 
     /**
      * Display the specified resource.
@@ -47,7 +56,8 @@ class ObjetivoController extends Controller
      */
     public function show(Objetivo $objetivo)
     {
-        //
+        $objetivo = Objetivo::findOrFail($id);
+        return view('backend.objetivo.show', compact('objetivo'));
     }
 
     /**
@@ -58,7 +68,7 @@ class ObjetivoController extends Controller
      */
     public function edit(Objetivo $objetivo)
     {
-        $objetivo = Objetivo;
+        $objetivo = Objetivo::findOrFail($id);
         return view('backend.objetivo.edit', compact('objetivo'));
     }
 
@@ -71,7 +81,14 @@ class ObjetivoController extends Controller
      */
     public function update(Request $request, Objetivo $objetivo)
     {
-        //
+        $objetivo = Objetivo::findOrFail($id);
+        $validatedData = $request->validate(
+               [ 'objetivo' => 'required']);
+            $objetivo->update($validatedData);
+
+            $objetivo->objetivo = $request->input('objetivo');
+
+            $objetivo->save();
     }
 
     /**
@@ -82,6 +99,8 @@ class ObjetivoController extends Controller
      */
     public function destroy(Objetivo $objetivo)
     {
-        //
+        $objetivo = Objetivo::findOrFail($id);
+        $objetivo->delete();
+        return redirect()->route('objetivo.index');
     }
 }
