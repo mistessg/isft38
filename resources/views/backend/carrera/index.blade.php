@@ -67,7 +67,9 @@ a{
             <td>Carrera</td>
             <td>Resolución</td>
             <td>Resolución PDF</td>
+            
             <td>Años</td>
+            <td></td>
             <td>
               <a class="btn btn-success svg" href="{{ route('carrera.create') }}">
               <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
