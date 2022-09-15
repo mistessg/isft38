@@ -7,21 +7,35 @@
 .containerss{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     padding: 30px;
     margin: 0 auto;
+    justify-content: center;
 }
 .titulo h1{
     text-align: center;
+    color: white;
+}
+.texto{
+  display: flex;
+  justify-content: center;
 }
 .texto p{
   padding:30px;
+  width: 90%;
+  text-align: justify;
+  color: #ffffff;
+}
+.card{
+  height: 600px;
+  display: flex;
+  margin:0 10px;
 }
 .card-img-top{
-  height: 200px;
+  height: 220px;
 }
 .fondoCards{
-  background-color: lightcyan;
+  background-color: #212121;
   padding: 20px;
 }
 
@@ -29,7 +43,7 @@
 </style>
 
 
-<div id="carouselExampleCaptions" class="carousel slide todo" data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel slide todo " data-bs-ride="carousel">
   <div class="carousel-indicators">
    <!-- <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
   --> <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 2"></button>
@@ -110,10 +124,10 @@
 
 
   <div class="carditas">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="http://www.corneliadelange.es/wp-content/uploads/2018/01/objetivo-congresos.jpg" alt="Card image cap">
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Objetivos</h5>
+        <h5 class="card-title">Historia</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
       <ul class="list-group list-group-flush">
@@ -126,10 +140,10 @@
       </div>
     </div>
   <!--CARD 2-->
-    <div class="card" style="width: 18rem; ">
-      <img class="card-img-top" src="https://images.vexels.com/media/users/3/188413/isolated/preview/bd351f1048225a84afdb2575d4a6e8fd-icono-de-historia-de-materia-escolar-de-lapiz-de-color.png" alt="Card image cap">
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top"  src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Historia</h5>
+        <h5 class="card-title">Objetivos</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
       <ul class="list-group list-group-flush">

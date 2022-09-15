@@ -6,6 +6,7 @@ use App\Models\Comision;
 use Illuminate\Http\Request;
 use App\Models\Carrera;
 use App\Models\Sede;
+use App\Models\Horario;
 class ComisionController extends Controller
 {
     /**
@@ -25,9 +26,16 @@ class ComisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $sede = Sede::find($request->input('sede_id'));
+        $sedes = Sede::pluck('descripcion', 'id');
 
+        $comision = $request->input('comision');
+       
+        $comision = Horario::where('sede_id', $sede->id)->get();
+    
+        return view('backend.horario.create', compact('sede','sedes','comision'));
     }
 
     /**
@@ -38,7 +46,22 @@ class ComisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [ 'sede_id' => 'required',
+            'comision' => 'required'
+            ]
+         );
+
+         $comision = Comision::where('sede_id', $request->input('sede_id'))
+         ->where('comision',$request->input('comision'))->first();
+
+         if(empty($comision)){ $comision = new Comision(); }
+         $comision->sede_id = $request->input('sede_id');
+         $comision->comision = $request->input('comision');
+         $comision->save();
+
+         return redirect()->route('comision',['sede'=>$comision->sede_id]); 
+    
     }
 
     /**
@@ -77,14 +100,11 @@ class ComisionController extends Controller
         $validateData = $request->validate(
             [
                 'sede_id' => ['required'],
-                'carrera_id' => ['required'],
-                'materia_id' => ['required'],
                 'comision' => ['required']
+            ]
         );
 
-        $horarios->save();
-        $request->session()->flash('status', 'Se modificó correctamente el horario');
-        return redirect()->route('backend.comision.edit', $comision->$id);
+        $horarios->update($validateData);
     }
 
     /**
@@ -98,7 +118,6 @@ class ComisionController extends Controller
         $comision = Comision::FindOrFail($id);
         $comision -> delete();
         $comision -> save();
-        $comision->session()->flash('status', 'Se eliminó correctamente la comision');
         return redirect()->route('backend.comision.index', $comision->$id);
     }
 }
