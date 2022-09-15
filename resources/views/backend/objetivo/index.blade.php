@@ -3,7 +3,7 @@
 @section('content')
      @forelse($objetivos as $objetivo)
 
-         {{$objetivo->objetivo}}
+         {!!$objetivo->objetivo!!}
          <br>
 
 
