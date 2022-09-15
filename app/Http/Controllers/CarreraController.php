@@ -96,7 +96,7 @@ class CarreraController extends Controller
         $carrera = carrera::findOrFail($id);
         $validatedData = $request->validate(
             [ 'descripcion' => 'required',
-              'resolucion' => 'required|unique:carreras',
+              'resolucion' => 'required',
               'anios' => 'required',
               'texto' => 'required',
               'nombre_carpeta' => 'required',
