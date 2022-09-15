@@ -106,14 +106,16 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(
-            [ 'sede_id' => 'required',
-            'carrera_id' => 'required',
-            'anio_id' => 'required',
-            'comision_id' => 'required',
-            'materia_id' => 'required',
-            'profesor_id' => 'required',
-            'dia' => 'required',
-            'modulohorario_id' => 'required' ]
+            [
+            'sede_id' =>['required'],
+            'carrera_id' => ['required'],
+            'anio_id' => ['required'],
+            'comision_id' => ['required'],
+            'materia_id' => ['required'],
+            'profesor_id' => ['required'],
+            'dia' => ['required'],
+            'modulohorario_id' => ['required'] 
+            ]
          );
 
       $horario = Horario::where('sede_id', $request->input('sede_id'))
@@ -235,8 +237,9 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {  
         $horario = Horario::findOrFail($id);
+       
         $validateData = $request->validate(
             [
                 'sede_id' => ['required'],
@@ -246,22 +249,24 @@ class HorarioController extends Controller
                 'materia_id' => ['required'],
                 'comision_id' => ['required'],
                 'dia' => ['required'],
-                'modulohorario_id' => ['required'],
-                'duracion' => ['required']
+                'modulohorario_id' => ['required']
+                
             ]
         );
-        $horario->sede_id = $request->input('sede_id');    
+     
+        /*$horario->sede_id = $request->input('sede_id');    
         $horario->carrera_id = $request->input('carrera_id');
-        $horario->anio_id = $request->input('anio_id');
+        $horario->anio_id = $request->input('anio_id');*/
         $horario->profesor_id = $request->input('profesor_id');
         $horario->materia_id = $request->input('materia_id');    
-        $horario->comision_id = $request->input('comision_id');    
+        //$horario->comision_id = $request->input('comision_id');    
         $horario->dia = $request->input('dia');    
         $horario->modulohorario_id = $request->input('modulohorario_id');    
-        $horario->duracion = $request->input('duracion');    
+        //$horario->duracion = $request->input('duracion');    
         $horario->save();
+     
         $request->session()->flash('status', 'Se modificó correctamente el horario');
-        return redirect()->route('backend.horario.edit', $horario->id);
+        return redirect()->route('horario.edit', $horario->id);
     }
 
     /**
