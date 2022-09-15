@@ -100,12 +100,13 @@ class materiaController extends Controller
         $materia = materia::findOrFail($id);
         $validatedData = $request->validate(
             [ 'descripcion' => 'required',
-              'resolusion' => 'required|unique:materias',
+              'resolucion' => 'required|unique:materias',
               'anios' => 'required',
               'texto' => 'required',
               'image' => 'image|max:2048']
          );
-        $materia->update($validatedData);    
+        $materia->update($validatedData);  
+        return redirect()->route('materia.index');  
     }
 
     /**
@@ -118,6 +119,6 @@ class materiaController extends Controller
     {
          $materia = materia::findOrFail($id);    
          $materia->delete();
-         return redirect()->route('backend.materia.index');
+         return redirect()->route('materia.index');
     }
 }
