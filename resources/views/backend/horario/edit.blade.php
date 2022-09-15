@@ -22,6 +22,7 @@
     <div class="input-group mt-5 mb-3">
     <label class="input-group-text" for="#">Sede</label>
     {{Form::text("sede_id", $horarios->sede->descripcion , ["class" => "form-control"])}}
+   
   </div>
 
   <div class="input-group mb-3">
@@ -68,11 +69,13 @@
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Profesor</label>
   {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "placeholder" => "Seleccione un  profesor"]) }}   
+  @error('profesor_id')<div class="alert alert-danger">{{ $message }}</div>@enderror  
   </div>   
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Comentario</label>
   {{Form::text("comentario", null , ["class" => "form-control" ])}}
+
   </div>   
       </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
        {!!Form::close()!!}  
