@@ -23,7 +23,6 @@ class ProgramaController extends Controller
     {
         $periodos = array();
         $programas = array();
-        //$anios = Anio::pluck('descripcion', 'id');
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion','id');
         $comisiones = Comision::pluck('comision', 'id');
@@ -47,17 +46,18 @@ class ProgramaController extends Controller
     }
 
     public function ProgramasPendientes(){
-     
+     /*
         $carreras = Carrera::pluck('descripcion', 'id');
         $materias = Materia::pluck('descripcion', 'id');
         $profesores = Profesor::pluck('nombre','apellido','id');
         $sede = Sede::pluck('descripcion','id');
         $programas = Programa::all();
-        //dd($programas);
-        //dd($programas);
-         //dd($programas[1]->carrera->descripcion);
-         //dd($carreras);
-         //dd($materias);
+        */
+        $programas = Programa::where('sede_id', $request->input('sede_id'))
+        ->where('carrera_id', $request->input('carrera_id')) 
+        ->where('comision_id', $request->input('comision_id')) 
+        ->whereBetween('created_at', [$startDate,$endDate ])
+        ->OrderBy('anio_id')->get();
         return view('frontend.programa.programas_pendientes', compact('programas'));
     }
 
