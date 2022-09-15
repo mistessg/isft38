@@ -11,7 +11,7 @@
     }
 
     .texto-tabla {
-        font-size: 1em;
+        font-size: .8em;
     }
     
 </style>
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-2">
         <div class="input-group col">
             <label class="input-group-text" for="#">Año</label>
             {{Form::text("anio_id", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
@@ -50,9 +50,6 @@
         </div>
     </div>
 {!!Form::close()!!}
-
-<br><br>
-
  
 <table class="table texto-tabla">
     <tr class="text-light text-center" style="background-color: #3A70FF;">
@@ -72,7 +69,7 @@
      @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
      @php ($a++)   
     <div class="text-center p-1 border border-info rounded horarios">    
-    <strong class="h6 mb-1">{{$horario->materia->descripcion}}</strong>  
+    <strong class="mb-1">{{$horario->materia->descripcion}}</strong>  
     <p class="mb-3">{{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} </p>
     <p class="mb-3">{{$horario->comentario}}</p>
 
