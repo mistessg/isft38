@@ -13,6 +13,9 @@
 
 </style>
  
+  @foreach($programas as $programa)
+{{$programa->sede->descripcion }}
+@endforeach  
 
  <div class="accordion accordion-flush algo" id="accordionFlushExample">
   <div class="accordion-item " >
