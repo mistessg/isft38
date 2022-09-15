@@ -16,9 +16,8 @@ class ComisionController extends Controller
      */
     public function index()
     {
-        $carreras = Carrera::pluck('descripcion', 'id');
-        $sedes = Sede::pluck('descripcion', 'id');
-        return view('backend.comision.Index', compact('carreras', 'sedes'));
+        $comisiones = Comision::all();
+        return view('backend.comision.index', compact('comisiones'));
     }
 
     /**
