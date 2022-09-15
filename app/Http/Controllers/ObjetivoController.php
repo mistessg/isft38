@@ -14,7 +14,7 @@ class ObjetivoController extends Controller
      */
     public function index()
     {
-        $objetivo = Objetivo::all();
+        $objetivos = Objetivo::all();
         return view ('backend.objetivo.index', compact('objetivos'));
     }
 
