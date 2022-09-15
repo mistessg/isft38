@@ -23,7 +23,8 @@ class ProgramaController extends Controller
     {
         $periodos = array();
         $programas = array();
-        $anios = Anio::pluck('anio', 'id');
+        //$anios = Anio::pluck('descripcion', 'id');
+        $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion','id');
         $comisiones = Comision::pluck('comision', 'id');
         $materias = Materia::pluck('descripcion', 'id');
@@ -37,6 +38,7 @@ class ProgramaController extends Controller
         for ($i = $year; $i >= $year - 10; $i--) {
             $periodos[$i] = $i;
         }
+        
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios', 'programas','periodos', 'periodo', 'sede', 'carrera','comision'));
     }
 

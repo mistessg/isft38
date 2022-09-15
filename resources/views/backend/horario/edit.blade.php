@@ -16,29 +16,30 @@
 
   <div class="container my-4">
     <div class="card">
-    <h5 class="card-header" style=" background-color: #181818; color: white;">Cargar horarios</h5>
+    <h5 class="card-header" style=" background-color: #181818; color: white;">Editar horarios</h5>
     <div class="card-body">
     {{ Form::open(['route' => 'horario.store']) }}
     <div class="input-group mt-5 mb-3">
     <label class="input-group-text" for="#">Sede</label>
-    {{Form::text("sede_id", $horarios->sede->descripcion , ["class" => "form-control"])}}
+    {{Form::text("sede_id", $horarios->sede->descripcion , ["class" => "form-control", "readonly"])}}
+   
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Carrera</label>
-  {{Form::text("carrera_id",  $horarios->carrera->descripcion , ["class" => "form-control" ])}}
+  {{Form::text("carrera_id",  $horarios->carrera->descripcion , ["class" => "form-control", "readonly" ])}}
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Año</label>
  
-  {{Form::text("anio_id",  $horarios->anio->descripcion , ["class" => "form-control" ])}}
+  {{Form::text("anio_id",  $horarios->anio->descripcion , ["class" => "form-control", "readonly" ])}}
 
   </div>
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Comision</label>
  
-  {{Form::text("comision_id",  $horarios->comision->comision , ["class" => "form-control" ])}}
+  {{Form::text("comision_id",  $horarios->comision->comision , ["class" => "form-control", "readonly" ])}}
   </div>
 
   <div class="input-group mb-3">
@@ -49,6 +50,8 @@
  
     {{Form::text("dia", $dia , ["class" => "form-control" ])}}
   @endif 
+  @error('dia')<div class="alert alert-danger">{{ $message }}</div>@enderror  
+
   </div>   
 
   <div class="input-group mb-3">
@@ -57,22 +60,28 @@
   {{Form::select("modulohorario_id", $modulosHorarios, null, ["class" => "form-control", "placeholder" => "Seleccione un   horario"]) }}   
   @else
   {{Form::text("modulohorario_id", $horarios->moduloHorario->id , ["class" => "form-control" ])}}
-  @endif         
+  @endif    
+  @error('modulohorario_id')<div class="alert alert-danger">{{ $message }}</div>@enderror  
+     
   </div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Materia</label>
   {{Form::select("materia_id", $materias, null, ["class" => "form-control", "placeholder" => "Seleccione una materia"]) }}   
-  </div>
+  @error('materia_id')<div class="alert alert-danger">{{ $message }}</div>@enderror  
+
+</div>
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Profesor</label>
   {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "placeholder" => "Seleccione un  profesor"]) }}   
+  @error('profesor_id')<div class="alert alert-danger">{{ $message }}</div>@enderror  
   </div>   
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="#">Comentario</label>
   {{Form::text("comentario", null , ["class" => "form-control" ])}}
+
   </div>   
       </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
        {!!Form::close()!!}  

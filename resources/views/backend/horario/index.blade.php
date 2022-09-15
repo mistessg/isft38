@@ -10,7 +10,7 @@
       </div>
     </nav>
 
-    <div class="container my-4">
+    <div class="container my-4"> 
     
         <div class="card">
         <h5 class="card-header" style=" background-color: #181818; color: white;">Horarios por Carrera</h5>
