@@ -30,7 +30,7 @@ class ProgramaController extends Controller
         $anio = date("Y");
         
         for ($i = $anio - 10; $i <= $anio; $i++) {
-            $anios[] = $i;
+            $anios[$i] = $i;
         }
         return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios'));
     }
@@ -101,12 +101,14 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
-    {
-        $programa = Programa::where('sede_id', $request->sede_id)
-                            ->where('carrera_id', $request->carrera_id)
-                            ->where('carrera_id', $request->carrera_id)
-                            ->where('fechaentrega', 'LIKE', $request->anio_id.'%');
-                            dd($programa);
+    { 
+ 
+        $programas = Programa:: where('sede_id', $request->sede_id)->first();
+                            //->where('carrera_id', $request->carrera_id);
+                           // ->where('comi_id', $request->carrera_id)
+                           // ->where('fechaentrega', 'LIKE', '%' .$request->anio_id.'%');
+                     
+    return view('frontend.programa.programas_pendientes', compact('programas'));
     }
 
     /**
