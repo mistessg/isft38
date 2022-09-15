@@ -48,18 +48,17 @@ class CarreraController extends Controller
         $carrera->nombre_carpeta = $request->input('nombre_carpeta'); 
         $archivoImagen = $request->file('imagen'); 
          // dd($carrera);
+         if ($request->hasFile('imagen')) {
+             $archivoImagen = $request->file('imagen');
+             $path = $archivoImagen->storeAs('public/carreras/' . $carrera->id, $archivoImagen->getClientOriginalName() ); 
+             $savedPath  =str_replace("public/", "", $path);
+             $carrera->imagen = $savedPath;
+        }
         $carrera->save();
         
-        if ($request->hasFile('imagen')) {
-            $archivoImagen = $request->file('imagen');
-            $path = $archivoImagen->storeAs('public/carreras/' . $carrera->id, $archivoImagen->getClientOriginalName() ); 
-            $savedPath  =str_replace("public/", "", $path);
-            $carrera->imagen = $savedPath;   
-            $carrera->save();   
-       }
 
        // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
-       // return redirect()->route('backend.carrera.create'); 
+       return redirect()->route('carrera.index'); 
     }
 
     /**
@@ -97,12 +96,27 @@ class CarreraController extends Controller
         $carrera = carrera::findOrFail($id);
         $validatedData = $request->validate(
             [ 'descripcion' => 'required',
-              'resolusion' => 'required|unique:carreras',
+              'resolucion' => 'required|unique:carreras',
               'anios' => 'required',
               'texto' => 'required',
-              'image' => 'image|max:2048']
+              'nombre_carpeta' => 'required',
+              'imagen' => 'image|max:2048']
          );
-        $carrera->update($validatedData);    
+         $carrera->descripcion = $request->input('descripcion');
+         $carrera->resolucion = $request->input('resolucion');
+         $carrera->anios = $request->input('anios'); 
+         $carrera->texto = $request->input('texto'); 
+         $carrera->nombre_carpeta = $request->input('nombre_carpeta'); 
+         $archivoImagen = $request->file('imagen'); 
+         if ($request->hasFile('imagen')) {
+            $archivoImagen = $request->file('imagen');
+            $path = $archivoImagen->storeAs('public/carreras/' . $carrera->id, $archivoImagen->getClientOriginalName() ); 
+            $savedPath  =str_replace("public/", "", $path);
+            $carrera->imagen = $savedPath;   
+            $carrera->save();   
+       }
+        $carrera->save($validatedData);    
+        return redirect()->route('carrera.index');
     }
 
     /**
@@ -115,6 +129,6 @@ class CarreraController extends Controller
     {
          $carrera = carrera::findOrFail($id);    
          $carrera->delete();
-         return redirect()->route('backend.carrera.index');
+         return redirect()->route('carrera.index');
     }
 }

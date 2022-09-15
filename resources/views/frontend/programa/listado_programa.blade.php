@@ -3,10 +3,7 @@
 @section('title', 'Listado de materias')
 
 @section('content')
-
-{{-- @foreach($leagues as $programa)
-{{$programa}}
-@endforeach --}}
+ 
 <div class="container my-4">
     
         <div class="card">
@@ -18,7 +15,7 @@
 
       <div class="input-group mb-3">
         {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
-        {{Form::select("anio_id", $anios, null, ["class" => "form-select", "placeholder" => "Seleccione un periodo"]) }}           
+        {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}           
           @error('año')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror 
@@ -26,7 +23,7 @@
         
       <div class="input-group mb-3">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
-        {{Form::select("sede_id", $sedes, null, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}           
+        {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}           
           @error('sede')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror 
@@ -35,7 +32,7 @@
       
       <div class="input-group mb-3">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
-        {{Form::select("carrera_id", $carreras, null, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}           
+        {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}           
           @error('carrera')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror 
@@ -43,7 +40,11 @@
       </div>
 
         <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Año/Comision</label>
+        {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
+        {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}           
+          @error('carrera')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror         
         </div>
 
 
@@ -51,7 +52,22 @@
         <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
         </div>
-          
-    </div>
-
-    @endsection
+       
+        @foreach($anios as $a)  
+          @if($loop->first)
+           @php($titulo = $a->descripcion) 
+          @endif
+          @foreach($programas as $programa)
+            @if($a->id == $programa->anio_id)
+             @if($titulo)
+              {{$titulo}} <br>
+              @php($titulo = '') 
+             @endif
+              {{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
+             <br>
+              @endif
+            @endforeach 
+      @endforeach 
+  
+   @endsection
+   </div>

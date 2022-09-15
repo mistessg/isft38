@@ -2,8 +2,14 @@
 @section('title', 'Carreras')
 @section('content')
 
+<style>
+
+    
+    
+</style>
+
 {{ Form::open(['route' => 'horario.createHorario']) }}
-<div class="container">   
+<div class="">   
 <div class="input-group mt-5 mb-3">
     <label class="input-group-text" for="#">Sede</label>
     {{Form::text("sede", $sede->descripcion , ["class" => "form-control", "readonly" ])}}
@@ -29,7 +35,7 @@
     {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
 
 </div>
-</div>
+
 <div class="container">   
 <!--<button type="submit" style="width: 20%; float:right;" class="btn btn-primary">Crear horario</button></div>-->
 </div>
@@ -38,43 +44,45 @@
 <br><br>
 
  
-<table class="table table-dark">
-    <tr>
+<table class="table">
+    <tr class="bg-info text-dark">
         <th class="text-left" scope="col">HORARIO</th>
         @foreach($dias as $dia)
         <th class="text-left" scope="col">{{$dia}}</th>
         @endforeach
-     </tr>
+    </tr>
    
      @foreach($modulosHorarios as $modulosHorario)
-         <tr><td>{{$modulosHorario->horainicio}} a {{$modulosHorario->horafin}}
+    <tr><td class="" style="background: #F5F5F5;">{{$modulosHorario->horainicio}} a {{$modulosHorario->horafin}}
      @foreach($dias as $index=>$dia)
-     <td>
+    <td style="background: #F5F5F5;" class="">
      @php ($a = 0)  
      @foreach($horarios as $horario)
  
      @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
-     @php ($a++)       
-     <strong>{{$horario->materia->descripcion}}</strong>  
-     <br> {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} 
-     <br> {{$horario->comentario}}
+     @php ($a++)   
+    <div class="text-center p-1 border border-info rounded hover-horarios">    
+    <strong class="h6 mb-1">{{$horario->materia->descripcion}}</strong>  
+    <p class="mb-3">{{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} </p>
+    <p class="mb-3">{{$horario->comentario}}</p>
+
         {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
             @csrf
-            <a href="{{ route('horario.edit', ['horario' =>  1] ) }}" class="btn btn-primary">
+            <a href="{{ route('horario.edit', ['horario' =>  $horario->id] ) }}" class="btn bg-info">
                 <img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar">
             </a>
             <button type="submit" class="btn btn-danger" onclick="if (!confirm('¿Esta seguro de borrar el horario?')) return false;">
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar">
             </button>
             {!!Form::close()!!}
-    
+    </div>
      @endif 
       @endforeach
       @if($a == 0)
      @php ($a++)  
-  
-        {{ Form::open(['route' => 'horario.createHorario']) }}
-    
+        <div class="text-center px-5 m-auto">  
+        <p class="align-middle px-auto">{{ Form::open(['route' => 'horario.createHorario']) }}</p>
+        </div>
     {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
     {{Form::text("carrera_id", $carrera->id , ["class" => "form-control", "hidden" ])}}
     {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
@@ -96,3 +104,5 @@
 </table>
 <p>Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection
+
+</div>
