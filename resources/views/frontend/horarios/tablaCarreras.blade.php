@@ -1,31 +1,11 @@
 @extends('backend.layouts.main')
 
 @section('title', 'Horarios por Carreras')
+@section('content')
 
-<!-- @section('content')
-<table class="table table-striped container mx-auto p-2" >
-        <tr class="bg-secondary text-light bg-gradient">
-            <th class="text-center" scope="col">HORARIO</th>
-            <th class="text-center" scope="col">LUNES</th>
-            <th class="text-center" scope="col">MARTES</th>
-            <th class="text-center" scope="col">MIERCOLES</th>
-            <th class="text-center" scope="col">JUEVES</th>
-            <th class="text-center" scope="col">VIERNES</th>
-            <th class="text-center" scope="col">SABADO</th>
-        </tr>
-        <tr class="border-bottom">
-            <td  class="text-center">-</td>
-            <td  class="text-center">HORARIO</td>
-            <td  class="text-center">HORARIO</td>
-            <td  class="text-center">HORARIO</td>
-            <td  class="text-center">HORARIO</td>
-            <td  class="text-center">HORARIO</td>
-            <td  class="text-center">HORARIO</td>
-        </tr>
-</table> -->
-
-{{ Form::open(['route' => 'horario.store']) }}
-<div class="input-group mb-3">
+{{ Form::open(['route' => 'horario.createHorario']) }}
+<div class="">   
+<div class="input-group mt-5 mb-3">
     <label class="input-group-text" for="#">Sede</label>
     {{Form::text("sede", $sede->descripcion , ["class" => "form-control", "readonly" ])}}
     {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
@@ -38,74 +18,75 @@
     {{Form::text("carrera_id", $carrera->id , ["class" => "form-control", "hidden" ])}}
 
 </div>
+<div class="input-group mb-3">
+    <label class="input-group-text" for="#">Año</label>
+    {{Form::text("anio_id", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
+    {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
 
+</div>
+<div class="input-group mb-3">
+    <label class="input-group-text" for="#">Comisión</label>
+    {{Form::text("comision_id", $comision->comision , ["class" => "form-control", "readonly" ])}}
+    {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
 
-</br><button type="submit" style="width: 100%;" class="btn btn-primary">Consultar</button></div>
+</div>
+
+<div class="container">   
+<!--<button type="submit" style="width: 20%; float:right;" class="btn btn-primary">Crear horario</button></div>-->
+</div>
 {!!Form::close()!!}
 
-@foreach($horarios as $horario)
-@if($loop->first)
-<table class="table table-dark">
-    <tr>
-        <th class="text-center" scope="col">HORARIO</th>
+<br><br>
+
+ 
+<table class="table">
+    <tr class="bg-info text-dark">
+        <th class="text-left" scope="col">HORARIO</th>
         @foreach($dias as $dia)
-        <th class="text-center" scope="col">{{$dia}}</th>
+        <th class="text-left" scope="col">{{$dia}}</th>
         @endforeach
-     </tr>
-     @endif
-        @foreach($horarios as $horario)
-        
-        <tr>
-
-        <td>{{$horario->moduloHorario->horainicio}} - {{$horario->moduloHorario->horafin}}</td>
-        <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        <a href="{{ route('horario.create') }}" class="btn btn-success">
-        <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
-        </a></td>
-        <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        <a href="{{ route('horario.create') }}" class="btn btn-success">
-        <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
-        </a></td>
-        <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        <a href="{{ route('horario.create') }}" class="btn btn-success">
-        <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
-        </a></td>
-        <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        <a href="{{ route('horario.create') }}" class="btn btn-success">
-        <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
-        </a></td>
-        <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        <a href="{{ route('horario.create') }}" class="btn btn-success">
-        <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
-        </a></td>
-        <td>{{$horario->materia->descripcion}} {{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}<br> 
-        <a href="{{ route('horario.create') }}" class="btn btn-success">
-        <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
-        </a></td>
-
-        <!-- <td>{{$horario->dia }}</td>
-        <td>{{$horario->moduloHorario->horainicio}} - {{$horario->moduloHorario->horafin}}</td>
-        <td>{{$horario->materia->descripcion}}</td>
-        <td>{{$horario->profesor->apellido}}, {{$horario->profesor->nombre}}</td>
-        <td>{{$horario->comentario}}</td>
-        <td>{{$horario->comision->comision}}</td>
-        <td>
-            {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
-            @csrf
-            <a href="{{ route('horario.edit', ['horario' =>  1] ) }}" class="btn btn-primary">
-                <img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar">
-            </a>
-            <button type="submit" class="btn btn-danger" onclick="if (!confirm('¿Esta seguro de borrar el horario?')) return false;">
-                <img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar">
-            </button>
-            {!!Form::close()!!}
-        </td> -->
     </tr>
-    @if($loop->last)
+   
+     @foreach($modulosHorarios as $modulosHorario)
+    <tr><td class="" style="background: #F5F5F5;">{{$modulosHorario->horainicio}} a {{$modulosHorario->horafin}}
+     @foreach($dias as $index=>$dia)
+    <td style="background: #F5F5F5;" class="">
+     @php ($a = 0)  
+     @foreach($horarios as $horario)
+ 
+     @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
+     @php ($a++)   
+    <div class="text-center p-1 hover-horarios">    
+    <strong class="h6 mb-1">{{$horario->materia->descripcion}}</strong>  
+    <p class="mb-3">{{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} </p>
+    <p class="mb-3">{{$horario->comentario}}</p>
+    </div>
+     @endif 
+      @endforeach
+      @if($a == 0)
+     @php ($a++)  
+        <div class="text-center px-5 m-auto">  
+        <p class="align-middle px-auto">{{ Form::open(['route' => 'horario.createHorario']) }}</p>
+        </div>
+    {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("carrera_id", $carrera->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("modulohorario_id", $modulosHorario->id , ["class" => "form-control", "hidden" ])}}
+    {{Form::text("dia", $index , ["class" => "form-control", "hidden" ])}}
+{!!Form::close()!!}
+
+        @endif 
+     </td>
+    @endforeach
+    </tr>
+@endforeach 
+      
+    <tr>
+
+ 
 </table>
-@endif
-
-@endforeach
-
-
+<p>Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection
+
+</div>

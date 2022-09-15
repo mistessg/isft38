@@ -21,10 +21,10 @@ td{
     vertical-align: middle;
 }
 a{
-  margin-left: 10px;
+  margin-left: 7px;
 }
 button{
-  margin-left: 10px;
+  margin-left: 7px;
 }
 .subconainer{
   display: flex;
@@ -35,13 +35,6 @@ button{
 }
 a{
   text-decoration: none;
-
-}
-.horario{
-  color:black;
-  border:1px solid black;
-  border-radius:25px;
-  padding: 10px;
 }
 .svg{
   padding: 15px;
@@ -53,25 +46,52 @@ a{
   flex-wrap: wrap;
   width: 300px;
 }
-
+.contenedor{
+    margin:auto;
+}
 
 </style>
 
-<button>Crear</button>
+<div class="contenedor">
+<button class="btn btn-success svg" href="{{ route('comision.create') }}">
+    <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+    Crear 
+</button>
 <Table>
-    <tr>
+<div class="algo">   
+    <tr class="subconainer">
         <td>Id</td>
         <td>Comision</td>
+        
         <td></td>
-        <td></td>
-    </tr>    
+    </tr>         
+</div>
+
 @foreach($comisiones as $comision)    
     <tr>
         <td>{{$comision->id}}</td>
         <td>{{$comision->comision}}</td>
-        <td><button>Editar</button></td>
-        <td><button>Eliminar</button></td>
+        <td>
+          {{ Form::model($comision, [ 'method' => 'delete' , 'route' => ['comision.destroy', $comision->id] ]) }}
+            @csrf  
+          <div class="botonera">
+              <button type="submit" name="borrar{{$comision->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la carrera?')) return false;">
+                <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
+              </button>
+
+            <button>
+              <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
+            </button>
+          </div>
+            {!!Form::close()!!}  
     </tr>
 @endforeach
 </Table>
+</div>
+
+<script>
+  let btnEditar
+
+</script>
+
 @endsection

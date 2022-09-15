@@ -34,7 +34,7 @@ class ComisionController extends Controller
        
         $comision = Horario::where('sede_id', $sede->id)->get();
     
-        return view('backend.horario.create', compact('sede','sedes','comision'));
+        return view('backend.comision.create', compact('comision'));
     }
 
     /**
