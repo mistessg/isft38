@@ -6,6 +6,7 @@ use App\Models\Comision;
 use Illuminate\Http\Request;
 use App\Models\Carrera;
 use App\Models\Sede;
+use App\Models\Horario;
 class ComisionController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class ComisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
@@ -34,7 +35,7 @@ class ComisionController extends Controller
        
         $comision = Horario::where('sede_id', $sede->id)->get();
     
-            return view('backend.horario.create', compact('sede','sedes','comision'));
+        return view('backend.horario.create', compact('sede','sedes','comision'));
     }
 
     /**

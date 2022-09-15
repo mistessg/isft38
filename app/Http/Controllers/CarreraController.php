@@ -48,17 +48,28 @@ class CarreraController extends Controller
         $carrera->nombre_carpeta = $request->input('nombre_carpeta'); 
         $archivoImagen = $request->file('imagen'); 
          // dd($carrera);
+<<<<<<< Updated upstream
+=======
+         
+>>>>>>> Stashed changes
          if ($request->hasFile('imagen')) {
              $archivoImagen = $request->file('imagen');
              $path = $archivoImagen->storeAs('public/carreras/' . $carrera->id, $archivoImagen->getClientOriginalName() ); 
              $savedPath  =str_replace("public/", "", $path);
              $carrera->imagen = $savedPath;   
+<<<<<<< Updated upstream
              $carrera->save();   
         }
         $carrera->save();
         
 
        // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
+=======
+            }
+            $carrera->save();
+            
+            // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
+>>>>>>> Stashed changes
        return redirect()->route('carrera.index'); 
     }
 

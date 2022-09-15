@@ -260,9 +260,8 @@ class HorarioController extends Controller
         $horario->modulohorario_id = $request->input('modulohorario_id');    
         $horario->duracion = $request->input('duracion');    
         $horario->save();
-        
         $request->session()->flash('status', 'Se modificó correctamente el horario');
-        return redirect()->route('backend.horario.edit', $horario->$id);
+        return redirect()->route('backend.horario.edit', $horario->id);
     }
 
     /**
