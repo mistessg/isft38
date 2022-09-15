@@ -56,10 +56,13 @@
 <div class="input-group mb-3">
     <label class="input-group-text" for="#">Materia</label>
     {{Form::select("materia_id", $materias, null, ["class" => "form-control", "placeholder" => "Seleccione una materia"]) }}   
+    @error('materia_id')<div class="alert alert-danger">{{ $message }}</div>@enderror  
+
 </div>
 <div class="input-group mb-3">
     <label class="input-group-text" for="#">Profesor</label>
     {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "placeholder" => "Seleccione un profesor"]) }}   
+    @error('profesor_id')<div class="alert alert-danger">{{ $message }}</div>@enderror  
 </div>        
 <div class="input-group mb-3">
     <label class="input-group-text" for="#">Comentario</label>

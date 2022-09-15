@@ -18,7 +18,7 @@ class ComisionController extends Controller
     {
         $carreras = Carrera::pluck('descripcion', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
-        return view('backend.comision.index', compact('carreras', 'sedes'));
+        return view('backend.comision.Index', compact('carreras', 'sedes'));
     }
 
     /**
@@ -94,7 +94,7 @@ class ComisionController extends Controller
      * @param  \App\Models\Comision  $comision
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $comision, $id)
+    public function update(Request $request, $id)
     {
         $comision = Horario::findOrFail($id);
         $validateData = $request->validate(
@@ -104,7 +104,7 @@ class ComisionController extends Controller
             ]
         );
 
-        $horarios->update($validateData);
+        $request->update($validateData);
     }
 
     /**
