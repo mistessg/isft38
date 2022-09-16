@@ -84,15 +84,5 @@ a{
 @endforeach
 </Table>
 
-<div> 
-{{ Form::model($comision, [ 'method' => 'create' , 'route' => ['comision.create', $comision->id] ]) }}
-  <label class="input-group-text" for="#">Comision</label>
-    {{Form::text("comision", $comision->comision , ["class" => "form-control", "readonly" ])}}
-    {{Form::text("comision", $comision->id , ["class" => "form-control", "hidden" ])}}
-  <button>GUARDAR</button>
-  {{!!Form::close()!!}}
-
-</div>
-
 </div>
 @endsection
