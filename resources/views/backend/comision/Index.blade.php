@@ -53,10 +53,6 @@ a{
 </style>
 
 <div class="contenedor">
-<button class="btn btn-success svg" href="{{ route('comision.create') }}">
-    <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-    Crear 
-</button>
 <Table>
 <div class="algo">   
     <tr class="subconainer">
@@ -79,7 +75,7 @@ a{
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
               </button>
 
-            <button>
+            <button href="{{ route('comision.edit', ['comision' => $comision->id ]) }}" class="btn btn-primary svg " >
               <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
             </button>
           </div>
@@ -87,11 +83,16 @@ a{
     </tr>
 @endforeach
 </Table>
+
+<div> 
+{{ Form::model($comision, [ 'method' => 'create' , 'route' => ['comision.create', $comision->id] ]) }}
+  <label class="input-group-text" for="#">Comision</label>
+    {{Form::text("comision", $comision->comision , ["class" => "form-control", "readonly" ])}}
+    {{Form::text("comision", $comision->id , ["class" => "form-control", "hidden" ])}}
+  <button>GUARDAR</button>
+  {{!!Form::close()!!}}
+
 </div>
 
-<script>
-  let btnEditar
-
-</script>
-
+</div>
 @endsection

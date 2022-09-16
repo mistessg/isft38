@@ -211,11 +211,13 @@ class HorarioController extends Controller
                 'comision_id' => 'required',
             ]
         );
-        return redirect()->route('horarios.search.porcarrera', ['sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'anio' => $request->input('anio_id'), 'comision' => $request->input('comision_id')]);
+        return redirect()->route('horarios.searchPorCarrera', ['sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'anio' => $request->input('anio_id'), 'comision' => $request->input('comision_id')]);
     }
-    public function searchCarreraUser($sede, $carrera, $anio, $comision)
+
+
+    public function searchCarreraUser(Request $request)//($sede, $carrera, $anio, $comision)
     {
-        $sede = Sede::find($sede);
+        $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
         $dias[1] = 'Lunes';
@@ -224,17 +226,17 @@ class HorarioController extends Controller
         $dias[4] = 'Jueves';
         $dias[5] = 'Viernes';
         $dias[6] = 'Sábado';
-        $carrera = Carrera::find($carrera);
-        $anio = Anio::find($anio);
+        $carrera = Carrera::find($request->input('carrera_id'));
+        $anio = Anio::find($request->input('anio_id'));
         $modulosHorarios = Modulo::all()->sortBy('horainicio');
-        $comision = Comision::find($comision);
+        $comision = Comision::find($request->input('comision_id'));
 
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
             ->where('comision_id', $comision->id)->get();
 
-        return view('frontend.horarios.tablaCarreras', compact(
+            return view('frontend.horarios.tablaCarreras', compact(
             'sede',
             'carrera',
             'sedes',

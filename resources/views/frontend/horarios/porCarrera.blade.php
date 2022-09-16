@@ -15,7 +15,7 @@
         <div class="card">
         <h5 class="card-header" style=" background-color: #181818; color: white;">Horarios por Carrera</h5>
         <div class="card-body">
-        {{ Form::open(['route' => 'horario.search']) }}
+        {{ Form::open(['route' => 'horarios.searchPorCarrera']) }}
         <div class="input-group mb-3">
         <label class="input-group-text" for="#">Sede</label>
         {{Form::select("sede_id", $sedes, null, ["class" => "form-control", "placeholder" => "Seleccione la sede" ]) }} 
