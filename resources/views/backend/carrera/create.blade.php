@@ -23,7 +23,6 @@
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
         font-size: 20px;
-        
     }
     .form-control{
         border: 1px solid gray;
@@ -47,21 +46,21 @@
           {{Form::text("descripcion", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la descripcion", ])}}     
           @error('descripcion')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror                          
+          @enderror
     </div>
     <div class="form-group">
           {{ Form::label("anios", __('AÑOS'), ['class' => 'control-label']) }}
           {{Form::text("anios", old("anios"), ["class" => "form-control", "placeholder" => "Ingrese años", ])}}     
           @error('anios')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror                          
+          @enderror         
     </div>
     <div class="form-group">
           {{ Form::label("resolucion", __('RESOLUCIÓN'), ['class' => 'control-label']) }}
           {{Form::text("resolucion", old("resolucion"), ["class" => "form-control", "placeholder" => "Ingrese la resolucion", ])}}     
           @error('resolucion')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror                          
+          @enderror                  
     </div>
     <div class="form-group">
           {{ Form::label("texto", __('TEXTO'), ['class' => 'control-label']) }}
@@ -78,13 +77,13 @@
           @enderror                          
     </div>
     <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif" style="text-align:center;">
-           {{ Form::label("imagen", __('IMÁGEN'), ['class' => 'control-label']) }}
+           {{ Form::label("imagen", __('IMAGEN'), ['class' => 'control-label']) }}
            <br>
            {{ Form::file("imagen") }}
           @error('image')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror 
-    </div>              
+          @enderror
+    </div>
     </br>
     <button type="submit"  class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
 </div>
