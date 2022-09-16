@@ -13,22 +13,23 @@
     .texto-tabla {
         font-size: .8em;
     }
+
     
 </style>
 
-    <div class="container">   
+    <div class="container-fluid">   
         {{ Form::open(['route' => 'horario.createHorario']) }}
         <div class="row mt-3 mb-2">
 
             <div class="input-group col">
-                <label class="input-group-text" for="#">Sede</label>
+                <label class="input-group-text bg-dark text-light"for="#">Sede</label>
                 {{Form::text("sede", $sede->descripcion , ["class" => "form-control", "readonly" ])}}
                 {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
 
             </div>
 
             <div class="input-group col">
-                <label class="input-group-text" for="#">Carrera</label>
+                <label class="input-group-text bg-dark text-light" for="#">Carrera</label>
                 {{Form::text("carrera", $carrera->descripcion , ["class" => "form-control", "readonly" ])}}
                 {{Form::text("carrera_id", $carrera->id , ["class" => "form-control", "hidden" ])}}
             </div>
@@ -36,13 +37,13 @@
 
         <div class="row mb-2">
         <div class="input-group col">
-            <label class="input-group-text" for="#">Año</label>
+            <label class="input-group-text bg-dark text-light" for="#">Año</label>
             {{Form::text("anio_id", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
             {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
 
         </div>
         <div class="input-group col">
-            <label class="input-group-text" for="#">Comisión</label>
+            <label class="input-group-text bg-dark text-light" for="#">Comisión</label>
             {{Form::text("comision_id", $comision->comision , ["class" => "form-control", "readonly" ])}}
             {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
 
@@ -51,8 +52,8 @@
     </div>
 {!!Form::close()!!}
  
-<table class="table texto-tabla">
-    <tr class="text-light text-center" style="background-color: #3A70FF;">
+<table class="table texto-tabla mb-0">
+    <tr class="text-light text-center mb-0" style="background-color: #3A70FF;">
         <th class="text-left" scope="col">HORARIO</th>
         @foreach($dias as $dia)
         <th class="text-left" scope="col">{{$dia}}</th>
@@ -60,15 +61,16 @@
     </tr>
    
      @foreach($modulosHorarios as $modulosHorario)
-    <tr><td class="bg-dark text-light" style="">{{$modulosHorario->horainicio}} a {{$modulosHorario->horafin}}
+    <tr><td class="bg-dark text-light text-center align-middle" style="">{{$modulosHorario->horainicio}} a {{$modulosHorario->horafin}}
      @foreach($dias as $index=>$dia)
-    <td style="background: #F5F5F5;" class="">
+    <td style="background: #F5F5F5;" class="text-center align-middle">
      @php ($a = 0)  
      @foreach($horarios as $horario)
  
      @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
      @php ($a++)   
-    <div class="text-center p-1 border border-info rounded horarios">    
+    <div class="text-center align-middle p-1 border border-info rounded horarios">    
+        <div class="align-middle">
     <strong class="mb-1">{{$horario->materia->descripcion}}</strong>  
     <p class="mb-3">{{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} </p>
     <p class="mb-3">{{$horario->comentario}}</p>
@@ -82,6 +84,7 @@
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar">
             </button>
             {!!Form::close()!!}
+    </div>
     </div>
      @endif 
       @endforeach
@@ -110,7 +113,7 @@
 
  
 </table>
-<p>Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
+<p class="container-fluid my-0 text-center p-1" style="background-color: #3A70FF;">Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection
 
 </div>
