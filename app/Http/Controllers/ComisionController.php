@@ -16,9 +16,8 @@ class ComisionController extends Controller
      */
     public function index()
     {
-        $carreras = Carrera::pluck('descripcion', 'id');
-        $sedes = Sede::pluck('descripcion', 'id');
-        return view('backend.comision.index', compact('carreras', 'sedes'));
+        $comisiones = Comision::all();
+        return view('backend.comision.index', compact('comisiones'));
     }
 
     /**
@@ -35,7 +34,7 @@ class ComisionController extends Controller
        
         $comision = Horario::where('sede_id', $sede->id)->get();
     
-        return view('backend.horario.create', compact('sede','sedes','comision'));
+        return view('backend.comision.create', compact('comision'));
     }
 
     /**
@@ -94,7 +93,7 @@ class ComisionController extends Controller
      * @param  \App\Models\Comision  $comision
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $comision, $id)
+    public function update(Request $request, $id)
     {
         $comision = Horario::findOrFail($id);
         $validateData = $request->validate(
@@ -104,7 +103,7 @@ class ComisionController extends Controller
             ]
         );
 
-        $horarios->update($validateData);
+        $request->update($validateData);
     }
 
     /**

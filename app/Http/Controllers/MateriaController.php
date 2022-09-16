@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\materia;
+use App\Models\carrera;
+use App\Models\anio;
 use Illuminate\Http\Request;
 
 class materiaController extends Controller
@@ -19,8 +21,10 @@ class materiaController extends Controller
     }
     public function create()
     {
-        $materias = materia::pluck('descripcion','id');
-        return view('backend.materia.create', compact('materias'));
+        //$materias = Materia::pluck('descripcion','id');
+        $anios = Anio::pluck('anio', 'id');
+        $carreras = Carrera::pluck('descripcion', 'id');
+        return view('backend.materia.create', compact('anios','carreras'));
     }
 
     /**
@@ -31,35 +35,16 @@ class materiaController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validatedData = $request->validate(
-            [ 'descripcion' => 'required',
-              'resolucion' => 'required|unique:materias',
-              'anios' => 'required',
-              'texto' => 'required',
-              'nombre_carpeta' => 'required',
-              'imagen' => 'image|max:2048']
+            ['descripcion' => 'required']
          );
-        $materia = new materia(); 
+        $materia = new Materia(); 
         $materia->descripcion = $request->input('descripcion');
-        $materia->resolucion = $request->input('resolucion');
-        $materia->anios = $request->input('anios'); 
-        $materia->texto = $request->input('texto'); 
-        $materia->nombre_carpeta = $request->input('nombre_carpeta'); 
-        $archivoImagen = $request->file('imagen'); 
-         // dd($materia);
+        $materia->carrera_id = $request->input('carrera_id');
         $materia->save();
-        
-        if ($request->hasFile('imagen')) {
-            $archivoImagen = $request->file('imagen');
-            $path = $archivoImagen->storeAs('public/materias/' . $materia->id, $archivoImagen->getClientOriginalName() ); 
-            $savedPath  =str_replace("public/", "", $path);
-            $materia->imagen = $savedPath;   
-            $materia->save();   
-       }
 
-       // $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
-       // return redirect()->route('backend.materia.create'); 
+       $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
+       return redirect()->route('materia.create'); 
     }
 
     /**
@@ -85,7 +70,9 @@ class materiaController extends Controller
     public function edit()
     {
         $materias = materia::pluck('descripcion','id');
-        return view('backend.materia.edit', compact('materias'));
+        $anios = Anio::pluck('anio', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        return view('materia.edit', compact('materias'));
     }
 
     /**
@@ -99,13 +86,9 @@ class materiaController extends Controller
     {
         $materia = materia::findOrFail($id);
         $validatedData = $request->validate(
-            [ 'descripcion' => 'required',
-              'resolucion' => 'required|unique:materias',
-              'anios' => 'required',
-              'texto' => 'required',
-              'image' => 'image|max:2048']
+            ['descripcion' => 'required']
          );
-        $materia->update($validatedData);  
+        $materia->save($validatedData);  
         return redirect()->route('materia.index');  
     }
 

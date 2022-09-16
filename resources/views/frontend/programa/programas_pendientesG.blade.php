@@ -10,7 +10,7 @@
     <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
     <div class="card-body">
 
-      {{ Form::open(['route' => 'programa.search']) }}
+      {{ Form::open(['route' => 'programa.pendiente.search']) }}
       @csrf
 
       <div class="input-group mb-3">
@@ -58,32 +58,34 @@
       
       </style>
       
-      <div class="accordion accordion-flush aco" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
               @foreach($anios as $a)
-               
-              @php($titulo = $a->descripcion)
               
-              @foreach($programas as $programa)
-              @if($a->id == $programa->anio_id)
-              @if($titulo)
-              {{$titulo}} <br>
-              @php($titulo = '')
-              @endif
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              {{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
+              Año:{{$a->descripcion}} <br>
+              @php($m=0)
+              @php($e=0)
+              @foreach($materias as $materia)
+              @if($a->id == $materia->anio_id)
+               Materia:{{$materia->descripcion}}<br>
+               @php($m++)
+              
+              @foreach($programas as $programa)              
+               @if($materia->id == $programa->materia_id)
+               @php($e++)
+              Programa:{{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
               <br>
+              @endif 
+              
+              @endforeach
+             
               @endif
+             
               @endforeach
+              @php($p = $m - $e)
+              Entregados:{{$e}} | Pendientes:{{$p}}<br>
               @endforeach
-            </div>
-          </div>
-        </div>
+            
+
+ 
 
         @endsection
       </div>

@@ -1,12 +1,12 @@
 @extends('backend.layouts.main')
 
-@section('title', 'Horarios por Carreras')
+@section('title', 'Horarios por Carrera')
 
 @section('content')
 
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container-md">
-        <a class="navbar-brand text-white" href="#">Cargar horarios</a>
+        <a class="navbar-brand text-white" href="#">Consultar horarios</a>
       </div>
     </nav>
 
@@ -15,7 +15,7 @@
         <div class="card">
         <h5 class="card-header" style=" background-color: #181818; color: white;">Horarios por Carrera</h5>
         <div class="card-body">
-        {{ Form::open(['route' => 'horario.search']) }}
+        {{ Form::open(['route' => 'horarios.searchPorCarrera']) }}
         <div class="input-group mb-3">
         <label class="input-group-text" for="#">Sede</label>
         {{Form::select("sede_id", $sedes, null, ["class" => "form-control", "placeholder" => "Seleccione la sede" ]) }} 
