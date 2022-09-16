@@ -3,7 +3,6 @@
 @section('content')
 
 <style>
-
 .containerss{
     display: flex;
     flex-direction: column;
@@ -20,84 +19,64 @@
   display: flex;
   justify-content: center;
 }
-.texto p{
+.texto p {
   padding:30px;
   width: 90%;
   text-align: justify;
   color: #ffffff;
 }
-.card{
+.card {
   height: 600px;
   display: flex;
   margin:0 10px;
+  text-align: center;
 }
-.card-img-top{
+.card-img-top {
   height: 220px;
 }
-.fondoCards{
+.fondoCards {
   background-color: #212121;
-  padding: 20px;
+  padding-bottom: 80px;
 }
 
 
 </style>
 
-
-<div id="carouselExampleCaptions" class="carousel slide todo " data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
   <div class="carousel-indicators">
-   <!-- <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-  --> <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
-  
-</div>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="active" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
   <div class="carousel-inner">
-  @forelse($novedades as $novedad)
-  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$loop->index}}" class="active" aria-current="true" aria-label="Slide {{$loop->index}}"></button>
-  @if($loop->first)  
-  <div class="carousel-item active">
-  @else
-  <div class="carousel-item">
-  @endif
-      <img src="https://img.freepik.com/vector-premium/fondo-cuadrado-negro-geometrico-relieve_51543-519.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-      <h5>{{$novedad->titulo}}</h5>
-        @if($novedad->imagen)
-            @if(Str::startsWith($novedad->imagen, 'http'))
-              <img src="{{ $novedad->imagen }}" class="img-fluid img-thumbnail" alt="...">
-            @else
-              <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="img-fluid img-thumbnail" alt="...">  
-            @endif
-         @endif      
-       
-        <p>{!!substr($novedad->cuerpo, 0, 200)!!}... <a href="{{route('blog.noticias.leer',$novedad->id)}}" target="_blank">Seguir Leyendo »</a></p>
-      </div>
-    </div>
-    @if($loop->last)  
-      <div class="carousel-item">
-    @endif  
-    @empty
+  
     <div class="carousel-item active">
-    @endforelse
-
-      <img src="https://www.diferencias.cc/wp-content/uploads/2021/06/diferencia-entre-facultad-y-universidad.jpg" class="d-block w-100" alt="...">
+      <img src="..." class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
-    <div class="carousel-item">
-      <img src="https://www.unav.edu/documents/29007/29799869/normativa-1200.jpg/" class="d-block w-100" alt="...">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
-    
-    <div class="carousel-item">
-      <img src="{{ asset('img/imagen3.png') }}" class="d-block w-100" alt="...">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5 style="color:black;">ISFT</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
   </div>
@@ -108,8 +87,12 @@
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
+    
   </button>
 </div>
+
+<!-- fin carrousel -->
+
 
 <div class="fondoCards">
   <div class="containerss">
@@ -123,7 +106,7 @@
 
 
 
-  <div class="carditas">
+  <div class="carditas ">
     <div class="card" style="width: 25rem;">
       <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
@@ -136,7 +119,7 @@
         <li class="list-group-item">Texto</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Saber mas...</a>
       </div>
     </div>
   <!--CARD 2-->
@@ -152,7 +135,7 @@
         <li class="list-group-item">Texto</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Saber mas...</a>
       </div>
     </div>
   </div>
