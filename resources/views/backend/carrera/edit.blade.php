@@ -24,7 +24,6 @@
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
         font-size: 20px;
-        
     }
     .form-control{
         border: 1px solid gray;

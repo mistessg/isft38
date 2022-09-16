@@ -1,5 +1,15 @@
 @extends('backend.layouts.main')
 @section('title', 'Objetivo')
+@section('scripts')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- include libraries(jQuery, bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+@endsection
+
 @section('content')
 
 <style>
@@ -43,33 +53,37 @@
     @endif
   </div>
   <div class="links">
- {{ Form::open(['route' => 'objetivo.store']) }}
-  @csrf <!-- {{ csrf_field() }} -->
-    <div class="form-group">
-          {{ Form::label("objetivo1", 'Objetivos generales', ['class' => 'control-label']) }}
-          {{ Form::text("objetivo1", old("objetivo1"), ["class" => "form-control", "placeholder" => "Ingrese el Objetivo" ]) }}
-          @error('objetivo')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>
-
-    <div class="form-group">  
-          {{ Form::label("objetivo2", 'Objetivos de la carreras', ['class' => 'control-label']) }}
-          {{ Form::text("objetivo2", old("objetivo2"), ["class" => "form-control", "placeholder" => "Ingrese el Objetivo" ]) }}
-          @error('objetivo')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>
-
-    <div class="form-group">  
-          {{ Form::label("objetivo3", 'Objetivos institucionales', ['class' => 'control-label']) }}
-          {{ Form::text("objetivo3", old("objetivo3 "), ["class" => "form-control", "placeholder" => "Ingrese el Objetivo" ]) }}
+  {{ Form::open(['route' => 'objetivo.store']) }}
+  @csrf
+                        @csrf
+                        <div class="form-group">
+                            <textarea class="form-control" name="objetivo" id="summernote"></textarea>
+                        </div>
+                        
+            
+    <button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
+{!!Form::close()!!}
           @error('objetivo')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>
 
     </br>
-    <button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>
-{!!Form::close()!!}
+
+<!-- summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script type="text/javascript">
+    $('#summernote').summernote({
+        height: 200,
+        placeholder: 'Escriba objetivos',
+                tabsize: 2,
+                toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ]
+    });
+</script>
 @endsection

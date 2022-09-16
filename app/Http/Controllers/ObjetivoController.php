@@ -66,7 +66,7 @@ class ObjetivoController extends Controller
      * @param  \App\Models\Objetivo  $objetivo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Objetivo $objetivo)
+    public function edit($id)
     {
         $objetivo = Objetivo::findOrFail($id);
         return view('backend.objetivo.edit', compact('objetivo'));
@@ -79,7 +79,7 @@ class ObjetivoController extends Controller
      * @param  \App\Models\Objetivo  $objetivo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Objetivo $objetivo)
+    public function update(Request $request, $id)
     {
         $objetivo = Objetivo::findOrFail($id);
         $validatedData = $request->validate(
@@ -89,6 +89,8 @@ class ObjetivoController extends Controller
             $objetivo->objetivo = $request->input('objetivo');
 
             $objetivo->save();
+
+            return redirect()->route('objetivo.index');
     }
 
     /**
