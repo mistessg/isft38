@@ -52,16 +52,74 @@ class ProgramaController extends Controller
         $profesores = Profesor::pluck('nombre','apellido','id');
         $sede = Sede::pluck('descripcion','id');
         $programas = Programa::all();
-        */
+        
+        $sedes = Sede::all();
+        $carreras = Carrera::all();
+        $materias = Materia::all();
+        $comisiones = Comision::all();
         $programas = Programa::where('sede_id', $request->input('sede_id'))
         ->where('carrera_id', $request->input('carrera_id')) 
         ->where('comision_id', $request->input('comision_id')) 
         ->whereBetween('created_at', [$startDate,$endDate ])
         ->OrderBy('anio_id')->get();
-        return view('frontend.programa.programas_pendientes', compact('programas'));
+        return view('frontend.programa.programas_pendientesG', compact('programas','carrearas','materias','comisiones'));*/
+
+        $periodos = array();
+        $programas = array();
+        $anios = Anio::all();
+        $carreras = Carrera::pluck('descripcion','id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sedes = Sede::pluck('descripcion','id');
+        $year = date("Y");
+        $periodo = '';
+        $sede = '';
+        $carrera = '';
+        $comision = '';
+        for ($i = $year; $i >= $year - 10; $i--) {
+            $periodos[$i] = $i;
+        }
+        
+        return view('frontend.programa.programas_pendientesG', compact('carreras','sedes','comisiones','materias','profesores', 'anios', 'programas','periodos', 'periodo', 'sede', 'carrera','comision'));
     }
 
-   
+    public function ProgramasPendientesSearch(Request $request)
+    {
+        $periodos = array();
+       
+        $anios = Anio::all();
+        
+        $carreras = Carrera::pluck('descripcion','id');
+        $comisiones = Comision::pluck('comision', 'id');
+        //$materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sedes = Sede::pluck('descripcion','id');
+        $year = date("Y");
+        
+        for ($i = $year; $i >= $year - 10; $i--) {
+            $periodos[$i] = $i;
+        }
+        
+       $periodo =$request->input('anio_id');
+       $sede =$request->input('sede_id');
+       $carrera =$request->input('carrera_id');
+       $comision =$request->input('comision_id');
+
+      $startDate = Carbon::createFromFormat('Y-m-d', $request->input('anio_id') . '-01-01');
+      $endDate = Carbon::createFromFormat('Y-m-d', $request->input('anio_id') . '-12-31');
+ 
+      $programas = Programa::where('sede_id', $request->input('sede_id'))
+      ->where('carrera_id', $request->input('carrera_id')) 
+      ->where('comision_id', $request->input('comision_id')) 
+      ->whereBetween('created_at', [$startDate,$endDate ])
+      ->OrderBy('anio_id')->get();
+ 
+      $materias = Materia::where('carrera_id', $request->input('carrera_id'))->get();
+
+      return view('frontend.programa.programas_pendientesG', compact('carreras','sedes','comisiones','materias','profesores', 'anios','programas','periodo', 'periodos', 'sede', 'carrera','comision'));      
+    }
+
 
     /**
      * Show the form for creating a new resource.
