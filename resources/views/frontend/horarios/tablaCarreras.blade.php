@@ -37,8 +37,7 @@
 {!!Form::close()!!}
 
 <br><br>
-
- 
+  
 <table class="table">
     <tr class="bg-info text-dark">
         <th class="text-left" scope="col">HORARIO</th>

@@ -220,22 +220,42 @@ class HorarioController extends Controller
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
-        $dias[1] = 'Lunes';
-        $dias[2] = 'Martes';
-        $dias[3] = 'Miércoles';
-        $dias[4] = 'Jueves';
-        $dias[5] = 'Viernes';
-        $dias[6] = 'Sábado';
+        
         $carrera = Carrera::find($request->input('carrera_id'));
         $anio = Anio::find($request->input('anio_id'));
-        $modulosHorarios = Modulo::all()->sortBy('horainicio');
+        //$modulosHorarios = Modulo::all()->sortBy('horainicio');
+        $modulosHorarios  = Modulo::join('horarios','modulos.id' , '=', 'horarios.modulohorario_id')
+                     		->get(['modulos.id', 'horainicio', 'horafin'])->unique()->sortBy('horainicio');
         $comision = Comision::find($request->input('comision_id'));
-
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
             ->where('comision_id', $comision->id)->get();
 
+        foreach($horarios as $key_hora=>$hora) {            
+            switch ($hora->dia) {
+                case '1':
+                    $dias[1] = 'Lunes';
+                    break;
+                case '2':
+                    $dias[2] = 'Martes';  
+                    break;   
+                case '3':
+                    $dias[3] = 'Miércoles';
+                    break;
+                case '4':
+                    $dias[4] = 'Jueves';
+                    break;
+                case '5':
+                    $dias[5] = 'Viernes';
+                    break;
+                case '6':
+                    $dias[6] = 'Sábado';
+                    break;
+            }            
+          }
+          ksort($dias);
+          
             return view('frontend.horarios.tablaCarreras', compact(
             'sede',
             'carrera',
