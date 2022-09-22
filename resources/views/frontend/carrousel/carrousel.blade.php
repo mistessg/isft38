@@ -1,4 +1,3 @@
-
 @extends('frontend.layout.main')
 @section('content')
 
@@ -38,47 +37,92 @@
   background-color: #212121;
   padding-bottom: 80px;
 }
-
-
 </style>
 
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div id="carouselExampleCaptions" class="carousel slide pointer-event" data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="active" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  @forelse($novedades as $novedad)
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="true" aria-label="Slide {{$loop->index}}"></button>
+	@if($loop->last)
+	@php($c1 = $loop->index + 1)
+	@php($c2 = $loop->index + 2)
+		<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $c1 }}" class=" " aria-current="true" aria-label="Slide {{$c1}}"></button>   
+		<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $c2 }}" class=" " aria-current="true" aria-label="Slide {{$c2}}"></button>   
+	@endif
+  @empty
+     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>   
+     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class=" " aria-current="true" aria-label="Slide 1"></button>   
+  @endforelse
   </div>
   <div class="carousel-inner">
+  @forelse($novedades as $novedad)  
+    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+    <img src="https://img.freepik.com/vector-premium/fondo-cuadrado-negro-geometrico-relieve_51543-519.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+    @if($novedad->imagen)
+        @if(Str::startsWith($novedad->imagen, 'http'))
+            <img src="{{ $novedad->imagen }}" class="img-fluid img-thumbnail" alt="...">
+        @else
+            <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="img-fluid img-thumbnail" alt="...">  
+        @endif
+    @endif       
+    <h5>{{$novedad->titulo}}</h5>
+    <p>{!!substr($novedad->cuerpo, 0, 200)!!}... <a href="{{route('blog.noticias.leer',$novedad->id)}}" target="_blank">Seguir Leyendo »</a></p>
+    @if($novedad->archivo1)
+        <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
+    @endif
+    @if($novedad->archivo2)
+        <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
+    @endif          
+    @if($novedad->archivo3)
+        <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
+    @endif          
+      </div>
+    </div>
+    @if($loop->last)
+    <div class="carousel-item">
+     <img src="https://www.diferencias.cc/wp-content/uploads/2021/06/diferencia-entre-facultad-y-universidad.jpg" class="d-block w-100" alt="...">
+     <div class="carousel-caption d-none d-md-block">
+     <h5>Instituto Superior de Formación Técnica N° 38</h5>
+        <p>Sede Central San Nicolás</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+     <img src="https://www.unav.edu/documents/29007/29799869/normativa-1200.jpg/" class="d-block w-100" alt="...">
+     <div class="carousel-caption d-none d-md-block">
+     <h5>Carreras</h5>
+	 @foreach($carreras as $carrera) 
+	 @if($loop->first) 	 <ul>  @endif
+        <li><div class="badge bg-dark text-wrap" style="width: 25rem;">{{$carrera->descripcion}}</div></li>
+	 @if($loop->last) 	 </ul>  @endif		
+     @endforeach		
+      </div>
+    </div>    
+    @endif
+    @empty
+    <div class="carousel-item active">
+     <img src="https://www.diferencias.cc/wp-content/uploads/2021/06/diferencia-entre-facultad-y-universidad.jpg" class="d-block w-100" alt="...">
+     <div class="carousel-caption d-none d-md-block">
+     <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+     <img src="https://www.unav.edu/documents/29007/29799869/normativa-1200.jpg/" class="d-block w-100" alt="...">
+     <div class="carousel-caption d-none d-md-block">
+     <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>    
+    @endforelse
   
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -87,12 +131,8 @@
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
-    
   </button>
 </div>
-
-<!-- fin carrousel -->
-
 
 <div class="fondoCards">
   <div class="containerss">
@@ -111,15 +151,17 @@
       <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <ul class="list-group list-group-flush">
+		@foreach($historias as $historia) 
+		<p class="card-text">{!!substr($historia->historia, 0, 500)!!}...</p>		
+		@endforeach	
+	</div>
+      <!--<ul class="list-group list-group-flush">
         <li class="list-group-item">Titulo</li>
         <li class="list-group-item">Subtitulo</li>
         <li class="list-group-item">Texto</li>
-      </ul>
+      </ul>-->
       <div class="card-body">
-        <a href="#" class="card-link">Saber mas...</a>
+        <a href="#" class="card-link">Seguir Leyendo »</a>
       </div>
     </div>
   <!--CARD 2-->
@@ -127,19 +169,22 @@
       <img class="card-img-top"  src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Objetivos</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		@foreach($objetivos as $objetivo) 
+		<p class="card-text">{!!substr($objetivo->objetivo, 0, 448)!!}...</p>		
+		@endforeach	
       </div>
-      <ul class="list-group list-group-flush">
+      <!--<ul class="list-group list-group-flush">
         <li class="list-group-item">Titulo</li>
         <li class="list-group-item">Subtitulo</li>
         <li class="list-group-item">Texto</li>
-      </ul>
+      </ul>-->
       <div class="card-body">
-        <a href="#" class="card-link">Saber mas...</a>
+        <a href="#" class="card-link">Seguir Leyendo »</a>
       </div>
     </div>
   </div>
-</div>
 
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 @endsection
