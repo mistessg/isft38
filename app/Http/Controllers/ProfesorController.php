@@ -55,8 +55,8 @@ class ProfesorController extends Controller
         $profesor->nombre = $request->input('nombre');
         $profesor->apellido = $request->input('apellido');
         $profesor->save();
-        $request->session()->flash('status', 'Se guardó correctamente el profesor '. $profesor->apellido);
-        return redirect()->route('profesor.create'); 
+        $request->session()->flash('status', 'Se guardó correctamente el profesor ' . $profesor->apellido);
+        return redirect()->route('profesor.create');
     }
 
 
@@ -66,9 +66,10 @@ class ProfesorController extends Controller
      * @param  \App\Models\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function show(Profesor $profesor)
+    public function show($id)
     {
-        //
+        $profesor = Profesor::all();
+        return view('backend.profesor.show', compact('profesor'));
     }
 
     /**
@@ -80,7 +81,7 @@ class ProfesorController extends Controller
     public function edit($id)
     {
         $profesor = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-        ->pluck('nombrecompleto', 'id');
+            ->pluck('nombrecompleto', 'id');
         return view('backend.profesor.edit', compact('comision'));
     }
 
@@ -105,8 +106,8 @@ class ProfesorController extends Controller
         $profesor->nombre = $request->input('nombre');
         $profesor->apellido = $request->input('apellido');
         $profesor->save();
-        $request->session()->flash('status', 'Se guardó correctamente el profesor '. $profesor->apellido);
-        return redirect()->route('profesor.create'); 
+        $request->session()->flash('status', 'Se guardó correctamente el profesor ' . $profesor->apellido);
+        return redirect()->route('profesor.create');
     }
 
     /**
@@ -118,8 +119,8 @@ class ProfesorController extends Controller
     public function destroy($id)
     {
         $profesor = Profesor::findOrFail($id);
-        $profesor -> delete();
-        $profesor -> save();
+        $profesor->delete();
+        $profesor->save();
         return redirect()->route('backend.profesor.index', $profesor->$id);
     }
 }
