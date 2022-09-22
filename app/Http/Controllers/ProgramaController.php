@@ -113,7 +113,7 @@ class ProgramaController extends Controller
     {
         $sede = Sede::all();
         $carreras = Carrera::all();
-        $anios = Anio:all();
+        $anios = Anio::all();
         $materias = Materia::all();
         $profesores = Profesor:all();
         return view('frontend.programa.create', compact('sede','carreras','anios','materias','profesores'));
@@ -124,7 +124,8 @@ class ProgramaController extends Controller
         $programa = new Programa();
         $programa->sede_id = $request->input('sede_id');
         $programa->carrera_id = $request->input('carrera_id');
-        
+        $programa->anio_id = $request->input('anio_id');
+        $programa->sede_id = $request->input('sede_id')
         if ($request->hasFile('archivo1')) {
             $archivoImagen = $request->file('archivo1');
             $path = $archivoImagen->storeAs('public/programas/' . $noticia->id, $archivoImagen->getClientOriginalName() ); 
