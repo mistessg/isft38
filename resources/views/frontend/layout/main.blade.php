@@ -25,6 +25,11 @@
           margin: 0;
           box-sizing: border-box;
         }
+        @media (max-width: 600px){
+          .contenedorHeader{
+            height: 100vh;
+          }
+        }
         ::-webkit-scrollbar{
             display: none;
         }
@@ -36,8 +41,13 @@
             font-family: 'Overpass', sans-serif;
             background: #212529;
         }
-        .footer{
+        .footin{
           color: white;
+          position: relative;
+          top: 60px;
+        }
+        ul li a{
+          margin:20px;
         }
 
 
@@ -89,7 +99,7 @@
 <body>
     <!-- HEADER -->
     <header>
-    <div class="px-3 py-2 bg-dark">
+    <div class="px-3 py-2 bg-dark contenedorHeader">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none alberto">
@@ -156,7 +166,7 @@
 
     <!-- FOOTER -->
 
-    <div class="container footer ">
+    <div class="container footer footin">
         <footer class="w-100 my-5 py-3 " >
             <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>

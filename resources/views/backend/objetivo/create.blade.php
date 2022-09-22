@@ -56,9 +56,9 @@
   {{ Form::open(['route' => 'objetivo.store']) }}
   @csrf
                         @csrf
-                        <div class="form-group">
-                            <textarea class="form-control" name="objetivo" id="summernote"></textarea>
-                        </div>
+    <div class="form-group">
+        <textarea class="form-control" name="objetivo" id="summernote"></textarea>
+    </div>
                         
             
     <button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button></div>

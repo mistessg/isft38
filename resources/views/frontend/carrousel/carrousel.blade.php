@@ -37,6 +37,156 @@
   background-color: #212121;
   padding-bottom: 80px;
 }
+.card-texto{
+  text-align: justify;
+  margin:0 10px;
+}
+.card-link1{
+  position:relative;
+  bottom:20px
+}
+button {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ background: transparent;
+ padding: 0;
+ font-size: inherit;
+ font-family: inherit;
+}
+
+button.learn-more {
+ width: 12rem;
+ height: auto;
+}
+
+button.learn-more .circle {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: relative;
+ display: block;
+ margin: 0;
+ width: 3rem;
+ height: 3rem;
+ background: #282936;
+ border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ left: 0.625rem;
+ width: 1.125rem;
+ height: 0.125rem;
+ background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+ position: absolute;
+ content: "";
+ top: -0.29rem;
+ right: 0.0625rem;
+ width: 0.625rem;
+ height: 0.625rem;
+ border-top: 0.125rem solid #fff;
+ border-right: 0.125rem solid #fff;
+ transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ padding: 0.75rem 0;
+ margin: 0 0 0 1.85rem;
+ color: #282936;
+ font-weight: 700;
+ line-height: 1.6;
+ text-align: center;
+ text-transform: uppercase;
+}
+
+button:hover .circle {
+ width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+ background: #fff;
+ transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+ color: #fff;
+}
+
+/* From uiverse.io by @alexmaracinaru */
+.cta {
+  border: none;
+  background: none;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: white;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+#arrow-horizontal{
+  fill: white;
+}
+
 </style>
 
 <!-- Required meta tags -->
@@ -74,7 +224,17 @@
         @endif
     @endif       
     <h5>{{$novedad->titulo}}</h5>
-    <p>{!!substr($novedad->cuerpo, 0, 200)!!}... <a href="{{route('blog.noticias.leer',$novedad->id)}}" target="_blank">Seguir Leyendo »</a></p>
+    <p>{!!substr($novedad->cuerpo, 0, 200)!!}... 
+      <a href="{{route('blog.noticias.leer',$novedad->id)}}" target="_blank">
+        <button class="cta">
+          <span class="hover-underline-animation"> Saber más </span>
+          <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+          <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" data-name="Path 10" id="Path_10"></path>
+        </svg>
+        </button>
+      </a>
+    </p>
+    
     @if($novedad->archivo1)
         <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
     @endif
@@ -98,11 +258,11 @@
      <img src="https://www.unav.edu/documents/29007/29799869/normativa-1200.jpg/" class="d-block w-100" alt="...">
      <div class="carousel-caption d-none d-md-block">
      <h5>Carreras</h5>
-	 @foreach($carreras as $carrera) 
+	 <!-- @foreach($carreras as $carrera) 
 	 @if($loop->first) 	 <ul>  @endif
         <li><div class="badge bg-dark text-wrap" style="width: 25rem;">{{$carrera->descripcion}}</div></li>
 	 @if($loop->last) 	 </ul>  @endif		
-     @endforeach		
+     @endforeach		 -->
       </div>
     </div>    
     @endif
@@ -152,16 +312,17 @@
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
 		@foreach($historias as $historia) 
-		<p class="card-text">{!!substr($historia->historia, 0, 500)!!}...</p>		
+		<p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
 		@endforeach	
 	</div>
-      <!--<ul class="list-group list-group-flush">
-        <li class="list-group-item">Titulo</li>
-        <li class="list-group-item">Subtitulo</li>
-        <li class="list-group-item">Texto</li>
-      </ul>-->
+      
       <div class="card-body">
-        <a href="#" class="card-link">Seguir Leyendo »</a>
+        <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Learn More</span>
+        </button>
       </div>
     </div>
   <!--CARD 2-->
@@ -170,16 +331,17 @@
       <div class="card-body">
         <h5 class="card-title">Objetivos</h5>
 		@foreach($objetivos as $objetivo) 
-		<p class="card-text">{!!substr($objetivo->objetivo, 0, 448)!!}...</p>		
+		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 345)!!}...</p>		
 		@endforeach	
       </div>
-      <!--<ul class="list-group list-group-flush">
-        <li class="list-group-item">Titulo</li>
-        <li class="list-group-item">Subtitulo</li>
-        <li class="list-group-item">Texto</li>
-      </ul>-->
+      
       <div class="card-body">
-        <a href="#" class="card-link">Seguir Leyendo »</a>
+        <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Learn More</span>
+        </button>
       </div>
     </div>
   </div>
