@@ -14,12 +14,13 @@ class ProfesorController extends Controller
      */
     public function index()
     {
-        //return view('frontend.horarios.porProfesor');
+        $profesores = Profesor::all();
+        return view('backend.profesor.index');
     }
 
     public function login()
     {
-        return view('frontend\profesor\login');
+        return view('frontend.profesor.login');
     }
 
     /**
@@ -29,7 +30,9 @@ class ProfesorController extends Controller
      */
     public function create()
     {
-        //
+        $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
+            ->pluck('nombrecompleto', 'id');
+        return view('backend.profesor.create', compact('profesor'));
     }
 
     /**
@@ -40,8 +43,22 @@ class ProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'nombre' => ['required'],
+                'apellido' => ['required']
+            ]
+        );
+
+        $profesor = new Profesor();
+
+        $profesor->nombre = $request->input('nombre');
+        $profesor->apellido = $request->input('apellido');
+        $profesor->save();
+        $request->session()->flash('status', 'Se guardó correctamente el profesor '. $profesor->apellido);
+        return redirect()->route('profesor.create'); 
     }
+
 
     /**
      * Display the specified resource.
@@ -60,9 +77,11 @@ class ProfesorController extends Controller
      * @param  \App\Models\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profesor $profesor)
+    public function edit($id)
     {
-        //
+        $profesor = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
+        ->pluck('nombrecompleto', 'id');
+        return view('backend.profesor.edit', compact('comision'));
     }
 
     /**
@@ -72,9 +91,22 @@ class ProfesorController extends Controller
      * @param  \App\Models\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profesor $profesor)
+    public function update(Request $request, $id)
     {
-        //
+        $profesor = Profesor::findOrFail($id);
+
+        $validateData = $request->validate(
+            [
+                'nombre' => ['required'],
+                'apellido' => ['required']
+            ]
+        );
+
+        $profesor->nombre = $request->input('nombre');
+        $profesor->apellido = $request->input('apellido');
+        $profesor->save();
+        $request->session()->flash('status', 'Se guardó correctamente el profesor '. $profesor->apellido);
+        return redirect()->route('profesor.create'); 
     }
 
     /**
@@ -83,8 +115,11 @@ class ProfesorController extends Controller
      * @param  \App\Models\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profesor $profesor)
+    public function destroy($id)
     {
-        //
+        $profesor = Profesor::findOrFail($id);
+        $profesor -> delete();
+        $profesor -> save();
+        return redirect()->route('backend.profesor.index', $profesor->$id);
     }
 }
