@@ -115,24 +115,24 @@ class ProgramaController extends Controller
         $carreras = Carrera::all();
         $anios = Anio::all();
         $materias = Materia::all();
-        $profesores = Profesor:all();
+        $profesores = Profesor::all();
         return view('frontend.programa.create', compact('sede','carreras','anios','materias','profesores'));
     }
 
     public function GuardarPrograma(Request $request)
-    {
+    {/*
         $programa = new Programa();
         $programa->sede_id = $request->input('sede_id');
         $programa->carrera_id = $request->input('carrera_id');
         $programa->anio_id = $request->input('anio_id');
-        $programa->sede_id = $request->input('sede_id')
+        $programa->materia_id = $request->input('materia_id')
         if ($request->hasFile('archivo1')) {
             $archivoImagen = $request->file('archivo1');
             $path = $archivoImagen->storeAs('public/programas/' . $noticia->id, $archivoImagen->getClientOriginalName() ); 
             $savedPath  =str_replace("public/", "", $path);
             $noticia->archivo1 = $savedPath;   
             $noticia->save();   
-       } 
+       } */
     }
 
     /**
