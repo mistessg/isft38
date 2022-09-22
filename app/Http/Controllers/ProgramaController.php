@@ -111,29 +111,16 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        $sede = Sede::all();
-        $carreras = Carrera::all();
-        $anios = Anio::all();
-        $materias = Materia::all();
-        $profesores = Profesor::all();
-        return view('frontend.programa.create', compact('sede','carreras','anios','materias','profesores'));
+        $sede = Sede::pluck('descripcion', 'id');
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $anios = Anio::pluck('descripcion', 'id');
+        $materias = Materia::pluck('descripcion', 'id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $profesores = Profesor::pluck('nombre', 'id');
+        return view('backend.programa.create', compact('sede','carreras','anios','materias','profesores', 'comisiones'));
     }
 
-    public function GuardarPrograma(Request $request)
-    {/*
-        $programa = new Programa();
-        $programa->sede_id = $request->input('sede_id');
-        $programa->carrera_id = $request->input('carrera_id');
-        $programa->anio_id = $request->input('anio_id');
-        $programa->materia_id = $request->input('materia_id')
-        if ($request->hasFile('archivo1')) {
-            $archivoImagen = $request->file('archivo1');
-            $path = $archivoImagen->storeAs('public/programas/' . $noticia->id, $archivoImagen->getClientOriginalName() ); 
-            $savedPath  =str_replace("public/", "", $path);
-            $noticia->archivo1 = $savedPath;   
-            $noticia->save();   
-       } */
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -143,6 +130,17 @@ class ProgramaController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'sede_id' => ['required'],
+                'carrera_id' => ['required'],
+                'anio_id' => ['required'],
+                'comision_id' => ['required'],
+                'materia_id' => ['required'],
+                'profesor_id' => ['required'],
+                'fechaentrega' => ['required']
+            ]
+        );
         $programa = new Programa();
         $programa->sede_id = $request->input('sede_id');
         $programa->carrera_id = $request->input('carrera_id');
@@ -151,16 +149,20 @@ class ProgramaController extends Controller
         $programa->comision_id = $request->input('comision_id');
         $programa->profesor_id = $request->input('profesor_id');
         $programa->fechaentrega = $request->input('fechaentrega');
-
+        
         $programa->save();
 
-        if ($request->hasFile('nombrearchivo')) {
-            $archivo = $request->file('nombrearchivo');
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
             $path = $archivo->storeAs('public/programa/' . $programa->id, $archivo->getClientOriginalName() ); 
             $savedPath  =str_replace("public/", "", $path);
             $programa->nombrearchivo = $savedPath;   
-            $programa->save();   
+            $programa->save(); 
+
        } 
+       $request->session()->flash('status', 'Se guardó correctamente el programa ');
+
+       return redirect()->route('programa.create'); 
     }
 
         /**
