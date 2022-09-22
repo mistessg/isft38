@@ -46,30 +46,13 @@ class ProgramaController extends Controller
     }
 
     public function ProgramasPendientes(){
-     /*
-        $carreras = Carrera::pluck('descripcion', 'id');
-        $materias = Materia::pluck('descripcion', 'id');
-        $profesores = Profesor::pluck('nombre','apellido','id');
-        $sede = Sede::pluck('descripcion','id');
-        $programas = Programa::all();
-        
-        $sedes = Sede::all();
-        $carreras = Carrera::all();
-        $materias = Materia::all();
-        $comisiones = Comision::all();
-        $programas = Programa::where('sede_id', $request->input('sede_id'))
-        ->where('carrera_id', $request->input('carrera_id')) 
-        ->where('comision_id', $request->input('comision_id')) 
-        ->whereBetween('created_at', [$startDate,$endDate ])
-        ->OrderBy('anio_id')->get();
-        return view('frontend.programa.programas_pendientesG', compact('programas','carrearas','materias','comisiones'));*/
-
+     
         $periodos = array();
         $programas = array();
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion','id');
         $comisiones = Comision::pluck('comision', 'id');
-        $materias = Materia::pluck('descripcion', 'id');
+        $materias = Materia::all();
         $profesores = Profesor::pluck('nombre','apellido','id');
         $sedes = Sede::pluck('descripcion','id');
         $year = date("Y");
@@ -80,7 +63,7 @@ class ProgramaController extends Controller
         for ($i = $year; $i >= $year - 10; $i--) {
             $periodos[$i] = $i;
         }
-        
+        //dd($materias);
         return view('frontend.programa.programas_pendientesG', compact('carreras','sedes','comisiones','materias','profesores', 'anios', 'programas','periodos', 'periodo', 'sede', 'carrera','comision'));
     }
 
@@ -116,7 +99,7 @@ class ProgramaController extends Controller
       ->OrderBy('anio_id')->get();
  
       $materias = Materia::where('carrera_id', $request->input('carrera_id'))->get();
-
+        
       return view('frontend.programa.programas_pendientesG', compact('carreras','sedes','comisiones','materias','profesores', 'anios','programas','periodo', 'periodos', 'sede', 'carrera','comision'));      
     }
 
@@ -128,7 +111,27 @@ class ProgramaController extends Controller
      */
     public function create()
     {
+        $sede = Sede::all();
+        $carreras = Carrera::all();
+        $anios = Anio:all();
+        $materias = Materia::all();
+        $profesores = Profesor:all();
+        return view('frontend.programa.create', compact('sede','carreras','anios','materias','profesores'));
+    }
+
+    public function GuardarPrograma(Request $request)
+    {
+        $programa = new Programa();
+        $programa->sede_id = $request->input('sede_id');
+        $programa->carrera_id = $request->input('carrera_id');
         
+        if ($request->hasFile('archivo1')) {
+            $archivoImagen = $request->file('archivo1');
+            $path = $archivoImagen->storeAs('public/programas/' . $noticia->id, $archivoImagen->getClientOriginalName() ); 
+            $savedPath  =str_replace("public/", "", $path);
+            $noticia->archivo1 = $savedPath;   
+            $noticia->save();   
+       } 
     }
 
     /**
