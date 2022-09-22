@@ -88,6 +88,9 @@ class HistoriaController extends Controller
             $historia->historia = $request->input('historia');
 
             $historia->save();
+            
+            return redirect()->route('historia.index');
+
     }
 
     /**
