@@ -38,6 +38,7 @@
         <div class="navbar-nav ms-auto text-light">
           <a class="nav-link active text-light" href="/">Inicio</a>
         </div>
+        
       </div>
     </div>
   </nav>

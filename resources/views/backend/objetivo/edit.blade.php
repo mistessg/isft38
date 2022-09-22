@@ -1,6 +1,5 @@
 @extends('backend.layouts.main')
 @section('title', 'Objetivo')
-
 @section('scripts')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
 @endsection
 
 @section('content')
@@ -42,7 +40,7 @@
         padding:10px;
         outline: none;
     }
-  </style>
+</style>
 
 <div class="Inicio">
   <h1>Editar Objetivo</h1>

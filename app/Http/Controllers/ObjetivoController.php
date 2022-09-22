@@ -99,7 +99,7 @@ class ObjetivoController extends Controller
      * @param  \App\Models\Objetivo  $objetivo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Objetivo $objetivo)
+    public function destroy($id)
     {
         $objetivo = Objetivo::findOrFail($id);
         $objetivo->delete();

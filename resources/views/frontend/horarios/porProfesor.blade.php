@@ -18,7 +18,7 @@
             <input type="text" id="apellido" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
-            <select class="form-select my-4" size="10"  aria-label="multiple select example">
+            <select class="form-select my-4" size="10" id="select"  aria-label="multiple select example">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -47,4 +47,13 @@
         </div>
 
     </div>
+
+
+    <script>    
+    const select = document.getelementbyid('select');
+
+        select.addeventlistener("keypress",()=>{
+            select.
+        });
+    </script>
 @endsection
