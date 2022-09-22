@@ -113,7 +113,5 @@
 
  
 </table>
-<p class="container-fluid my-0 text-center p-1" style="background-color: #3A70FF;">Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
+<p class="container-fluid my-0 text-center p-1" style="background-color: #E7E7E7;">Estos horarios podrían no ser los oficiales actuales del Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection
-
-</div>
