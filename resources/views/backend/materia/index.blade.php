@@ -18,18 +18,18 @@
           </tr>     
        @endif
        <tr>
-        <td></td>
+        <td>{{ $materia->id }}</td>
         <td>{{ $materia->descripcion }}</td>
-        <td>{{ $materia->deCarrera }}</td>
+        <td>{{ $materia->deCarrera->descripcion }}</td>
         <td></td> 
         <td>
           @if($materia->contenidos)<span class="badge badge-light"><a href="{{ asset('./storage/'. $materia->contenidos) }}">{{ basename($materia->contenidos) }}</a> </span> @endif
         </td> 
         <td>
-          {{ Form::model($materia, [ 'method' => 'delete' , 'route' => ['materia.destroy', $carrera->id] ]) }}
+          {{ Form::model($materia, [ 'method' => 'delete' , 'route' => ['materia.destroy', $materia->id] ]) }}
             @csrf  
           <div class="botonera">
-            <a href="{{ route('materia.show', ['materia' => $materia->id ]) }}"  class="btn btn-info svg">
+            <a href="{{ route('materia.show', ['materium' => $materia->id ]) }}"  class="btn btn-info svg">
               <img src="{{ asset('svg/show.svg') }}"  width="20" height="20" alt="Mostrar" title="Mostrar">
             </a>
 
@@ -37,7 +37,7 @@
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
               </button>
 
-            <a href="{{ route('materia.edit', ['materia' => $materia->id ]) }}" class="btn btn-primary svg " >
+            <a href="{{ route('materia.edit', ['materium' => $materia->id ]) }}" class="btn btn-primary svg " >
               <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
             </a>
           </div>
