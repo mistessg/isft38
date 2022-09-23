@@ -17,9 +17,10 @@ class materiaController extends Controller
     public function index()
     {
         $materias = Materia::all();
-        $carreras = Carrera::pluck('descripcion', 'id');
-        $anios = Anio::pluck('descripcion', 'id');
-        return view('backend.materia.index', compact('materias', 'carreras', 'anios'));
+        //$carreras = Carrera::all();
+        $anios = Anio::all();
+       
+        return view('backend.materia.index', compact('materias',  'anios'));
     }
     public function create()
     {
