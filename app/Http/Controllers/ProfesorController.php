@@ -105,7 +105,7 @@ class ProfesorController extends Controller
         $profesor->apellido = $request->input('apellido');
         $profesor->save();
         $request->session()->flash('status', 'Se guardó correctamente el profesor ' . $profesor->apellido);
-        return redirect()->route('profesor.create');
+        return redirect()->route('profesor.index');
     }
 
     /**
