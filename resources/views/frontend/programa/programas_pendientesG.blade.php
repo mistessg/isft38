@@ -53,39 +53,73 @@
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div>
       <br>
-      <style>
-      
-      
-      </style>
-      
-              @foreach($anios as $a)
-              
-              Año:{{$a->descripcion}} <br>
-              @php($m=0)
-              @php($e=0)
-              @foreach($materias as $materia)
-              @if($a->id == $materia->anio_id)
-               Materia:{{$materia->descripcion}}<br>
-               @php($m++)
-              
-              @foreach($programas as $programa)              
-               @if($materia->id == $programa->materia_id)
-               @php($e++)
-              Programa:{{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
-              <br>
-              @endif 
-              
-              @endforeach
-             
-              @endif
-             
-              @endforeach
-              @php($p = $m - $e)
-              Entregados:{{$e}} | Pendientes:{{$p}}<br>
-              @endforeach
-            
 
- 
+    </div>
+    <style>
+      .titulo {
+        text-align: center;
+        background-color: #EEE3CB;
+        border-radius: 15px;
+        margin-left: 140px;
+        margin-right: 140px;
+      }
 
-        @endsection
-      </div>
+      .btno {
+        margin-left: 800px;
+        margin-right: 150px;
+      }
+      .p{
+        text-align: center;
+        font-family: varela;
+      }
+      .entre{
+        background-color: #90B77D;
+        border-radius: 20px;
+        text-align: center;
+      }
+      .pendientes{
+        background-color: #FECD70;
+        border-radius: 20px;
+        text-align: center;
+      }
+    </style>
+
+    @foreach($anios as $a)
+
+    <h5 class="titulo"> {{$a->descripcion}} <br>
+      @php($m=0)
+      @php($e=0)
+    </h5>
+
+    @foreach($materias as $materia)
+    @if($a->id == $materia->anio_id)
+    Materia:{{$materia->descripcion}}<br>
+    @php($m++)
+    
+    
+    @foreach($programas as $programa)
+    @if($materia->id == $programa->materia_id)
+    
+    @php($e++)
+  
+    Programa:{{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
+    <br>
+    @endif
+
+    @endforeach
+
+    @endif
+
+    @endforeach
+
+
+    @php($p = $m - $e)
+    <div class="d-grid gap-2 btno">
+      <p class="entre">Entregados:{{$e}}</p>
+      <p class="pendientes">Pendientes:{{$p}}</p>
+    </div>
+    @endforeach
+
+
+
+    @endsection

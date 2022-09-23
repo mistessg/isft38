@@ -53,12 +53,9 @@
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div>
       <br>
-      <style>
+
       
-      
-      </style>
-      
-      <div class="accordion accordion-flush aco" id="accordionFlushExample">
+       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
