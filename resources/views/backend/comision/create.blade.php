@@ -6,17 +6,16 @@
 
  {{ Form::open(['route' => 'comision.store', 'files' => true]) }}
   @csrf <!-- {{ csrf_field() }} -->
-  
-
-  {{ Form::model($comision, [ 'method' => 'create' , 'route' => ['comision.create', $comision->id] ]) }}
   <div class="form-group">
-          {{ Form::label("comision", __('Comision'), ['class' => 'control-label']) }}
-          {{Form::text("comision", old("comision"), ["class" => "form-control", "placeholder" => "Ingrese una comision", ])}}     
-          @error('comision')
+          {{ Form::label("comision", __('comision'), ['class' => 'control-label']) }}
+          {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comision", ])}}    
+          @error('descripcion')
               <div class="alert alert-danger">{{ $message }}</div>
-          @enderror                          
+          @enderror
     </div>
-    <button type="submit"  class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
-  {{!!Form::close()!!}}
+
+    </br>
+    <button type="submit"  class="btn ">{{__('Guardar')}}</button>
+  {!!Form::close()!!}
 
 @endsection

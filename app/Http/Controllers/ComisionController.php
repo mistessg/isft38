@@ -17,7 +17,7 @@ class ComisionController extends Controller
     public function index()
     {
         $comisiones = Comision::all();
-        return view('backend.comision.index', compact('comisiones'));
+        return view('backend.comision.Index', compact('comisiones'));
     }
 
     /**
@@ -27,14 +27,11 @@ class ComisionController extends Controller
      */
     public function create(Request $request)
     {
-        $sede = Sede::find($request->input('sede_id'));
-        $sedes = Sede::pluck('descripcion', 'id');
+        $comisions = Comision::pluck('comision', 'id');
 
-        $comision = $request->input('comision');
-       
-        $comision = Horario::where('sede_id', $sede->id)->get();
+        // $comision = $request->input('comision');
     
-        return view('backend.comision.create', compact('comision'));
+        return view('backend.comision.create', compact('comisions'));
     }
 
     /**
@@ -46,20 +43,17 @@ class ComisionController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(
-            [ 'sede_id' => 'required',
+            [ 
             'comision' => 'required'
             ]
          );
 
-         $comision = Comision::where('sede_id', $request->input('sede_id'))
-         ->where('comision',$request->input('comision'))->first();
-
-         if(empty($comision)){ $comision = new Comision(); }
-         $comision->sede_id = $request->input('sede_id');
+         $comision = new Comision(); 
          $comision->comision = $request->input('comision');
          $comision->save();
+         $request->session()->flash('status', 'Se guardó correctamente la comision ');
 
-         return redirect()->route('comision',['sede'=>$comision->sede_id]); 
+         return redirect()->route('comision.create'); 
     
     }
 
@@ -80,10 +74,10 @@ class ComisionController extends Controller
      * @param  \App\Models\Comision  $comision
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $id)
+    public function edit($id)
     {
-        $comision = Horario::findOrFail($id);
-        return view('backend.horario.edit', compact('comision'));
+        $comision = Comision::findOrFail($id);
+        return view('backend.comision.edit', compact('comision'));
     }
 
     /**
@@ -98,12 +92,14 @@ class ComisionController extends Controller
         $comision = Horario::findOrFail($id);
         $validateData = $request->validate(
             [
-                'sede_id' => ['required'],
                 'comision' => ['required']
             ]
         );
 
-        $request->update($validateData);
+        $comision->comision = $request->input('comision'); 
+        $carrera->save($validatedData);    
+        
+        return redirect()->route('comision.index');
     }
 
     /**
@@ -116,7 +112,7 @@ class ComisionController extends Controller
     {
         $comision = Comision::FindOrFail($id);
         $comision -> delete();
-        $comision -> save();
-        return redirect()->route('backend.comision.index', $comision->$id);
+        return redirect()->route('comision.index');
+        // return redirect()->route('backend.comision.index', ['sede' => $sede, 'carrera' => $carrera, 'comision' => $comision]);
     }
 }

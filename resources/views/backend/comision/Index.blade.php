@@ -37,7 +37,7 @@ a{
   text-decoration: none;
 }
 .svg{
-  padding: 15px;
+  padding: 10px;
   border-radius:70px;
 }
 .botonera{
@@ -53,7 +53,7 @@ a{
 </style>
 
 <div class="contenedor">
-<Table>
+<Table class="container">
 <div class="algo">   
     <tr class="subconainer">
         <td>Id</td>
@@ -67,11 +67,12 @@ a{
     <tr>
         <td>{{$comision->id}}</td>
         <td>{{$comision->comision}}</td>
+        <td></td>
         <td>
           {{ Form::model($comision, [ 'method' => 'delete' , 'route' => ['comision.destroy', $comision->id] ]) }}
             @csrf  
           <div class="botonera">
-              <button type="submit" name="borrar{{$comision->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la carrera?')) return false;">
+              <button type="submit" name="borrar{{$comision->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la comisión?')) return false;">
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
               </button>
 
