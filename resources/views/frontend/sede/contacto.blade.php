@@ -86,6 +86,7 @@
         }
 </style>
 
+<div style="background:white;">
 <div class="container-padre" >
     <div class="container-hijo">
 
@@ -189,6 +190,7 @@ background-size:cover;
             <p class="pt-3 icon-text" style="font-weight:bold;">Numero</p>
         </div>
     </div>
+</div>
 </div>
 
 @endsection

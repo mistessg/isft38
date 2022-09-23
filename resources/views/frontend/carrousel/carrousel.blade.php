@@ -35,7 +35,6 @@
 }
 .fondoCards {
   background-color: #212121;
-  padding-bottom: 80px;
 }
 .card-texto{
   text-align: justify;
@@ -187,6 +186,15 @@ button:hover .button-text {
   fill: white;
 }
 
+#modal1{
+  display: none;
+}
+#modal1 div{
+  position:fixed;
+  top:0;
+  color:white;
+}
+
 </style>
 
 <!-- Required meta tags -->
@@ -321,17 +329,21 @@ button:hover .button-text {
           <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
           </span>
-          <span class="button-text">Learn More</span>
+          <span class="button-text" onclick="onclick1()">Ver más</span>
         </button>
       </div>
     </div>
+
+    
+   
+
   <!--CARD 2-->
     <div class="card" style="width: 25rem;">
       <img class="card-img-top"  src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Objetivos</h5>
 		@foreach($objetivos as $objetivo) 
-		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 345)!!}...</p>		
+		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 340)!!}...</p>		
 		@endforeach	
       </div>
       
@@ -340,13 +352,39 @@ button:hover .button-text {
           <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
           </span>
-          <span class="button-text">Learn More</span>
+          <span class="button-text">Ver más</span>
         </button>
       </div>
     </div>
   </div>
 
+  <div id="modal1" onclick="onclick1()">
+      <div>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+      </div>
+    </div>
+
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+      function onclick1(){
+        let flag = false;
+        if(x.style.display === "none"){
+          x.style.display = "block";  
+          flag = true;
+        } else{
+          x.style.display = "none";
+          flag = false;
+        }
+      }
+    </script>
 
 @endsection
