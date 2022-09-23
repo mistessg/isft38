@@ -69,15 +69,15 @@
  
      @if($horario->dia == $index && $horario->moduloHorario->id == $modulosHorario->id )
      @php ($a++)   
-    <div class="text-center align-middle p-1 border border-info rounded horarios">    
+    <div class="text-center align-middle p-1">    
         <div class="align-middle">
-    <strong class="mb-1">{{$horario->materia->descripcion}}</strong>  
+    <strong class="h6 mb-1">{{$horario->materia->descripcion}}</strong>  
     <p class="mb-3">{{$horario->profesor->apellido}}, {{$horario->profesor->nombre}} </p>
     <p class="mb-3">{{$horario->comentario}}</p>
 
         {{ Form::model($horario, [ 'method' => 'delete', 'route' => ['horario.destroy', $horario -> id] ]) }}
             @csrf
-            <a href="{{ route('horario.edit', ['horario' =>  $horario->id] ) }}" class="btn bg-info">
+            <a href="{{ route('horario.edit', ['horario' =>  $horario->id] ) }}" class="btn bg-primary">
                 <img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar">
             </a>
             <button type="submit" class="btn btn-danger" onclick="if (!confirm('¿Esta seguro de borrar el horario?')) return false;">
@@ -90,7 +90,7 @@
       @endforeach
       @if($a == 0)
      @php ($a++)  
-        <div class="text-center px-5 py-4 m-auto border border-info rounded horarios">  
+        <div class="text-center px-5 py-4 m-auto">  
         <p class="align-middle px-auto">{{ Form::open(['route' => 'horario.createHorario']) }}</p>
         
     {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}

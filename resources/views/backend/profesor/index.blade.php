@@ -4,11 +4,11 @@
 
 @forelse($profesores as $profesor)
     @if($loop->first)
-        <table class="table table-dark">
-            <tr>
+        <table class="table mt-2">
+            <tr class="text-light" style="background-color: #3A70FF;">
                  <td>Nombre</td>
                  <td>Apellido</td>
-                 <td>
+                 <td class="d-flex justify-content-end">
                     <a href="{{ route('profesor.create') }}" class="btn btn-success">
                         <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
                     </a>
@@ -16,9 +16,9 @@
             </tr>
     @endif
             <tr>
-                <td>{{ $profesor->nombre}}</td>
-                <td>{{ $profesor->apellido}}</td>
-                <td>
+                <td class="">{{ $profesor->nombre}}</td>
+                <td class="">{{ $profesor->apellido}}</td>
+                <td class="d-flex justify-content-end">
                 {{ Form::model($profesores, [ 'method' => 'delete', 'route' => ['profesor.destroy', $profesor -> id] ]) }}
                     @csrf
                     <a href="{{ route('profesor.edit', ['profesor' => $profesor->id ] ) }}" class="btn btn-primary">
