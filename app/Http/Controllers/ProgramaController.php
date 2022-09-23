@@ -214,7 +214,7 @@ class ProgramaController extends Controller
     public function show($id)
     {
         $programa = Programa::findOrFail($id);
-        return view('backend.historia.show', compact('historia'));
+        return view('backend.programa.show', compact('programa'));
     }
 
     /**
@@ -224,9 +224,15 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    { 
+        $sede = Sede::pluck('descripcion', 'id');
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $anios = Anio::pluck('descripcion', 'id');
+        $materias = Materia::pluck('descripcion', 'id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $profesores = Profesor::pluck('nombre', 'id'); 
         $programa = Programa::findOrFail($id);
-        return view('backend.programa.edit', compact('programa'));  
+        return view('backend.programa.edit', compact('programa','sede','carreras','anios','materias','profesores', 'comisiones'));  
     }
 
     /**
@@ -271,7 +277,7 @@ class ProgramaController extends Controller
        } 
        $request->session()->flash('status', 'Se guardó correctamente el programa ');
 
-       return redirect()->route('programa.update'); 
+       return redirect()->route('programa.edit',$programa->id); 
     }
 
     /**
@@ -285,6 +291,5 @@ class ProgramaController extends Controller
         $programa = Programa::findOrFail($id);
         $programa->delete();
         return redirect()->route('programa.index');
-
     }
 }
