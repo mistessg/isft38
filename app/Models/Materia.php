@@ -12,10 +12,10 @@ class Materia extends Model
 
     protected $fillable = [
         'materia',
-    ];  
-    
+    ];
+
         public function deCarrera(){
             return $this->belongsTo(Carrera::class, 'carrera_id');
         }
-    
+
 }
