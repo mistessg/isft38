@@ -85,6 +85,16 @@
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>     
+    <div class="form-group">
+        {{ Form::label("sedes_id", __('SEDES'), ['class' => 'control-label']) }}
+        @foreach($sedes as $id => $nombre)
+       <div class="form-check form-check-inline">                 
+          
+        {{ Form::checkbox('sede'.$id, $id, null, ['class' => 'check-input']) }}{{ Form::label($id, $nombre, ['class' => 'check-label']) }}
+         
+        </div>  
+        @endforeach
+    </div> 
  </br>
  <button type="submit"  class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
 </div>

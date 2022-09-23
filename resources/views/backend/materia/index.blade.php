@@ -18,10 +18,10 @@
           </tr>     
        @endif
        <tr>
-        <td>{{ $materia->id }}</td>
-        <td>{{ $materia->materia }}</td>
-        <td>{{ $materia->deCarrera->carrera }}</td>
-        <td>{{ $materia->anio }}</td> 
+        <td></td>
+        <td>{{ $materia->descripcion }}</td>
+        <td>{{ $carreras}}</td>
+        <td></td> 
         <td>
           @if($materia->contenidos)<span class="badge badge-light"><a href="{{ asset('./storage/'. $materia->contenidos) }}">{{ basename($materia->contenidos) }}</a> </span> @endif
         </td> 

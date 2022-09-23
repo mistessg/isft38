@@ -142,7 +142,7 @@ class NoticiaController extends Controller
              $noticia->save();   
         }               
         $etiquetas = Etiqueta::all();
-        $user = User::all()->random()->id;
+        $user = Auth::user()->id;
         foreach ($etiquetas as $etiqueta) {
             if ($request->input('etiqueta' . $etiqueta->id)) {
                $noticia->etiquetas()->attach($request->input('etiqueta' . $etiqueta->id), ['user_id'=> $user ]);      

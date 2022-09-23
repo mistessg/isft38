@@ -16,8 +16,10 @@ class materiaController extends Controller
      */
     public function index()
     {
-        $materias = materia::all();
-        return view('backend.materia.index', compact('materias'));
+        $materias = Materia::all();
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $anios = Anio::pluck('descripcion', 'id');
+        return view('backend.materia.index', compact('materias', 'carreras', 'anios'));
     }
     public function create()
     {
@@ -41,6 +43,7 @@ class materiaController extends Controller
         $materia = new Materia(); 
         $materia->descripcion = $request->input('descripcion');
         $materia->carrera_id = $request->input('carrera_id');
+        $materia->anio_id = $request->input('anio_id');
         $materia->save();
 
        $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
@@ -71,7 +74,6 @@ class materiaController extends Controller
     {
         $materias = materia::pluck('descripcion','id');
         $anios = Anio::pluck('anio', 'id');
-        $profesores = Profesor::pluck('nombre','apellido','id');
         return view('materia.edit', compact('materias'));
     }
 
