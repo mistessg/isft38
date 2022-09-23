@@ -15,7 +15,7 @@ class ProfesorController extends Controller
     public function index()
     {
         $profesores = Profesor::all();
-        return view('backend.profesor.index');
+        return view('backend.profesor.index', compact('profesores'));
     }
 
     public function login()
@@ -68,8 +68,8 @@ class ProfesorController extends Controller
      */
     public function show($id)
     {
-        $profesor = Profesor::all();
-        return view('backend.profesor.show', compact('profesor'));
+        //$profesor = Profesor::all();
+        //return view('backend.profesor.show', compact('profesor'));
     }
 
     /**
@@ -80,8 +80,7 @@ class ProfesorController extends Controller
      */
     public function edit($id)
     {
-        $profesor = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-            ->pluck('nombrecompleto', 'id');
+        $profesor = Profesor::findOrFail($id);
         return view('backend.profesor.edit', compact('comision'));
     }
 
