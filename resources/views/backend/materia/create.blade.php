@@ -49,10 +49,17 @@
           @enderror                          
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">                 
-                {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera"]) }}   
-            </div>
+        <div class="form-group">                 
+            {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera"]) }}   
+
         </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">                 
+            {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione un año"]) }}   
+
+        </div>
+    </div>
  </br> <button type="submit"  class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>  
 </div>
 {!!Form::close()!!}

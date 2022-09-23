@@ -223,9 +223,10 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Programa $programa)
+    public function edit($id)
     {
-        //
+        $programa = Programa::findOrFail($id);
+        return view('backend.programa.edit', compact('programa'));  
     }
 
     /**
@@ -235,9 +236,42 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Programa $programa)
+    public function update(Request $request, $id)
     {
-        //
+        
+        $validatedData = $request->validate(
+            [
+                'sede_id' => ['required'],
+                'carrera_id' => ['required'],
+                'anio_id' => ['required'],
+                'comision_id' => ['required'],
+                'materia_id' => ['required'],
+                'profesor_id' => ['required'],
+                'fechaentrega' => ['required']
+            ]
+        );
+        $programa = Programa::findOrFail($id);
+        $programa->sede_id = $request->input('sede_id');
+        $programa->carrera_id = $request->input('carrera_id');
+        $programa->anio_id = $request->input('anio_id');
+        $programa->materia_id = $request->input('materia_id');
+        $programa->comision_id = $request->input('comision_id');
+        $programa->profesor_id = $request->input('profesor_id');
+        $programa->fechaentrega = $request->input('fechaentrega');
+
+        $programa->save();
+
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $path = $archivo->storeAs('public/programa/' . $programa->id, $archivo->getClientOriginalName() ); 
+            $savedPath  =str_replace("public/", "", $path);
+            $programa->nombrearchivo = $savedPath;   
+            $programa->save(); 
+
+       } 
+       $request->session()->flash('status', 'Se guardó correctamente el programa ');
+
+       return redirect()->route('programa.update'); 
     }
 
     /**
@@ -246,8 +280,11 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Programa $programa)
+    public function destroy($id)
     {
-        //
+        $programa = Programa::findOrFail($id);
+        $programa->delete();
+        return redirect()->route('programa.index');
+
     }
 }

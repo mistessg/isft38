@@ -68,7 +68,7 @@
         {{ Form::checkbox('etiqueta'.$id, $id, null, ['class' => 'check-input']) }}{{ Form::label($id, $nombre, ['class' => 'check-label']) }}
         </span>
         </div>  
-      @endforeach
+        @endforeach
        
     </div>  
     </br><button type="submit" style="width: 100%;" class="btn btn-primary">{{__('noticias.guardar')}}</button></div>
