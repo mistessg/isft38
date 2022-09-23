@@ -5,17 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/landing.css');}}">
-    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-
-    <!-- SUMMERNOTE  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    SUMMERNOTE -->
-    
     <title>ISFT N°38</title>
 </head>
     <style>
@@ -24,6 +14,7 @@
           padding: 0;
           margin: 0;
           box-sizing: border-box;
+          font-family: 'Overpass', sans-serif;
         }
         @media (max-width: 600px){
           .contenedorHeader{
@@ -38,13 +29,10 @@
             text-decoration:none;
         }
         body{
-            font-family: 'Overpass', sans-serif;
             background: #212529;
         }
         .footin{
           color: white;
-          position: relative;
-          top: 60px;
         }
         ul li a{
           margin:20px;
@@ -54,9 +42,7 @@
         /* botonas */
 
         a {
-        font-size: 18px;
         color: #e1e1e1;
-        font-family: inherit;
         font-weight: 800;
         cursor: pointer;
         position: relative;
@@ -167,7 +153,7 @@
     <!-- FOOTER -->
 
     <div class="container footer footin">
-        <footer class="w-100 my-5 py-3 " >
+        <footer class="w-100 py-5">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Features</a></li>
