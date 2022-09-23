@@ -36,6 +36,13 @@ class CarrerasedeController extends Controller
     public function store(Request $request)
     {
         //
+
+     $Carrerasede = new Carrerasede(); 
+     $Carrerasede->nombre = $request->input('sede_id');
+     $Carrerasede->descripcion = $request->input('carrera_id');
+     $Carrerasede->save();   
+     $request->session()->flash('status', 'Se guardó correctamente la etiqueta '. $Carrerasede->nombre);
+     return redirect()->route('etiquetas.create'); 
     }
 
     /**

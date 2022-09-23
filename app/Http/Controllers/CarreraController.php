@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
+use App\Models\Sede;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -19,8 +20,8 @@ class CarreraController extends Controller
     }
     public function create()
     {
-        $carreras = Carrera::pluck('descripcion','id');
-        return view('backend.carrera.create', compact('carreras'));
+        $sedes = Sede::pluck('descripcion','id');
+        return view('backend.carrera.create', compact('sedes'));
     }
 
     /**
@@ -56,7 +57,13 @@ class CarreraController extends Controller
         }
         $carrera->save();
         
-
+        $sedes = Sede::all();
+        
+        foreach ($sedes as $sede) {
+            if ($request->input('sede' . $sede->id)) {
+               $carrera->sedes()->attach($request->input('sede' . $sede->id));      
+            }
+        }
        // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
        return redirect()->route('carrera.index'); 
     }
@@ -81,7 +88,8 @@ class CarreraController extends Controller
     public function edit($id)
     {
         $carreras = Carrera::find($id);
-        return view('backend.carrera.edit', compact('carreras'));
+        $sedes = Sede::pluck('descripcion','id');
+        return view('backend.carrera.edit', compact('carreras','sedes'));
     }
 
     /**
@@ -115,7 +123,16 @@ class CarreraController extends Controller
             $carrera->imagen = $savedPath;   
             $carrera->save();   
        }
-        $carrera->save($validatedData);    
+        $carrera->save($validatedData);  
+        $sedes = Sede::all();
+        $carrera->sedes()->detach();     
+
+        foreach ($sedes as $sede) {
+            if ($request->input('sede' . $sede->id)) {
+               $carrera->sedes()->attach($request->input('sede' . $sede->id));      
+            }
+        }
+        $request->session()->flash('status', 'Se guardó correctamente la noticia '. $carrera->descripcion);
         return redirect()->route('carrera.index');
     }
 

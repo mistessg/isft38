@@ -19,9 +19,8 @@
                 <td>{{ $profesor->nombre}}</td>
                 <td>{{ $profesor->apellido}}</td>
                 <td>
-                <!--<a href="{{ route('profesor.show', ['profesor' => $profesor->id ] ) }}" class="btn btn-info">
-                        <img src="{{ asset('svg/show.svg') }}" width="20" height="20" alt="Mostrar" title="Mostrar">
-                    </a>-->
+                {{ Form::model($profesores, [ 'method' => 'delete', 'route' => ['profesor.destroy', $profesor -> id] ]) }}
+                    @csrf
                     <a href="{{ route('profesor.edit', ['profesor' => $profesor->id ] ) }}" class="btn btn-primary">
                         <img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar">
                     </a>
