@@ -4,8 +4,9 @@
      @forelse($sedes as $sede)
        @if($loop->first)
       
-       <table class="table container-fluid" >  
-        <tr>
+       <table class="table table-striped container-fluid" >  
+       <tr colspan="5"></tr> 
+       <tr>
           <div class=" ">
             <th>Sede</th>
             <th>Ciudad</th>            
@@ -112,7 +113,7 @@
    @empty
      <p class="text-capitalize"> No hay carreras.</p>
    @endforelse   
- <hr>
+ 
 <!-- Paginación -->
 <div class="d-flex justify-content-center">
 <!-- 
