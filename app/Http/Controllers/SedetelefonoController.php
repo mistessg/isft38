@@ -35,7 +35,18 @@ class SedetelefonoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [ 'caracteristica' => 'required',
+              'numero' => 'required']
+         );
+         
+        $telef = new Sedetelefono(); 
+        $telef->caracteristica = $request->input('caracteristica');
+        $telef->numero = $request->input('numero');
+        $telef->sede_id = $request->input('sede_id');
+        
+        $telef->save();
+       return redirect()->route('sede.index'); 
     }
 
     /**
@@ -78,8 +89,10 @@ class SedetelefonoController extends Controller
      * @param  \App\Models\Sedetelefono  $sedetelefono
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sedetelefono $sedetelefono)
+    public function destroy($id)
     {
-        //
+        $telef = Sedetelefono::findOrFail($id);    
+        $telef->delete();
+        return redirect()->route('sede.index');
     }
 }

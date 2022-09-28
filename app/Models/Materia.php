@@ -11,11 +11,12 @@ class Materia extends Model
     use HasFactory;
 
     protected $fillable = [
-        'materia',
+
+        'materia'
     ];
 
-        public function deCarrera(){
-            return $this->belongsTo(Carrera::class, 'carrera_id');
-        }
+    public function deCarrera(){
+    	return $this->belongsTo(Carrera::class, 'carrera_id');
+    }
 
 }

@@ -14,7 +14,7 @@ class SedeemailController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,8 +34,17 @@ class SedeemailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $validatedData = $request->validate(
+            [ 'email' => 'required']
+         );
+         
+        $email = new Sedeemail(); 
+        $email->email = $request->input('email');
+        $email->sede_id = $request->input('sede_id');
+        
+        $email->save();
+       return redirect()->route('sede.index'); 
     }
 
     /**
@@ -78,8 +87,10 @@ class SedeemailController extends Controller
      * @param  \App\Models\Sedeemail  $sedeemail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sedeemail $sedeemail)
+    public function destroy($id)
     {
-        //
+        $email = Sedeemail::findOrFail($id);    
+        $email->delete();
+        return redirect()->route('sede.index');
     }
 }
