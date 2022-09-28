@@ -4,6 +4,19 @@
 
 @section('content')
 
+<style>
+  body{
+    background-color: #181818;
+  }
+thead{
+  color: #181818;
+  background-color: #9FC9F3;
+}
+tbody{
+  background-color: #C4D7E0;
+}
+</style>
+
 <div class="container my-4">
 
   <div class="card">
@@ -54,15 +67,15 @@
       </div>
       <br>
 
-      
-       <div class="accordion accordion-flush" id="accordionFlushExample">
+
+      <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
               @foreach($anios as $a)
-               
+
               @php($titulo = $a->descripcion)
-              
+
               @foreach($programas as $programa)
               @if($a->id == $programa->anio_id)
               @if($titulo)
@@ -73,8 +86,26 @@
           </h2>
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-              {{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
-              <br>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">MATERIA</th>
+                    <th scope="col">APELLIDO</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">PROGRAMA</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{$programa->materia->descripcion}}</td>
+                    <td>{{$programa->profesor->apellido}}</td>
+                    <td>{{$programa->profesor->nombre}}</td>
+                    <td>PROGRAMA</td>
+                  </tr>
+                </tbody>
+              </table>
+              
               @endif
               @endforeach
               @endforeach
@@ -84,3 +115,5 @@
 
         @endsection
       </div>
+ </div>
+</div>

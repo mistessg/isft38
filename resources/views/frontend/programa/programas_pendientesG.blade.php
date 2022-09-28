@@ -102,7 +102,7 @@
     
     @php($e++)
   
-    Programa:{{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
+    Programa:{{$programa->materia->descripcion}} -{{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
     <br>
     @endif
 
