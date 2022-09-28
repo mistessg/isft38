@@ -73,7 +73,7 @@
            {{ Form::label("sedeimagen", "Imagen", ['class' => 'control-label']) }}
            <br>
            {{ Form::file("sedeimagen") }}
-          @error('sedeimage')
+          @error('sedeimagen')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>

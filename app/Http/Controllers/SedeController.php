@@ -41,7 +41,7 @@ class SedeController extends Controller
               'calle' => 'required',
               'numero' => 'required',
               'ciudad' => 'required',
-              'sedeimagen' => 'image|max:2048']
+              'sedeimagen' => 'required|image|max:2048']
          );
         $sede = new sede(); 
         $sede->descripcion = $request->input('descripcion');
@@ -99,7 +99,7 @@ class SedeController extends Controller
               'calle' => 'required',
               'numero' => 'required',
               'ciudad' => 'required',
-              'sedeimagen' => 'image|max:2048']
+              'sedeimagen' => 'required|image|max:2048']
          );
          $sede->descripcion = $request->input('descripcion');
          $sede->calle = $request->input('calle');
