@@ -10,8 +10,9 @@
         font-weight: 800;
     }
     .links{
+        width: 70%;
         padding:25px;
-        margin: 10px;
+        margin: 0 auto;
     }
     .form-group{
         margin-top:10px;
@@ -49,13 +50,15 @@
           @enderror                          
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">                 
+        <div class="form-group">      
+        {{ Form::label("carrera", __('Carrera'), ['class' => 'control-label']) }}           
             {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera"]) }}   
 
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">                 
+        <div class="form-group">    
+        {{ Form::label("anio", __('Años'), ['class' => 'control-label']) }}             
             {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione un año"]) }}   
 
         </div>
