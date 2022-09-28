@@ -15,7 +15,7 @@
         <div class="card">
         <h5 class="card-header" style=" background-color: #181818; color: white;">Contacto</h5>
         <div class="card-body">
-        {{ Form::open(['route' => 'contaacto.search']) }}
+        {{ Form::open(['route' => 'contacto.search']) }}
         <div class="input-group mb-3">
 
         <div class="input-group mb-3">
