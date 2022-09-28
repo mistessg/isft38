@@ -81,7 +81,7 @@
 
             }
             .container-3img svg{
-            
+
             }
         }
 </style>
@@ -108,20 +108,22 @@
             <input type="email" name="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
         </div>
 
-        <div class="mb-3" >
-            <label for="sede" class="form-label">Sede <i style="font-weight:normal;">(Elija una)</i></label>
-            <select name="sede" style="cursor:pointer;" class="form-select" name="sede" id="sede" placeholder="Elija la sede">
-                <option value="">ISFT N°38 - San Nicolás</option>
-                <option value="">Otro</option>
-                <option value="">Otro</option>
-            </select>
-        </div>
-
         <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
             <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Escriba su teléfono" aria-describedby="emailHelp">
         </div>
 
+        <div class="mb-3" >
+            <label for="sede" class="form-label">Sede <i style="font-weight:normal;"></i></label>
+            <select name="sede" style="cursor:pointer;" class="form-select" name="sede" id="sede" placeholder="Elija la sede">
+            @foreach($sedes as $sede)
+              @foreach($sede->emails as $email)
+            <option value="">{{$sede->descripcion}} - {{$email->email}}</option>
+             @endforeach
+             @endforeach
+            </select>
+        </div>
+        
         <div class="mb-3">
             <label for="message" class="form-label">Mensaje</label>
             <div id="summernote"></div>
@@ -180,7 +182,7 @@ background-size:cover;
             </div>
             <p class="pt-3 icon-text" style="font-weight:bold;">Email: </p>
         </div>
-        
+
         <div style="display:flex;align-items:center;">
             <div style="border:1px solid black;border-radius:50px;padding:20px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">

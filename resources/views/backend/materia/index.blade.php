@@ -20,7 +20,7 @@
        <tr>
         <td>{{ $materia->id }}</td>
         <td>{{ $materia->descripcion }}</td>
-        <td>{{ $materia->deCarrera->descripcion }}</td>
+        <td>{{ $materia->deCarrera }}</td>
         <td></td> 
         <td>
           @if($materia->contenidos)<span class="badge badge-light"><a href="{{ asset('./storage/'. $materia->contenidos) }}">{{ basename($materia->contenidos) }}</a> </span> @endif

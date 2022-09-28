@@ -38,7 +38,7 @@ class ProgramaController extends Controller
             $periodos[$i] = $i;
         }
         
-        return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios', 'programas','periodos', 'periodo', 'sede', 'carrera','comision'));
+        return view('backend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios', 'programas','periodos', 'periodo', 'sede', 'carrera','comision'));
     }
 
     public function CargarPrograma(){
@@ -202,7 +202,7 @@ class ProgramaController extends Controller
       ->whereBetween('created_at', [$startDate,$endDate ])
       ->OrderBy('anio_id')->get();
  
-      return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios','programas','periodo', 'periodos', 'sede', 'carrera','comision'));      
+      return view('backend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios','programas','periodo', 'periodos', 'sede', 'carrera','comision'));      
     }
 
     /**
@@ -287,9 +287,66 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { dd($id);
         $programa = Programa::findOrFail($id);
         $programa->delete();
-        return redirect()->route('programa.index');
+        return redirect()->route('programa.search');
     }
+
+    public function searchProgramas(Request $request)
+    {
+        $periodos = array();
+       
+        $anios = Anio::all();
+        
+        $carreras = Carrera::pluck('descripcion','id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sedes = Sede::pluck('descripcion','id');
+        $year = date("Y");
+        
+        for ($i = $year; $i >= $year - 10; $i--) {
+            $periodos[$i] = $i;
+        }
+        
+       $periodo =$request->input('anio_id');
+       $sede =$request->input('sede_id');
+       $carrera =$request->input('carrera_id');
+       $comision =$request->input('comision_id');
+
+      $startDate = Carbon::createFromFormat('Y-m-d', $request->input('anio_id') . '-01-01');
+      $endDate = Carbon::createFromFormat('Y-m-d', $request->input('anio_id') . '-12-31');
+ 
+      $programas = Programa::where('sede_id', $request->input('sede_id'))
+      ->where('carrera_id', $request->input('carrera_id')) 
+      ->where('comision_id', $request->input('comision_id')) 
+      ->whereBetween('created_at', [$startDate,$endDate ])
+      ->OrderBy('anio_id')->get();
+ 
+      return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios','programas','periodo', 'periodos', 'sede', 'carrera','comision'));      
+    }
+
+    public function programas()
+    {
+        $periodos = array();
+        $programas = array();
+        $anios = Anio::all();
+        $carreras = Carrera::pluck('descripcion','id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $materias = Materia::pluck('descripcion', 'id');
+        $profesores = Profesor::pluck('nombre','apellido','id');
+        $sedes = Sede::pluck('descripcion','id');
+        $year = date("Y");
+        $periodo = '';
+        $sede = '';
+        $carrera = '';
+        $comision = '';
+        for ($i = $year; $i >= $year - 10; $i--) {
+            $periodos[$i] = $i;
+        }
+        
+        return view('frontend.programa.listado_programa', compact('carreras','sedes','comisiones','materias','profesores', 'anios', 'programas','periodos', 'periodo', 'sede', 'carrera','comision'));
+    }
+
 }
