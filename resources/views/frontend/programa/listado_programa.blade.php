@@ -101,7 +101,7 @@ tbody{
                     <td>{{$programa->materia->descripcion}}</td>
                     <td>{{$programa->profesor->apellido}}</td>
                     <td>{{$programa->profesor->nombre}}</td>
-                    <td>PROGRAMA</td>
+                    <td>Progrma</td>
                   </tr>
                 </tbody>
               </table>
