@@ -11,3 +11,5 @@ Route::post('/programa/search', [ProgramaController::class, 'search'])->name('pr
 Route::post('/programa/programasPendientes/search', [ProgramaController::class, 'ProgramasPendientesSearch'])->name('programa.pendiente.search');
 Route::get('/programa/programasPendientes', [ProgramaController::class, 'ProgramasPendientes']);
 Route::resource('programa', ProgramaController::class);
+Route::get('/programas', [ProgramaController::class, 'programas'])->name('programas');
+Route::post('/programas', [ProgramaController::class, 'searchProgramas'])->name('programas.search');
