@@ -2,6 +2,7 @@
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\SedeemailController;
 use App\Http\Controllers\SedetelefonoController;
+use App\Models\Sede;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,7 +10,9 @@ use App\Http\Controllers\SedetelefonoController;
 |--------------------------------------------------------------------------
 */
 Route::get('/contacto', function () {
-    return view('frontend.sede.contacto');
+    $sedes = Sede::all();
+    return view('frontend.sede.contacto', compact('sedes'));
+
 });
 
 Route::resource('sede', SedeController::class);

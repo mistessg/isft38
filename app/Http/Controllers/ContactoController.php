@@ -14,8 +14,9 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        $contactos = Contacto::all();
-        return view('backend.contacto.index', compact('contactos'));
+        //$contactos = Contacto::all();
+        $sedes = Sede::all();
+        return view('backend.contacto.index', compact('sedes'));
     }
     public function create()
     {
