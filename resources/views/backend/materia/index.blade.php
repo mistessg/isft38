@@ -1,10 +1,66 @@
 @extends('backend.layouts.main')
 @section('title', 'Materias')
 @section('content')
+
+<style>
+  *{
+    font-family: 'Quicksand', sans-serif;
+
+  }
+  .algo{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      width: auto;
+  }
+tr{
+  height: 100px;
+}
+td{
+    display: table-cell;
+    vertical-align: middle;
+}
+a{
+  margin-left: 10px;
+}
+button{
+  margin-left: 10px;
+}
+.subcontainer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+}
+a{
+  text-decoration: none;
+
+}
+.horario{
+  color:black;
+  border:1px solid black;
+  border-radius:25px;
+  padding: 10px;
+}
+.svg{
+  padding: 15px;
+  border-radius:70px;
+}
+.botonera{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 300px;
+}
+</style>
+
      @forelse($materias as $materia)
        @if($loop->first)
-       <table class="table table-dark">  
+       <div class="descripciones">
+       <table class="table container">  
         <tr>
+        <div class="algo">
           <td>Id</td>
           <td>Materia</td>
           <td>Carrera</td>
@@ -15,9 +71,11 @@
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
           </a>
          </td>
+         </div>
           </tr>     
        @endif
        <tr>
+        <div class="subcontainer">
         <td>{{ $materia->id }}</td>
         <td>{{ $materia->descripcion }}</td>
         <td>{{ $materia->deCarrera->descripcion }}</td>
@@ -43,6 +101,7 @@
           </div>
             {!!Form::close()!!}  
          </td>
+         </div>
       </tr>
        @if($loop->last)
        </table>  

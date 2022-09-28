@@ -24,7 +24,8 @@ class ModuloController extends Controller
      */
     public function create()
     {
-        //
+        $modulo = Modulo::all();
+        return view('backend.modulo.create');
     }
 
     /**
@@ -35,7 +36,22 @@ class ModuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'horainicio' => ['required'],
+                'horafin' => ['required'],
+                'duracion' => ['required']
+            ]
+        );
+
+        $modulo = new Modulo();
+
+        $modulo->horainicio = $request->input('horainicio');
+        $modulo->horafin = $request->input('horafin');
+        $modulo->duracion = $request->input('duracion');
+        $modulo->save();
+        $request->session()->flash('status', 'Se guardó correctamente el módulo');
+        return redirect()->route('modulo.create');
     }
 
     /**
@@ -55,9 +71,10 @@ class ModuloController extends Controller
      * @param  \App\Models\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Modulo $modulo)
+    public function edit($id)
     {
-        //
+        $modulo = Modulo::findOrFail($id);
+        return view('backend.modulo.edit', compact('modulo'));
     }
 
     /**
@@ -67,9 +84,24 @@ class ModuloController extends Controller
      * @param  \App\Models\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modulo $modulo)
+    public function update(Request $request, $id)
     {
-        //
+        $modulo = Modulo::findOrFail($id);
+
+        $validateData = $request->validate(
+            [
+                'horainicio' => ['required'],
+                'horafin' => ['required'],
+                'duracion' => ['required']
+            ]
+        );
+
+        $modulo->horainicio = $request->input('horainicio');
+        $modulo->horafin = $request->input('horafin');
+        $modulo->duracion = $request->input('duracion');
+        $modulo->save();
+        $request->session()->flash('status', 'Se guardó correctamente el módulo');
+        return redirect()->route('modulo.index');
     }
 
     /**

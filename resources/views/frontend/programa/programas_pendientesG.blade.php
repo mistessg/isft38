@@ -58,10 +58,11 @@
     <style>
       .titulo {
         text-align: center;
-        background-color: #EEE3CB;
+        background-color: #141E27;
+        color:aliceblue;
         border-radius: 15px;
-        margin-left: 140px;
-        margin-right: 140px;
+        /*margin-left: 140px;
+        margin-right: 140px; */
       }
 
       .btno {
@@ -73,12 +74,12 @@
         font-family: varela;
       }
       .entre{
-        background-color: #90B77D;
+        background-color: #3CCF4E;
         border-radius: 20px;
         text-align: center;
       }
       .pendientes{
-        background-color: #FECD70;
+        background-color: #EB1D36;
         border-radius: 20px;
         text-align: center;
       }
@@ -102,7 +103,7 @@
     
     @php($e++)
   
-    Programa:{{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
+    Programa:{{$programa->materia->descripcion}} -{{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
     <br>
     @endif
 
@@ -111,12 +112,12 @@
     @endif
 
     @endforeach
-
+      
 
     @php($p = $m - $e)
     <div class="d-grid gap-2 btno">
-      <p class="entre">Entregados:{{$e}}</p>
-      <p class="pendientes">Pendientes:{{$p}}</p>
+      <p class="entre">ENTREGADOS:{{$e}}</p>  
+      <p class="pendientes">PENDIENTES:{{$p}}</p>
     </div>
     @endforeach
 
