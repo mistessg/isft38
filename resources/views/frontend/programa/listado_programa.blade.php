@@ -4,6 +4,19 @@
 
 @section('content')
 
+<style>
+  body{
+    background-color: #181818;
+  }
+thead{
+  color: #181818;
+  background-color: #9FC9F3;
+}
+tbody{
+  background-color: #C4D7E0;
+}
+</style>
+
 <div class="container my-4">
 
   <div class="card">
@@ -54,8 +67,8 @@
       </div>
       <br>
 
-      
-       <div class="accordion accordion-flush" id="accordionFlushExample">
+
+      <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -63,7 +76,7 @@
             @foreach($anios as $a)
                
               @php($titulo = $a->descripcion)
-              
+
               @foreach($programas as $programa)
               @if($a->id == $programa->anio_id)
               @if($titulo)
@@ -85,3 +98,5 @@
 
         @endsection
       </div>
+ </div>
+</div>

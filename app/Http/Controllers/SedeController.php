@@ -14,7 +14,8 @@ class SedeController extends Controller
      */
     public function index()
     {
-    
+        $sedes = Sede::all();
+        return view('backend.sede.index', compact('sedes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SedeController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.sede.create' );
     }
 
     /**
@@ -35,7 +36,28 @@ class SedeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [ 'descripcion' => 'required',
+              'calle' => 'required',
+              'numero' => 'required',
+              'ciudad' => 'required',
+              'sedeimagen' => 'required|image|max:2048']
+         );
+        $sede = new sede(); 
+        $sede->descripcion = $request->input('descripcion');
+        $sede->calle = $request->input('calle');
+        $sede->numero = $request->input('numero'); 
+        $sede->ciudad = $request->input('ciudad'); 
+        $archivoImagen = $request->file('sedeimagen'); 
+         if ($request->hasFile('sedeimagen')) {
+             $archivoImagen = $request->file('sedeimagen');
+             $path = $archivoImagen->storeAs('public/sedes/' . $sede->id, $archivoImagen->getClientOriginalName() ); 
+             $savedPath  =str_replace("public/", "", $path);
+             $sede->sedeimagen = $savedPath;
+        }
+        $sede->save();
+        $request->session()->flash('status', 'Se guardó correctamente la sede '. $sede->descripcion);
+       return redirect()->route('sede.index'); 
     }
 
     /**
@@ -44,9 +66,10 @@ class SedeController extends Controller
      * @param  \App\Models\Sede  $sede
      * @return \Illuminate\Http\Response
      */
-    public function show(Sede $sede)
+    public function show($id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        return view('backend.sede.show', compact('sede'));
     }
 
     /**
@@ -55,9 +78,10 @@ class SedeController extends Controller
      * @param  \App\Models\Sede  $sede
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sede $sede)
+    public function edit($id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        return view('backend.sede.edit', compact('sede'));
     }
 
     /**
@@ -67,9 +91,32 @@ class SedeController extends Controller
      * @param  \App\Models\Sede  $sede
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sede $sede)
+    public function update(Request $request, $id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        $validatedData = $request->validate(
+            [ 'descripcion' => 'required',
+              'calle' => 'required',
+              'numero' => 'required',
+              'ciudad' => 'required',
+              'sedeimagen' => 'required|image|max:2048']
+         );
+         $sede->descripcion = $request->input('descripcion');
+         $sede->calle = $request->input('calle');
+         $sede->numero = $request->input('numero'); 
+         $sede->ciudad = $request->input('ciudad'); 
+         $archivoImagen = $request->file('sedeimagen'); 
+         if ($request->hasFile('sedeimagen')) {
+            $archivoImagen = $request->file('sedeimagen');
+            $path = $archivoImagen->storeAs('public/sedes/' . $sede->id, $archivoImagen->getClientOriginalName() ); 
+            $savedPath  =str_replace("public/", "", $path);
+            $sede->sedeimagen = $savedPath;   
+            $sede->save();   
+       }
+        $sede->save($validatedData);  
+     
+        $request->session()->flash('status', 'Se guardó correctamente la sede '. $sede->descripcion);
+        return redirect()->route('sede.index');
     }
 
     /**
@@ -78,8 +125,10 @@ class SedeController extends Controller
      * @param  \App\Models\Sede  $sede
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sede $sede)
+    public function destroy($id)
     {
-        //
+        $sede = Sede::findOrFail($id);    
+        $sede->delete();
+        return redirect()->route('sede.index');
     }
 }

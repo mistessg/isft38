@@ -118,8 +118,7 @@ class HorarioController extends Controller
                 'materia_id' => ['required'],
                 'profesor_id' => ['required'],
                 'dia' => ['required'],
-                'modulohorario_id' => ['required'],
-                'comentario' => ['required']
+                'modulohorario_id' => ['required']
             ]
         );
 
@@ -267,7 +266,7 @@ class HorarioController extends Controller
             'modulosHorarios'
         ));
     }
-    /**
+     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Horario  $horario
@@ -314,6 +313,7 @@ class HorarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $horario = Horario::findOrFail($id);
 
         $validateData = $request->validate(
@@ -325,9 +325,7 @@ class HorarioController extends Controller
                 'materia_id' => ['required'],
                 'comision_id' => ['required'],
                 'dia' => ['required'],
-                'modulohorario_id' => ['required'],
-                'comentario' => ['required']
-
+                'modulohorario_id' => ['required']
             ]
         );
 
@@ -344,7 +342,7 @@ class HorarioController extends Controller
         $horario->save();
 
         $request->session()->flash('status', 'Se modificó correctamente el horario');
-        return redirect()->route('horario.edit', $horario->id);
+        return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
 
     /**

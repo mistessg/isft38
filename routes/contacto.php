@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\SedeemailController;
-use App\Http\Controllers\SedetelefonosController;
+use App\Http\Controllers\SedetelefonoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,3 +13,5 @@ Route::get('/contacto', function () {
 });
 
 Route::resource('sede', SedeController::class);
+Route::resource('sedeemail', SedeemailController::class);
+Route::resource('sedetelefono', SedetelefonoController::class);
