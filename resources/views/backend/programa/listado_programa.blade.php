@@ -4,6 +4,13 @@
 
 @section('content')
 
+<style>
+
+.gnd{
+  border-radius: 100%;
+}
+</style>
+
 <div class="container my-4">
 
   <div class="card">
@@ -54,43 +61,63 @@
       </div>
       <br>
 
-      
-       <div class="accordion accordion-flush" id="accordionFlushExample">
+
+      <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            
-            @foreach($anios as $a)
-               
+
+              @foreach($anios as $a)
+
               @php($titulo = $a->descripcion)
-              
+
               @foreach($programas as $programa)
               @if($a->id == $programa->anio_id)
               @if($titulo)
-              {{$titulo}} <br> 
+              {{$titulo}} <br>
               @php($titulo = '')
               @endif
             </button>
           </h2>
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-              <a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}} - {{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}</a>
-               {{ Form::model($programa, [ 'method' => 'delete' , 'route' => ['programa.destroy', $programa->id] ]) }}
-            @csrf  
-          <div class="botonera">
-              <button type="submit" name="borrar{{$programa->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar el programa?')) return false;">
-                <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
-              </button>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">MATERIA</th>
+                    <th scope="col">PROFESOR</th>
 
-            <a href="{{ route('programa.edit', ['programa' => $programa->id ]) }}" class="btn btn-primary svg " >
-              <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
-            </a>
-          </div>
-            {!!Form::close()!!}  
-              <br>
-              @endif
-              @endforeach
-              @endforeach
+
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                 <td>   
+                {{ Form::model($programa, [ 'method' => 'delete' , 'route' => ['programa.destroy', $programa->id] ]) }}
+                <td>
+                <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
+                <td>{{$programa->profesor->apellido}},{{$programa->profesor->nombre}}</td>
+                
+                @csrf
+                <td>
+                <div class="botonera">
+                  <button type="submit" name="borrar{{$programa->id}}" class="btn btn-danger  svg gnd" onclick="if (!confirm('Está seguro de borrar el programa?')) return false;">
+                    <img src="{{ asset('svg/delete.svg') }}" width="20" height="30" alt="Borrar" title="Borrar">
+                  </button>
+
+                  <a href="{{ route('programa.edit', ['programa' => $programa->id ]) }}" class="btn btn-primary svg gnd">
+                    <img src="{{ asset('svg/edit.svg') }}" width="20" height="30" alt="Editar" title="Editar">
+                  </a>
+                </div>
+                </td> 
+                </tr>
+                </tbody>
+              </table>
+                {!!Form::close()!!}
+                <br>
+                @endif
+                @endforeach
+                @endforeach
             </div>
           </div>
         </div>
