@@ -76,9 +76,9 @@ a{
         <td>{{ $materia->id }}</td>
         <td>{{ $materia->descripcion }}</td>
         <td>{{ $materia->deCarrera->descripcion }}</td>
-        <td></td> 
+        <td>{{ $materia->deAnio->descripcion }}</td> 
         <td>
-          @if($materia->contenidos)<span class="badge badge-light"><a href="{{ asset('./storage/'. $materia->contenidos) }}">{{ basename($materia->contenidos) }}</a> </span> @endif
+          @if($materia->dePrograma)<span class="badge badge-light"><a href="{{ asset('./storage/'. $materia->contenidos) }}">{{ basename($materia->dePrograma) }}</a> </span> @endif
         </td> 
         <td>
           {{ Form::model($materia, [ 'method' => 'delete' , 'route' => ['materia.destroy', $materia->id] ]) }}
@@ -104,6 +104,23 @@ a{
        </table>  
        @endif
    @empty
+   <div class="descripciones">
+       <table class="table container">  
+        <tr>
+        <div class="algo">
+          <td>Id</td>
+          <td>Materia</td>
+          <td>Carrera</td>
+          <td>Año</td>
+          <td>Programa</td>
+          <td>
+            <a class="btn btn-success svg" href="{{ route('materia.create') }}">
+            <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+            Crear Materia
+            </a>
+         </td>
+         </div>
+          </tr>
      <p class="text-capitalize"> No hay materias.</p>
    @endforelse   
  </div><hr>
