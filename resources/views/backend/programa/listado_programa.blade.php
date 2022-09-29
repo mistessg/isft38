@@ -22,8 +22,8 @@
       <div class="input-group mb-3">
         {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
         {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
-        </div>
-        @error('año')
+        
+        @error('anio_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       
@@ -31,18 +31,17 @@
       <div class="input-group mb-3">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
-        </div>
-        @error('sede')
+        
+        @error('sede_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-      
-
-
+      </div>
+   
       <div class="input-group mb-3">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
-        </div>
-        @error('carrera')
+        
+        @error('carrera_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
@@ -60,8 +59,14 @@
 
 
       <div class="d-grid gap-2">
-        <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
+        
+        @error('comision_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
       </div>
+       <div class="d-grid gap-2">
+        <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
+      </div> {!!Form::close()!!}
       <br>
       <a href="{{ route('programa.create') }}" class="btn btn-success img">
         <img src="{{ asset('svg/new.svg') }}" height="30" width="20" alt="Crear" title="Crear">
@@ -72,6 +77,7 @@
       <br>
 
       <!-- ACORDEON -->
+     
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">

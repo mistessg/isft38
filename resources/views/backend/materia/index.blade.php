@@ -1,18 +1,16 @@
 @extends('backend.layouts.main')
 @section('title', 'Materias')
 @section('content')
-
 <style>
-  *{
+*{
     font-family: 'Quicksand', sans-serif;
-
-  }
-  .algo{
+}
+.algo{
       text-align: center;
       display: flex;
       justify-content: center;
       width: auto;
-  }
+}
 tr{
   height: 100px;
 }
@@ -31,11 +29,9 @@ button{
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
-  
 }
 a{
   text-decoration: none;
-
 }
 .horario{
   color:black;
@@ -67,9 +63,10 @@ a{
           <td>Año</td>
           <td>Programa</td>
           <td>
-          <a class="btn btn-success" href="{{ route('materia.create') }}">
-          <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-          </a>
+            <a class="btn btn-success svg" href="{{ route('materia.create') }}">
+            <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+            Crear Materia
+            </a>
          </td>
          </div>
           </tr>     

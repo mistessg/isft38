@@ -1,18 +1,16 @@
 @extends('backend.layouts.main')
 @section('title', 'Carreras')
 @section('content')
-
 <style>
-  *{
+*{
     font-family: 'Quicksand', sans-serif;
-
-  }
-  .algo{
+}
+.algo{
       text-align: center;
       display: flex;
       justify-content: center;
       width: auto;
-  }
+}
 tr{
   height: 100px;
 }
@@ -26,16 +24,14 @@ a{
 button{
   margin-left: 10px;
 }
-.subconainer{
+.subcontainer{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
-  
 }
 a{
   text-decoration: none;
-
 }
 .horario{
   color:black;
@@ -53,8 +49,6 @@ a{
   flex-wrap: wrap;
   width: 300px;
 }
-
-
 </style>
 
      @forelse($carreras as $carrera)
@@ -80,7 +74,7 @@ a{
         </tr>     
        @endif
        <tr>
-        <div class="subconainer">
+        <div class="subcontainer">
         <td>{{ $carrera->id }}</td>
         <td>{{ $carrera->descripcion }}</td>
         <td>{{ $carrera->resolucion }}</td>        
