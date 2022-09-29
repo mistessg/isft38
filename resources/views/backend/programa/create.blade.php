@@ -44,7 +44,7 @@
   <div class="form-group">
           {{ Form::label("sede_id", __('SEDE'), ['class' => 'control-label']) }}
           {{Form::select("sede_id", $sede, null, ["class" => "form-control", "placeholder" => "Seleccione una sede"]) }}   
-          @error('descripcion')
+          @error('sede_id')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>
