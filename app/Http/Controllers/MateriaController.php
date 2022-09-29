@@ -27,7 +27,7 @@ class materiaController extends Controller
         //$materias = Materia::pluck('descripcion','id');
         $anios = Anio::pluck('anio', 'id');
         $carreras = Carrera::pluck('descripcion', 'id');
-        return view('backend.materia.create', compact('anios','carreras'));
+        return view('materia.create', compact('anios','carreras'));
     }
 
     /**
@@ -48,7 +48,7 @@ class materiaController extends Controller
         $materia->save();
 
        $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
-       return redirect()->route('backend.materia.create'); 
+       return redirect()->route('materia.create'); 
     }
 
     /**
@@ -75,7 +75,7 @@ class materiaController extends Controller
     {
         $materias = materia::findOrFail($id);
         $anios = Anio::pluck('anio', 'id');
-        return view('backend.materia.edit', compact('materias', 'anios'));
+        return view('materia.edit', compact('materias', 'anios'));
     }
 
     /**
@@ -106,6 +106,6 @@ class materiaController extends Controller
     {
          $materia = materia::findOrFail($id);    
          $materia->delete();
-         return redirect()->route('backend.materia.index');
+         return redirect()->route('materia.index');
     }
 }
