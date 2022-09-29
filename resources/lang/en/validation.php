@@ -158,6 +158,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'horainicio' => "'Hora de inicio'",
+        'horafin' => "'Hora de finalización'",
+        'duracion'=>"'Duración en minutos'"
+     ],
 
 ];

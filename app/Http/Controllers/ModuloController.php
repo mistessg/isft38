@@ -14,7 +14,8 @@ class ModuloController extends Controller
      */
     public function index()
     {
-        //
+        $modulos = Modulo::all();
+        return view('backend.modulo.index', compact('modulos'));
     }
 
     /**
@@ -24,8 +25,8 @@ class ModuloController extends Controller
      */
     public function create()
     {
-        $modulo = Modulo::all();
-        return view('backend.modulo.create');
+        $modulos = Modulo::all();
+        return view('backend.modulo.create', compact('modulos'));
     }
 
     /**
@@ -38,9 +39,9 @@ class ModuloController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'horainicio' => ['required'],
+                'horainicio' => ['required','unique:modulos'],
                 'horafin' => ['required'],
-                'duracion' => ['required']
+                'duracion' => ['required', 'numeric', 'max:60']
             ]
         );
 
@@ -92,7 +93,7 @@ class ModuloController extends Controller
             [
                 'horainicio' => ['required'],
                 'horafin' => ['required'],
-                'duracion' => ['required']
+                'duracion' => ['required', 'numeric', 'max:60']
             ]
         );
 
