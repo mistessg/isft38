@@ -35,8 +35,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
-
-
+   
       <div class="input-group mb-3">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
@@ -53,15 +52,13 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
-
-
-
-      <div class="d-grid gap-2">
+       <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
-      </div>
+      </div> {!!Form::close()!!}
       <br>
 
 
+     
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
