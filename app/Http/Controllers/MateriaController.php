@@ -40,13 +40,15 @@ class materiaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(
-            ['descripcion' => 'required']
+            ['descripcion' => 'required',
+            'carrera_id' => 'required',
+            'anio_id' => 'required'
+            ]
          );
         $materia = new Materia(); 
         $materia->descripcion = $request->input('descripcion');
         $materia->carrera_id = $request->input('carrera_id');
         $materia->anio_id = $request->input('anio_id');
-        $materia->profesor_id = $request->input('profesor_id');
         $materia->save();
 
        $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
@@ -93,9 +95,14 @@ class materiaController extends Controller
     {
         $materia = materia::findOrFail($id);
         $validatedData = $request->validate(
-            ['descripcion' => 'required']
+            ['descripcion' => 'required',
+            'carrera_id' => 'required',
+            'anio_id' => 'required'
+            ]
          );
         $materia->descripcion = $request->input('descripcion');
+        $materia->carrera_id = $request->input('carrera_id');
+        $materia->anio_id = $request->input('anio_id');
         $materia->save($validatedData);  
         return redirect()->route('materia.index');  
     }
