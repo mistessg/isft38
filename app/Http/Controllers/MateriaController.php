@@ -48,7 +48,7 @@ class materiaController extends Controller
         $materia->save();
 
        $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
-       return redirect()->route('backend.materia.create'); 
+       return redirect()->route('materia.create'); 
     }
 
     /**
@@ -106,6 +106,6 @@ class materiaController extends Controller
     {
          $materia = materia::findOrFail($id);    
          $materia->delete();
-         return redirect()->route('backend.materia.index');
+         return redirect()->route('materia.index');
     }
 }
