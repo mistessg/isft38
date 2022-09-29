@@ -48,7 +48,7 @@ class materiaController extends Controller
         $materia->save();
 
        $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
-       return redirect()->route('materia.create'); 
+       return redirect()->route('backend.materia.create'); 
     }
 
     /**
@@ -75,7 +75,7 @@ class materiaController extends Controller
     {
         $materias = materia::findOrFail($id);
         $anios = Anio::pluck('anio', 'id');
-        return view('materia.edit', compact('materias', 'anios'));
+        return view('backend.materia.edit', compact('materias', 'anios'));
     }
 
     /**
