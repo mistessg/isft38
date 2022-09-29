@@ -66,8 +66,9 @@ tbody{
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div>
       <br>
+      <!-- modal -->
 
-
+      <!-- modal -->
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
