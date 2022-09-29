@@ -42,8 +42,10 @@ class HorarioController extends Controller
     }
     public function porProfesor()
     {
-        return view('frontend\horarios\porProfesor');
+        $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))->pluck('nombrecompleto', 'id');
+        return view('frontend\horarios\porProfesor', compact('profesores'));
     }
+    
     public function porDiaHora()
     {
         return view('frontend\horarios\porDiaHora');
@@ -165,8 +167,6 @@ class HorarioController extends Controller
         );
         return redirect()->route('horario.search.carrera', ['sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'anio' => $request->input('anio_id'), 'comision' => $request->input('comision_id')]);
     }
-
-
     public function searchCarrera($sede, $carrera, $anio, $comision)
     {
         $sede = Sede::find($sede);

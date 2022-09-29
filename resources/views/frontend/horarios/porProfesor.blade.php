@@ -18,28 +18,11 @@
             <input type="text" id="apellido" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
-            <select class="form-select my-4" size="10" id="select"  aria-label="multiple select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-        </form>
+            {{ Form::open(['route' => 'horario.porProfesorSearch']) }}
+        <div class="input-group mb-3">
+        <label class="input-group-text" for="#">Sede</label>
+        {{Form::select("profesor_id", $profesor, null, ["class" => "form-control", "placeholder" => "Seleccione el profesor" ]) }} 
+      
 
 
         <div class="d-grid gap-2">
@@ -50,10 +33,23 @@
 
 
     <script>    
-    const select = document.getelementbyid('select');
+  	var input=document.getElementById('apellido').value.toUpperCase();
+	var output=document.getElementById('profesor_id').options;
+	for(var i=0;i<output.length;i++) 
+	{
+		var ingreso = output[i].text.toUpperCase();
+		
+		if(ingreso.indexOf(input)==0)
+		{
+			output[i].selected =true;
+			break;
+		}
+		else
+		//if(document.forms[0].texto_busqueda.value=='')
+		{
+			output[0].selected=true;
+		}
+	}
 
-        select.addeventlistener("keypress",()=>{
-            select.
-        });
     </script>
 @endsection
