@@ -25,13 +25,9 @@ class ComisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create( )
     {
-        $comisions = Comision::pluck('comision', 'id');
-
-        // $comision = $request->input('comision');
-    
-        return view('backend.comision.create', compact('comisions'));
+        return view('backend.comision.create');
     }
 
     /**
@@ -53,7 +49,7 @@ class ComisionController extends Controller
          $comision->save();
          $request->session()->flash('status', 'Se guardó correctamente la comision ');
 
-         return redirect()->route('comision.create'); 
+         return redirect()->route('comision.index'); 
     
     }
 
@@ -89,15 +85,15 @@ class ComisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comision = Horario::findOrFail($id);
-        $validateData = $request->validate(
+        $comision = Comision::findOrFail($id);
+        $validatedData = $request->validate(
             [
                 'comision' => ['required']
             ]
         );
 
         $comision->comision = $request->input('comision'); 
-        $carrera->save($validatedData);    
+        $comision->save($validatedData);    
         
         return redirect()->route('comision.index');
     }
