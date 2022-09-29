@@ -1,21 +1,37 @@
 @extends('backend.layouts.main')
 @section('title', 'Comision')
-<script src="https://cdn.tailwindcss.com"></script>
 @section('content')
-<h1 class="bg-blue-500">CREATE</h1>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-md">
+    <a class="navbar-brand text-white" href="#">Crear comisión</a>
+  </div>
+</nav>
+<br>
 
- {{ Form::open(['route' => 'comision.store', 'files' => true]) }}
-  @csrf <!-- {{ csrf_field() }} -->
-  <div class="form-group">
-          {{ Form::label("comision", __('comision'), ['class' => 'control-label']) }}
-          {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comision", ])}}    
-          @error('descripcion')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
+{{ Form::open(['route' => 'comision.store', 'files' => true]) }}
+@csrf
+<div class="container my-4">
+
+  <div class="card">
+    <h5 class="card-header" style=" background-color: #181818; color: white;">Agregar comisión</h5>
+    <div class="card-body">
+      <!-- {{ csrf_field() }} -->
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="#">Comisión</label>
+        {{Form::text("comision", null, ["class" => "form-control" ])}}
+      </div>
+      @error('comision')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      <div class="">
+        <button type="submit" class="btn btn-outline-dark w-100">Agregar</button>
+      </div>
     </div>
 
     </br>
-    <button type="submit"  class="btn ">{{__('Guardar')}}</button>
-  {!!Form::close()!!}
+
+  </div>
+</div>
+{!!Form::close()!!}
 
 @endsection

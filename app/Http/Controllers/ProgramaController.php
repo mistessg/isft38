@@ -136,13 +136,13 @@ class ProgramaController extends Controller
         return redirect()->route('programa.create');
     }
     public function search(Request $request)
-    {
+    { 
         $validatedData = $request->validate(
             [
                 'sede_id' => 'required',
                 'carrera_id' => 'required',
                 'anio_id' => 'required',
-                'comision_id' => 'required',
+                'comision_id' => 'required'
             ]
         );
         return redirect()->route('programa.search.list', ['periodo' => $request->input('anio_id'), 'sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'comision' => $request->input('comision_id')]);
