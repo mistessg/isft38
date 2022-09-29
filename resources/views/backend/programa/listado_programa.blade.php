@@ -6,8 +6,14 @@
 
 <style>
   .img {
-    border-radius: 100%;
+    border-radius: 100px;
   }
+.img2{
+  border-radius: 100px;
+  margin-left: 900px;
+  margin-right: 40px;
+}
+  
 </style>
 
 <div class="container my-4">
@@ -22,7 +28,7 @@
       <div class="input-group mb-3">
         {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
         {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
-        
+        </div>
         @error('anio_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -31,16 +37,16 @@
       <div class="input-group mb-3">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
-        
+        </div>
         @error('sede_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-      </div>
+      
    
       <div class="input-group mb-3">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
-        
+        </div>
         @error('carrera_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -64,13 +70,16 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
+      
        <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div> {!!Form::close()!!}
       <br>
-      <a href="{{ route('programa.create') }}" class="btn btn-success img">
+      </div>
+      <a href="{{ route('programa.create') }}" class="btn btn-success img2">Crear uno nuevo
         <img src="{{ asset('svg/new.svg') }}" height="30" width="20" alt="Crear" title="Crear">
       </a>
+      <br>
 
 
       <br>
