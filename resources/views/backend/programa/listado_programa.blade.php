@@ -23,7 +23,8 @@
       <div class="input-group mb-3">
         {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
         {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
-        @error('año')
+        
+        @error('anio_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
@@ -31,7 +32,8 @@
       <div class="input-group mb-3">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
-        @error('sede')
+        
+        @error('sede_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
@@ -39,7 +41,8 @@
       <div class="input-group mb-3">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
-        @error('carrera')
+        
+        @error('carrera_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
@@ -48,7 +51,8 @@
       <div class="input-group mb-3">
         {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
         {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}
-        @error('carrera')
+        
+        @error('comision_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
