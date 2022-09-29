@@ -53,7 +53,7 @@ class ComisionController extends Controller
          $comision->save();
          $request->session()->flash('status', 'Se guardó correctamente la comision ');
 
-         return redirect()->route('comision.create'); 
+         return redirect()->route('comision.index'); 
     
     }
 
