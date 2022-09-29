@@ -27,7 +27,7 @@ class materiaController extends Controller
         //$materias = Materia::pluck('descripcion','id');
         $anios = Anio::pluck('anio', 'id');
         $carreras = Carrera::pluck('descripcion', 'id');
-        return view('backend.materia.create', compact('anios','carreras'));
+        return view('materia.create', compact('anios','carreras'));
     }
 
     /**
@@ -106,6 +106,6 @@ class materiaController extends Controller
     {
          $materia = materia::findOrFail($id);    
          $materia->delete();
-         return redirect()->route('backend.materia.index');
+         return redirect()->route('materia.index');
     }
 }

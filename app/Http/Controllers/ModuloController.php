@@ -110,8 +110,10 @@ class ModuloController extends Controller
      * @param  \App\Models\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modulo $modulo)
+    public function destroy($id)
     {
-        //
+        $modulo = Modulo::findOrFail($id);
+        $modulo->delete();
+        return redirect()->route('modulo.index');
     }
 }

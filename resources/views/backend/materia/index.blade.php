@@ -67,8 +67,9 @@ a{
           <td>Año</td>
           <td>Programa</td>
           <td>
-          <a class="btn btn-success" href="{{ route('materia.create') }}">
+          <a class="btn btn-success svg" href="{{ route('materia.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+          Crear Materia
           </a>
          </td>
          </div>

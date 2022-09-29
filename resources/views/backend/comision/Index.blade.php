@@ -51,8 +51,15 @@ a{
 }
 
 </style>
-
 <div class="contenedor">
+<div style="float:left;padding:20px;">
+            <a href="{{ route('comision.create')}}" style="color:black;" class="btn btn-success" >
+              <img src="{{ asset('svg/new.svg') }}"  width="20" height="20"  alt="crear" title="crear">
+              Crear 
+            </a>  
+          </div>
+
+
 <Table class="container">
 <div class="algo">   
     <tr class="subconainer">
@@ -75,10 +82,9 @@ a{
               <button type="submit" name="borrar{{$comision->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la comisión?')) return false;">
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
               </button>
-
-            <button href="{{ route('comision.edit', ['comision' => $comision->id ]) }}" class="btn btn-primary svg " >
+            <a  href="{{ route('comision.edit', ['comision' => $comision->id ]) }}" class="btn btn-primary svg " >
               <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
-            </button>
+            </a>
           </div>
             {!!Form::close()!!}  
     </tr>
