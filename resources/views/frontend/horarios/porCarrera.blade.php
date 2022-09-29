@@ -4,12 +4,6 @@
 
 @section('content')
 
-    <nav class="navbar navbar-expand-lg bg-dark">
-      <div class="container-md">
-        <a class="navbar-brand text-white" href="#">Consultar horarios</a>
-      </div>
-    </nav>
-
     <div class="container my-4"> 
     
         <div class="card">
@@ -38,7 +32,7 @@
         {{Form::select("comision_id", $comisions, null, ["class" => "form-control", "placeholder" => "Seleccione la comision" ]) }} 
         </div>
     
-        </br><button type="submit" style="width: 100%;" class="btn btn-dark">Consultar</button></div>
+        </br><button type="submit" class="btn btn-dark form-control">Consultar</button></div>
          {!!Form::close()!!}  
     </div>
    
