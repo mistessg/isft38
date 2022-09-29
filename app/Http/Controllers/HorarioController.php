@@ -266,7 +266,7 @@ class HorarioController extends Controller
             'modulosHorarios'
         ));
     }
-    /**
+     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Horario  $horario

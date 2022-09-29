@@ -1,6 +1,6 @@
 @extends('backend.layouts.main')
 
-@section('title', 'Horarios por Carreras')
+@section('title', 'Horarios por Dia y Hora')
 
 @section('content')
     
@@ -17,6 +17,8 @@
         <label for="" class="form-label"></label>
         <input type="datetime-local" class="form-control" id="">
         </div>
+
+        
         
     </form>
 
