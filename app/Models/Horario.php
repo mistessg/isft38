@@ -45,4 +45,5 @@ class Horario extends Model
     public function comentario(){
     	return $this->belongsTo(Horario::class, 'comentario');
     } 
+    
 }

@@ -9,51 +9,44 @@
             <h5 class="card-header" style="background-color: #181818; color: white;">Horarios por Profesor</h5>
         <div class="card-body">
 
-        <form>
+        {{ Form::open(['route' => 'horarios.show.porProfesor']) }}
             
-            
-
             <div class="input-group input-group-sm mt-2">
             <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-            <input type="text" id="apellido" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="text" id="apellido" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" onkeypress
+            ="crit_busqueda()">
             </div>
-
-            <select class="form-select my-4" size="10" id="select"  aria-label="multiple select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-        </form>
-
-
+    <br>
+            {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "id"=>"listado","size"=>"10","placeholder" => "Seleccione un profesor", "aria-label" =>"multiple select example"]) }}   
+<br>
         <div class="d-grid gap-2">
-          <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
+          <button class="btn btn-outline-dark" type="submit" aria-label="consultar" >Consultar</button>
         </div>
-
+       {!!Form::close()!!}
     </div>
 
 
     <script>    
-    const select = document.getelementbyid('select');
 
-        select.addeventlistener("keypress",()=>{
-            select.
-        });
+function crit_busqueda() 
+{
+	var input=document.getElementById('apellido').value.toUpperCase();
+	var output=document.getElementById('listado').options;
+	for(var i=0;i<output.length;i++) 
+	{
+		var ingreso = output[i].text.toUpperCase();
+		
+		if(ingreso.indexOf(input)==0)
+		{
+			output[i].selected =true;
+			break;
+		}
+		else
+		//if(document.forms[0].texto_busqueda.value=='')
+		{
+			output[0].selected=true;
+		}
+	}
+}
     </script>
 @endsection
