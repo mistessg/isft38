@@ -59,7 +59,6 @@
         <div class="form-group">   
         {{ Form::label("anio", __('Año'), ['class' => 'control-label']) }}              
             {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione un año"]) }}   
-
         </div>
     </div>
  </br> <button type="submit"  class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>  
