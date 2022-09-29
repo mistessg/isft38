@@ -159,9 +159,17 @@ return [
     */
 
     'attributes' => [
-        'horainicio' => "'Hora de inicio'",
-        'horafin' => "'Hora de finalización'",
-        'duracion'=>"'Duración en minutos'"
+        'horainicio' => "'hora de inicio'",
+        'horafin' => "'hora de finalización'",
+        'duracion'=>"'duración en minutos'",
+        'anio', 'anio_id'=>"'año'",
+        'comision', 'comision_id'=>"'comisión'",
+        'dia'=>"'día'",
+        'modulohorario', 'modulohorario_id'=>"'módulo horario'",
+        'materia_id'=>"'materia'",
+        'profesor_id'=>"'profesor'",
+        'sede_id'=>"'sede'",
+        'carrera_id'=>"'carrera'"
      ],
 
 ];
