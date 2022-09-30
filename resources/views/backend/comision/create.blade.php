@@ -1,21 +1,32 @@
 @extends('backend.layouts.main')
 @section('title', 'Comision')
-<script src="https://cdn.tailwindcss.com"></script>
 @section('content')
-<h1 class="bg-blue-500">CREATE</h1>
 
- {{ Form::open(['route' => 'comision.store', 'files' => true]) }}
-  @csrf <!-- {{ csrf_field() }} -->
-  <div class="form-group">
-          {{ Form::label("comision", __('comision'), ['class' => 'control-label']) }}
+
+
+<div class="container" style="display: flex ; align-items: center; justify-content: center">
+    
+    <div class="card my-4"  style=" width: 50%;">
+        <h5 class="card-header" style="background-color: #181818; color: white;">Crear Comision</h5>
+    <div class="card-body">
+
+    {{ Form::open(['route' => 'horario.store']) }}
+        <div class="input-group mt-5 mb-3">
+
+
           {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comision", ])}}    
           @error('descripcion')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
-    </div>
+          </div> 
+        
+        <div class="d-grid gap-2 my-4 mx-auto">
+            <button class="form-control btn btn-outline-dark" type="button">Guardar</button>
+        </div>
 
-    </br>
-    <button type="submit"  class="btn ">{{__('Guardar')}}</button>
-  {!!Form::close()!!}
+    </div>
+    {!!Form::close()!!} 
+</div>
+
 
 @endsection

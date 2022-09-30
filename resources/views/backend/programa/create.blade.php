@@ -29,9 +29,20 @@
         padding:10px;
         outline: none;
     }
+    .volver{
+        margin-left: 600px;
+        margin-right: 600px;
+        background-color:#019267;
+        border-radius: 10px;
+        font-family: 'Quicksand', sans-serif;
+
+    }
   </style>
   <div class="Inicio">
     <h1 class="TextoInicio">Nuevo Programa</h1>
+  </div>
+  <div class="volver">
+    <h4 alignt="center">Inicio</h4>
   </div>
   <div>
     @if(Session::has('status'))
@@ -44,7 +55,7 @@
   <div class="form-group">
           {{ Form::label("sede_id", __('SEDE'), ['class' => 'control-label']) }}
           {{Form::select("sede_id", $sede, null, ["class" => "form-control", "placeholder" => "Seleccione una sede"]) }}   
-          @error('descripcion')
+          @error('sede_id')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>
