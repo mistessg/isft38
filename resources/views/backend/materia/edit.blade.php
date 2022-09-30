@@ -41,14 +41,15 @@
         <div class="form-group">
         {{ Form::label("carrera", __('Carrera'), ['class' => 'control-label']) }}                 
             {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera"]) }}   
-
+            @error('carrera') <div class="alert alert-danger">{{ $message }}</div>@enderror
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">   
         {{ Form::label("anio", __('Año'), ['class' => 'control-label']) }}              
             {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione un año"]) }}   
-        </div>
+            @error('anio_id') <div class="alert alert-danger">{{ $message }}</div>@enderror
+          </div>
     </div>
  </br> <button type="submit"  class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>  
     </div>

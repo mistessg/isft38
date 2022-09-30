@@ -69,7 +69,7 @@
       </div>  
     @endforeach     
   </div>              
-</br><button type="submit" style="width: 100%;" class="btn btn-primary">{{__('noticias.guardar')}}</button>    
+</br><button type="submit" class="btn btn-primary form-control">{{__('noticias.guardar')}}</button>    
     </div>
 {!!Form::close()!!}
 @endsection

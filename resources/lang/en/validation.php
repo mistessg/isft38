@@ -169,7 +169,8 @@ return [
         'materia_id'=>"'materia'",
         'profesor_id'=>"'profesor'",
         'sede_id'=>"'sede'",
-        'carrera_id'=>"'carrera'"
+        'carrera_id'=>"'carrera'",
+        'descripcion' => "'descripción'"
      ],
 
 ];

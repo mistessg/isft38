@@ -163,7 +163,8 @@ return [
         'profesor_id'=>"'profesor'",
         'sede_id'=>"'sede'",
         'carrera_id'=>"'carrera'",
-		'fechaentrega' => "'Fecha de entrega'"
+		'fechaentrega' => "'Fecha de entrega'",
+        'descripcion' => "'descripción'"
      ],
 	
 ];
