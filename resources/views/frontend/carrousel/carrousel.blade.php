@@ -201,6 +201,7 @@ button:hover .button-text {
     overflow: scroll;
     overflow: auto;
     z-index: 2;
+    scrollable
 }
 .show {
     pointer-events: auto;
@@ -237,6 +238,7 @@ button:hover .button-text {
   .container-son{
     word-wrap:break-word;
     width:600px;
+    height:350px;
     padding:20px;
     overflow: auto;
   }
@@ -376,9 +378,9 @@ button:hover .button-text {
       <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
-		@foreach($historias as $historia) 
-		<p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
-		@endforeach	
+        @foreach($historias as $historia) 
+        <p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
+        @endforeach	
 	</div>
       
       <div class="card-body">
@@ -391,8 +393,6 @@ button:hover .button-text {
       </div>
     </div>
 
-    
-   
 
   <!--CARD 2-->
     <div class="card" style="width: 25rem;">
@@ -415,6 +415,11 @@ button:hover .button-text {
     </div>
   </div>
 
+  
+      <!-- MODALS -->
+
+
+
   <div id="sesion" class="sesion">
       <div class="vent_sesion">
 
@@ -423,15 +428,11 @@ button:hover .button-text {
         </div>
 
         <div class="container-son">
-
-          <p>
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-          </p>
-
+          <div>
+            @foreach($historias as $historia) 
+            <p>{!!$historia->historia!!}</p>	
+            @endforeach	
+          </div>
         </div>
 
         <div class="btn_cerrar"  id="btn_cerrar">
@@ -444,6 +445,8 @@ button:hover .button-text {
       </div>
       </div>
 
+
+
       <div id="sesion2" class="sesion">
       <div class="vent_sesion">
       <div class="container-objetivo">
@@ -451,18 +454,13 @@ button:hover .button-text {
         </div>
 
         <div class="container-son">
-
-          <p>
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
-          </p>
-
+        @foreach($objetivos as $objetivo) 
+          <p>{!! $objetivo->objetivo !!}</p>		
+        @endforeach	
+         
         </div>
 
-        <div class="btn_cerrar"  id="btn_cerrar2">
+        <div class="btn_cerrar" id="btn_cerrar2">
           <svg  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
