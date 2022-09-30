@@ -185,18 +185,18 @@ button:hover .button-text {
 #arrow-horizontal{
   fill: white;
 }
+
 .sesion {
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
     pointer-events: none;
     opacity: 0;
+    position: fixed;
     top: 0;
     height: 100vh;
     width: 100vw;
-    padding: 40px;
     transition: opacity 0.3s ease;
     overflow: scroll;
     overflow: auto;
@@ -212,7 +212,7 @@ button:hover .button-text {
     background-color: rgba(255, 255, 255);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
   }
-  .container-img-text{
+  .container-historia{
     background-image:url(historia.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -222,10 +222,23 @@ button:hover .button-text {
     justify-content:center;
     align-items:center;
     color: white;
-    word-wrap:break-word;
   }
-  .container-img-text div{
-    width: 100px;
+  .container-objetivo{
+    background-image:url(objetivo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color: white;
+  }
+  .container-son{
+    word-wrap:break-word;
+    width:600px;
+    padding:20px;
+    overflow: auto;
   }
   .btn_cerrar{
     position: absolute;
@@ -239,7 +252,6 @@ button:hover .button-text {
     background:white;
     border-radius:50px;
   }
-
 </style>
 
 <!-- Required meta tags -->
@@ -405,17 +417,22 @@ button:hover .button-text {
 
   <div id="sesion" class="sesion">
       <div class="vent_sesion">
-        <div class="container-img-text">
 
+        <div class="container-historia">
           <h1>Historia</h1>
-        
         </div>
 
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p><p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+        <div class="container-son">
+
+          <p>
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+          </p>
+
+        </div>
 
         <div class="btn_cerrar"  id="btn_cerrar">
           <svg  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
@@ -423,19 +440,27 @@ button:hover .button-text {
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
           </svg>
         </div>
+
       </div>
       </div>
 
       <div id="sesion2" class="sesion">
       <div class="vent_sesion">
-        <h1>Objetivos</h1>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+      <div class="container-objetivo">
+          <h1>Objetivos</h1>
+        </div>
+
+        <div class="container-son">
+
+          <p>
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+            asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd
+          </p>
+
+        </div>
 
         <div class="btn_cerrar"  id="btn_cerrar2">
           <svg  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
