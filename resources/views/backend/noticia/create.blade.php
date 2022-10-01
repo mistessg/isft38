@@ -1,4 +1,4 @@
-@extends('backend.layouts.blog')
+@extends('backend.layouts.main')
 @section('title', __('noticias.index'))
 @section('content')
   <h1>{{__('noticias.nueva')}}</h1>

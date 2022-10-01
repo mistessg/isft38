@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('frontend.layout.main')
 
 @section('title', 'Horarios por Carrera')
 

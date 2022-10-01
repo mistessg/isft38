@@ -1,38 +1,6 @@
 @extends('backend.layouts.main')
 @section('title', 'Sedes')
 @section('content')
-
-  <style>
-    .Inicio{
-        text-align: center;
-        margin:20px;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 800;
-    }
-    .links{
-        padding:25px;
-        
-        width: 70%;
-        margin: 0 auto;
-    }
-    .form-group{
-        margin-top:10px;
-    }
-    .form-group label{
-        outline: none;
-        margin-bottom: 5px;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 800;
-        font-size: 20px;
-    }
-    .form-control{
-        border: 1px solid gray;
-        padding:10px;
-        outline: none;
-    }
-  </style>
-
-
   <div class="Inicio">
     <h1 class="TextoInicio">Editar Sede</h1>
   </div>
@@ -46,36 +14,36 @@
 @csrf <!-- {{ csrf_field() }} -->
 <div class="form-group">
           {{ Form::label("descripcion", 'Descripción', ['class' => 'control-label']) }}
-          {{Form::text("descripcion", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la descripción", ])}}     
+          {{Form::text("descripcion", old("descripcion"), ["class" => "form-control" ])}}     
           @error('descripcion')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>
     <div class="form-group">
           {{ Form::label("calle", 'Calle', ['class' => 'control-label']) }}
-          {{Form::text("calle", old("calle"), ["class" => "form-control", "placeholder" => "Ingrese la calle", ])}}     
+          {{Form::text("calle", old("calle"), ["class" => "form-control"])}}     
           @error('calle')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror         
     </div>
     <div class="form-group">
           {{ Form::label("numero", "Número", ['class' => 'control-label']) }}
-          {{Form::number("numero", old("numero"), ["class" => "form-control", "placeholder" => "Ingrese el número", ])}}     
+          {{Form::number("numero", old("numero"), ["class" => "form-control" ])}}     
           @error('numero')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror                  
     </div>
     <div class="form-group">
           {{ Form::label("ciudad", "Ciudad", ['class' => 'control-label']) }}
-          {{Form::text("ciudad", old("ciudad"), ["class" => "form-control", "placeholder" => "Ingrese la ciudad", ])}}     
+          {{Form::text("ciudad", old("ciudad"), ["class" => "form-control" ])}}     
           @error('ciudad')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror                          
     </div>
-    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif" style="text-align:center;">
+    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif">
            {{ Form::label("sedeimagen", "Imagen", ['class' => 'control-label']) }}
            <br>
-           {{ Form::file("sedeimagen") }}
+           {{ Form::file("sedeimagen", ['class' => 'control-label']) }}
           @error('sedeimagen')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror

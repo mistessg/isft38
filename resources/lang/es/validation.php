@@ -164,7 +164,11 @@ return [
         'sede_id'=>"'sede'",
         'carrera_id'=>"'carrera'",
 		'fechaentrega' => "'Fecha de entrega'",
-        'descripcion' => "'descripción'"
+        'descripcion' => "'descripción'",
+        'calle' => "'calle'",
+        'numero' => "'número'",
+        'sedeimagen' => "'imagen'",	
+		'ciudad' => "'ciudad'",	
      ],
 	
 ];
