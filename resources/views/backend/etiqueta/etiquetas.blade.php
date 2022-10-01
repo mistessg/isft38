@@ -1,22 +1,22 @@
-@extends('backend.layouts.blog')
+@extends('backend.layouts.main')
 @section('title', 'Etiquetas')
 @section('content')
+<div class="descripciones">
      @forelse($etiquetas as $etiqueta)
        @if($loop->first)
-       <table class="table table-dark">  
+
+  <table class="table container">
         <tr>
-          <td>Id</td>
-          <td>Nombre</td>
-          <td>Descripción</td>          
+          <th>Nombre</th>
+          <th>Descripción</th>          
           <td>
           <a class="btn btn-success" href="{{ route('etiquetas.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-          </a>
+           Crear Etiqueta</a>
          </td>
           </tr>     
        @endif
        <tr>
-        <td>{{ $etiqueta->id }}</td>
         <td>{{ $etiqueta->nombre }}</td>
         <td>{{ $etiqueta->descripcion }}</td>        
          <td>
@@ -42,5 +42,6 @@
   use Illuminate\Pagination\Paginator;
       public function boot() { Paginator::useBootstrap(); } --> 
       {!! $etiquetas->links() !!}
+</div> 
 </div> 
 @endsection

@@ -51,7 +51,7 @@
         @enderror
     </div>
     </br>
-    <button type="submit" class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
+    <button type="submit" class="btn btn-success form-control">Guardar</button></div>
 </div>
 {!!Form::close()!!}
 @endsection
