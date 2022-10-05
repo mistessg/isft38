@@ -24,7 +24,7 @@
 </div>
 <div class="materias">
     <div class="row">
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-4 col-md-12 mb-3">
           <div class="card shadow-sm">
             <img src="https://i.blogs.es/e1feab/google-fotos/1366_2000.jpg" width="100%" alt="">
             <div class="card-body">
@@ -41,7 +41,7 @@
           </div>
     </div>
 
-    <div class="col-lg-4 col-md-12 ">
+    <div class="col-lg-4 col-md-12 mb-3">
           <div class="card shadow-sm">
             <img src="https://i.blogs.es/e1feab/google-fotos/1366_2000.jpg" width="100%" alt="">
             <div class="card-body">
@@ -58,7 +58,7 @@
           </div>
     </div>
 
-    <div class="col-lg-4 col-md-12 ">
+    <div class="col-lg-4 col-md-12 mb-3">
           <div class="card shadow-sm">
             <img src="https://i.blogs.es/e1feab/google-fotos/1366_2000.jpg" width="100%" alt="">
             <div class="card-body">
