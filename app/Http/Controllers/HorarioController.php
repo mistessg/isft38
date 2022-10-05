@@ -400,7 +400,7 @@ class HorarioController extends Controller
         $request->session()->flash('status', 'Se modificó correctamente el horario.');
         return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
-
+//
     /**
      * Remove the specified resource from storage.
      *
