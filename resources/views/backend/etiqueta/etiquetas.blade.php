@@ -32,6 +32,9 @@
        </table>  
        @endif
    @empty
+   <a class="btn btn-success" href="{{ route('etiquetas.create') }}">
+          <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+           Crear Etiqueta</a>   
      <p class="text-capitalize"> No hay etiquetas.</p>
    @endforelse   
  </div><hr>

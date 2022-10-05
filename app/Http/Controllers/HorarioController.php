@@ -199,7 +199,7 @@ class HorarioController extends Controller
         $horario->modulohorario_id = $request->input('modulohorario_id');
         $horario->comentario = $request->input('comentario');
         $horario->save();
-        //$request->session()->flash('status', 'Se guardó correctamente el horario '. $noticia->titulo);
+        $request->session()->flash('status', 'Se guardó correctamente el horario ');
         return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
     /**
@@ -397,7 +397,7 @@ class HorarioController extends Controller
         //$horario->duracion = $request->input('duracion');    
         $horario->save();
 
-        $request->session()->flash('status', 'Se modificó correctamente el horario');
+        $request->session()->flash('status', 'Se modificó correctamente el horario.');
         return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
 
