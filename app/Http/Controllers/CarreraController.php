@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carrera;
 use App\Models\Sede;
+use App\Models\Carrera;
+use App\Models\Programa;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -35,8 +36,8 @@ class CarreraController extends Controller
         
         $validatedData = $request->validate(
             [ 'descripcion' => 'required',
-              'resolucion' => 'required|unique:carreras',
-              'anios' => 'required',
+              'resolucion' => 'required',
+              'anios' => 'required|numeric',
               'texto' => 'required',
               'nombre_carpeta' => 'required',
               'imagen' => 'image|max:2048']
@@ -105,7 +106,7 @@ class CarreraController extends Controller
         $validatedData = $request->validate(
             [ 'descripcion' => 'required',
               'resolucion' => 'required',
-              'anios' => 'required',
+              'anios' => 'required|numeric',
               'texto' => 'required',
               'nombre_carpeta' => 'required',
               'imagen' => 'image|max:2048']
@@ -145,7 +146,13 @@ class CarreraController extends Controller
     public function destroy($id)
     {
          $carrera = carrera::findOrFail($id);    
-         $carrera->delete();
+         $programas = Programa::where('carrera_id', $carrera->id)->first();
+         if (empty($programas)) {
+            $carrera->delete();
+         }
+         else{
+            session()->flash('status', 'Esta carrera está relacionada en programas ');
+         }
          return redirect()->route('carrera.index');
     }
 }
