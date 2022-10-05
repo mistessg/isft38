@@ -7,9 +7,9 @@
 
   <table class="table container">
         <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>          
-          <td>
+          <th class="align-middle">Nombre</th>
+          <th class="align-middle">Descripción</th>          
+          <td class="d-flex justify-content-end align-middle">
           <a class="btn btn-success" href="{{ route('etiquetas.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
            Crear Etiqueta</a>
@@ -19,7 +19,7 @@
        <tr>
         <td>{{ $etiqueta->nombre }}</td>
         <td>{{ $etiqueta->descripcion }}</td>        
-         <td>
+         <td class="d-flex justify-content-end align-middle">
           {{ Form::model($etiqueta, [ 'method' => 'delete' , 'route' => ['etiquetas.destroy', $etiqueta->id] ]) }}
             @csrf  
 <a href="{{ route('etiquetas.show', ['etiqueta' => $etiqueta->id ]) }}" class="btn btn-info"><img src="{{ asset('svg/show.svg') }}"  width="20" height="20" alt="Mostrar" title="Mostrar"></a> 
@@ -32,10 +32,28 @@
        </table>  
        @endif
    @empty
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+   <table class="table container">
+        <tr>
+          <th class="align-middle">Nombre</th>
+          <th class="align-middle">Descripción</th>          
+          <td class="d-flex justify-content-end align-middle">
+          <a class="btn btn-success" href="{{ route('etiquetas.create') }}">
+          <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+           Crear Etiqueta</a>
+         </td>
+          </tr>     
+    </table>
+     <p class="text-capitalize container"> No hay etiquetas.</p>
+=======
+>>>>>>> Stashed changes
    <a class="btn btn-success" href="{{ route('etiquetas.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
            Crear Etiqueta</a>   
      <p class="text-capitalize"> No hay etiquetas.</p>
+>>>>>>> 812d0e8ccf979742b1bf9ef7498798ba0eee3deb
    @endforelse   
  </div><hr>
 <!-- Paginación -->
