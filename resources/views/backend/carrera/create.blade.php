@@ -43,35 +43,35 @@
   @csrf <!-- {{ csrf_field() }} -->
   <div class="form-group">
           {{ Form::label("descripcion", __('DESCRIPCIÓN'), ['class' => 'control-label']) }}
-          {{Form::text("descripcion", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la descripcion", ])}}     
+          {{Form::text("descripcion", old("descripcion"), ["class" => "form-control" ])}}     
           @error('descripcion')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>
     <div class="form-group">
           {{ Form::label("anios", __('AÑOS'), ['class' => 'control-label']) }}
-          {{Form::text("anios", old("anios"), ["class" => "form-control", "placeholder" => "Ingrese años", ])}}     
+          {{Form::text("anios", old("anios"), ["class" => "form-control" ])}}     
           @error('anios')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror         
     </div>
     <div class="form-group">
           {{ Form::label("resolucion", __('RESOLUCIÓN'), ['class' => 'control-label']) }}
-          {{Form::text("resolucion", old("resolucion"), ["class" => "form-control", "placeholder" => "Ingrese la resolucion", ])}}     
+          {{Form::text("resolucion", old("resolucion"), ["class" => "form-control" ])}}     
           @error('resolucion')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror                  
     </div>
     <div class="form-group">
           {{ Form::label("texto", __('TEXTO'), ['class' => 'control-label']) }}
-          {{Form::textarea("texto", old("texto"), ["class" => "form-control", "placeholder" => "Ingrese texto", ])}}     
+          {{Form::textarea("texto", old("texto"), ["class" => "form-control" ])}}     
           @error('texto')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror                          
     </div>
     <div class="form-group">
           {{ Form::label("texto", __('CARPETA'), ['class' => 'control-label']) }}
-          {{Form::text("nombre_carpeta", old("nombre_carpeta"), ["class" => "form-control", "placeholder" => "Ingrese texto", ])}}     
+          {{Form::text("nombre_carpeta", old("nombre_carpeta"), ["class" => "form-control" ])}}     
           @error('nombre_carpeta')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror                          

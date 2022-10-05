@@ -16,7 +16,7 @@
           box-sizing: border-box;
           font-family: 'Overpass', sans-serif;
         }
-        @media (max-width: 600px){
+        @media all and (max-width: 600px){
           .contenedorHeader{
             height: 100vh;
           }
