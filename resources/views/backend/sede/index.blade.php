@@ -110,14 +110,31 @@
 </div>
 @endif
 @empty
-<p class="text-capitalize"> No hay carreras.</p>
-@endforelse
+<div class="descripciones">
+  <table class="table container">
+    <tr>
+      <div class="centrar">
+        <th>Sede</th>
+        <th>Ciudad</th>
+        <th>Calle</th>
+        <th>Número</th>
+        <td>
+          <a class="btn btn-success svg" href="{{ route('sede.create') }}">
+            <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+            Crear Sede
+          </a>
+        </td>
+      </div>
+    </tr>
+  </table>
+  <p class="text-capitalize container"> No hay sedes.</p>
+  @endforelse
 
-<!-- Paginación -->
-<div class="d-flex justify-content-center">
-  <!-- 
+  <!-- Paginación -->
+  <div class="d-flex justify-content-center">
+    <!-- 
   Agregar en App\Providers\AppServiceProvider:
   use Illuminate\Pagination\Paginator;
       public function boot() { Paginator::useBootstrap(); } -->
-</div>
-@endsection
+  </div>
+  @endsection
