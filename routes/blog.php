@@ -8,6 +8,7 @@
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EtiquetaController;
+use App\Http\Controllers\MailController;
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('noticias', NoticiaController::class);

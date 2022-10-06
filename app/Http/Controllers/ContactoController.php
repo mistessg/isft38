@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contacto;
+use App\Models\Sede;
 use Illuminate\Http\Request;
 
 class ContactoController extends Controller
@@ -14,14 +14,11 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        //$contactos = Contacto::all();
         $sedes = Sede::all();
-        return view('backend.contacto.index', compact('sedes'));
+        return view('frontend.sede.contacto', compact('sedes'));
     }
     public function create()
     {
-        $contactos = Contacto::pluck('descripcion','id');
-        return view('backend.contacto.create', compact('contactos'));
     }
 
     /**
@@ -32,24 +29,44 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-
+//Agregar mensajes de error en vista y mostrar mensaje flash        
         $validatedData = $request->validate(
-            [ 'nombre' => 'required',
-              'email' => 'required',
-              'mensaje' => 'required',
+            [
+                'nombre' => 'required',
+                'email' => 'required',
+                'sede' => 'required',
+                'mensaje' => 'required'
+            ]
+        );
+     
+        $nombre = $request->input('nombre');
+        $respuesta = $request->input('email');
+        $mensaje = $request->input('mensaje');
+        //$mail = $request->input('sede'); //NO BORRAR
+        $mail = 'gagusti@isft38.edu.ar';
 
-         );
-        $contacto = new contacto();
-        $contacto->nombre = $request->input('nombre');
-        $contacto->email = $request->input('email');
-        $contacto->mensaje = $request->input('mensaje');
+        $asunto    = 'Consulta desde www.isft38.edu.ar';
+        $noreply   = 'no-reply@isft38.edu.ar';
+        $mensaje1 = $request->input('mensaje');
+        
+        $headers = "";
+        $headers .= "From: I.S.F.T N° 38 <" . $noreply . ">\r\n";
+        $headers .= "Reply-To: " . $nombre . " <" . $respuesta . ">\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
+        $mensaje2  = "<strong>Consulta realizada por " . $nombre . ": \r\n </strong>";
+        $mensaje2 .= '<br> <br>';
+        $mensaje2 .= nl2br($mensaje1);
+    
+        $resultado = mail($mail, $asunto, $mensaje2, $headers);
+
+        if ($resultado == true) {
+            $request->session()->flash('status', 'Mensaje enviado');
+        } else {
+            $request->session()->flash('status', 'Error al enviar el mensaje');
         }
-        $contacto->save();
-
-
-       // $request->session()->flash('status', 'Se guardó correctamente la carrera '. $carrera->descripcion);
-       return redirect()->route('contacto.index');
+        return redirect()->route('contacto.index');
     }
 
     /**
@@ -58,9 +75,8 @@ class ContactoController extends Controller
      * @param  \App\Models\Contacto  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function show(Contacto $contacto)
+    public function show($id)
     {
-        //
     }
 
     /**
@@ -71,8 +87,6 @@ class ContactoController extends Controller
      */
     public function edit($id)
     {
-        $contactos = Contacto::find($id);
-        return view('backend.contacto.edit', compact('contactos'));
     }
 
     /**
@@ -82,23 +96,8 @@ class ContactoController extends Controller
      * @param  \App\Models\Contacto
      * @return \Illuminate\Http\Response
      */
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $contacto = contacto::findOrFail($id);
-        $validatedData = $request->validate(
-            [ 'nombre' => 'required',
-              'email' => 'required',
-              'mensaje' => 'required',
-
-         );
-         $contacto->nombre = $request->input('nombre');
-         $contacto->email = $request->input('email');
-         $contacto->mensaje = $request->input('mensaje');
-
-        $contacto->save();
-       }
-        $contacto->save($validatedData);
-        return redirect()->route('contacto.index');
     }
 
     /**
@@ -109,8 +108,5 @@ class ContactoController extends Controller
      */
     public function destroy($id)
     {
-         $contacto = contacto::findOrFail($id);
-         $contacto->delete();
-         return redirect()->route('contacto.index');
     }
 }
