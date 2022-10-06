@@ -37,7 +37,7 @@
     </div>
     @error('descripcion')<div class="alert alert-danger">{{ $message }}</div>@enderror
 
-    </br><button type="submit" class="btn btn-success form-control">Agregar</button>
+    </br><button type="submit" class="btn btn-success form-control">Guardar</button>
     {!!Form::close()!!}
 </div>
 

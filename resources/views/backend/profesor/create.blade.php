@@ -44,7 +44,7 @@
         {{Form::text("apellido", null , ["class" => "form-control" ])}}
     </div>
     @error('apellido')<div class="alert alert-danger">{{ $message }}</div>@enderror
-    </br><button type="submit" style="width: 100%;" class="btn btn-primary">Agregar</button>
+    </br><button type="submit" class="btn btn-success form-control">Guardar</button>
     {!!Form::close()!!}
 </div>
     @endsection

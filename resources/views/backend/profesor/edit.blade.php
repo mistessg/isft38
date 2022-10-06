@@ -19,7 +19,7 @@
             </svg>
         </a>
     </div>
-  <h1 class="TextoInicio">Editar profesor</h1>
+  <h1 class="TextoInicio">Editar Profesor</h1>
 </div>
 
   <div>
@@ -35,34 +35,16 @@
 
   @csrf <!-- {{ csrf_field() }} -->
 
-  <div class="form-group row">
-    <div class="col-sm-10">
+  <div class="form-group @if($errors->has('titulo')) has-error has-feedback @endif">
         {{ Form::label("nombre", 'Nombre', ['class' => 'control-label']) }}
-        {{ Form::text("nombre", old("nombre"), ["class" => "form-control", "placeholder" => "", 
-    ])}}
-        @error('nombre')
-        <div class="alert alert-danger">
-            {{$message}}
-        </div>
-        @enderror
-        </div>
+        {{Form::text("nombre", null , ["class" => "form-control" ])}}
     </div>
-    <div class="form-group row">
-    <div class="col-sm-10">
-        {{ Form::label("apellido", 'Apellido', ['class' => 'control-label']) }}
-        {{ Form::text("apellido", old("apellido"), ["class" => "form-control", "placeholder" => "", 
-    ])}}
-        @error('apellido')
-        <div class="alert alert-danger">
-            {{$message}}
-        </div>
-        @enderror
-        </div>
+    @error('nombre')<div class="alert alert-danger">{{ $message }}</div>@enderror
+    <div class="form-group @if($errors->has('titulo')) has-error has-feedback @endif">
+        {{ Form::label("descripcion", 'Apellido', ['class' => 'control-label']) }}
+        {{Form::text("apellido", null , ["class" => "form-control" ])}}
     </div>
-  
-    </div>
-
-    </br><button type="submit" style="width: 83%;" class="btn btn-primary">Guardar cambios</button>
-</div>
+    @error('apellido')<div class="alert alert-danger">{{ $message }}</div>@enderror
+    </br><button type="submit" class="btn btn-success form-control">Guardar</button>
 {!!Form::close()!!}
 @endsection

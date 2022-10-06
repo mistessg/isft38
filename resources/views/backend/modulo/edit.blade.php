@@ -66,7 +66,7 @@
     </div>
     @enderror
     </br>
-    <button type="submit" class="btn btn-success form-control">Guardar cambios</button>
+    <button type="submit" class="btn btn-success form-control">Guardar</button>
 </div>
 
 

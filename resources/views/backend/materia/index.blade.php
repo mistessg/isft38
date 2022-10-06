@@ -59,11 +59,10 @@ a{
        <table class="table container">  
         <tr>
         <div class="algo">
-          <td>Id</td>
-          <td>Materia</td>
-          <td>Carrera</td>
-          <td>Año</td>
-          <td>Programa</td>
+          <th>Materia</th>
+          <th>Carrera</th>
+          <th>Año</th>
+          <th>Programa</th>
           <td>
             <a class="btn btn-success svg" href="{{ route('materia.create') }}">
             <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
@@ -75,7 +74,6 @@ a{
        @endif
        <tr>
         <div class="subcontainer">
-        <td>{{ $materia->id }}</td>
         <td>{{ $materia->descripcion }}</td>
         <td>{{ $materia->deCarrera->descripcion }}</td>
         <td>{{ $materia->deAnio->descripcion }}</td> 
