@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="Inicio">
-  <h1 class="TextoInicio">Editar horarios</h1>
+  <h1 class="TextoInicio">Editar módulo</h1>
 </div>
 
 <div>
