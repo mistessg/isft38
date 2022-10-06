@@ -2,20 +2,20 @@
 @section('title', 'Usuarios')
 @section('content')
 <div class="descripciones">
- 
+
   @forelse($users as $user)
   @if($loop->first)
   <table class="table container">
     <tr>
     <tr>
-          <th class="align-middle">Usuario</th>
-          <th class="align-middle">Email</th>          
-          <td class="d-flex justify-content-end align-middle">
-          <a class="btn btn-success" href="{{ route('users.create') }}">
+      <th class="align-middle">Usuario</th>
+      <th class="align-middle">Email</th>
+      <td class="d-flex justify-content-end align-middle">
+        <a class="btn btn-success" href="{{ route('users.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-           Crear Usuario</a>
-         </td>
-          </tr>   
+          Crear Usuario</a>
+      </td>
+    </tr>
     @endif
     <tr>
       <td>{{ $user->name }}</td>
@@ -34,21 +34,21 @@
   @endif
   @empty
   <table class="table container">
-        <tr>
-          <th class="align-middle">Usuario</th>
-          <th class="align-middle">Email</th>          
-          <td class="d-flex justify-content-end align-middle">
-          <a class="btn btn-success" href="{{ route('users.create') }}">
+    <tr>
+      <th class="align-middle">Usuario</th>
+      <th class="align-middle">Email</th>
+      <td class="d-flex justify-content-end align-middle">
+        <a class="btn btn-success" href="{{ route('users.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-           Crear Usuario</a>
-         </td>
-          </tr>     
-    </table>
-     <p class="text-capitalize container"> No hay usuarios.</p>
-   <a class="btn btn-success" href="{{ route('users.create') }}">
-          <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-           Crear Usuario</a>   
-     <p class="text-capitalize"> No hay usuarios.</p>
+          Crear Usuario</a>
+      </td>
+    </tr>
+  </table>
+  <p class="text-capitalize container"> No hay usuarios.</p>
+  <a class="btn btn-success" href="{{ route('users.create') }}">
+    <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
+    Crear Usuario</a>
+  <p class="text-capitalize"> No hay usuarios.</p>
   @endforelse
 </div>
 <hr>
