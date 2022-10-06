@@ -52,7 +52,7 @@ class ModuloController extends Controller
         $modulo->duracion = $request->input('duracion');
         $modulo->save();
         $request->session()->flash('status', 'Se guardó correctamente el módulo');
-        return redirect()->route('modulo.create');
+        return redirect()->route('modulo.index');
     }
 
     /**
@@ -111,8 +111,10 @@ class ModuloController extends Controller
      * @param  \App\Models\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modulo $modulo)
+    public function destroy($id)
     {
-        //
+        $modulo = Modulo::findOrFail($id);
+        $modulo->delete();
+        return redirect()->route('modulo.index');
     }
 }

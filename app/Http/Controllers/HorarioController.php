@@ -409,7 +409,7 @@ class HorarioController extends Controller
      */
     public function destroy($id)
     {
-        $horario = Horario::findOrFail($id);
+        $horario = Horario::findOrFail($id); 
         $sede = $horario->sede_id;
         $carrera = $horario->carrera_id;
         $anio = $horario->anio_id;

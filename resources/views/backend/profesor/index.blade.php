@@ -3,7 +3,7 @@
 @section('content')
 
 @forelse($profesores as $profesor)
-    @if($loop->first)
+    @if($loop->first) 
         <table class="table m-o container">
             <tr class="text-dark">
                  <th class="align-middle ps-5">Nombre</th>

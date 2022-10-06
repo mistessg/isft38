@@ -315,7 +315,8 @@ button:hover .button-text {
 
 
   <div class="carditas ">
-    <div class="card" style="width: 25rem;">
+  <div class="row">
+    <div class="card col-lg-4 col-md-12 mb-3" style="width: 25rem;">
       <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
@@ -357,6 +358,7 @@ button:hover .button-text {
       </div>
     </div>
   </div>
+</div>
 
   <div id="modal1" onclick="onclick1()">
       <div>
