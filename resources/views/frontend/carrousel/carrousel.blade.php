@@ -2,6 +2,9 @@
 @section('content')
 
 <style>
+  *{
+    overflow-x:hidden;
+  }
 .containerss{
     display: flex;
     flex-direction: column;
@@ -17,6 +20,7 @@
 .texto{
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 .texto p {
   padding:30px;
@@ -27,11 +31,11 @@
 .card {
   height: 600px;
   display: flex;
-  margin:0 10px;
+  margin:0 40px;
   text-align: center;
 }
 .card-img-top {
-  height: 220px;
+  height: 250px;
 }
 .fondoCards {
   background-color: #212121;
@@ -89,6 +93,11 @@ button.learn-more .circle .icon.arrow {
  width: 1.125rem;
  height: 0.125rem;
  background: none;
+}
+.row{
+  display: flex;
+  justify-content: center;
+  padding:20px;
 }
 
 button.learn-more .circle .icon.arrow::before {
@@ -312,17 +321,20 @@ button:hover .button-text {
     </div>
   </div>
 
+  
 
 
-  <div class="carditas ">
-  <div class="row">
-    <div class="card col-lg-4 col-md-12 mb-3" style="width: 25rem;">
-      <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+  <div>
+  <div class="row" style="">
+    <div class="card col-lg-4 col-md-10 sm-12 mb-3" style=" margin:0%; padding:0% ">
+      <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap" >
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
+        <hr>
 		@foreach($historias as $historia) 
 		<p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
 		@endforeach	
+    <hr>
 	</div>
       
       <div class="card-body">
@@ -334,18 +346,16 @@ button:hover .button-text {
         </button>
       </div>
     </div>
-
-    
-   
-
   <!--CARD 2-->
-    <div class="card" style="width: 25rem;">
+    <div class="card col-lg-4 col-md-10 sm-12 mb-3 " style=" padding:0% ">
       <img class="card-img-top"  src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Objetivos</h5>
+        <hr>
 		@foreach($objetivos as $objetivo) 
-		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 340)!!}...</p>		
+		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 350)!!}...</p>		
 		@endforeach	
+    <hr>
       </div>
       
       <div class="card-body">

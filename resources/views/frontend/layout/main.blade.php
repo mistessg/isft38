@@ -34,10 +34,20 @@
         .footin{
           color: white;
         }
+        @media (max-width: 768px){
+          .footin{
+          display: flex;
+          flex-wrap: wrap;
+          text-align: center;
+          }
+          ul li{
+            width: 100%;
+            font-size: 21px;
+          }
+        }
         ul li a{
           margin:20px;
         }
-
 
         /* botonas */
 
@@ -78,7 +88,6 @@
         transition-duration: 400ms;
         transition-property: width, left;
       }
-
 
 
     </style>
@@ -175,9 +184,8 @@
         <footer class="w-100 py-5">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Inicio</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Sobre Nosotros</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-white oid">Sobre Nosotros</a></li>
                 <li class="nav-item"><a href="https://twitter.com/isft38" target="_blank" class="nav-link px-2 text-white">Twitter</a></li>
-                
             </ul>
             <div style="text-align:center">
             <p>Sede central San Nicolás</p>
