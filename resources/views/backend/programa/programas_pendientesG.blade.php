@@ -1,4 +1,4 @@
-@extends('frontend.layout.main')
+@extends('backend.layouts.main')
 
 @section('title', 'Listado de materias')
 

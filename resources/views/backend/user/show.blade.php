@@ -1,7 +1,9 @@
-@extends('backend.layouts.blog')
+@extends('backend.layouts.main')
 @section('title', 'Etiquetas')
 @section('content')
-  <h1>Etiqueta</h1>
+<div class="Inicio">
+      <h1 class="TextoInicio">Usuario</h1>
+</div>
   <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
@@ -23,19 +25,5 @@
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>    
-    <div class="form-group">
-          {{ Form::label("password", 'Password', ['class' => 'control-label']) }}
-          {{Form::password("password", ["class" => "form-control", "placeholder" => "Ingrese el password", "readonly" , ])}}                        
-          @error('password')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>     
-    <div class="form-group">
-          {{ Form::label("password-confirm", 'Confirm Password', ['class' => 'control-label']) }}
-          {{Form::password("password_confirmation", ["class" => "form-control", "placeholder" => "Ingrese el password", "readonly" , ])}}                        
-          @error('password-confirm')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-    </div>     
 {!!Form::close()!!}
 @endsection

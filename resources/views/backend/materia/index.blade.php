@@ -46,7 +46,13 @@ a{
   width: 300px;
 }
 </style>
-
+@if(Session::has('status'))
+<div class="alert alert-success alert-dismissible fade show">{{ Session('status')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
      @forelse($materias as $materia)
        @if($loop->first)
        <div class="descripciones">

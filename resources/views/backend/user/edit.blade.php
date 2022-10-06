@@ -1,7 +1,9 @@
-@extends('backend.layouts.blog')
+@extends('backend.layouts.main')
 @section('title', 'Usuarios')
 @section('content')
-  <h1>Editar Usuario</h1>
+<div class="Inicio">
+  <h1 class="TextoInicio">Editar Usuario</h1>
+</div>
   <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
@@ -38,7 +40,7 @@
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
     </div>     
- </br><button type="submit" style="width: 100%;" class="btn btn-primary">Guardar</button>    
+    </br><button type="submit" class="btn btn-success form-control">{{__('noticias.guardar')}}</button>
     </div>
 {!!Form::close()!!}
 @endsection
