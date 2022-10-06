@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Horario;
 use App\Models\Profesor;
+use App\Models\Programa;
 use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
@@ -117,7 +119,14 @@ class ProfesorController extends Controller
     public function destroy($id)
     {
         $profesor = Profesor::findOrFail($id);
-        $profesor->delete();
+        $horarios = Horario::where('profesor_id', $profesor->id)->first();
+        $programas = Programa::where('profesor_id', $profesor->id)->first();
+        if (empty($horarios) || empty($programas)) {
+            $profesor->delete();
+        } else {
+            session()->flash('status', 'No se puede eliminar el profesor porque información asociada.');
+        }
+
         return redirect()->route('profesor.index');
     }
 }
