@@ -98,6 +98,9 @@ a{
               <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
             </button>
             
+            <a href="{{ route('carrera.show', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
+              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
+            </a>
           </div>
             {!!Form::close()!!}  
          </td>
