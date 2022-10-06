@@ -38,7 +38,7 @@ class ProgramaController extends Controller
     }
     public function CargarPrograma()
     {
-        return view('backend.programa.cargar_programa');
+        return view('frontend.programa.cargar_programa');
     }
     public function ProgramasPendientes()
     {
@@ -59,7 +59,7 @@ class ProgramaController extends Controller
             $periodos[$i] = $i;
         }
         //dd($materias);
-        return view('backend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
+        return view('frontend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
     }
     public function ProgramasPendientesSearch(Request $request)
     {
@@ -86,7 +86,7 @@ class ProgramaController extends Controller
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
         $materias = Materia::where('carrera_id', $request->input('carrera_id'))->get();
-        return view('backend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
+        return view('frontend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
     }
     /**
      * Show the form for creating a new resource.
