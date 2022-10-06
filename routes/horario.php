@@ -26,4 +26,5 @@ Route::get('horarios/{sede}/{carrera}/{anio}/{comision}', [HorarioController::cl
 
 Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor'])->name('horarios.porProfesor');
 Route::post('/horarios/porProfesor', [HorarioController::class, 'searchProfesor'])->name('horarios.show.porProfesor');
-Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora'])->name('horarios.searchPorDiaHora');
+Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora'])->name('horarios.PorDiaHora');
+Route::post('/horarios/porDiaHora', [HorarioController::class, 'searchPorDiaHora'])->name('horarios.searchPorDiaHora');

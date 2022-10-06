@@ -101,8 +101,44 @@ class HorarioController extends Controller
     }
 
     public function porDiaHora()
-    {
-        return view('frontend\horarios\porDiaHora');
+    {  
+        $modulohorario = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' - ',modulos.horafin) as horario"))->pluck('horario', 'id');        
+
+        $dias = array();
+        $dias[1] = 'Lunes';
+        $dias[2] = 'Martes';
+        $dias[3] = 'Miércoles';
+        $dias[4] = 'Jueves';
+        $dias[5] = 'Viernes';
+        $dias[6] = 'Sábado';
+
+        $horario = Horario::select("dia")->pluck('dia','id');
+        
+        foreach($horario as $key_hora=>$dia) {            
+            switch ($hora->dia) {
+                case '1':
+                    $dias[1] = 'Lunes';
+                    break;
+                case '2':
+                    $dias[2] = 'Martes';  
+                    break;   
+                case '3':
+                    $dias[3] = 'Miércoles';
+                    break;
+                case '4':
+                    $dias[4] = 'Jueves';
+                    break;
+                case '5':
+                    $dias[5] = 'Viernes';
+                    break;
+                case '6':
+                    $dias[6] = 'Sábado';
+                    break;
+            }            
+          }
+          ksort($dias);
+
+        return view('frontend\horarios\porDiaHora',compact('modulohorario'));
     }
     public function create(Request $request)
     {
@@ -328,6 +364,14 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
+    public function searchPorDiaHora(Request $request){
+       
+        $materias = Horario::where('dia', $request->input('dia'))
+                           ->where('modulohorario_id', $request->input('modulohorario_id'))->get();
+                           dd($materias);
+        return view('frontend.horario.porDiaHora',compact('materias'));
+
+    }
     public function show($id)
     {
         // $horarios = Horario::all();
