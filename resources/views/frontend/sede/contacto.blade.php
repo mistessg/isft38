@@ -110,6 +110,13 @@
             <div class="alert alert-primary" style="margin:20px 40px;text-align:center;" role="alert">
                 <i>Atención de secretaría: Lunes a Viernes, de 17:45 a 22:00hs</i>
             </div>
+
+            <div>
+                @if(Session::has('status'))
+                <div class="alert alert-success">{{ Session('status')}}</div>
+                @endif
+            </div>
+
             <div class="container">
                 {{ Form::open(['route' => 'contacto.store', 'files' => true]) }}
                 @csrf
@@ -117,18 +124,27 @@
                     <h5 class="card-header" style=" background-color: #181818; color: white;font-weight:bold;">Contacto</h5>
                     <div class="card-body" style="border:none;border:1px solid grey;">
                         <div class=" mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="nombre" name="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp">
+                            <!-- <label for="nombre" class="form-label">Nombre</label> -->
+                            <!-- <input type="nombre" name="nombre" class="form-control" placeholder="Escriba su nombre" id="nombre" aria-describedby="emailHelp"> -->
+                            {{ Form::label("nombre", 'Nombre', ['class' => 'control-label']) }}
+                            {{Form::text("nombre", old("nombre"), ["class" => "form-control", "placeholder" => "Escriba su nombre", ])}}
+                            @error('nombre') <div class="alert alert-danger">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp">
+                            <!-- <label for="email" class="form-label">Email</label> -->
+                            <!-- <input type="email" name="email" class="form-control" id="email" placeholder="Escriba su email" aria-describedby="emailHelp"> -->
+                            {{ Form::label("email", 'Email', ['class' => 'control-label']) }}
+                            {{Form::email("email", old("email"), ["class" => "form-control", "placeholder" => "Escriba su email", ])}}
+                            @error('email') <div class="alert alert-danger">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Teléfono</label>
                             <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Escriba su teléfono" aria-describedby="emailHelp">
+                            <!-- {{ Form::label("telefono", 'Telefono', ['class' => 'control-label']) }} -->
+                            <!-- {{Form::number("telefono", old("telefono"), ["class" => "form-control", "placeholder" => "Escriba su telefono", ])}} -->
+                            <!-- @error('telefono') <div class="alert alert-danger">{{ $message }}</div>@enderror -->
                         </div>
 
                         <div class="mb-3">

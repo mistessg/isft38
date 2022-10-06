@@ -1,30 +1,44 @@
 @extends('backend.layouts.main')
-@section('title', 'Comision')
+@section('title', 'Crear Comisión')
 @section('content')
 
-
-
-<div class="container" style="display: flex ; align-items: center; justify-content: center">
-    
-    <div class="card my-4"  style=" width: 50%;">
-        <h5 class="card-header" style="background-color: #181818; color: white;">Crear Comision</h5>
-    <div class="card-body">
-
-    {{ Form::open(['route' => 'horario.store']) }}
-        <div class="input-group mt-2 mb-3">
-
-          {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comision", ])}}    
-          @error('descripcion')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-          </div> 
-        
-        <div class="d-grid gap-2 my-4 mx-auto">
-            <button class="form-control btn btn-outline-dark" type="button">Guardar</button>
-        </div>
-
+<style>
+    .Inicio {
+        text-align: center;
+        margin: 20px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+        position: relative;
+    }
+</style>
+<div class="Inicio">
+    <div style="position:absolute;top:0;left:30px;cursor:pointer;">
+        <a href="/comision">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+            </svg>
+        </a>
     </div>
-    {!!Form::close()!!} 
+    <h1 class="TextoInicio">Nueva comision</h1>
+</div>
+
+<div>
+    @if(Session::has('status'))
+    <div class="alert alert-success">{{ Session('status')}}</div>
+    @endif
+</div>
+<div class="links">
+    {{ Form::open(['route' => 'comision.store', 'files' => true]) }}
+    @csrf
+    <!-- {{ csrf_field() }} -->
+    <div class="form-group @if($errors->has('titulo')) has-error has-feedback @endif">
+        {{ Form::label("comision", 'Comision', ['class' => 'control-label']) }}
+        {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comisión", ])}}
+    </div>
+    @error('descripcion')<div class="alert alert-danger">{{ $message }}</div>@enderror
+
+    </br><button type="submit" class="btn btn-success form-control">Agregar</button>
+    {!!Form::close()!!}
 </div>
 
 
