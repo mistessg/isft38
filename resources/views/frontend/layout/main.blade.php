@@ -89,7 +89,7 @@
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none alberto">
-            <img src="http://www.isft38.edu.ar/image/logo.png" width="45px" alt=""/>
+            <img src="logo1.png" width="45px" alt=""/>
           </a>
 
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -171,8 +171,8 @@
 
     <!-- FOOTER -->
 
-    <div class="container footer footin">
-        <footer class="w-100 py-5">
+    <div class="footer footin" style="background:#212121;">
+        <footer class="w-100 mt-5 py-5">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Inicio</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Sobre Nosotros</a></li>

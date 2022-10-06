@@ -186,15 +186,74 @@ button:hover .button-text {
   fill: white;
 }
 
-#modal1{
-  display: none;
+.sesion {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+    overflow: scroll;
+    overflow: auto;
+    z-index: 2;
+    scrollable
 }
-#modal1 div{
-  position:fixed;
-  top:0;
-  color:white;
+.show {
+    pointer-events: auto;
+    opacity: 1;
 }
-
+.vent_sesion {
+    margin:auto;
+    position:relative;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  }
+  .container-historia{
+    background-image:url(historia.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color: white;
+  }
+  .container-objetivo{
+    background-image:url(objetivo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color: white;
+  }
+  .container-son{
+    word-wrap:break-word;
+    width:600px;
+    height:350px;
+    padding:20px;
+    overflow: auto;
+  }
+  .btn_cerrar{
+    position: absolute;
+    top:-20px;
+    right: -20px;
+    z-index: 1;
+    border:none;
+    cursor: pointer;
+  }
+  .btn_cerrar svg{
+    background:white;
+    border-radius:50px;
+  }
 </style>
 
 <!-- Required meta tags -->
@@ -320,9 +379,9 @@ button:hover .button-text {
       <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
-		@foreach($historias as $historia) 
-		<p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
-		@endforeach	
+        @foreach($historias as $historia) 
+        <p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
+        @endforeach	
 	</div>
       
       <div class="card-body">
@@ -330,13 +389,11 @@ button:hover .button-text {
           <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
           </span>
-          <span class="button-text" onclick="onclick1()">Ver más</span>
+          <span class="button-text" id="btn_sesion">Ver más</span>
         </button>
       </div>
     </div>
 
-    
-   
 
   <!--CARD 2-->
     <div class="card" style="width: 25rem;">
@@ -353,40 +410,96 @@ button:hover .button-text {
           <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
           </span>
-          <span class="button-text">Ver más</span>
+          <span class="button-text" id="btn_sesion2" >Ver más</span>
         </button>
       </div>
     </div>
   </div>
 </div>
 
-  <div id="modal1" onclick="onclick1()">
-      <div>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
-        <p>asdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdd</p>
+  
+      <!-- MODALS -->
+
+
+
+  <div id="sesion" class="sesion">
+      <div class="vent_sesion">
+
+        <div class="container-historia">
+          <h1>Historia</h1>
+        </div>
+
+        <div class="container-son">
+          <div>
+            @foreach($historias as $historia) 
+            <p>{!!$historia->historia!!}</p>	
+            @endforeach	
+          </div>
+        </div>
+
+        <div class="btn_cerrar"  id="btn_cerrar">
+          <svg  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </div>
+
       </div>
-    </div>
+      </div>
+
+
+
+      <div id="sesion2" class="sesion">
+      <div class="vent_sesion">
+      <div class="container-objetivo">
+          <h1>Objetivos</h1>
+        </div>
+
+        <div class="container-son">
+        @foreach($objetivos as $objetivo) 
+          <p>{!! $objetivo->objetivo !!}</p>		
+        @endforeach	
+         
+        </div>
+
+        <div class="btn_cerrar" id="btn_cerrar2">
+          <svg  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </div>
+      
+      </div>
+      </div>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-      function onclick1(){
-        let flag = false;
-        if(x.style.display === "none"){
-          x.style.display = "block";  
-          flag = true;
-        } else{
-          x.style.display = "none";
-          flag = false;
-        }
-      }
+  
+  const btn_sesion = document.getElementById('btn_sesion');
+  const btn_sesion2 = document.getElementById('btn_sesion2');
+    const sesion = document.getElementById('sesion');
+    const sesion2 = document.getElementById('sesion2');
+    const btn_cerrar = document.getElementById('btn_cerrar');
+    const btn_cerrar2 = document.getElementById('btn_cerrar2');
+
+    btn_sesion.addEventListener('click', () => {
+        sesion.classList.add('show');
+    });
+
+    btn_cerrar.addEventListener('click', () => {
+        sesion.classList.remove('show');
+    });
+
+    btn_sesion2.addEventListener('click', () => {
+        sesion2.classList.add('show');
+    });
+
+    btn_cerrar2.addEventListener('click', () => {
+        sesion2.classList.remove('show');
+    });
+
     </script>
 
 @endsection
