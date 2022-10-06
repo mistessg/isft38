@@ -1,4 +1,4 @@
-@extends('frontend.layout.main')
+@extends('backend.layouts.main')
 
 @section('title', 'Listado de materias')
 
@@ -7,7 +7,7 @@
 <div class="container my-4">
 
   <div class="card">
-    <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
+    <h5 class="card-header" style=" background-color: #181818; color: white;">Programas pendientes</h5>
     <div class="card-body">
 
       {{ Form::open(['route' => 'programa.pendiente.search']) }}
