@@ -4,11 +4,13 @@
 
 @section('content')
 
-<div class="container my-4">
 
-  <div class="card">
-    <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
-    <div class="card-body">
+
+<div class="Inicio">
+    <h1 class="TextoInicio">Nueva Carrera</h1>
+  </div>
+  <h2>habdjkaikwifwa</h2>
+    
 
       {{ Form::open(['route' => 'programa.pendiente.search']) }}
       @csrf
@@ -54,7 +56,7 @@
       </div>
       <br>
 
-    </div>
+   
     <style>
       .titulo {
         text-align: center;
