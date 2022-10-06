@@ -170,7 +170,13 @@ return [
         'profesor_id'=>"'profesor'",
         'sede_id'=>"'sede'",
         'carrera_id'=>"'carrera'",
-        'descripcion' => "'descripción'"
+        'descripcion' => "'descripción'",
+        'calle' => "'calle'",
+        'numero' => "'número'",
+        'sedeimagen' => "'imagen'",
+        'ciudad' => "'ciudad'",
+        '' => "''",
+        '' => "''",
      ],
 
 ];

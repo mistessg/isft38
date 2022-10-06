@@ -39,10 +39,6 @@ a{
   border-radius:25px;
   padding: 10px;
 }
-.svg{
-  padding: 15px;
-  border-radius:70px;
-}
 .botonera{
   display: flex;
   flex-direction: row;
@@ -50,7 +46,13 @@ a{
   width: 300px;
 }
 </style>
-
+@if(Session::has('status'))
+<div class="alert alert-success alert-dismissible fade show">{{ Session('status')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
      @forelse($materias as $materia)
        @if($loop->first)
        <div class="descripciones">
@@ -84,17 +86,16 @@ a{
           {{ Form::model($materia, [ 'method' => 'delete' , 'route' => ['materia.destroy', $materia->id] ]) }}
             @csrf  
           <div class="botonera">
-            <a href="{{ route('materia.show', ['materium' => $materia->id ]) }}"  class="btn btn-info svg">
-              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20" alt="Mostrar" title="Mostrar">
-            </a>
+
+              <a href="{{ route('materia.edit', ['materium' => $materia->id ]) }}" class="btn btn-primary svg " >
+                <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
+              </a>
 
               <button type="submit" name="borrar{{$materia->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la carrera?')) return false;">
                 <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
               </button>
 
-            <a href="{{ route('materia.edit', ['materium' => $materia->id ]) }}" class="btn btn-primary svg " >
-              <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
-            </a>
+            
           </div>
             {!!Form::close()!!}  
          </td>

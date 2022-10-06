@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\MateriaController;
 
 /*
@@ -6,4 +7,7 @@ use App\Http\Controllers\MateriaController;
 | Materia                                               | Iván, Martín
 |--------------------------------------------------------------------------
 */
-Route::resource('materia', MateriaController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('materia', MateriaController::class);
+});

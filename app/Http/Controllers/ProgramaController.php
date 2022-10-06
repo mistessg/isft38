@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Programa;
 use App\Models\Carrera;
 use App\Models\Sede;
@@ -9,6 +11,7 @@ use App\Models\Materia;
 use App\Models\Comision;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+
 class ProgramaController extends Controller
 {
     /**
@@ -98,7 +101,7 @@ class ProgramaController extends Controller
         $sede = Sede::pluck('descripcion', 'id');
         $carreras = Carrera::pluck('descripcion', 'id');
         $anios = Anio::pluck('descripcion', 'id');
-        $materias = Materia::pluck('descripcion', 'id');
+        $materias = array(); //Materia::pluck('descripcion', 'id');
         $comisiones = Comision::pluck('comision', 'id');
         $profesores = Profesor::pluck('nombre', 'id');
         return view('backend.programa.create', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
@@ -136,7 +139,7 @@ class ProgramaController extends Controller
         return redirect()->route('programa.create');
     }
     public function search(Request $request)
-    { 
+    {
         $validatedData = $request->validate(
             [
                 'sede_id' => 'required',
@@ -164,16 +167,16 @@ class ProgramaController extends Controller
        $sede =$request->input('sede_id');
        $carrera =$request->input('carrera_id');
        $comision =$request->input('comision_id');*/
-       $startDate = Carbon::createFromFormat('Y-m-d', $periodo . '-01-01');
-       $endDate = Carbon::createFromFormat('Y-m-d', $periodo . '-12-31');
-       $programas = Programa::where('sede_id', $sede)
-           ->where('carrera_id', $carrera)
-           ->where('comision_id', $comision)
-           ->whereBetween('created_at', [$startDate, $endDate])
-           ->OrderBy('anio_id')->get();
-       return view('backend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
-   }
-   public function show($id)
+        $startDate = Carbon::createFromFormat('Y-m-d', $periodo . '-01-01');
+        $endDate = Carbon::createFromFormat('Y-m-d', $periodo . '-12-31');
+        $programas = Programa::where('sede_id', $sede)
+            ->where('carrera_id', $carrera)
+            ->where('comision_id', $comision)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->OrderBy('anio_id')->get();
+        return view('backend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
+    }
+    public function show($id)
     {
         $programa = Programa::findOrFail($id);
         return view('backend.programa.show', compact('programa'));
@@ -219,7 +222,7 @@ class ProgramaController extends Controller
             $programa->save();
         }
         $request->session()->flash('status', 'Se guardó correctamente el programa ');
-        
+
         //return redirect()->route('programa.edit',$programa->id); 
         return redirect()->route('programa.search.list', ['periodo' => date("Y"), 'sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'comision' => $request->input('comision_id')]);
     }
@@ -230,7 +233,7 @@ class ProgramaController extends Controller
         return redirect()->back();
     }
     public function searchProgramas(Request $request)
-    { 
+    {
         $periodos = array();
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion', 'id');
@@ -274,5 +277,16 @@ class ProgramaController extends Controller
             $periodos[$i] = $i;
         }
         return view('frontend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
+    }
+
+    public function getMaterias($carrera_id = 0, $anio_id = 0)
+    {
+        $materias['data'] = Materia::orderby("descripcion", "asc")
+            ->select('id', 'descripcion')
+            ->where('carrera_id', $carrera_id)
+            ->where('anio_id', $anio_id)
+            ->get();
+
+        return response()->json($materias);
     }
 }

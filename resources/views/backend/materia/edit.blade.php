@@ -34,20 +34,20 @@
   @csrf <!-- {{ csrf_field() }} -->
     <div class="form-group @if($errors->has('titulo')) has-error has-feedback @endif">
       {{ Form::label("descripcion", __('Descripción'), ['class' => 'control-label']) }}
-      {{Form::text("descripcion", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la materia", ])}}                        
+      {{Form::text("descripcion", old("descripcion"), ["class" => "form-control"])}}                        
       @error('descripcion') <div class="alert alert-danger">{{ $message }}</div>@enderror
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
         {{ Form::label("carrera", __('Carrera'), ['class' => 'control-label']) }}                 
-            {{Form::select("carrera_id", $carreras, null, ["class" => "form-control", "placeholder" => "Seleccione una carrera"]) }}   
+            {{Form::select("carrera_id", $carreras, null, ["class" => "form-control"]) }}   
             @error('carrera') <div class="alert alert-danger">{{ $message }}</div>@enderror
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">   
         {{ Form::label("anio", __('Año'), ['class' => 'control-label']) }}              
-            {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione un año"]) }}   
+            {{Form::select("anio_id", $anios, null, ["class" => "form-control"]) }}   
             @error('anio_id') <div class="alert alert-danger">{{ $message }}</div>@enderror
           </div>
     </div>

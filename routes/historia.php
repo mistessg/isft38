@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\ObjetivoController;
 
@@ -7,5 +8,8 @@ use App\Http\Controllers\ObjetivoController;
 | Historia                                      | Alejo, Esteban
 |--------------------------------------------------------------------------
 */
-Route::resource('historia', HistoriaController::class);
-Route::resource('objetivo', ObjetivoController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('historia', HistoriaController::class);
+    Route::resource('objetivo', ObjetivoController::class);
+});

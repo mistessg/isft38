@@ -56,10 +56,6 @@ class materiaController extends Controller
     }
 
     /**
-     *             <a href="{{ route('materia.show', ['materia' => $materia->id ]) }}" class="btn btn-info"><img src="{{ asset('svg/show.svg') }}"  width="20" height="20" alt="Mostrar" title="Mostrar"></a> 
-     *       <a href="{{ route('materia.edit', ['materia' => $materia->id ]) }}" class="btn btn-primary"><img src="{{ asset('svg/edit.svg') }}" width="20" height="20" alt="Editar" title="Editar"></a>             
-    *        <button type="submit" name="borrar{{$materia->id}}" class="btn btn-danger" onclick="if (!confirm('Está seguro de borrar la materia?')) return false;"><img src="{{ asset('svg/delete.svg') }}" width="20" height="20" alt="Borrar" title="Borrar"></button>
-     * Display the specified resource.
      *
      * @param  \App\Models\materia  $materia
      * @return \Illuminate\Http\Response
@@ -115,8 +111,14 @@ class materiaController extends Controller
      */
     public function destroy($id)
     {
-         $materia = materia::findOrFail($id);    
-         $materia->delete();
+         $materia = Materia::findOrFail($id);
+         $programas = Programa::where('materia_id', $materia->id)->first();
+         if (empty($programas)) {
+            $materia->delete();
+         }
+         else{
+            session()->flash('status', 'Esta materia está relacionada en programas ');
+         }
          return redirect()->route('materia.index');
     }
 }

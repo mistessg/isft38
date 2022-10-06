@@ -39,10 +39,6 @@ a{
   border-radius:25px;
   padding: 10px;
 }
-.svg{
-  padding: 15px;
-  border-radius:70px;
-}
 .botonera{
   display: flex;
   flex-direction: row;
@@ -50,7 +46,13 @@ a{
   width: 300px;
 }
 </style>
-
+@if(Session::has('status'))
+<div class="alert alert-success alert-dismissible fade show">{{ Session('status')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
      @forelse($carreras as $carrera)
        @if($loop->first)
        <div class="descripciones">
@@ -60,14 +62,14 @@ a{
             <td>Id</td>
             <td>Carrera</td>
             <td>Resolución</td>
-            <td>Resolución PDF</td>
+            <td>Imágen</td>
             
             <td>Años</td>
             <td></td>
             <td>
               <a class="btn btn-success svg" href="{{ route('carrera.create') }}">
               <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
-              Crear Usuario
+              Crear Carrera
               </a>
           </td>
           </div>
@@ -87,17 +89,15 @@ a{
           {{ Form::model($carrera, [ 'method' => 'delete' , 'route' => ['carrera.destroy', $carrera->id] ]) }}
             @csrf  
           <div class="botonera">
-            <a href="{{ route('carrera.show', ['carrera' => $carrera->id ]) }}"  class="btn btn-info svg">
-              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20" alt="Mostrar" title="Mostrar">
-            </a>
-
-              <button type="submit" name="borrar{{$carrera->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la carrera?')) return false;">
-                <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
-              </button>
 
             <a href="{{ route('carrera.edit', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
               <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
             </a>
+
+            <button type="submit" name="borrar{{$carrera->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la carrera?')) return false;">
+              <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
+            </button>
+            
           </div>
             {!!Form::close()!!}  
          </td>

@@ -11,8 +11,7 @@
     <div class="card-body">
 
     {{ Form::open(['route' => 'horario.store']) }}
-        <div class="input-group mt-5 mb-3">
-
+        <div class="input-group mt-2 mb-3">
 
           {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comision", ])}}    
           @error('descripcion')
