@@ -117,7 +117,7 @@ class ComisionController extends Controller
         if (empty($horarios) || empty($programas)) {
             $comision -> delete();
         } else {
-            session()->flash('status', 'No se puede eliminar la comisión porque información asociada.');
+            session()->flash('status', 'No se puede eliminar la comisión porque tiene información asociada.');
         }
         return redirect()->route('comision.index');
         // return redirect()->route('backend.comision.index', ['sede' => $sede, 'carrera' => $carrera, 'comision' => $comision]);
