@@ -119,7 +119,7 @@ class ModuloController extends Controller
         if (empty($horarios)) {
             $modulo->delete();
         } else {
-            session()->flash('status', 'No se puede eliminar el módulo porque horarios asociados.');
+            session()->flash('status', 'No se puede eliminar el módulo porque tiene horarios asociados.');
         }
         return redirect()->route('modulo.index');
     }

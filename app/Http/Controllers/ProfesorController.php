@@ -121,10 +121,10 @@ class ProfesorController extends Controller
         $profesor = Profesor::findOrFail($id);
         $horarios = Horario::where('profesor_id', $profesor->id)->first();
         $programas = Programa::where('profesor_id', $profesor->id)->first();
-        if (empty($horarios) || empty($programas)) {
+        if (empty($horarios) && empty($programas)) {
             $profesor->delete();
-        } else {
-            session()->flash('status', 'No se puede eliminar el profesor porque información asociada.');
+        } else if (!empty($horarios) || !empty($programas)){
+            session()->flash('status', 'No se puede eliminar el profesor porque tiene información asociada.');
         }
 
         return redirect()->route('profesor.index');
