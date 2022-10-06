@@ -59,12 +59,11 @@ a{
        <table class="table container" >  
         <tr>
           <div class="algo">
-            <td>Id</td>
-            <td>Carrera</td>
-            <td>Resolución</td>
-            <td>Imágen</td>
+            <th>Carrera</th>
+            <th>Resolución</th>
+            <th>Imagen</th>
             
-            <td>Años</td>
+            <th>Años</th>
             <td></td>
             <td>
               <a class="btn btn-success svg" href="{{ route('carrera.create') }}">
@@ -77,7 +76,6 @@ a{
        @endif
        <tr>
         <div class="subcontainer">
-        <td>{{ $carrera->id }}</td>
         <td>{{ $carrera->descripcion }}</td>
         <td>{{ $carrera->resolucion }}</td>        
         <td><a href="#">{{ $carrera->imagen }}</a></td>        
