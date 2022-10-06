@@ -1,30 +1,29 @@
 @extends('backend.layouts.main')
-@section('title', 'Comision')
+@section('title', 'Crear Comisión')
 @section('content')
 
 
+<div class="Inicio">
+  <h1 class="TextoInicio">Nueva comision</h1>
+</div>
 
-<div class="container" style="display: flex ; align-items: center; justify-content: center">
-    
-    <div class="card my-4"  style=" width: 50%;">
-        <h5 class="card-header" style="background-color: #181818; color: white;">Crear Comision</h5>
-    <div class="card-body">
-
-    {{ Form::open(['route' => 'horario.store']) }}
-        <div class="input-group mt-2 mb-3">
-
-          {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comision", ])}}    
-          @error('descripcion')
-              <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
-          </div> 
-        
-        <div class="d-grid gap-2 my-4 mx-auto">
-            <button class="form-control btn btn-outline-dark" type="button">Guardar</button>
-        </div>
-
+<div>
+    @if(Session::has('status'))
+    <div class="alert alert-success">{{ Session('status')}}</div>
+    @endif
+</div>
+<div class="links">
+    {{ Form::open(['route' => 'comision.store', 'files' => true]) }}
+    @csrf
+    <!-- {{ csrf_field() }} -->
+    <div class="form-group @if($errors->has('titulo')) has-error has-feedback @endif">
+        {{ Form::label("comision", 'Comision', ['class' => 'control-label']) }}
+        {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comisión", ])}}
     </div>
-    {!!Form::close()!!} 
+    @error('descripcion')<div class="alert alert-danger">{{ $message }}</div>@enderror
+    
+    </br><button type="submit" class="btn btn-success form-control">Agregar</button>
+    {!!Form::close()!!}
 </div>
 
 
