@@ -1,16 +1,14 @@
-@extends('frontend.layout.main')
+@extends('backend.layouts.main')
 
 @section('title', 'Listado de materias')
 
 @section('content')
 
+<div class="container my-4">
 
-
-<div class="Inicio">
-    <h1 class="TextoInicio">Nueva Carrera</h1>
-  </div>
-  <h2>habdjkaikwifwa</h2>
-    
+  <div class="card">
+    <h5 class="card-header" style=" background-color: #181818; color: white;">Programas pendientes</h5>
+    <div class="card-body">
 
       {{ Form::open(['route' => 'programa.pendiente.search']) }}
       @csrf
@@ -56,7 +54,7 @@
       </div>
       <br>
 
-   
+    </div>
     <style>
       .titulo {
         text-align: center;
