@@ -104,11 +104,9 @@
             </div>
 
             @if(Session::has('status'))
-                <div class="alert alert-success">{{ Session('status')}}</div>
+                <div style="text-align:center;" class="alert alert-success">{{ Session('status')}}</div>
             @endif
-            
-            
-
+ 
             <div class="container">
                 {{ Form::open(['route' => 'contacto.store', 'files' => true])}}
                 @csrf
