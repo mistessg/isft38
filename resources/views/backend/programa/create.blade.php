@@ -8,6 +8,7 @@
         margin: 20px;
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
+        position:relative;
     }
 
     .links {
@@ -44,11 +45,16 @@
     }
 </style>
 <div class="Inicio">
+<div style="position:absolute;top:0;left:30px;cursor:pointer;">
+<a href="/programa">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+</a>
+</div>
     <h1 class="TextoInicio">Nuevo Programa</h1>
 </div>
-<div class="volver">
-    <h4 alignt="center">Inicio</h4>
-</div>
+
 <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
@@ -124,16 +130,50 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
 <script type='text/javascript'>
-    $(document).ready(function() {
 
-        $('#anio_id').change(function() {
+    function search(){
+        var anio_id = document.getElementById('anio_id').value;
+        var carrera_id = document.getElementById('carrera_id').value;
+        var sede_id = document.getElementById('sede_id').value;
+        $('#materia_id').find('option').not(':first').remove();
 
-            var anio_id = $(this).val();
+        $.ajax({
+            url: 'http://isft38.test/getMaterias/' + carrera_id + '/' + anio_id + '/' + sede_id,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+
+                var len = 0;
+                if (response['data'] != null) {
+                    len = response['data'].length;
+                }
+
+                if (len > 0) {
+
+                    for (var i = 0; i < len; i++) {
+
+                        var id = response['data'][i].id;
+                        var descripcion = response['data'][i].descripcion;
+
+                        var option = "<option value='" + id + "'>" + descripcion + "</option>";
+
+                        $("#materia_id").append(option);
+                    }
+                }
+
+            }
+        });
+    }
+
+    function searchCarreras(){
+    var sede_id = document.getElementById('sede_id').value;
+            //var sede_id = document.getElementById('sede_id').value;
             var carrera_id = document.getElementById('carrera_id').value;
-            $('#materia_id').find('option').not(':first').remove();
+            $('#carrera_id').find('option').not(':first').remove();
+            
 
             $.ajax({
-                url: 'http://isft38.test/getMaterias/' + carrera_id + '/' + anio_id,
+                url: '/getCarreras/' + sede_id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {
@@ -152,12 +192,25 @@
 
                             var option = "<option value='" + id + "'>" + descripcion + "</option>";
 
-                            $("#materia_id").append(option);
+                            $("#carrera_id").append(option);
                         }
                     }
 
                 }
             });
+  }
+
+    $(document).ready(function() {
+
+        $('#anio_id').change(function() {
+            search(); 
+        });
+        $('#carrera_id').change(function() {
+            search();
+        });
+        $('#sede_id').change(function() {
+            searchCarreras();
+            search();
         });
     });
 </script>

@@ -9,6 +9,7 @@ use App\Models\Anio;
 use App\Models\Profesor;
 use App\Models\Materia;
 use App\Models\Comision;
+use App\Models\Carrerasede;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -62,7 +63,7 @@ class ProgramaController extends Controller
             $periodos[$i] = $i;
         }
         //dd($materias);
-        return view('frontend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
+        return view('backend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
     }
     public function ProgramasPendientesSearch(Request $request)
     {
@@ -89,7 +90,7 @@ class ProgramaController extends Controller
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
         $materias = Materia::where('carrera_id', $request->input('carrera_id'))->get();
-        return view('frontend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
+        return view('backend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
     }
     /**
      * Show the form for creating a new resource.
@@ -279,14 +280,26 @@ class ProgramaController extends Controller
         return view('frontend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
     }
 
-    public function getMaterias($carrera_id = 0, $anio_id = 0)
+    public function getMaterias($carrera_id = 0, $anio_id = 0, $sede_id = 0)
     {
-        $materias['data'] = Materia::orderby("descripcion", "asc")
-            ->select('id', 'descripcion')
-            ->where('carrera_id', $carrera_id)
-            ->where('anio_id', $anio_id)
+        $materias['data'] = Materia::join('carrerasedes','materias.carrera_id' , '=', 'carrerasedes.carrera_id')
+            ->select('materias.id', 'materias.descripcion')
+            ->where('materias.carrera_id', $carrera_id)
+            ->where('materias.anio_id', $anio_id)
+            ->where('carrerasedes.sede_id', $sede_id)
             ->get();
 
         return response()->json($materias);
+    }
+
+    public function getCarreras($sede_id = 0){
+
+        $modulosHorarios  = 
+        $carreras['data'] = Carrerasede::join('carreras','carrerasedes.carrera_id' , '=', 'carreras.id')
+        ->where('sede_id', $sede_id)
+        ->get(['carreras.id', 'descripcion']);
+
+           
+        return response()->json($carreras);
     }
 }

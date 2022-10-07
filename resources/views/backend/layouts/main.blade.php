@@ -135,7 +135,15 @@
       </div>
   </nav>
   @yield('content')
-
+  <style>
+    .Inicio {
+        text-align: center;
+        margin: 20px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+        position: relative;
+    }
+</style>
 </body>
 
 </html>

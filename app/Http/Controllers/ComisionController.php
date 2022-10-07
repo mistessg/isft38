@@ -6,6 +6,7 @@ use App\Models\Comision;
 use Illuminate\Http\Request;
 use App\Models\Carrera;
 use App\Models\Sede;
+use App\Models\Programa;
 use App\Models\Horario;
 class ComisionController extends Controller
 {
@@ -111,7 +112,13 @@ class ComisionController extends Controller
     public function destroy($id)
     {
         $comision = Comision::FindOrFail($id);
-        $comision -> delete();
+        $horarios = Horario::where('comision_id', $comision->id)->first();
+        $programas = Programa::where('comision_id', $comision->id)->first();
+        if (empty($horarios) || empty($programas)) {
+            $comision -> delete();
+        } else {
+            session()->flash('status', 'No se puede eliminar la comisión porque tiene información asociada.');
+        }
         return redirect()->route('comision.index');
         // return redirect()->route('backend.comision.index', ['sede' => $sede, 'carrera' => $carrera, 'comision' => $comision]);
     }
