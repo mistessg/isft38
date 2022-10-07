@@ -29,7 +29,7 @@
   color: #ffffff;
 }
 .card {
-  height: 600px;
+  height: 650px;
   display: flex;
   margin:0 40px;
   text-align: center;
@@ -391,7 +391,7 @@ button:hover .button-text {
         <h5 class="card-title">Historia</h5>
         <hr>
 		@foreach($historias as $historia) 
-		<p class="card-texto">{!!substr($historia->historia, 0, 230)!!}...</p>		
+		<p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>		
 		@endforeach	
     <hr>
 	</div>
@@ -412,7 +412,7 @@ button:hover .button-text {
         <h5 class="card-title">Objetivos</h5>
         <hr>
 		@foreach($objetivos as $objetivo) 
-		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 350)!!}...</p>		
+		<p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>		
 		@endforeach	
     <hr>
       </div>
