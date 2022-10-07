@@ -42,6 +42,19 @@
 
 @endif
 @empty
+<table class="table m-o container">
+    <tr class="text-dark">
+        <th class="align-middle ps-5">Nombre</th>
+        <th class="align-middle">Apellido</th>
+        <td class="d-flex justify-content-end">
+            <a href="{{ route('profesor.create') }}" class="btn btn-success">
+                <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
+                Crear Profesor
+            </a>
+        </td>
+    </tr>
+</table>
+<p class="text-capitalize"> No hay noticias </p>
 @endforelse
 </div>
 
