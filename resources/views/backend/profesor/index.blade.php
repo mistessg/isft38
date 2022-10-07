@@ -54,7 +54,7 @@
         </td>
     </tr>
 </table>
-<p class="text-capitalize"> No hay noticias </p>
+<p class="text-capitalize"> No hay profesores.</p>
 @endforelse
 </div>
 
