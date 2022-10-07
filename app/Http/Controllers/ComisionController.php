@@ -91,14 +91,14 @@ class ComisionController extends Controller
     public function update(Request $request, $id)
     {
         $comision = Comision::findOrFail($id);
-        $validateData = $request->validate(
+        $validatedData = $request->validate(
             [
                 'comision' => ['required']
             ]
         );
 
         $comision->comision = $request->input('comision'); 
-        $carrera->save($validatedData);    
+        $comision->save($validatedData);    
         
         return redirect()->route('comision.index');
     }
