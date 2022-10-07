@@ -90,7 +90,7 @@ class ComisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comision = Horario::findOrFail($id);
+        $comision = Comision::findOrFail($id);
         $validateData = $request->validate(
             [
                 'comision' => ['required']
