@@ -184,9 +184,9 @@
     var sede_id = document.getElementById('sede_id').value;
             //var sede_id = document.getElementById('sede_id').value;
             var carrera_id = document.getElementById('carrera_id').value;
-            $('#carrera_id').find('option').not(':first').remove();
-            
-
+            //$('#carrera_id').find('option').not(':first').remove();
+            $('#carrera_id').find('option').remove();
+            $('#carrera_id').append($('<option></option>').html('Cargando datos...'));
             $.ajax({
                 url: '/getCarreras/' + sede_id,
                 type: 'get',
@@ -199,7 +199,8 @@
                     }
 
                     if (len > 0) {
-
+                      $('#carrera_id').find('option').remove();
+                      $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
                         for (var i = 0; i < len; i++) {
 
                             var id = response['data'][i].id;
