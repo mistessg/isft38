@@ -104,41 +104,9 @@ class HorarioController extends Controller
     {  
         $modulohorario = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' - ',modulos.horafin) as horario"))->pluck('horario', 'id');        
 
-        $dias = array();
-        $dias[1] = 'Lunes';
-        $dias[2] = 'Martes';
-        $dias[3] = 'Miércoles';
-        $dias[4] = 'Jueves';
-        $dias[5] = 'Viernes';
-        $dias[6] = 'Sábado';
+        $dias = array(1=>'Lunes', 'Martes','Miércoles' ,'Jueves', 'Viernes','Sábado');
 
-        $horario = Horario::select("dia")->pluck('dia','id');
-        
-        foreach($horario as $key_hora=>$dia) {            
-            switch ($hora->dia) {
-                case '1':
-                    $dias[1] = 'Lunes';
-                    break;
-                case '2':
-                    $dias[2] = 'Martes';  
-                    break;   
-                case '3':
-                    $dias[3] = 'Miércoles';
-                    break;
-                case '4':
-                    $dias[4] = 'Jueves';
-                    break;
-                case '5':
-                    $dias[5] = 'Viernes';
-                    break;
-                case '6':
-                    $dias[6] = 'Sábado';
-                    break;
-            }            
-          }
-          ksort($dias);
-
-        return view('frontend\horarios\porDiaHora',compact('modulohorario'));
+        return view('frontend\horarios\porDiaHora',compact('modulohorario','dias'));
     }
     public function create(Request $request)
     {
@@ -235,7 +203,7 @@ class HorarioController extends Controller
         $horario->modulohorario_id = $request->input('modulohorario_id');
         $horario->comentario = $request->input('comentario');
         $horario->save();
-        $request->session()->flash('status', 'Se guardó correctamente el horario ');
+        //$request->session()->flash('status', 'Se guardó correctamente el horario '. $noticia->titulo);
         return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
     /**
@@ -365,11 +333,9 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function searchPorDiaHora(Request $request){
-       
-        $materias = Horario::where('dia', $request->input('dia'))
+        $horarios= Horario::where('dia', $request->input('dias'))
                            ->where('modulohorario_id', $request->input('modulohorario_id'))->get();
-                           dd($materias);
-        return view('frontend.horario.porDiaHora',compact('materias'));
+        return view('frontend.horarios.tablaDiaHora',compact('horarios'));
 
     }
     public function show($id)
@@ -441,10 +407,10 @@ class HorarioController extends Controller
         //$horario->duracion = $request->input('duracion');    
         $horario->save();
 
-        $request->session()->flash('status', 'Se modificó correctamente el horario.');
+        $request->session()->flash('status', 'Se modificó correctamente el horario');
         return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
-//
+
     /**
      * Remove the specified resource from storage.
      *
@@ -453,7 +419,7 @@ class HorarioController extends Controller
      */
     public function destroy($id)
     {
-        $horario = Horario::findOrFail($id); 
+        $horario = Horario::findOrFail($id);
         $sede = $horario->sede_id;
         $carrera = $horario->carrera_id;
         $anio = $horario->anio_id;
