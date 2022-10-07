@@ -91,7 +91,7 @@
       @php($m=0)
       @php($e=0)
     </h5>
-    
+
     @foreach($materias as $materia)
     @if($a->id == $materia->anio_id)
     Materia:{{$materia->descripcion}}<br>
@@ -115,14 +115,62 @@
       
 
     @php($p = $m - $e)
-    <div  class="d-grid gap-2 d-md-block">
-    <button class="btn btn-danger" type="button">Pendientes:{{$e}}</button>
-    <button class="btn btn-success" type="button">Entregados:{{$p}}</button>
+    <div class="d-grid gap-2 btno">
+      <p class="entre">ENTREGADOS:{{$e}}</p>  
+      <p class="pendientes">PENDIENTES:{{$p}}</p>
     </div>
     @endforeach
 
- 
-    
 
 
     @endsection
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Script Get Materias -->
+<script type='text/javascript'>
+
+  function search(){
+    var sede_id = document.getElementById('sede_id').value;
+            //var sede_id = document.getElementById('sede_id').value;
+            var carrera_id = document.getElementById('carrera_id').value;
+            $('#carrera_id').find('option').not(':first').remove();
+            
+
+            $.ajax({
+                url: '/getCarreras/' + sede_id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+
+                    var len = 0;
+                    if (response['data'] != null) {
+                        len = response['data'].length;
+                    }
+
+                    if (len > 0) {
+
+                        for (var i = 0; i < len; i++) {
+
+                            var id = response['data'][i].id;
+                            var descripcion = response['data'][i].descripcion;
+
+                            var option = "<option value='" + id + "'>" + descripcion + "</option>";
+
+                            $("#carrera_id").append(option);
+                        }
+                    }
+
+                }
+            });
+  }
+
+
+    $(document).ready(function() {
+
+        $('#sede_id').change(function() {
+          search();
+            
+        });
+    });
+</script>
