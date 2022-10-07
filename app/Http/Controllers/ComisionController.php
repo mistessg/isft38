@@ -90,15 +90,15 @@ class ComisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comision = Horario::findOrFail($id);
-        $validateData = $request->validate(
+        $comision = Comision::findOrFail($id);
+        $validatedData = $request->validate(
             [
                 'comision' => ['required']
             ]
         );
 
         $comision->comision = $request->input('comision'); 
-        $carrera->save($validatedData);    
+        $comision->save($validatedData);    
         
         return redirect()->route('comision.index');
     }

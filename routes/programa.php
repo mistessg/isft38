@@ -19,4 +19,5 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/programas', [ProgramaController::class, 'programas'])->name('programas');
 Route::post('/programas', [ProgramaController::class, 'searchProgramas'])->name('programas.search');
-Route::get('/getMaterias/{carrera_id}/{anio_id}', [ProgramaController::class, 'getMaterias']);
+Route::get('/getMaterias/{carrera_id}/{anio_id}/{sede_id}', [ProgramaController::class, 'getMaterias']);
+Route::get('/getCarreras/{sede_id}', [ProgramaController::class, 'getCarreras']);

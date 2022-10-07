@@ -117,3 +117,52 @@ tbody{
       </div>
  </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Script Get Materias -->
+<script type='text/javascript'>
+
+  function search(){
+    var sede_id = document.getElementById('sede_id').value;
+            //var sede_id = document.getElementById('sede_id').value;
+            var carrera_id = document.getElementById('carrera_id').value;
+            $('#carrera_id').find('option').not(':first').remove();
+            
+
+            $.ajax({
+                url: '/getCarreras/' + sede_id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+
+                    var len = 0;
+                    if (response['data'] != null) {
+                        len = response['data'].length;
+                    }
+
+                    if (len > 0) {
+
+                        for (var i = 0; i < len; i++) {
+
+                            var id = response['data'][i].id;
+                            var descripcion = response['data'][i].descripcion;
+
+                            var option = "<option value='" + id + "'>" + descripcion + "</option>";
+
+                            $("#carrera_id").append(option);
+                        }
+                    }
+
+                }
+            });
+  }
+
+
+    $(document).ready(function() {
+
+        $('#sede_id').change(function() {
+          search();
+            
+        });
+    });
+</script>
