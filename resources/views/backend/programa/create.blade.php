@@ -124,16 +124,50 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
 <script type='text/javascript'>
-    $(document).ready(function() {
 
-        $('#anio_id').change(function() {
+    function search(){
+        var anio_id = document.getElementById('anio_id').value;
+        var carrera_id = document.getElementById('carrera_id').value;
+        var sede_id = document.getElementById('sede_id').value;
+        $('#materia_id').find('option').not(':first').remove();
 
-            var anio_id = $(this).val();
+        $.ajax({
+            url: 'http://isft38.test/getMaterias/' + carrera_id + '/' + anio_id + '/' + sede_id,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+
+                var len = 0;
+                if (response['data'] != null) {
+                    len = response['data'].length;
+                }
+
+                if (len > 0) {
+
+                    for (var i = 0; i < len; i++) {
+
+                        var id = response['data'][i].id;
+                        var descripcion = response['data'][i].descripcion;
+
+                        var option = "<option value='" + id + "'>" + descripcion + "</option>";
+
+                        $("#materia_id").append(option);
+                    }
+                }
+
+            }
+        });
+    }
+
+    function searchCarreras(){
+    var sede_id = document.getElementById('sede_id').value;
+            //var sede_id = document.getElementById('sede_id').value;
             var carrera_id = document.getElementById('carrera_id').value;
-            $('#materia_id').find('option').not(':first').remove();
+            $('#carrera_id').find('option').not(':first').remove();
+            
 
             $.ajax({
-                url: 'http://isft38.test/getMaterias/' + carrera_id + '/' + anio_id,
+                url: '/getCarreras/' + sede_id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {
@@ -152,12 +186,25 @@
 
                             var option = "<option value='" + id + "'>" + descripcion + "</option>";
 
-                            $("#materia_id").append(option);
+                            $("#carrera_id").append(option);
                         }
                     }
 
                 }
             });
+  }
+
+    $(document).ready(function() {
+
+        $('#anio_id').change(function() {
+            search(); 
+        });
+        $('#carrera_id').change(function() {
+            search();
+        });
+        $('#sede_id').change(function() {
+            searchCarreras();
+            search();
         });
     });
 </script>
