@@ -124,13 +124,15 @@
         @foreach($programas as $programa)
         @if($a->id == $programa->anio_id)
 
-        <h2 class="accordion-header" id="heading{{$a->id}}">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$a->id}}" aria-expanded="true" aria-controls="collapse{{$a->id}}">
             @if($titulo)
+            <h2 class="accordion-header" id="heading{{$a->id}}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$a->id}}" aria-expanded="true" aria-controls="collapse{{$a->id}}">
+
             {{$titulo}} <br>
+            </button>            
             @php($titulo = '')
             @endif
-          </button>
+
         </h2>
         <div id="collapse{{$a->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$a->id}}}" data-bs-parent="#accordionExample">
           <div class="accordion-body">
