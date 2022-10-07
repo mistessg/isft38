@@ -44,16 +44,12 @@
     </style>
 
   <div class="Inicio">
-    <h1 class="TextoInicio">Listado de programa</h1>
+    <h1 class="TextoInicio">Listado de programas</h1>
   </div>
-
-
-
-
-
-  <a href="{{ route('programa.create') }}" class="btn btn-success img2">Crear uno nuevo
+  <a href="{{ route('programa.create') }}" class="btn btn-success img2">
       <img src="{{ asset('svg/new.svg') }}" height="30" width="20" alt="Crear" title="Crear">
-      </a>
+      Crear Programa
+    </a>
 
   <div class="links" >
 

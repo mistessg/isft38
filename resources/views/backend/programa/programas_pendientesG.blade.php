@@ -91,7 +91,7 @@
       @php($m=0)
       @php($e=0)
     </h5>
-
+    
     @foreach($materias as $materia)
     @if($a->id == $materia->anio_id)
     Materia:{{$materia->descripcion}}<br>
@@ -115,12 +115,14 @@
       
 
     @php($p = $m - $e)
-    <div class="d-grid gap-2 btno">
-      <p class="entre">ENTREGADOS:{{$e}}</p>  
-      <p class="pendientes">PENDIENTES:{{$p}}</p>
+    <div  class="d-grid gap-2 d-md-block">
+    <button class="btn btn-danger" type="button">Pendientes:{{$e}}</button>
+    <button class="btn btn-success" type="button">Entregados:{{$p}}</button>
     </div>
     @endforeach
 
+ 
+    
 
 
     @endsection
