@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Modulo;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 
 class ModuloController extends Controller
@@ -114,7 +115,12 @@ class ModuloController extends Controller
     public function destroy($id)
     {
         $modulo = Modulo::findOrFail($id);
-        $modulo->delete();
+        $horarios = Horario::where('modulohorario_id', $modulo->id)->first();
+        if (empty($horarios)) {
+            $modulo->delete();
+        } else {
+            session()->flash('status', 'No se puede eliminar el módulo porque tiene horarios asociados.');
+        }
         return redirect()->route('modulo.index');
     }
 }

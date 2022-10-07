@@ -5,28 +5,63 @@
 @section('content')
 
 <style>
-  .img {
-    border-radius: 100px;
-  }
+
 
   .img2 {
-    border-radius: 100px;
-    margin-left: 900px;
-    margin-right: 40px;
+    border-radius:5px;
+    margin-left:953px;
   }
-</style>
 
-<div class="container my-4">
+  .Inicio{
+        text-align: center;
+        margin:20px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+    }
+    .links{
+        padding:25px;
+        width: 70%;
+        margin: 0 auto;
+    }
+    .btn{
+      
+    }
+    .form-group{
+        margin-top:10px;
+    }
+    .form-group label{
+        outline: none;
+        margin-bottom: 5px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+    }
+    .form-select{
+        border: 1px solid gray;
+        padding:10px;
+        outline: none;
+    }
+    </style>
 
-  <div class="card">
-    <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
-    <div class="card-body">
+  <div class="Inicio">
+    <h1 class="TextoInicio">Listado de programa</h1>
+  </div>
+
+
+
+
+
+  <a href="{{ route('programa.create') }}" class="btn btn-success img2">Crear uno nuevo
+      <img src="{{ asset('svg/new.svg') }}" height="30" width="20" alt="Crear" title="Crear">
+      </a>
+
+  <div class="links" >
 
       {{ Form::open(['route' => 'programa.search']) }}
       @csrf
 
-      <div class="input-group mb-3">
-        {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("anio_id", 'Periodo',) }}
         {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
       </div>
       @error('anio_id')
@@ -34,8 +69,8 @@
       @enderror
 
 
-      <div class="input-group mb-3">
-        {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("sede_id", 'Sede', ) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
       </div>
       @error('sede_id')
@@ -43,8 +78,8 @@
       @enderror
 
 
-      <div class="input-group mb-3">
-        {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("carrera_id", 'Carrera', ) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
       </div>
       @error('carrera_id')
@@ -53,8 +88,8 @@
 
 
 
-      <div class="input-group mb-3">
-        {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("comision_id", 'Comisión', ) }}
         {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}
       </div>
       @error('carrera')
@@ -71,15 +106,18 @@
         @enderror
       </div>
 
+      <br>
+
       <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
-      </div> {!!Form::close()!!}
-      <br>
+      </div> 
     </div>
-    <a href="{{ route('programa.create') }}" class="btn btn-success img2">Crear uno nuevo
-      <img src="{{ asset('svg/new.svg') }}" height="30" width="20" alt="Crear" title="Crear">
-    </a>
-    <br>
+      {!!Form::close()!!}
+      <br>
+    
+
+      <br>
+   
 
     <!-- ACORDEON -->
     <div class="accordion" id="accordionExample">

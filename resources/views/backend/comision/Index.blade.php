@@ -1,42 +1,25 @@
 @extends('backend.layouts.main')
-@section('title', 'Comision')
+@section('title', 'Comisiones')
 
 @section('content')
-<style>
-  .comision:hover {
-    background-color: #3A70FF;
-    transition: background-color .5s;
-    color: white;
-  }
 
-  .texto-tabla {
-    font-size: .8em;
-  }
-</style>
-<nav class="navbar navbar-expand-lg bg-dark">
-      <div class="container-md">
-        <a class="navbar-brand text-white" href="#">Comisiones</a>
-      </div>
-    </nav>
-<br>
-
-  <table class="table texto-tabla mb-0">
+  <table class="table texto-tabla mb-0 container">
     <div class="algo">
-      <tr class="text-light text-center mb-0" style="background-color: #3A70FF;">
-        <th class="text-left" scope="col"></th>
-        <th class="text-left" scope="col">Comision</th>
-        <th class="d-flex justify-content-end">
+      <tr class="text-dark text-center mb-0">
+        <th class="text-left" scope="col">Comisión</th>
+        <td class="">
           <a href="{{ route('comision.create') }}" class="btn btn-success">
             <img src="{{ asset('svg/new.svg') }}" height="20" width="20" alt="Crear" title="Crear">
+            Crear comisión
           </a>
-        </th>
+        </td>
       </tr>
     </div>
 
     @foreach($comisiones as $comision)
     <tr>
-      <td style="background: #F5F5F5;" class="text-center align-middle ps-5">{{$comision->comision}}</td>
-      <td>
+      <td class="text-center align-middle">{{$comision->comision}}</td>
+      <td class="align-middle">
         {{ Form::model($comision, [ 'method' => 'delete' , 'route' => ['comision.destroy', $comision->id] ]) }}
         @csrf
         <a href="{{ route('comision.edit', ['comision' => $comision->id ]) }}" class="btn btn-primary ">
