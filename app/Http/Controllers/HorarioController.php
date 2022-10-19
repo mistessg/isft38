@@ -62,28 +62,18 @@ class HorarioController extends Controller
         $comision = Comision::find($request->input('comision_id'));
         
         $horarios = Horario::where('profesor_id',($request->input('profesor_id')))->get();
-
+        $dias = array();
+        $dias[1] = 'Lunes';
+        $dias[2] = 'Martes';
+        $dias[3] = 'Miércoles';
+        $dias[4] = 'Jueves';
+        $dias[5] = 'Viernes';
+        
         foreach($horarios as $key_hora=>$hora) {            
-            switch ($hora->dia) {
-                case '1':
-                    $dias[1] = 'Lunes';
-                    break;
-                case '2':
-                    $dias[2] = 'Martes';  
-                    break;   
-                case '3':
-                    $dias[3] = 'Miércoles';
-                    break;
-                case '4':
-                    $dias[4] = 'Jueves';
-                    break;
-                case '5':
-                    $dias[5] = 'Viernes';
-                    break;
-                case '6':
-                    $dias[6] = 'Sábado';
-                    break;
-            }            
+            foreach($horarios as $key_hora=>$hora) {            
+                if($hora->dia == '6'){
+                   $dias[6] = 'Sábado';}
+               } 
           }
           ksort($dias);
           
@@ -291,28 +281,17 @@ class HorarioController extends Controller
             ->where('anio_id', $anio->id)
             ->where('comision_id', $comision->id)->get();
 
+            $dias[1] = 'Lunes';
+            $dias[2] = 'Martes';  
+            $dias[3] = 'Miércoles';
+            $dias[4] = 'Jueves';
+            $dias[5] = 'Viernes';
+
         foreach($horarios as $key_hora=>$hora) {            
-            switch ($hora->dia) {
-                case '1':
-                    $dias[1] = 'Lunes';
-                    break;
-                case '2':
-                    $dias[2] = 'Martes';  
-                    break;   
-                case '3':
-                    $dias[3] = 'Miércoles';
-                    break;
-                case '4':
-                    $dias[4] = 'Jueves';
-                    break;
-                case '5':
-                    $dias[5] = 'Viernes';
-                    break;
-                case '6':
-                    $dias[6] = 'Sábado';
-                    break;
+             if($hora->dia == '6'){
+                $dias[6] = 'Sábado';}
             }            
-          }
+          
           ksort($dias);
           
             return view('frontend.horarios.tablaCarreras', compact(
