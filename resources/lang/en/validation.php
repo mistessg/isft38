@@ -175,6 +175,7 @@ return [
         'numero' => "'número'",
         'sedeimagen' => "'imagen'",
         'ciudad' => "'ciudad'",
+        'dias' => "'día'",
         '' => "''",
         '' => "''",
      ],
