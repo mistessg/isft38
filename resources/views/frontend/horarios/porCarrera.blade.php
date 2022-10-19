@@ -34,6 +34,7 @@
     
         </br><button type="submit" class="btn btn-dark form-control">Consultar</button></div>
          {!!Form::close()!!}  
+        </div>
     </div>
-   
+</div>
 @endsection
