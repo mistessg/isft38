@@ -5,19 +5,46 @@
 @section('content')
 
 <style>
-  body{
-    background-color: #181818;
-  }
-thead{
-  color: #181818;
-  background-color: #9FC9F3;
-}
-tbody{
-  background-color: #C4D7E0;
-}
-</style>
 
-<div class="container my-4">
+
+  .img2 {
+    border-radius:5px;
+    margin-left:953px;
+  }
+
+  .Inicio{
+        text-align: center;
+        margin:20px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+    }
+    .links{
+        padding:25px;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .form-group{
+        margin-top:10px;
+    }
+    .form-group label{
+        outline: none;
+        margin-bottom: 5px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+    }
+    .form-select{
+        border: 1px solid gray;
+        padding:10px;
+        outline: none;
+    }
+    </style>
+
+  <div class="Inicio">
+    <h1 class="TextoInicio">Listado de programas</h1>
+  </div>
+  <div class="links" >
 
   <div class="card">
     <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
@@ -65,58 +92,72 @@ tbody{
       <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div>
+    
+
       <br>
+   
 
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            
-            @foreach($anios as $a)
-               
-              @php($titulo = $a->descripcion)
+    <!-- ACORDEON -->
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        @foreach($anios as $a)
+        @php($titulo = $a->descripcion)
 
-              @foreach($programas as $programa)
-              @if($a->id == $programa->anio_id)
-              @if($titulo)
-              {{$titulo}} <br>
-              @php($titulo = '')
-              @endif
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">MATERIA</th>
-                    <th scope="col">APELLIDO</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">PROGRAMA</th>
+        @foreach($programas as $programa)
+        @if($a->id == $programa->anio_id)
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{$programa->materia->descripcion}}</td>
-                    <td>{{$programa->profesor->apellido}}</td>
-                    <td>{{$programa->profesor->nombre}}</td>
-                    <td>Progrma</td>
-                  </tr>
-                </tbody>
-              </table>
-              
+            @if($titulo)
+            <h2 class="accordion-header" id="heading{{$a->id}}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$a->id}}" aria-expanded="true" aria-controls="collapse{{$a->id}}">
+
+            {{$titulo}} <br>
+            </button>            
+            @php($titulo = '')
+            @endif
+
+        </h2>
+        <div id="collapse{{$a->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$a->id}}}" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">MATERIA</th>
+                  <th scope="col">PROFESOR</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {{ Form::model($programa, [ 'method' => 'delete' , 'route' => ['programa.destroy', $programa->id] ]) }}
+
+                  <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
+                  <td>{{$programa->profesor->apellido}},{{$programa->profesor->nombre}}</td>
+
+                  @csrf
+                  <td>
+                    <div class="botonera">
+                      <button type="submit" name="borrar{{$programa->id}}" class="btn btn-danger  svg img" onclick="if (!confirm('Está seguro de borrar el programa?')) return false;">
+                        <img src="{{ asset('svg/delete.svg') }}" width="20" height="30" alt="Borrar" title="Borrar">
+                      </button>
+
+                      <a href="{{ route('programa.edit', ['programa' => $programa->id ]) }}" class="btn btn-primary svg img">
+                        <img src="{{ asset('svg/edit.svg') }}" width="20" height="30" alt="Editar" title="Editar">
+                      </a>
+                    </div>
+                  </td>
+              </tbody>
+              {!!Form::close()!!}
               @endif
               @endforeach
-              @endforeach
-            </div>
+            </table>
           </div>
         </div>
-
-        @endsection
+        @endforeach
       </div>
- </div>
+    </div>
+  </div>
 </div>
+@endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
