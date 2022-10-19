@@ -44,7 +44,7 @@ class HorarioController extends Controller
     {
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
         ->pluck('nombrecompleto', 'id');
-        return view('frontend\horarios\porProfesor',compact('profesores'));
+        return view('frontend.horarios.porProfesor',compact('profesores'));
     }
     public function searchProfesor(Request $request){
 
