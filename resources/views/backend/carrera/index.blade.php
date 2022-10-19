@@ -60,9 +60,7 @@ a{
         <tr>
           <div class="algo">
             <th>Carrera</th>
-            <th>Resolución</th>
-            <th>Imagen</th>
-            
+            <th>Resolución</th>            
             <th>Años</th>
             <td></td>
             <td>
@@ -77,8 +75,7 @@ a{
        <tr>
         <div class="subcontainer">
         <td>{{ $carrera->descripcion }}</td>
-        <td>{{ $carrera->resolucion }}</td>        
-        <td><a href="#">{{ $carrera->imagen }}</a></td>        
+        <td>{{ $carrera->resolucion }}</td>              
         <td>{{ $carrera->anios }}</td>        
         <td>
           @if($carrera->res_archivo)<span class="badge badge-light"><a href="{{ asset('./storage/'. $carrera->res_archivo) }}">{{ basename($carrera->res_archivo) }}</a> </span> @endif
@@ -87,6 +84,9 @@ a{
           {{ Form::model($carrera, [ 'method' => 'delete' , 'route' => ['carrera.destroy', $carrera->id] ]) }}
             @csrf  
           <div class="botonera">
+            <a href="{{ route('carrera.show', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
+              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
+            </a>
 
             <a href="{{ route('carrera.edit', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
               <img src="{{ asset('svg/edit.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
@@ -96,9 +96,6 @@ a{
               <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
             </button>
             
-            <a href="{{ route('carrera.show', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
-              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
-            </a>
           </div>
             {!!Form::close()!!}  
          </td>
