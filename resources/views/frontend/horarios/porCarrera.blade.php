@@ -38,7 +38,7 @@
             @enderror
 
             <div class="input-group mb-3">
-                <div class="input-group-text">
+                <div class="input-group-text"> 
                     {{ Form::label("año", 'Año', ['class' => 'control-label']) }}
                 </div>
                 {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione el año" ]) }}

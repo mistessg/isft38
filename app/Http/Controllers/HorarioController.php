@@ -321,6 +321,12 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function searchPorDiaHora(Request $request){
+        $validatedData = $request->validate(
+            [
+                'dias' => 'required',
+                'modulohorario_id' => 'required'
+            ]
+        );
         $horarios= Horario::where('dia', $request->input('dias'))
                            ->where('modulohorario_id', $request->input('modulohorario_id'))->get();
         return view('frontend.horarios.tablaDiaHora',compact('horarios'));
