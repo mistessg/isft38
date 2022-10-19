@@ -8,7 +8,7 @@
     
     <div class="card my-4"  style=" width: 50%;">
         <h5 class="card-header" style="background-color: #181818; color: white;">Horarios por Dia/Hora</h5>
-    <div class="card-body">
+        <div class="card-body">
 
         {{ Form::open(['route' => 'horarios.searchPorDiaHora']) }}
         <label class="mb-1" for="#">Día</label>
@@ -24,8 +24,8 @@
         <div class="d-grid gap-2 col-5 my-4 mx-auto">
             <button class="form-control btn btn-outline-dark" type="submit">Consultar</button>
         </div>
-    </div>
+        </div>
     {!!Form::close()!!} 
+    </div>
 </div>
-
 @endsection
