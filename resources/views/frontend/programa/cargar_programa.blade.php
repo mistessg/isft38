@@ -26,7 +26,7 @@
     <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
     <div class="card-body">
 
-      {{ Form::open(['route' => '']) }}
+      {{ Form::open(['route' => 'programa.store']) }}
       @csrf
 
       <div class="input-group mb-3">
