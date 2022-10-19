@@ -11,7 +11,7 @@
     <div class="alert alert-success">{{ Session('status')}}</div>
     @endif
 </div>
-
+ 
 <div class="links">
       {{ Form::open(['route' => 'horario.search']) }}
       <div class="form-group">

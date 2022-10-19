@@ -252,20 +252,29 @@ class HorarioController extends Controller
     //USER
     public function searchPorCarrera(Request $request)
     {
-        $validatedData = $request->validate(
+      /* $validatedData = $request->validate(
             [
                 'sede_id' => 'required',
                 'carrera_id' => 'required',
                 'anio_id' => 'required',
-                'comision_id' => 'required',
+                'comision_id' => 'required'
             ]
-        );
+        );*/
         return redirect()->route('horarios.searchPorCarrera', ['sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'anio' => $request->input('anio_id'), 'comision' => $request->input('comision_id')]);
     }
 
 
     public function searchCarreraUser(Request $request)//($sede, $carrera, $anio, $comision)
     {
+        $validatedData = $request->validate(
+            [
+                'sede_id' => 'required',
+                'carrera_id' => 'required',
+                'anio_id' => 'required',
+                'comision_id' => 'required'
+            ]
+        );
+
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
