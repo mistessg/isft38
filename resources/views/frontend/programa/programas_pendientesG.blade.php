@@ -92,6 +92,8 @@
       @php($e=0)
     </h5>
 
+
+    
     @foreach($materias as $materia)
     @if($a->id == $materia->anio_id)
     Materia:{{$materia->descripcion}}<br>

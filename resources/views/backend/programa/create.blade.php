@@ -59,6 +59,9 @@
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
     @endif
+    @if(Session::has('status-error'))
+    <div class="alert alert-danger">{{ Session('status-error')}}</div>
+    @endif
 </div>
 <div class="links">
     {{ Form::open(['route' => 'programa.store', 'files' => true]) }}
@@ -118,7 +121,7 @@
         {{ Form::label("imagen", __('PROGRAMA'), ['class' => 'control-label']) }}
         <br>
         {{ Form::file("imagen") }}
-        @error('image')
+        @error('imagen')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
