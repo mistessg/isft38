@@ -106,7 +106,9 @@
 
   <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
     <div class="container-fluid divsNav">
-      <a class="navbar-brand" href="#">Navbar</a>
+        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none alberto">
+                <img src="logo1.png" width="45px" alt=""/>
+          </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
