@@ -39,6 +39,33 @@
         padding:10px;
         outline: none;
     }
+
+    label {
+        width: 6rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+    }
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+    }
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
     </style>
 
   <div class="Inicio">
@@ -98,7 +125,7 @@
       </div>
 </div>
 
-<div></div>
+  <br>
 
 
     <!-- ACORDEON -->
