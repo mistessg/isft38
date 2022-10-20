@@ -59,7 +59,7 @@
 
     </div>
     <div class="form-group">
-        {{ Form::label("dia",'Día', ['class' => 'control-label']) }}
+        {{ Form::label("dia",'Día', ['class' => 'control-label']) }} 
         @if(empty($dia))
         {{Form::select("dia", $dias, null, ["class" => "form-control", "placeholder" => "Seleccione un día"]) }}
         @else
