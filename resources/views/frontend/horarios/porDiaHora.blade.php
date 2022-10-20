@@ -4,6 +4,37 @@
 
 @section('content')
 
+<style>
+
+    label {
+        width: 4rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
+
+</style>
+
 <div class="container" style="display: flex ; align-items: center; justify-content: center">
 
     <div class="card my-4" style=" width: 50%;">

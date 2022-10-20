@@ -3,6 +3,40 @@
 @section('title', 'Horarios por Carrera')
 
 @section('content')
+
+<style>
+
+    label {
+        width: 4rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
+
+</style>
+
+
+
 <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
