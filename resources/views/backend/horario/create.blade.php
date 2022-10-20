@@ -31,7 +31,7 @@
 </div>
 <div class="links">
     {{ Form::open(['route' => 'horario.store']) }}
-
+    @csrf
     <div class="form-group">
         {{ Form::label("sede_id",'Sede', ['class' => 'control-label']) }}
         {{Form::text("sede", $sede->descripcion , ["class" => "form-control", "readonly" ])}}
