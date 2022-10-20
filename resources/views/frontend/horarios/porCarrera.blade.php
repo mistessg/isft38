@@ -16,14 +16,14 @@
         margin: 1rem 1rem 1rem 1rem;
 
     }
-
+    }
     @media (max-width: 380px) {
   
   .card{
     margin: 1rem 1rem 1rem 1rem;
 
   }
-
+    }
   @media (max-width: 400px) {
   
   .card{
