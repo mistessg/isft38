@@ -47,7 +47,11 @@ class HorarioController extends Controller
         return view('frontend.horarios.porProfesor',compact('profesores'));
     }
     public function searchProfesor(Request $request){
-
+        $validatedData = $request->validate(
+            [
+                'profesor_id' => ['required']
+            ]
+        );
         //$horario = Horario::FindOrFail($request->input('profesor_id')); 
         
         $sede = Sede::find($request->input('sede_id'));
@@ -103,6 +107,7 @@ class HorarioController extends Controller
     }
     public function createHorario(Request $request)
     {
+        
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
 
@@ -161,14 +166,14 @@ class HorarioController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'sede_id' => ['required'],
-                'carrera_id' => ['required'],
-                'anio_id' => ['required'],
-                'comision_id' => ['required'],
-                'materia_id' => ['required'],
-                'profesor_id' => ['required'],
-                'dia' => ['required'],
-                'modulohorario_id' => ['required']
+                'sede_id' => 'required',
+                'carrera_id' => 'required',
+                'anio_id' => 'required',
+                'comision_id' => 'required',
+                'materia_id' => 'required',
+                'profesor_id' => 'required',
+                'dia' => 'required',
+                'modulohorario_id' => 'required'
             ]
         );
 
@@ -178,6 +183,7 @@ class HorarioController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->where('dia', $request->input('dia'))
             ->where('comentario', $request->input('comentario'))
+            ->where('materia', $request->input('materia_id'))
             ->where('modulohorario_id', $request->input('modulohorario_id'))->first();
 
         if (empty($horario)) {

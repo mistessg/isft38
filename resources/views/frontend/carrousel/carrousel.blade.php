@@ -219,8 +219,8 @@
     height: 100vh;
     width: 100vw;
     transition: opacity 0.3s ease;
-    overflow: scroll;
     overflow: auto;
+    overflow: scroll;
     z-index: 2;
 
   }
