@@ -8,8 +8,7 @@
 
   <table class="table container">
     <tr>
-      <th class="align-middle">Nombre</th>
-      <th class="align-middle">Descripción</th>
+      <th class="align-middle">Historia</th>
       <td class="d-flex justify-content-end align-middle">
         <a class="btn btn-success" href="{{ route('historia.create') }}">
           <img src="{{ asset('svg/new.svg') }}" width="20" height="20" alt="Crear" title="Crear">
@@ -18,8 +17,7 @@
     </tr>
     @endif
     <tr>
-      <td>{{ $historia->nombre }}</td>
-      <td>{{ $historia->descripcion }}</td>
+      <td>{!!substr($historia->historia, 0, 150)!!}...</td>
       <td class="d-flex justify-content-end align-middle">
 
         {{ Form::model($historia, [ 'method' => 'delete' , 'route' => ['historia.destroy', $historia->id] ]) }}
