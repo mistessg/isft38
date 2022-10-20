@@ -15,12 +15,80 @@
         margin: 20px;
     }
     .card-text{
-      height: 370px;
+      display: flex;
+      flex-direction: column;
       text-overflow: ellipsis;
+      flex: 1;
+      margin: 10px;
+      padding:5px;
+      text-align: center;
+    }
+    .card-text p{
+      text-align: justify;
+    }
+    @media (min-width: 1000px){
+      .card-text{
+        display: flex;
+      flex-direction: column;
+      text-overflow: ellipsis;
+      flex: 1;
+      margin: 10px;
+      padding:5px;
+      text-align: center;
+      height: 17rem;
+      }
     }
     .btn-group{
       margin-top: 20px;
     }
+    
+    
+    
+
+
+
+.botonMateria {
+ padding: 17px 40px;
+ border-radius: 7px;
+ border: 0;
+ background-color: white;
+ box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+ letter-spacing: 1.5px;
+ text-transform: uppercase;
+ font-size: 15px;
+ transition: all .5s ease;
+}
+
+.botonMateria:hover {
+ letter-spacing: 3px;
+ background-color: #FF4A4A;
+ color: hsl(0, 0%, 100%);
+ box-shadow: #D61C4E 0px 7px 29px 0px;
+}
+
+.botonMateria:active {
+ letter-spacing: 3px;
+ background-color: hsl(261deg 80% 48%);
+ color: hsl(0, 0%, 100%);
+ box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+ transform: translateY(10px);
+ transition: 100ms;
+}
+
+.imagenCarrera{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+
+
+
+   
+
+
+
     /* .cards-texto{
       height: 1000px;
     } */
@@ -37,17 +105,16 @@
 
   <div class="row">
   @foreach ($carreras as $carrera)
-    <div class="col-lg-4 col-md-12 mb-3 cards-texto">
+    <div class="col-lg-6 col-md-12 mb-3 cards-texto">
       <div class="card shadow-sm roberto">
-        <img src="https://i.blogs.es/e1feab/google-fotos/1366_2000.jpg" width="100%" alt="">
+        <img src="{{asset('./storage/'. $carrera->imagen )}}" alt="" class="imagenCarrera">
           <div class="card-body">
           <div class="card-text">
             <h4>{{ $carrera-> descripcion}}</h4>
             <p>{{ $carrera-> texto }}</p></div>
               <div class="d-flex justify-content-between align-items-center mt-4">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <button type="button" class="botonMateria">Materias</button>
                 </div>
               </div>
           </div>
