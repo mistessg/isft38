@@ -23,9 +23,7 @@
         width: 70%;
         margin: 0 auto;
     }
-    .btn{
-      
-    }
+
     .form-group{
         margin-top:10px;
     }
@@ -124,13 +122,15 @@
         @foreach($programas as $programa)
         @if($a->id == $programa->anio_id)
 
-        <h2 class="accordion-header" id="heading{{$a->id}}">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$a->id}}" aria-expanded="true" aria-controls="collapse{{$a->id}}">
             @if($titulo)
+            <h2 class="accordion-header" id="heading{{$a->id}}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$a->id}}" aria-expanded="true" aria-controls="collapse{{$a->id}}">
+
             {{$titulo}} <br>
+            </button>            
             @php($titulo = '')
             @endif
-          </button>
+
         </h2>
         <div id="collapse{{$a->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$a->id}}}" data-bs-parent="#accordionExample">
           <div class="accordion-body">
@@ -182,9 +182,9 @@
     var sede_id = document.getElementById('sede_id').value;
             //var sede_id = document.getElementById('sede_id').value;
             var carrera_id = document.getElementById('carrera_id').value;
-            $('#carrera_id').find('option').not(':first').remove();
-            
-
+            //$('#carrera_id').find('option').not(':first').remove();
+            $('#carrera_id').find('option').remove();
+            $('#carrera_id').append($('<option></option>').html('Cargando datos...'));
             $.ajax({
                 url: '/getCarreras/' + sede_id,
                 type: 'get',
@@ -197,7 +197,8 @@
                     }
 
                     if (len > 0) {
-
+                      $('#carrera_id').find('option').remove();
+                      $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
                         for (var i = 0; i < len; i++) {
 
                             var id = response['data'][i].id;

@@ -135,10 +135,11 @@
         var anio_id = document.getElementById('anio_id').value;
         var carrera_id = document.getElementById('carrera_id').value;
         var sede_id = document.getElementById('sede_id').value;
-        $('#materia_id').find('option').not(':first').remove();
-
+        //$('#materia_id').find('option').not(':first').remove();
+        $('#materia_id').find('option').remove();
+        $('#materia_id').append($('<option></option>').html('Cargando datos...'));        
         $.ajax({
-            url: 'http://isft38.test/getMaterias/' + carrera_id + '/' + anio_id + '/' + sede_id,
+            url: '/getMaterias/' + carrera_id + '/' + anio_id + '/' + sede_id,
             type: 'get',
             dataType: 'json',
             success: function(response) {
@@ -149,7 +150,8 @@
                 }
 
                 if (len > 0) {
-
+                    $('#materia_id').find('option').remove();
+                      $('#materia_id').append($('<option></option>').html('Seleccione una carrera...'));
                     for (var i = 0; i < len; i++) {
 
                         var id = response['data'][i].id;
@@ -169,8 +171,9 @@
     var sede_id = document.getElementById('sede_id').value;
             //var sede_id = document.getElementById('sede_id').value;
             var carrera_id = document.getElementById('carrera_id').value;
-            $('#carrera_id').find('option').not(':first').remove();
-            
+            //$('#carrera_id').find('option').not(':first').remove();
+            $('#carrera_id').find('option').remove();
+            $('#carrera_id').append($('<option></option>').html('Cargando datos...'));            
 
             $.ajax({
                 url: '/getCarreras/' + sede_id,
@@ -184,6 +187,8 @@
                     }
 
                     if (len > 0) {
+                      $('#carrera_id').find('option').remove();
+                      $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
 
                         for (var i = 0; i < len; i++) {
 

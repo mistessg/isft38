@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sede;
 use App\Models\Carrera;
+use App\Models\CarreraSede;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 

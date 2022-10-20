@@ -44,7 +44,7 @@ class HorarioController extends Controller
     {
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
         ->pluck('nombrecompleto', 'id');
-        return view('frontend\horarios\porProfesor',compact('profesores'));
+        return view('frontend.horarios.porProfesor',compact('profesores'));
     }
     public function searchProfesor(Request $request){
 
@@ -62,28 +62,18 @@ class HorarioController extends Controller
         $comision = Comision::find($request->input('comision_id'));
         
         $horarios = Horario::where('profesor_id',($request->input('profesor_id')))->get();
-
+        $dias = array();
+        $dias[1] = 'Lunes';
+        $dias[2] = 'Martes';
+        $dias[3] = 'Miércoles';
+        $dias[4] = 'Jueves';
+        $dias[5] = 'Viernes';
+        
         foreach($horarios as $key_hora=>$hora) {            
-            switch ($hora->dia) {
-                case '1':
-                    $dias[1] = 'Lunes';
-                    break;
-                case '2':
-                    $dias[2] = 'Martes';  
-                    break;   
-                case '3':
-                    $dias[3] = 'Miércoles';
-                    break;
-                case '4':
-                    $dias[4] = 'Jueves';
-                    break;
-                case '5':
-                    $dias[5] = 'Viernes';
-                    break;
-                case '6':
-                    $dias[6] = 'Sábado';
-                    break;
-            }            
+            foreach($horarios as $key_hora=>$hora) {            
+                if($hora->dia == '6'){
+                   $dias[6] = 'Sábado';}
+               } 
           }
           ksort($dias);
           
@@ -262,20 +252,29 @@ class HorarioController extends Controller
     //USER
     public function searchPorCarrera(Request $request)
     {
-        $validatedData = $request->validate(
+      /* $validatedData = $request->validate(
             [
                 'sede_id' => 'required',
                 'carrera_id' => 'required',
                 'anio_id' => 'required',
-                'comision_id' => 'required',
+                'comision_id' => 'required'
             ]
-        );
+        );*/
         return redirect()->route('horarios.searchPorCarrera', ['sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'anio' => $request->input('anio_id'), 'comision' => $request->input('comision_id')]);
     }
 
 
     public function searchCarreraUser(Request $request)//($sede, $carrera, $anio, $comision)
     {
+        $validatedData = $request->validate(
+            [
+                'sede_id' => 'required',
+                'carrera_id' => 'required',
+                'anio_id' => 'required',
+                'comision_id' => 'required'
+            ]
+        );
+
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
@@ -291,28 +290,17 @@ class HorarioController extends Controller
             ->where('anio_id', $anio->id)
             ->where('comision_id', $comision->id)->get();
 
+            $dias[1] = 'Lunes';
+            $dias[2] = 'Martes';  
+            $dias[3] = 'Miércoles';
+            $dias[4] = 'Jueves';
+            $dias[5] = 'Viernes';
+
         foreach($horarios as $key_hora=>$hora) {            
-            switch ($hora->dia) {
-                case '1':
-                    $dias[1] = 'Lunes';
-                    break;
-                case '2':
-                    $dias[2] = 'Martes';  
-                    break;   
-                case '3':
-                    $dias[3] = 'Miércoles';
-                    break;
-                case '4':
-                    $dias[4] = 'Jueves';
-                    break;
-                case '5':
-                    $dias[5] = 'Viernes';
-                    break;
-                case '6':
-                    $dias[6] = 'Sábado';
-                    break;
+             if($hora->dia == '6'){
+                $dias[6] = 'Sábado';}
             }            
-          }
+          
           ksort($dias);
           
             return view('frontend.horarios.tablaCarreras', compact(
@@ -333,6 +321,12 @@ class HorarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function searchPorDiaHora(Request $request){
+        $validatedData = $request->validate(
+            [
+                'dias' => 'required',
+                'modulohorario_id' => 'required'
+            ]
+        );
         $horarios= Horario::where('dia', $request->input('dias'))
                            ->where('modulohorario_id', $request->input('modulohorario_id'))->get();
         return view('frontend.horarios.tablaDiaHora',compact('horarios'));
