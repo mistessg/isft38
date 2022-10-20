@@ -23,9 +23,7 @@
         width: 70%;
         margin: 0 auto;
     }
-    .btn{
-      
-    }
+
     .form-group{
         margin-top:10px;
     }
