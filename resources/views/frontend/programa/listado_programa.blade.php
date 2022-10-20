@@ -95,7 +95,11 @@
     
 
       <br>
-   
+      </div>
+</div>
+
+<div></div>
+
 
     <!-- ACORDEON -->
     <div class="accordion" id="accordionExample">
@@ -123,14 +127,15 @@
                 <tr>
                   <th scope="col">MATERIA</th>
                   <th scope="col">PROFESOR</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
+
+                  <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
                   <td>{{$programa->profesor->apellido}},{{$programa->profesor->nombre}}</td>
 
+                  @csrf
               </tbody>
               {!!Form::close()!!}
               @endif
@@ -141,8 +146,7 @@
         @endforeach
       </div>
     </div>
-  </div>
-</div>
+
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
