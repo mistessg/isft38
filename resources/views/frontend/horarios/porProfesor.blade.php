@@ -3,17 +3,50 @@
 @section('title', 'Horarios por Carreras')
 
 @section('content')
+
+<style>
+
+    label {
+        width: 4rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+    }
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+    }
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
+
+</style>
+
 <div>
     @if(Session::has('status'))
     <div class="alert alert-success">{{ Session('status')}}</div>
     @endif
 </div>
 
-<div class="container my-4">
+<div class="container" style="display: flex ; align-items: center; justify-content: center">
 
-    <div class="card">
-        <h5 class="card-header" style="background-color: #181818; color: white;">Horarios por Profesor</h5>
+    <div class="card my-4" style=" width: 50%;">
+        <h5 class="card-header" style="background-color: #181818; color: white;">Horarios por profesor</h5>
         <div class="card-body">
+
 
             {{ Form::open(['route' => 'horarios.show.porProfesor']) }}
             @csrf
@@ -22,12 +55,12 @@
                 <input type="text" id="apellido" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" onkeypress="crit_busqueda()">
             </div>
             <br>
-            {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "id"=>"listado","size"=>"10","placeholder" => "Seleccione un profesor", "aria-label" =>"multiple select example"]) }}
+            {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "id"=>"listado","size"=>"10","placeholder" => "Seleccione un profesor", "aria-label" =>"multiple select example","style"=>"height:5rem;"]) }}
             <br>
             @error('profesor_id')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <div class="d-grid gap-2">
+            <div class="d-grid gap-2 col-5 my-4 mx-auto">
                 <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
             </div>
             {!!Form::close()!!}

@@ -39,6 +39,33 @@
         padding:10px;
         outline: none;
     }
+
+    label {
+        width: 6rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+    }
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+    }
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
     </style>
 
   <div class="Inicio">
@@ -95,7 +122,11 @@
     
 
       <br>
-   
+      </div>
+</div>
+
+  <br>
+
 
     <!-- ACORDEON -->
     <div class="accordion" id="accordionExample">
@@ -123,14 +154,15 @@
                 <tr>
                   <th scope="col">MATERIA</th>
                   <th scope="col">PROFESOR</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
+
+                  <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
                   <td>{{$programa->profesor->apellido}},{{$programa->profesor->nombre}}</td>
 
+                  @csrf
               </tbody>
               {!!Form::close()!!}
               @endif
@@ -141,8 +173,7 @@
         @endforeach
       </div>
     </div>
-  </div>
-</div>
+
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -14,7 +14,7 @@
 </style>
 
    
-<table class="table texto-tabla mb-0">
+<table class="container table texto-tabla mb-0">
     <tr class="text-light text-center mb-0" style="background-color: #3A70FF;">
         <th class="text-left" scope="col">HORARIO</th>
         @foreach($dias as $dia)

@@ -169,7 +169,8 @@ return [
         'numero' => "'número'",
         'sedeimagen' => "'imagen'",	
 		'ciudad' => "'ciudad'",	
-		'dias' => "'día'"
+		'dias' => "'día'",
+		'imagen' => "'Archivo'"
      ],
 	
 ];

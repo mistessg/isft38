@@ -4,6 +4,38 @@
 
 @section('content')
 
+<style>
+
+    label {
+        width: 4rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+    }
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+}
+
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
+
+</style>
+
 <div class="container" style="display: flex ; align-items: center; justify-content: center">
 
     <div class="card my-4" style=" width: 50%;">
@@ -33,7 +65,7 @@
             @enderror
 
             <div class="d-grid gap-2 col-5 my-4 mx-auto">
-                <button class="form-control btn btn-outline-dark" type="submit">Consultar</button>
+                <button class="form-control btn btn-outline-dark" style="margin-top:1rem;" type="submit">Consultar</button>
             </div>
         </div>
         {!!Form::close()!!}
