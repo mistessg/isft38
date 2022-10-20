@@ -50,7 +50,7 @@
     <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
     <div class="card-body">
 
-      {{ Form::open(['route' => 'programa.search']) }}
+      {{ Form::open(['route' => 'programas.search']) }}
       @csrf
 
       <div class="input-group mb-3">
@@ -128,23 +128,9 @@
               </thead>
               <tbody>
                 <tr>
-                  {{ Form::model($programa, [ 'method' => 'delete' , 'route' => ['programa.destroy', $programa->id] ]) }}
-
-                  <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
+                <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
                   <td>{{$programa->profesor->apellido}},{{$programa->profesor->nombre}}</td>
 
-                  @csrf
-                  <td>
-                    <div class="botonera">
-                      <button type="submit" name="borrar{{$programa->id}}" class="btn btn-danger  svg img" onclick="if (!confirm('Está seguro de borrar el programa?')) return false;">
-                        <img src="{{ asset('svg/delete.svg') }}" width="20" height="30" alt="Borrar" title="Borrar">
-                      </button>
-
-                      <a href="{{ route('programa.edit', ['programa' => $programa->id ]) }}" class="btn btn-primary svg img">
-                        <img src="{{ asset('svg/edit.svg') }}" width="20" height="30" alt="Editar" title="Editar">
-                      </a>
-                    </div>
-                  </td>
               </tbody>
               {!!Form::close()!!}
               @endif

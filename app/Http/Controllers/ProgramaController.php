@@ -151,6 +151,7 @@ class ProgramaController extends Controller
         );
         return redirect()->route('programa.search.list', ['periodo' => $request->input('anio_id'), 'sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'comision' => $request->input('comision_id')]);
     }
+    
     public function searchPrograma($periodo, $sede, $carrera, $comision)
     {
         $periodos = array();
@@ -292,14 +293,26 @@ class ProgramaController extends Controller
         return response()->json($materias);
     }
 
+    /*public function getMateriasFront($carrera_id = 0, $anio_id = 0, $sede_id = 0)
+    {
+        $materias['data'] = Materia::join('carrerasedes','materias.carrera_id' , '=', 'carrerasedes.carrera_id')
+            ->select('materias.id', 'materias.descripcion')
+            ->where('materias.carrera_id', $carrera_id)
+            ->where('materias.anio_id', $anio_id)
+            ->where('carrerasedes.sede_id', $sede_id)
+            ->get();
+
+        return response()->json($materias);
+    }*/
+
     public function getCarreras($sede_id = 0){
 
-        $modulosHorarios  = 
+      //  $modulosHorarios  = 
+      
         $carreras['data'] = Carrerasede::join('carreras','carrerasedes.carrera_id' , '=', 'carreras.id')
         ->where('sede_id', $sede_id)
         ->get(['carreras.id', 'descripcion']);
-
-           
+          
         return response()->json($carreras);
     }
 }
