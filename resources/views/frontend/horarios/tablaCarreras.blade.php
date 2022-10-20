@@ -45,7 +45,7 @@
 
         </div>
         </div>
-    </div>
+    
 {!!Form::close()!!}
 
   
@@ -96,6 +96,7 @@
 
  
 </table>
+</div>
 
 <p class='text-muted text-center mt-1 mb-1'>Estos horarios podr&iacute;an no ser los oficiales actuales del  Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection
