@@ -33,7 +33,7 @@
             @enderror
 
             <div class="d-grid gap-2 col-5 my-4 mx-auto">
-                <button class="form-control btn btn-outline-dark" type="submit">Consultar</button>
+                <button class="form-control btn btn-outline-dark" style="margin-top:1rem;" type="submit">Consultar</button>
             </div>
         </div>
         {!!Form::close()!!}
