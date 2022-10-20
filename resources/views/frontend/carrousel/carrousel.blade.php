@@ -269,6 +269,12 @@
     overflow: auto;
   }
 
+  @media (max-width:768px){
+    .container-son{
+      width:320px;
+    }
+  }
+
   .btn_cerrar {
     position: absolute;
     top: -20px;
