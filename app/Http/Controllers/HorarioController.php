@@ -47,7 +47,11 @@ class HorarioController extends Controller
         return view('frontend.horarios.porProfesor',compact('profesores'));
     }
     public function searchProfesor(Request $request){
-
+        $validatedData = $request->validate(
+            [
+                'profesor_id' => ['required']
+            ]
+        );
         //$horario = Horario::FindOrFail($request->input('profesor_id')); 
         
         $sede = Sede::find($request->input('sede_id'));
