@@ -54,7 +54,7 @@ class ObjetivoController extends Controller
      * @param  \App\Models\Objetivo  $objetivo
      * @return \Illuminate\Http\Response
      */
-    public function show(Objetivo $objetivo)
+    public function show($id)
     {
         $objetivo = Objetivo::findOrFail($id);
         return view('backend.objetivo.show', compact('objetivo'));
