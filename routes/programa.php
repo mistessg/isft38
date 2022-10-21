@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('programa', ProgramaController::class);
 });
 
+Route::get('/programas/create', [ProgramaController::class, 'createFront']);
 Route::post('/programas/programasPendientes/search', [ProgramaController::class, 'ProgramasPendientesFrontSearch'])->name('programa.pendiente.search');
 Route::get('/programas/programasPendientes', [ProgramaController::class, 'ProgramasPendientesFront']);
 Route::get('/programas', [ProgramaController::class, 'programas'])->name('programas');

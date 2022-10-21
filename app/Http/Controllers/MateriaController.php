@@ -71,6 +71,18 @@ class materiaController extends Controller
      * @param  \App\Models\materia  $materia
      * @return \Illuminate\Http\Response
      */
+
+    public function getMaterias($carrera_id = 0)
+    {
+        $materias['data'] = Materia::join('carrerasedes','materias.carrera_id' , '=', 'carrerasedes.carrera_id')
+            ->select('materias.id', 'materias.descripcion')
+            ->where('materias.carrera_id', $carrera_id)
+            ->get();
+
+        return response()->json($materias);
+    }
+
+
     public function edit($id)
     {
         $materias = materia::findOrFail($id);

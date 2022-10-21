@@ -44,6 +44,7 @@ class ProgramaController extends Controller
     {
         return view('frontend.programa.cargar_programa');
     }
+    
     public function ProgramasPendientes()
     {
         $periodos = array();
@@ -107,6 +108,17 @@ class ProgramaController extends Controller
         $comisiones = Comision::pluck('comision', 'id');
         $profesores = Profesor::pluck('nombre', 'id');
         return view('backend.programa.create', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
+    }
+    public function createFront()
+    {
+        $sede = Sede::pluck('descripcion', 'id');
+        $carreras = Carrera::pluck('descripcion', 'id');
+        $anios = Anio::pluck('descripcion', 'id');
+        $materias = array(); //Materia::pluck('descripcion', 'id');
+        $comisiones = Comision::pluck('comision', 'id');
+        $profesores = Profesor::pluck('nombre', 'id');
+        //dd("entro al create del front");
+        return view('frontend.programa.createFront', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
     }
     public function store(Request $request)
     {
