@@ -83,6 +83,32 @@
         border-radius: 20px;
         text-align: center;
       }
+      label {
+        width: 6rem;
+    }
+
+    @media (max-width: 450px) {
+    
+    .card{
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+    }
+    @media (max-width: 380px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+    }
+  @media (max-width: 400px) {
+  
+  .card{
+    margin: 1rem 1rem 1rem 1rem;
+
+  }
+
+}
     </style>
 
     @foreach($anios as $a)
@@ -123,7 +149,8 @@
     </div>
     @endforeach
 
-
+  </div>
+  </div>
 
     @endsection
 

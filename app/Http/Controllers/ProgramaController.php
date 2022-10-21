@@ -128,9 +128,10 @@ class ProgramaController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->where('anio_id', $request->input('anio_id'))
             ->where('materia_id', $request->input('materia_id'))
-            ->where('profesor_id', $request->input('profesor_id'))
-            ->OrderBy('anio_id')->get();
-        if($programaEncontrado != null)
+            ->where('profesor_id', $request->input('profesor_id'))->first();
+            //dd($programaEncontrado);
+
+        if(!empty($programaEncontrado))
         {
             $request->session()->flash('status-error', 'Ya existe un programa igual');
             return redirect()->route('programa.create');
