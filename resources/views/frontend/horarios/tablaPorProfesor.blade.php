@@ -5,7 +5,6 @@
 
 <style>
 
-
     .texto-tabla {
         font-size: .8em;
     }
@@ -14,7 +13,7 @@
 </style>
 
    
-<table class="container table texto-tabla mb-0">
+<table class="container table texto-tabla mt-4 mb-0">
     <tr class="text-light text-center mb-0" style="background-color: #3A70FF;">
         <th class="text-left" scope="col">HORARIO</th>
         @foreach($dias as $dia)
@@ -61,5 +60,5 @@
  
 </table>
 
-<p class='text-muted text-center mt-1 mb-1'>Estos horarios podr&iacute;an no ser los oficiales actuales del  Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
+<p class='text-muted text-center mt-1'>Estos horarios podr&iacute;an no ser los oficiales actuales del  Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection

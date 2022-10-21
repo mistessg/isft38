@@ -14,7 +14,7 @@
 
 
 <div class="container">
-<table class="table m-o" style="background-color: #3A70FF;">
+<table class="table m-o mt-4" style="background-color: #3A70FF;">
     <tr class="text-dark" style="background-color: #3A70FF;">
             <th class="align-middle ps-5">Horario</th>
             <th class="align-middle">Profesor</th>
