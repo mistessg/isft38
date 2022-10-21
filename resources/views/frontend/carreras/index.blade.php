@@ -114,7 +114,9 @@
             <p>{{ $carrera-> texto }}</p></div>
               <div class="d-flex justify-content-between align-items-center mt-4">
                 <div class="btn-group">
-                  <button type="button" class="botonMateria">Materias</button>
+                  <button id="{{$carrera->descripcion}}" onClick="reply_click(this.id)" type="button" class="botonMateria"data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$carrera->id}}">
+                    Materias
+                  </button>
                 </div>
               </div>
           </div>
@@ -122,7 +124,38 @@
     </div>
     @endforeach
   </div>
-    
-    
 </div>
+
+<div>
+</div>
+ 
+@foreach ($carreras as $carrera)
+<div class="modal fade" id="staticBackdrop{{$carrera->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel"><b> Materias de
+        {{$carrera->descripcion}}</b></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @foreach ($materias as $materia)
+        @if($materia->carrera_id == $carrera->id)
+          <h1>{{$materia->descripcion}}</h1>
+        @endif
+        @endforeach
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+<!-- <script type="text/javascript">
+  function reply_click(clicked_id){
+    alert(clicked_id);
+  }
+</script> -->
+
 @endsection

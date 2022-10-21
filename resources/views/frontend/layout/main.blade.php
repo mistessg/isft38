@@ -37,18 +37,33 @@
 
   body {
     background: #212529;
+    width: 100vw;
   }
 
   .footin {
     color: white;
   }
-
+  ul li {
+      width: 100%;
+      height: 100%;
+    }
+    .dropdown-menu {
+      padding: 0 !important;
+    }
+    nav svg{
+      margin-right: 10px;
+    }
+  .rogelio ul li a{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
   @media (max-width: 768px) {
-    
-    .rogelio ul li a{
-      display: flex;
-      justify-content: center;
-      text-align: center;
+    ul li {
+      width: 100%;
+      font-size: 120%;
+    }
+    .show{
       height: 100%;
     }
     .footin {
@@ -57,10 +72,6 @@
       text-align: center;
     }
 
-    ul li {
-      width: 100%;
-      font-size: 21px;
-    }
   }
 
   .nav-li {
@@ -70,7 +81,7 @@
 
   /* botonas */
 
-  /* a {
+   a {
     color: #e1e1e1;
     font-weight: 800;
     cursor: pointer;
@@ -106,7 +117,7 @@
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 400ms;
     transition-property: width, left;
-  } */
+  }
 </style>
 
 <body>
@@ -121,7 +132,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse rogelio" id="navbarToggleExternalContent">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex justify-content-around" style="--bs-scroll-height: 100px;">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex justify-content-around" style="--bs-scroll-height: 400px;">
           <li class="nav-item">
             <a href="/carreras" class="nav-link dropdown-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
