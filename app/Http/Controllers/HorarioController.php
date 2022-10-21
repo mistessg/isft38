@@ -43,45 +43,47 @@ class HorarioController extends Controller
     public function porProfesor()
     {
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-        ->pluck('nombrecompleto', 'id');
-        return view('frontend.horarios.porProfesor',compact('profesores'));
+            ->pluck('nombrecompleto', 'id');
+        return view('frontend.horarios.porProfesor', compact('profesores'));
     }
-    public function searchProfesor(Request $request){
+    public function searchProfesor(Request $request)
+    {
         $validatedData = $request->validate(
             [
                 'profesor_id' => ['required']
             ]
         );
         //$horario = Horario::FindOrFail($request->input('profesor_id')); 
-        
+
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
-        
+
         $carrera = Carrera::find($request->input('carrera_id'));
         $anio = Anio::find($request->input('anio_id'));
         //$modulosHorarios = Modulo::all()->sortBy('horainicio');
-        $modulosHorarios  = Modulo::join('horarios','modulos.id' , '=', 'horarios.modulohorario_id')
-                     		->get(['modulos.id', 'horainicio', 'horafin'])->unique()->sortBy('horainicio');
+        $modulosHorarios  = Modulo::join('horarios', 'modulos.id', '=', 'horarios.modulohorario_id')
+            ->get(['modulos.id', 'horainicio', 'horafin'])->unique()->sortBy('horainicio');
         $comision = Comision::find($request->input('comision_id'));
-        
-        $horarios = Horario::where('profesor_id',($request->input('profesor_id')))->get();
+
+        $horarios = Horario::where('profesor_id', ($request->input('profesor_id')))->get();
         $dias = array();
         $dias[1] = 'Lunes';
         $dias[2] = 'Martes';
         $dias[3] = 'Miércoles';
         $dias[4] = 'Jueves';
         $dias[5] = 'Viernes';
-        
-        foreach($horarios as $key_hora=>$hora) {            
-            foreach($horarios as $key_hora=>$hora) {            
-                if($hora->dia == '6'){
-                   $dias[6] = 'Sábado';}
-               } 
-          }
-          ksort($dias);
-          
-            return view('frontend.horarios.tablaPorProfesor', compact(
+
+        foreach ($horarios as $key_hora => $hora) {
+            foreach ($horarios as $key_hora => $hora) {
+                if ($hora->dia == '6') {
+                    $dias[6] = 'Sábado';
+                }
+            }
+        }
+        ksort($dias);
+
+        return view('frontend.horarios.tablaPorProfesor', compact(
             'sede',
             'carrera',
             'sedes',
@@ -91,23 +93,22 @@ class HorarioController extends Controller
             'comision',
             'modulosHorarios'
         ));
-
     }
 
     public function porDiaHora()
-    {  
-        $modulohorario = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' - ',modulos.horafin) as horario"))->pluck('horario', 'id');        
+    {
+        $modulohorario = Modulo::select("id", DB::raw("CONCAT(modulos.horainicio,' - ',modulos.horafin) as horario"))->pluck('horario', 'id');
 
-        $dias = array(1=>'Lunes', 'Martes','Miércoles' ,'Jueves', 'Viernes','Sábado');
+        $dias = array(1 => 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
 
-        return view('frontend\horarios\porDiaHora',compact('modulohorario','dias'));
+        return view('frontend.horarios.porDiaHora', compact('modulohorario', 'dias'));
     }
     public function create(Request $request)
     {
     }
     public function createHorario(Request $request)
     {
-        
+
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
 
@@ -258,7 +259,7 @@ class HorarioController extends Controller
     //USER
     public function searchPorCarrera(Request $request)
     {
-      /* $validatedData = $request->validate(
+        /* $validatedData = $request->validate(
             [
                 'sede_id' => 'required',
                 'carrera_id' => 'required',
@@ -270,7 +271,7 @@ class HorarioController extends Controller
     }
 
 
-    public function searchCarreraUser(Request $request)//($sede, $carrera, $anio, $comision)
+    public function searchCarreraUser(Request $request) //($sede, $carrera, $anio, $comision)
     {
         $validatedData = $request->validate(
             [
@@ -284,32 +285,33 @@ class HorarioController extends Controller
         $sede = Sede::find($request->input('sede_id'));
         $sedes = Sede::pluck('descripcion', 'id');
         $dias = array();
-        
+
         $carrera = Carrera::find($request->input('carrera_id'));
         $anio = Anio::find($request->input('anio_id'));
         //$modulosHorarios = Modulo::all()->sortBy('horainicio');
-        $modulosHorarios  = Modulo::join('horarios','modulos.id' , '=', 'horarios.modulohorario_id')
-                     		->get(['modulos.id', 'horainicio', 'horafin'])->unique()->sortBy('horainicio');
+        $modulosHorarios  = Modulo::join('horarios', 'modulos.id', '=', 'horarios.modulohorario_id')
+            ->get(['modulos.id', 'horainicio', 'horafin'])->unique()->sortBy('horainicio');
         $comision = Comision::find($request->input('comision_id'));
         $horarios = Horario::where('sede_id', $sede->id)
             ->where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
             ->where('comision_id', $comision->id)->get();
 
-            $dias[1] = 'Lunes';
-            $dias[2] = 'Martes';  
-            $dias[3] = 'Miércoles';
-            $dias[4] = 'Jueves';
-            $dias[5] = 'Viernes';
+        $dias[1] = 'Lunes';
+        $dias[2] = 'Martes';
+        $dias[3] = 'Miércoles';
+        $dias[4] = 'Jueves';
+        $dias[5] = 'Viernes';
 
-        foreach($horarios as $key_hora=>$hora) {            
-             if($hora->dia == '6'){
-                $dias[6] = 'Sábado';}
-            }            
-          
-          ksort($dias);
-          
-            return view('frontend.horarios.tablaCarreras', compact(
+        foreach ($horarios as $key_hora => $hora) {
+            if ($hora->dia == '6') {
+                $dias[6] = 'Sábado';
+            }
+        }
+
+        ksort($dias);
+
+        return view('frontend.horarios.tablaCarreras', compact(
             'sede',
             'carrera',
             'sedes',
@@ -320,23 +322,23 @@ class HorarioController extends Controller
             'modulosHorarios'
         ));
     }
-     /**
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function searchPorDiaHora(Request $request){
+    public function searchPorDiaHora(Request $request)
+    {
         $validatedData = $request->validate(
             [
                 'dias' => 'required',
                 'modulohorario_id' => 'required'
             ]
         );
-        $horarios= Horario::where('dia', $request->input('dias'))
-                           ->where('modulohorario_id', $request->input('modulohorario_id'))->get();
-        return view('frontend.horarios.tablaDiaHora',compact('horarios'));
-
+        $horarios = Horario::where('dia', $request->input('dias'))
+            ->where('modulohorario_id', $request->input('modulohorario_id'))->get();
+        return view('frontend.horarios.tablaDiaHora', compact('horarios'));
     }
     public function show($id)
     {
