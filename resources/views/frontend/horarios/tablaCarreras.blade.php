@@ -9,13 +9,20 @@
     .texto-tabla {
         font-size: .8em;
     }
-
+    .tablaScroll{
+        overflow-x: scroll;
+    overflow-y: hidden;
     
+    white-space:nowrap;
+    }
+    th, td{
+        width:10rem;
+    }
 </style>
 
-<div class="container-fluid">   
+<div class="container">   
         {{ Form::open(['route' => 'horario.createHorario']) }}
-        <div class="row mt-3 mb-1">
+        <div class="row mt-4 mb-1">
 
             <div class="input-group col">
                 <label class="input-group-text bg-dark text-light"for="#">Sede</label>
@@ -48,7 +55,9 @@
     
 {!!Form::close()!!}
 
-  
+  <div class="tablaScroll">
+
+
 <table class="table texto-tabla mb-0">
     <tr class="text-light text-center mb-0" style="background-color: #3A70FF;">
         <th class="text-left" scope="col">HORARIO</th>
@@ -75,7 +84,7 @@
       @endforeach
       @if($a == 0)
      @php ($a++)  
-        <div class="text-center px-5 py-4 m-auto">  
+        <div class="text-center  py-4 m-auto">  
         <p class="align-middle px-auto">{{ Form::open(['route' => 'horario.createHorario']) }}</p>
         </div>
     {{Form::text("sede_id", $sede->id , ["class" => "form-control", "hidden" ])}}
@@ -96,6 +105,7 @@
 
  
 </table>
+</div>
 </div>
 
 <p class='text-muted text-center mt-1 mb-1'>Estos horarios podr&iacute;an no ser los oficiales actuales del  Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
