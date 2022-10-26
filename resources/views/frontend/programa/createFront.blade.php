@@ -118,13 +118,31 @@
         @enderror
     </div>
     </br>
-    <button type="submit" class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
+    <div class="form-check">
+        <input class="form-check-input" id="leido" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            He leído y declaro que el programa adjunto se realizó conforme a la <a target="_blank" class="btn btn-danger" href="{{asset('./Disposicion.pdf')}}">Disposición 30/05</a>
+        </label>
+    </div>
+    <br>
+    <button type="submit" id="boton" disabled class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
 </div>
 {!!Form::close()!!}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
 <script type='text/javascript'>
+    var checkbox = document.getElementById('leido');
+    checkbox.addEventListener("change", validaCheckbox, false);
+    function validaCheckbox()
+    {
+        var checked = checkbox.checked;
+        if(checked){
+            $('#boton').prop('disabled', false);
+        }else{
+            $('#boton').prop('disabled', true);
+        }
+    }
 
     function search(){
         var anio_id = document.getElementById('anio_id').value;
