@@ -216,13 +216,15 @@
     opacity: 0;
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: 100vh;
     width: 100vw;
     transition: opacity 0.3s ease;
     overflow: auto;
     overflow: scroll;
-    z-index: 2;
-
+    z-index: 2000;
   }
 
   .show {

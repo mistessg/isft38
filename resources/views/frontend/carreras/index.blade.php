@@ -141,7 +141,8 @@
       <div class="modal-body">
         @foreach ($materias as $materia)
         @if($materia->carrera_id == $carrera->id)
-          <h1>{{$materia->descripcion}}</h1>
+          <h2>Materias de {{$materia->anio_id}} año</h1>
+          <p style="word-wrap: break-word;font-size:16px;">- {{$materia->descripcion}}.</p>
         @endif
         @endforeach
       </div>
