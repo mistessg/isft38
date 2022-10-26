@@ -35,7 +35,7 @@
         {{ Form::label("comision", 'Comision', ['class' => 'control-label']) }}
         {{Form::text("comision", old("descripcion"), ["class" => "form-control", "placeholder" => "Ingrese la nueva comisión", ])}}
     </div>
-    @error('descripcion')<div class="alert alert-danger">{{ $message }}</div>@enderror
+    @error('comision')<div class="alert alert-danger">{{ $message }}</div>@enderror
 
     </br><button type="submit" class="btn btn-success form-control">Guardar</button>
     {!!Form::close()!!}

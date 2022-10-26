@@ -7,6 +7,7 @@ use App\Models\Carrera;
 use App\Models\Anio;
 use App\Models\Profesor;
 use App\Models\Programa;
+use App\Models\Horario;
 use App\Models\DB;
 use Illuminate\Http\Request;
 
@@ -125,11 +126,12 @@ class materiaController extends Controller
     {
          $materia = Materia::findOrFail($id);
          $programas = Programa::where('materia_id', $materia->id)->first();
-         if (empty($programas)) {
+         $horarios = Horario::where('materia_id', $materia->id)->first();
+         if (empty($programas) && empty($horarios)) {
             $materia->delete();
          }
          else{
-            session()->flash('status', 'Esta materia está relacionada en programas ');
+            session()->flash('status', 'Esta materia tiene horarios y/o programas relacionados');
          }
          return redirect()->route('materia.index');
     }

@@ -6,6 +6,7 @@ use App\Models\Sede;
 use App\Models\Carrera;
 use App\Models\CarreraSede;
 use App\Models\Programa;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -149,11 +150,12 @@ class CarreraController extends Controller
     {
          $carrera = carrera::findOrFail($id);    
          $programas = Programa::where('carrera_id', $carrera->id)->first();
-         if (empty($programas)) {
+         $horarios = Horario::where('carrera_id', $carrera->id)->first();
+         if (empty($programas) && empty($horarios)) {
             $carrera->delete();
          }
          else{
-            session()->flash('status', 'Esta carrera está relacionada en programas ');
+            session()->flash('status', 'Esta carrera tiene horarios y/o programas relacionados');
          }
          return redirect()->route('carrera.index');
     }
