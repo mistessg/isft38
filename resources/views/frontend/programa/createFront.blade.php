@@ -56,7 +56,7 @@
     @endif
 </div>
 <div class="links">
-    {{ Form::open(['route' => 'programa.store', 'files' => true]) }}
+    {{ Form::open(['route' => 'programas.store', 'files' => true]) }}
     @csrf
     <!-- {{ csrf_field() }} -->
     <div class="form-group">

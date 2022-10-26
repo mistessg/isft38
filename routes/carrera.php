@@ -14,8 +14,8 @@ use App\Models\Materia;
 Route::get('/carreras', function () {
     $carreras = Carrera::all();
     $materias = Materia::all();
-    return view('frontend.carreras.index', compact('carreras','materias'));
-});
+    return view('frontend.carreras.index', compact('carreras', 'materias'));
+})->name('carreras');
 Route::middleware(['auth'])->group(function () {
     Route::resource('carrera', CarreraController::class);
 });

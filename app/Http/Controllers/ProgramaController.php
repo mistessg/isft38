@@ -168,6 +168,56 @@ class ProgramaController extends Controller
         $request->session()->flash('status', 'Se guardó correctamente el programa ');
         return redirect()->route('programa.create');
     }
+ 
+    public function storeFront(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+                'sede_id' => ['required'],
+                'carrera_id' => ['required'],
+                'anio_id' => ['required'],
+                'comision_id' => ['required'],
+                'materia_id' => ['required'],
+                'profesor_id' => ['required'],
+                'fechaentrega' => ['required'],
+                'imagen' => ['required']
+            ]
+        );
+
+        $programaEncontrado = Programa::where('sede_id', $request->input('sede_id'))
+            ->where('carrera_id', $request->input('carrera_id'))
+            ->where('comision_id', $request->input('comision_id'))
+            ->where('anio_id', $request->input('anio_id'))
+            ->where('materia_id', $request->input('materia_id'))
+            ->where('profesor_id', $request->input('profesor_id'))->first();
+            //dd($programaEncontrado);
+
+        if(!empty($programaEncontrado))
+        {
+            $request->session()->flash('status-error', 'Ya existe un programa igual');
+            return redirect()->route('programas.create');
+        }
+
+        $programa = new Programa();
+        $programa->sede_id = $request->input('sede_id');
+        $programa->carrera_id = $request->input('carrera_id');
+        $programa->anio_id = $request->input('anio_id');
+        $programa->materia_id = $request->input('materia_id');
+        $programa->comision_id = $request->input('comision_id');
+        $programa->profesor_id = $request->input('profesor_id');
+        $programa->fechaentrega = $request->input('fechaentrega');
+        $programa->save();
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $path = $archivo->storeAs('public/programa/' . $programa->id, $archivo->getClientOriginalName());
+            $savedPath  = str_replace("public/", "", $path);
+            $programa->nombrearchivo = $savedPath;
+            $programa->save();
+        }
+        $request->session()->flash('status', 'Se guardó correctamente el programa ');
+        return redirect()->route('programas.create');
+    }
+
     public function search(Request $request)
     {
         $validatedData = $request->validate(
