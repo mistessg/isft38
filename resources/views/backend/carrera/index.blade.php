@@ -84,8 +84,8 @@ a{
           {{ Form::model($carrera, [ 'method' => 'delete' , 'route' => ['carrera.destroy', $carrera->id] ]) }}
             @csrf  
           <div class="botonera">
-            <a href="{{ route('carrera.show', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
-              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20"  alt="Editar" title="Editar">
+            <a href="{{ route('carrera.show', ['carrera' => $carrera->id ]) }}" class="btn btn-info svg " >
+              <img src="{{ asset('svg/show.svg') }}"  width="20" height="20"  alt="Show" title="Show">
             </a>
 
             <a href="{{ route('carrera.edit', ['carrera' => $carrera->id ]) }}" class="btn btn-primary svg " >
@@ -95,7 +95,7 @@ a{
             <button type="submit" name="borrar{{$carrera->id}}" class="btn btn-danger  svg" onclick="if (!confirm('Está seguro de borrar la carrera?')) return false;">
               <img src="{{ asset('svg/delete.svg') }}" width="20" height="20"  alt="Borrar" title="Borrar">
             </button>
-            
+
           </div>
             {!!Form::close()!!}  
          </td>
