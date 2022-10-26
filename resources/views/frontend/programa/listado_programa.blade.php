@@ -114,8 +114,6 @@
         @enderror
       </div>
 
-
-
       <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div>
