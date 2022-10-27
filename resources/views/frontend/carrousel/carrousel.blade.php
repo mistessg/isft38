@@ -34,7 +34,6 @@
   }
 
   .card {
-    height: 650px;
     display: flex;
     margin: 0 40px;
     text-align: center;
@@ -109,7 +108,6 @@
     display: flex;
     justify-content: center;
   }
-
 
   button.learn-more .circle .icon.arrow::before {
     position: absolute;
@@ -290,6 +288,14 @@
     background: white;
     border-radius: 50px;
   }
+
+  .box-body{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
 </style>
 
 <!-- Required meta tags -->
@@ -299,102 +305,45 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<div id="carouselExampleCaptions" class="carousel slide pointer-event" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    @forelse($novedades as $novedad)
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="true" aria-label="Slide {{$loop->index}}"></button>
-    @if($loop->last)
-    @php($c1 = $loop->index + 1)
-    @php($c2 = $loop->index + 2)
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $c1 }}" class=" " aria-current="true" aria-label="Slide {{$c1}}"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $c2 }}" class=" " aria-current="true" aria-label="Slide {{$c2}}"></button>
-    @endif
-    @empty
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class=" " aria-current="true" aria-label="Slide 1"></button>
-    @endforelse
-  </div>
-  <div class="carousel-inner">
-    @forelse($novedades as $novedad)
-    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-      <img src="https://img.freepik.com/vector-premium/fondo-cuadrado-negro-geometrico-relieve_51543-519.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        @if($novedad->imagen)
-        @if(Str::startsWith($novedad->imagen, 'http'))
-        <img src="{{ $novedad->imagen }}" class="img-fluid img-thumbnail" alt="...">
-        @else
-        <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="img-fluid img-thumbnail" alt="...">
-        @endif
-        @endif
-        <h5>{{$novedad->titulo}}</h5>
-        <p>{!!substr($novedad->cuerpo, 0, 200)!!}...
-          <a href="{{route('blog.noticias.leer',$novedad->id)}}" target="_blank">
-            <button class="cta">
-              <span class="hover-underline-animation"> Saber más </span>
-              <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
-                <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" data-name="Path 10" id="Path_10"></path>
-              </svg>
-            </button>
-          </a>
-        </p>
+<div style="text-align:center;">
+  <h1>carrousel</h1>
+</div>
 
-        @if($novedad->archivo1)
-        <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
-        @endif
-        @if($novedad->archivo2)
-        <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
-        @endif
-        @if($novedad->archivo3)
-        <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
-        @endif
-      </div>
+<div class="box-novedades">
+    <div class="box-header" style="text-align: center;">
+      <h1>Novedades</h1>
     </div>
-    @if($loop->last)
-    <div class="carousel-item">
-      <img src="https://www.diferencias.cc/wp-content/uploads/2021/06/diferencia-entre-facultad-y-universidad.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Instituto Superior de Formación Técnica N° 38</h5>
-        <p>Sede Central San Nicolás</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="https://www.unav.edu/documents/29007/29799869/normativa-1200.jpg/" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Carreras</h5>
-        <!-- @foreach($carreras as $carrera) 
-	 @if($loop->first) 	 <ul>  @endif
-        <li><div class="badge bg-dark text-wrap" style="width: 25rem;">{{$carrera->descripcion}}</div></li>
-	 @if($loop->last) 	 </ul>  @endif		
-     @endforeach		 -->
-      </div>
-    </div>
-    @endif
-    @empty
-    <div class="carousel-item active">
-      <img src="https://www.diferencias.cc/wp-content/uploads/2021/06/diferencia-entre-facultad-y-universidad.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="https://www.unav.edu/documents/29007/29799869/normativa-1200.jpg/" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    @endforelse
+    <div class="row box-body">
 
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    <div class="card col-lg-3 col-md-5 sm-10 mb-3" style="width: 18rem;">
+      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    </div>
+
 </div>
 
 <div class="fondoCards">
@@ -413,7 +362,7 @@
     <div class="row" >
       
       <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
-        <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+          <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Historia</h5>
           <hr>
@@ -433,7 +382,7 @@
 
       <!--CARD 2-->
       
-      <div class="card col-lg-4 col-md-10 sm-12 mb-3 " style="padding:0% ">
+      <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
         <img class="card-img-top" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Objetivos</h5>
@@ -442,7 +391,7 @@
           <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
           @endforeach
           <hr>
-          <button class="learn-more" style="position:relative; top:6px">
+          <button class="learn-more" style="position:relative; top:10px">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
@@ -450,6 +399,27 @@
           </button>
         </div>
       </div>
+
+      <!-- <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
+        <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Historia</h5>
+          <hr>
+          @foreach($objetivos as $objetivo)
+          <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
+          @endforeach
+          <hr>
+          
+          <button class="learn-more">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text" id="btn_sesion">Ver más</span>
+          </button>
+        </div>
+      </div> -->
+
+
 
     </div>
 
