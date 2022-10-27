@@ -10,24 +10,32 @@
         width: 4rem;
     }
 
+    select{
+        height: 10rem !important;
+    }
+
+    .card {
+        justify-content: center;
+    }
+
     @media (max-width: 450px) {
     
     .card{
-        margin: 1rem 1rem 1rem 1rem;
+        margin: 1rem 0.5rem 1rem 0.5rem;
 
     }
     }
     @media (max-width: 380px) {
   
   .card{
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1rem 0.5rem 1rem 0.5rem;
 
   }
     }
   @media (max-width: 400px) {
   
   .card{
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1rem 0.5rem 1rem 0.5rem;
 
   }
 
@@ -43,7 +51,7 @@
 
 <div class="container" style="display: flex ; align-items: center; justify-content: center">
 
-    <div class="card my-4" style=" width: 50%;">
+    <div class="card my-4">
         <h5 class="card-header" style="background-color: #181818; color: white;">Horarios por profesor</h5>
         <div class="card-body">
 
@@ -60,8 +68,8 @@
             @error('profesor_id')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <div class="d-grid gap-2 col-5 my-4 mx-auto">
-                <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
+            <div class="d-grid gap-2 col my- mx-auto">
+                <button class=" form-control btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
             </div>
             {!!Form::close()!!}
         </div>
