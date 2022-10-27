@@ -4,7 +4,6 @@
 <style>
 
     .titulo{
-      margin-top: 100px;
       text-align: center;
       color: white;   
       /* border-top: 3px solid white; */
