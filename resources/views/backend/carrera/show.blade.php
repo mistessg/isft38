@@ -32,11 +32,15 @@
             {{ Form::label("Carrera", 'Carrera', ['class' => 'control-label']) }}
             {{Form::text("descripcion", null , ["class" => "form-control", "readonly" ])}}
       </div>
-      <div class="form-group @if($errors->has('descripcion')) has-error has-feedback @endif">
+      <div class="form-group @if($errors->has('anios')) has-error has-feedback @endif">
             {{ Form::label("Años", 'Años', ['class' => 'control-label']) }}
             {{Form::text("anios", null , ["class" => "form-control", "readonly" ])}}
       </div>
-      <div class="form-group">
+      <div class="form-group @if($errors->has('texto')) has-error has-feedback @endif">
+        {{ Form::label("texto", __('TEXTO'), ['class' => 'control-label']) }}
+        {{Form::textarea("texto", old("texto"), ["class" => "form-control", "readonly" ])}}
+    </div>
+      <div class="form-group @if($errors->has('resolucion')) has-error has-feedback @endif">
             {{ Form::label("resolucion", 'Resolución', ['class' => 'control-label']) }}
             {{Form::text("resolucion", old("cresolucion"), ["class" => "form-control", "readonly" ])}}
             @error('resolucion')

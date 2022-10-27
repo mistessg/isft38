@@ -67,7 +67,7 @@ class ComisionController extends Controller
     public function show(Comision $comision)
     {
         //
-    }
+    } 
 
     /**
      * Show the form for editing the specified resource.

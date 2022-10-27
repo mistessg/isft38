@@ -42,6 +42,7 @@
 
   .footin {
     color: white;
+    text-align: center;
   }
 
   ul li {

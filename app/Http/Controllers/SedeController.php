@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrerasede;
 use App\Models\Sede;
+use App\Models\Sedeemail;
+use App\Models\Objetivo;
+use App\Models\Horario;
+use App\Models\Programa;
+use App\Models\Sedetelefono;
+use App\Models\Comision;
 use Illuminate\Http\Request;
 
 class SedeController extends Controller
@@ -128,7 +135,19 @@ class SedeController extends Controller
     public function destroy($id)
     {
         $sede = Sede::findOrFail($id);    
+        $programas = Programa::where('sede_id', $sede->id)->first();
+        $horarios = Horario::where('sede_id', $sede->id)->first();
+        $sedeemail = Sedeemail::where('sede_id', $sede->id)->first();
+        $sedetelefono = Sedetelefono::where('sede_id', $sede->id)->first();
+        $objetivo = Objetivo::where('sede_id', $sede->id)->first();
+        $comision = Comision::where('sede_id', $sede->id)->first();
+        $carrerasede = Carrerasede::where('sede_id', $sede->id)->first();
+        if (empty($programas) && empty($horarios) && empty($sedeemail)&& empty($sedetelefono)&& empty($objetivo)&& empty($comision)&& empty($carrerasede)) {
         $sede->delete();
+        }
+        else{
+            session()->flash('status', 'Esta sede tiene información relacionada.');
+         }
         return redirect()->route('sede.index');
     }
 }

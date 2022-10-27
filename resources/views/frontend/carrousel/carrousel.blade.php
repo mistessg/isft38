@@ -108,8 +108,8 @@
   .row {
     display: flex;
     justify-content: center;
-    padding: 20px;
   }
+
 
   button.learn-more .circle .icon.arrow::before {
     position: absolute;
@@ -410,9 +410,9 @@
 
 
 
-  <div>
     <div class="row" >
-      <div class="card col-lg-4 col-md-10 sm-12 mb-3" style=" margin:0%; padding:0% ">
+      
+      <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
         <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Historia</h5>
@@ -421,9 +421,7 @@
           <p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>
           @endforeach
           <hr>
-        </div>
-
-        <div class="card-body">
+          
           <button class="learn-more">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
@@ -432,8 +430,10 @@
           </button>
         </div>
       </div>
+
       <!--CARD 2-->
-      <div class="card col-lg-4 col-md-10 sm-12 mb-3 " style=" padding:0% ">
+      
+      <div class="card col-lg-4 col-md-10 sm-12 mb-3 " style="padding:0% ">
         <img class="card-img-top" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Objetivos</h5>
@@ -442,10 +442,7 @@
           <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
           @endforeach
           <hr>
-        </div>
-
-        <div class="card-body">
-          <button class="learn-more">
+          <button class="learn-more" style="position:relative; top:6px">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
@@ -453,8 +450,8 @@
           </button>
         </div>
       </div>
+
     </div>
-  </div>
 
 
   <!-- MODALS -->
