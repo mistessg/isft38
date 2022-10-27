@@ -38,7 +38,7 @@
 
 <div class="container" style="display: flex ; align-items: center; justify-content: center">
 
-    <div class="card my-4" style=" width: 50%;">
+    <div class="card my-4">
         <h5 class="card-header" style="background-color: #181818; color: white;">Horarios por Día/Hora</h5>
         <div class="card-body">
 
