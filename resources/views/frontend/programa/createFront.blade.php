@@ -6,10 +6,13 @@
     .Inicio {
         text-align: center;
         margin: 20px;
+        color: white;
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
         position:relative;
     }
+
+    
 
     .links {
         padding: 25px;
@@ -19,9 +22,11 @@
 
     .form-group {
         margin-top: 10px;
+        justify-content: center;
     }
 
     .form-group label {
+        color: white;
         outline: none;
         margin-bottom: 5px;
         font-family: 'Quicksand', sans-serif;
@@ -35,6 +40,7 @@
         outline: none;
     }
 
+
     .volver {
         margin-left: 600px;
         margin-right: 600px;
@@ -43,7 +49,11 @@
         font-family: 'Quicksand', sans-serif;
 
     }
+    .form-check{
+        color:white;
+    }
 </style>
+<div class="Inicio">
     <h1 class="TextoInicio">Nuevo Programa</h1>
 </div>
 
@@ -96,7 +106,7 @@
         @enderror
     </div>
     <div class="form-group">
-        {{ Form::label("profesor_id", __('Profesores'), ['class' => 'control-label']) }}
+        {{ Form::label("profesor_id", __('PROFESORES'), ['class' => 'control-label']) }}
         {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "placeholder" => "Selecciona un profesor"]) }}
         @error('profesor_id')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -109,9 +119,10 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif" style="text-align:center;">
-        {{ Form::label("imagen", __('PROGRAMA'), ['class' => 'control-label']) }}
-        <br>
+    
+    <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif " style="text-align:center;">
+        {{ Form::label("imagen", __('PROGRAMA:'), ['class' => 'control-label']) }}  
+        <br><br>|
         {{ Form::file("imagen") }}
         @error('imagen')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -121,7 +132,7 @@
     <div class="form-check">
         <input class="form-check-input" id="leido" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
-            He leído y declaro que el programa adjunto se realizó conforme a la <a target="_blank" class="btn btn-danger" href="{{asset('./Disposicion.pdf')}}">Disposición 30/05</a>
+            He leído y declaro que el programa adjunto se realizó conforme a la: <a target="_blank" class="btn btn-danger" href="{{asset('./Disposicion.pdf')}}">Disposición 30/05</a>
         </label>
     </div>
     <br>
