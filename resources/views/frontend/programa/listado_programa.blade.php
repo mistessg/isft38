@@ -62,18 +62,29 @@
 
   .accordion{
     width: 100%;
-    height: 40%;
 
   }
 
+  .accordion-collapse{
+    height: auto;
+  } 
 
+  .card{
+    width: 80%;
+    margin: auto;
+  }
+
+  .accordion{
+    width: 80%;
+    margin: auto;
+  }
 </style>
 
 <div class="Inicio">
   <h1 class="TextoInicio">Listado de programas</h1>
 </div>
-<div class="links">
 
+ 
   <div class="card">
     <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
     <div class="card-body">
@@ -146,20 +157,20 @@
         @endif
 
       </h2>
-      <div id="collapse{{$a->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$a->id}}}" data-bs-parent="#accordionExample">
+      <div id="collapse{{$a->id}}" class="accordion-collapse collapse " aria-labelledby="heading{{$a->id}}}" data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">MATERIA</th>
-                <th scope="col">PROFESOR</th>
+                <th scope="col" >MATERIA</th>
+                <th scope="col" >PROFESOR</th>
                 
               </tr>
             </thead>
             <tbody>
               <tr>
 
-                <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}">{{$programa->materia->descripcion}}</td>
+                <td><a target="_blank" href="{{asset('./storage/'. $programa->nombrearchivo)}}"style="color:cornflowerblue">{{$programa->materia->descripcion}}</td>
                 <td>{{$programa->profesor->apellido}}-{{$programa->profesor->nombre}}</td>
 
                 @csrf
@@ -168,13 +179,13 @@
             @endif
             @endforeach
           </table>
-          @endforeach
+          
         </div>
         </div>
+        
       </div>
-      
+      @endforeach
     </div>
-  </div>
   
 
   @endsection
