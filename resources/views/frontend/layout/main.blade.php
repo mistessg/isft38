@@ -212,17 +212,17 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li class="nav-li">
-                <a href="{{ route('horarios.porCarrera') }}" class="nav-link dropdown-item">
+                <a href="{{ route('horarios.porCarrera') }}" class="nav-link">
                   Por Carrera
                 </a>
               </li>
               <li class="nav-li">
-                <a href="{{ route('horarios.porProfesor') }}" class="nav-link dropdown-item">
+                <a href="{{ route('horarios.porProfesor') }}" class="nav-link">
                   Por Profesor
                 </a>
               </li>
               <li class="nav-li">
-                <a href="{{ route('horarios.PorDiaHora') }}" class="nav-link dropdown-item">
+                <a href="{{ route('horarios.PorDiaHora') }}" class="nav-link">
                   Por dia / hora
                 </a>
               </li>
@@ -251,7 +251,6 @@
 
   <div class="footer" style="background:#212121;">
     <footer>
-      <hr>
       <div style="text-align:center">
         <p>Sede central San Nicolás</p>
         <p>Avenida Central 1825</p>
