@@ -20,6 +20,12 @@
     font-family: 'Overpass', sans-serif;
   }
 
+  @media (min-width: 2140px){
+    html{
+      height: 100vh;
+    }
+  }
+
   @media all and (max-width: 600px) {
     .contenedorHeader {
       height: 100vh;
@@ -40,9 +46,10 @@
     width: 100vw;
   }
 
-  .footin {
+  .footer {
     color: white;
     text-align: center;
+    padding: 20px;
   }
 
   ul li {
@@ -242,13 +249,9 @@
 
   <!-- FOOTER -->
 
-  <div class="footer footin" style="background:#212121;">
-    <footer class="w-100 mt-5 py-5">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-white a-footer">Inicio</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-white a-footer">Sobre Nosotros</a></li>
-        <li class="nav-item"><a href="https://twitter.com/isft38" target="_blank" class="nav-link px-2 text-white a-footer">Twitter</a></li>
-      </ul>
+  <div class="footer" style="background:#212121;">
+    <footer>
+      <hr>
       <div style="text-align:center">
         <p>Sede central San Nicolás</p>
         <p>Avenida Central 1825</p>
@@ -256,7 +259,6 @@
       <p class="text-center text-white">&copy; 2022 ISFT Sistemas</p>
     </footer>
   </div>
-
   <!-- FOOTER -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

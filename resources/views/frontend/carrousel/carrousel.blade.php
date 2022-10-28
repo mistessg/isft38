@@ -35,7 +35,7 @@
 
   .card {
     display: flex;
-    margin: 0 40px;
+    margin: 40px 40px;
     text-align: center;
   }
 
@@ -45,6 +45,7 @@
 
   .fondoCards {
     background-color: #212121;
+    padding-top:40px;
   }
 
   .card-texto {
@@ -107,6 +108,15 @@
   .row {
     display: flex;
     justify-content: center;
+  }
+  .row .row-hijos{
+    padding: 0;
+  }
+  
+  @media (max-width:768px){
+    .row .row-hijos{
+      width: 350px;
+    }
   }
 
   button.learn-more .circle .icon.arrow::before {
@@ -293,7 +303,13 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    width: 100%;
+    padding: 30px;
+  }
+
+  @media (max-width:400px){
+    .card-novedades{
+      margin:30px 0;
+    }
   }
 
 </style>
@@ -315,7 +331,7 @@
     </div>
     <div class="row box-body">
 
-    <div class="card col-lg-3 col-md-5 sm-10 mb-3" style="width: 18rem;">
+    <div class="card col-md-4 card-novedades">
       <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -324,7 +340,7 @@
       </div>
     </div>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card col-md-4 card-novedades">
       <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -332,38 +348,28 @@
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
-
-    <div class="card" style="width: 18rem;">
-      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+    
     </div>
-
-    </div>
-
 </div>
 
 <div class="fondoCards">
-  <div class="containerss">
+  <!-- <div class="containerss">
     <div class="titulo">
       <h1>Información</h1>
     </div>
     <div class="texto">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum repellat laboriosam sit sint, nam delectus nihil, reiciendis rem fuga hic iste. Debitis, dignissimos! Amet laboriosam quos consequuntur doloribus placeat provident! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum aliquid illo asperiores dolorem rem corporis omnis maiores vitae dolore illum, corrupti quidem molestias, magnam aliquam fuga, ad sint nisi itaque.</p>
     </div>
-  </div>
+  </div> -->
 
 
 
 
     <div class="row" >
-      
-      <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
-          <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
-        <div class="card-body">
+
+      <div class="card col-lg-4 col-md-10 sm-12 row-hijos" >
+          <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+        <div class="card-body"> 
           <h5 class="card-title">Historia</h5>
           <hr>
           @foreach($historias as $historia)
@@ -378,11 +384,11 @@
             <span class="button-text" id="btn_sesion">Ver más</span>
           </button>
         </div>
-      </div>
+      </div> 
 
       <!--CARD 2-->
       
-      <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
+      <div class="card col-lg-4 col-md-10 sm-12 row-hijos" >
         <img class="card-img-top" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Objetivos</h5>
@@ -397,9 +403,9 @@
             </span>
             <span class="button-text" id="btn_sesion2">Ver más</span>
           </button>
-        </div>
-      </div>
+        </div> 
 
+      </div>
       <!-- <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
         <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
         <div class="card-body">
@@ -418,11 +424,8 @@
           </button>
         </div>
       </div> -->
-
-
-
     </div>
-
+  </div>
 
   <!-- MODALS -->
 
