@@ -65,11 +65,8 @@
     height: 40%;
 
   }
-  
-  .accordion-body{
-    width: 100%;  
-    margin-bottom: 30%;
-  } 
+
+
 </style>
 
 <div class="Inicio">
@@ -171,9 +168,11 @@
             @endif
             @endforeach
           </table>
+          @endforeach
+        </div>
         </div>
       </div>
-      @endforeach
+      
     </div>
   </div>
   
