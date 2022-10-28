@@ -8,11 +8,19 @@
     .texto-tabla {
         font-size: .8em;
     }
-
+    .tablaScroll{
+        overflow-x: scroll;
+    overflow-y: hidden;
+    
+    white-space:nowrap;
+    }
+    th, td{
+        width:10rem;
+    }
     
 </style>
 
-   
+   <div class="tablaScroll">
 <table class="container table texto-tabla mt-4 mb-0">
     <tr class="text-light text-center mb-0" style="background-color: #3A70FF;">
         <th class="text-left" scope="col">HORARIO</th>
@@ -59,6 +67,6 @@
 
  
 </table>
-
+</div>
 <p class='text-muted text-center mt-1'>Estos horarios podr&iacute;an no ser los oficiales actuales del  Instituto. En caso de duda pregunte al preceptor correspondiente a la carrera.</p>
 @endsection

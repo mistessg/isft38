@@ -6,10 +6,13 @@
     .Inicio {
         text-align: center;
         margin: 20px;
+        color: white;
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
         position:relative;
     }
+
+    
 
     .links {
         padding: 25px;
@@ -19,9 +22,11 @@
 
     .form-group {
         margin-top: 10px;
+        justify-content: center;
     }
 
     .form-group label {
+        color: white;
         outline: none;
         margin-bottom: 5px;
         font-family: 'Quicksand', sans-serif;
@@ -35,6 +40,7 @@
         outline: none;
     }
 
+
     .volver {
         margin-left: 600px;
         margin-right: 600px;
@@ -43,8 +49,38 @@
         font-family: 'Quicksand', sans-serif;
 
     }
+    .form-check{
+        color:white;
+    }
 </style>
+<div class="Inicio">
     <h1 class="TextoInicio">Nuevo Programa</h1>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        
+      </div>
+      <div class="modal-body">
+      <div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <label for="floatingInput">Email address</label>
+</div>
+<div class="form-floating">
+  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+  <label for="floatingPassword">Password</label>
+</div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div>
@@ -83,7 +119,7 @@
 
     <div class="form-group">
         {{ Form::label("materia_id", __('MATERIAS'), ['class' => 'control-label']) }}
-        {{Form::select("materia_id", $materias, null, ["class" => "form-control", "placeholder" => "Seleccione una materia"]) }}
+        {{Form::select("materia_id", $materias, old("materia_id"), ["class" => "form-control", "placeholder" => "Seleccione una materia"]) }}
         @error('materia_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -96,19 +132,13 @@
         @enderror
     </div>
     <div class="form-group">
-        {{ Form::label("profesor_id", __('Profesores'), ['class' => 'control-label']) }}
+        {{ Form::label("profesor_id", __('PROFESORES'), ['class' => 'control-label']) }}
         {{Form::select("profesor_id", $profesores, null, ["class" => "form-control", "placeholder" => "Selecciona un profesor"]) }}
         @error('profesor_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group">
-        {{ Form::label("fechaentrega", __('FECHA DE ENTREGA'), ['class' => 'control-label']) }}
-        {{Form::date("fechaentrega", null, ["class" => "form-control"]) }}
-        @error('fechaentrega')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
+    
     <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif" style="text-align:center;">
         {{ Form::label("imagen", __('PROGRAMA'), ['class' => 'control-label']) }}
         <br>
@@ -121,13 +151,17 @@
     <div class="form-check">
         <input class="form-check-input" id="leido" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
-            He leído y declaro que el programa adjunto se realizó conforme a la <a target="_blank" class="btn btn-danger" href="{{asset('./Disposicion.pdf')}}">Disposición 30/05</a>
+            He leído y declaro que el programa adjunto se realizó conforme a la: <a target="_blank" class="btn btn-danger" href="{{asset('./Disposicion.pdf')}}">Disposición 30/05</a>
         </label>
     </div>
     <br>
     <button type="submit" id="boton" disabled class="btn btn-success btn-block container-fluid p-3">{{__('Guardar')}}</button>
 </div>
 {!!Form::close()!!}
+
+
+
+  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
@@ -179,7 +213,7 @@
             }
         });
     }
-
+   
     function searchCarreras(){
     var sede_id = document.getElementById('sede_id').value;
             //var sede_id = document.getElementById('sede_id').value;
@@ -219,7 +253,7 @@
   }
 
     $(document).ready(function() {
-
+        $("#exampleModal").modal("show");
         $('#anio_id').change(function() {
             search(); 
         });

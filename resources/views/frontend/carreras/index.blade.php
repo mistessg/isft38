@@ -79,21 +79,13 @@
   height: 300px;
   object-fit: cover;
 }
-
-
-
-
-
-   
-
-
-
-    /* .cards-texto{
-      height: 1000px;
-    } */
-    /* .roberto{
-      height: 850px;
-    } */
+.modal-header{
+  background:#262626;
+  color:white;
+}
+.modal-footer{
+  background:#262626;
+}
     
 </style>
 <div class="titulo">
@@ -133,20 +125,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel"><b> Materias de
-        {{$carrera->descripcion}}</b></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel"><b> {{$carrera->descripcion}}</b></h1>
+        <button type="button" style="background-color:white;opacity:1;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        @php($i = 0)
         @foreach ($materias as $materia)
-        @if($materia->carrera_id == $carrera->id)
-          <h2>Materias de {{$materia->anio_id}} año</h1>
-          <p style="word-wrap: break-word;font-size:16px;">- {{$materia->descripcion}}.</p>
-        @endif
+          @if($materia->carrera_id == $carrera->id)
+           @if($i <> $materia->anio_id) 
+            @php($i =  $materia->anio_id)
+               <h5><b> {{$materia->deAnio->descripcion}}</b></h5>
+            @endif
+            <p style="word-wrap: break-word;font-size:16px;">- {{$materia->descripcion}}.</p>
+          @endif
         @endforeach
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" style="font-weight:bold;background-color:white;color:#262626;opacity:1;" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -179,7 +179,6 @@ class ProgramaController extends Controller
                 'comision_id' => ['required'],
                 'materia_id' => ['required'],
                 'profesor_id' => ['required'],
-                'fechaentrega' => ['required'],
                 'imagen' => ['required']
             ]
         );
@@ -205,7 +204,7 @@ class ProgramaController extends Controller
         $programa->materia_id = $request->input('materia_id');
         $programa->comision_id = $request->input('comision_id');
         $programa->profesor_id = $request->input('profesor_id');
-        $programa->fechaentrega = $request->input('fechaentrega');
+        $programa->fechaentrega = today();
         $programa->save();
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
@@ -214,6 +213,7 @@ class ProgramaController extends Controller
             $programa->nombrearchivo = $savedPath;
             $programa->save();
         }
+
         $request->session()->flash('status', 'Se guardó correctamente el programa ');
         return redirect()->route('programas.create');
     }
