@@ -45,7 +45,7 @@
 
   .fondoCards {
     background-color: #212121;
-    padding-top:40px;
+    padding-top: 40px;
   }
 
   .card-texto {
@@ -109,12 +109,13 @@
     display: flex;
     justify-content: center;
   }
-  .row .row-hijos{
+
+  .row .row-hijos {
     padding: 0;
   }
-  
-  @media (max-width:768px){
-    .row .row-hijos{
+
+  @media (max-width:768px) {
+    .row .row-hijos {
       width: 350px;
     }
   }
@@ -279,9 +280,9 @@
     overflow: auto;
   }
 
-  @media (max-width:768px){
-    .container-son{
-      width:320px;
+  @media (max-width:768px) {
+    .container-son {
+      width: 320px;
     }
   }
 
@@ -299,19 +300,18 @@
     border-radius: 50px;
   }
 
-  .box-body{
+  .box-body {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     padding: 30px;
   }
 
-  @media (max-width:400px){
-    .card-novedades{
-      margin:30px 0;
+  @media (max-width:400px) {
+    .card-novedades {
+      margin: 30px 0;
     }
   }
-
 </style>
 
 <!-- Required meta tags -->
@@ -326,30 +326,38 @@
 </div>
 
 <div class="box-novedades">
-    <div class="box-header" style="text-align: center;">
-      <h1>Novedades</h1>
-    </div>
-    <div class="row box-body">
+  <div class="box-header" style="text-align: center;">
+    <h1>Novedades</h1>
+  </div>
 
+  @php($twice = 0 )
+  @foreach($novedades as $novedad)
+  @php($twice = $twice + 1 )
+  @if($twice == 1)
+  <div class="row box-body">
+    @endif
     <div class="card col-md-4 card-novedades">
-      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
+      <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top img-fluid " alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
+        <p class="card-text">{!!$novedad->cuerpo!!}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        @if($novedad->archivo1)
+        <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
+        @endif
+        @if($novedad->archivo2)
+        <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
+        @endif
+        @if($novedad->archivo3)
+        <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
+        @endif
       </div>
     </div>
-
-    <div class="card col-md-4 card-novedades">
-      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-    
-    </div>
+    @if($twice == 2)
+  </div>
+  @php($twice = 0 )
+  @endif
+  @endforeach
 </div>
 
 <div class="fondoCards">
@@ -365,48 +373,48 @@
 
 
 
-    <div class="row" >
+  <div class="row">
 
-      <div class="card col-lg-4 col-md-10 sm-12 row-hijos" >
-          <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
-        <div class="card-body"> 
-          <h5 class="card-title">Historia</h5>
-          <hr>
-          @foreach($historias as $historia)
-          <p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>
-          @endforeach
-          <hr>
-          
-          <button class="learn-more">
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text" id="btn_sesion">Ver más</span>
-          </button>
-        </div>
-      </div> 
+    <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
+      <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Historia</h5>
+        <hr>
+        @foreach($historias as $historia)
+        <p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>
+        @endforeach
+        <hr>
 
-      <!--CARD 2-->
-      
-      <div class="card col-lg-4 col-md-10 sm-12 row-hijos" >
-        <img class="card-img-top" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Objetivos</h5>
-          <hr>
-          @foreach($objetivos as $objetivo)
-          <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
-          @endforeach
-          <hr>
-          <button class="learn-more" style="position:relative; top:10px">
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text" id="btn_sesion2">Ver más</span>
-          </button>
-        </div> 
-
+        <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text" id="btn_sesion">Ver más</span>
+        </button>
       </div>
-      <!-- <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
+    </div>
+
+    <!--CARD 2-->
+
+    <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
+      <img class="card-img-top" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Objetivos</h5>
+        <hr>
+        @foreach($objetivos as $objetivo)
+        <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
+        @endforeach
+        <hr>
+        <button class="learn-more" style="position:relative; top:10px">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text" id="btn_sesion2">Ver más</span>
+        </button>
+      </div>
+
+    </div>
+    <!-- <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
         <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Historia</h5>
@@ -424,87 +432,87 @@
           </button>
         </div>
       </div> -->
-    </div>
   </div>
+</div>
 
-  <!-- MODALS -->
+<!-- MODALS -->
 
 
 
-  <div id="sesion" class="sesion">
-    <div class="vent_sesion">
+<div id="sesion" class="sesion">
+  <div class="vent_sesion">
 
-      <div class="container-historia">
-        <h1>Historia</h1>
-      </div>
-
-      <div class="container-son">
-        <div>
-          @foreach($historias as $historia)
-          <p>{!!$historia->historia!!}</p>
-          @endforeach
-        </div>
-      </div>
-
-      <div class="btn_cerrar" id="btn_cerrar">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>
-      </div>
-
+    <div class="container-historia">
+      <h1>Historia</h1>
     </div>
-  </div>
 
-
-
-  <div id="sesion2" class="sesion">
-    <div class="vent_sesion">
-      <div class="container-objetivo">
-        <h1>Objetivos</h1>
-      </div>
-
-      <div class="container-son">
-        @foreach($objetivos as $objetivo)
-        <p>{!! $objetivo->objetivo !!}</p>
+    <div class="container-son">
+      <div>
+        @foreach($historias as $historia)
+        <p>{!!$historia->historia!!}</p>
         @endforeach
-
       </div>
+    </div>
 
-      <div class="btn_cerrar" id="btn_cerrar2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>
-      </div>
+    <div class="btn_cerrar" id="btn_cerrar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div id="sesion2" class="sesion">
+  <div class="vent_sesion">
+    <div class="container-objetivo">
+      <h1>Objetivos</h1>
+    </div>
+
+    <div class="container-son">
+      @foreach($objetivos as $objetivo)
+      <p>{!! $objetivo->objetivo !!}</p>
+      @endforeach
 
     </div>
+
+    <div class="btn_cerrar" id="btn_cerrar2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+      </svg>
+    </div>
+
   </div>
+</div>
 
 
-  <script type="text/javascript">
-    const btn_sesion = document.getElementById('btn_sesion');
-    const btn_sesion2 = document.getElementById('btn_sesion2');
-    const sesion = document.getElementById('sesion');
-    const sesion2 = document.getElementById('sesion2');
-    const btn_cerrar = document.getElementById('btn_cerrar');
-    const btn_cerrar2 = document.getElementById('btn_cerrar2');
+<script type="text/javascript">
+  const btn_sesion = document.getElementById('btn_sesion');
+  const btn_sesion2 = document.getElementById('btn_sesion2');
+  const sesion = document.getElementById('sesion');
+  const sesion2 = document.getElementById('sesion2');
+  const btn_cerrar = document.getElementById('btn_cerrar');
+  const btn_cerrar2 = document.getElementById('btn_cerrar2');
 
-    btn_sesion.addEventListener('click', () => {
-      sesion.classList.add('show');
-    });
+  btn_sesion.addEventListener('click', () => {
+    sesion.classList.add('show');
+  });
 
-    btn_cerrar.addEventListener('click', () => {
-      sesion.classList.remove('show');
-    });
+  btn_cerrar.addEventListener('click', () => {
+    sesion.classList.remove('show');
+  });
 
-    btn_sesion2.addEventListener('click', () => {
-      sesion2.classList.add('show');
-    });
+  btn_sesion2.addEventListener('click', () => {
+    sesion2.classList.add('show');
+  });
 
-    btn_cerrar2.addEventListener('click', () => {
-      sesion2.classList.remove('show');
-    });
-  </script>
+  btn_cerrar2.addEventListener('click', () => {
+    sesion2.classList.remove('show');
+  });
+</script>
 
-  @endsection
+@endsection
