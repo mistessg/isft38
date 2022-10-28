@@ -48,7 +48,7 @@
             @enderror
       </div>
       <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif">
-            {{ Form::label(__('Imágen de la carrera'), null, ['class' => 'control-label', 'for' => 'imagen']) }}
+            {{ Form::label(__('Imagen de la carrera'), null, ['class' => 'control-label', 'for' => 'imagen']) }}
             @if($carrera->imagen)
             @if(Str::startsWith($carrera->imagen, 'http'))
             <img src="{{ $carrera->imagen }}" class="img-responsive " alt="...">
