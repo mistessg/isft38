@@ -51,6 +51,7 @@
   .card-texto {
     text-align: justify;
     margin: 0 10px;
+    display: inline-block;
   }
 
   .card-link1 {
@@ -312,6 +313,12 @@
       margin: 30px 0;
     }
   }
+
+  .imagen-card {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
 </style>
 
 <!-- Required meta tags -->
@@ -361,22 +368,10 @@
 </div>
 
 <div class="fondoCards">
-  <!-- <div class="containerss">
-    <div class="titulo">
-      <h1>Información</h1>
-    </div>
-    <div class="texto">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum repellat laboriosam sit sint, nam delectus nihil, reiciendis rem fuga hic iste. Debitis, dignissimos! Amet laboriosam quos consequuntur doloribus placeat provident! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum aliquid illo asperiores dolorem rem corporis omnis maiores vitae dolore illum, corrupti quidem molestias, magnam aliquam fuga, ad sint nisi itaque.</p>
-    </div>
-  </div> -->
-
-
-
-
   <div class="row">
 
     <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
-      <img class="card-img-top" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+      <img class="card-img-top imagen-card" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Historia</h5>
         <hr>
@@ -397,15 +392,15 @@
     <!--CARD 2-->
 
     <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
-      <img class="card-img-top" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
+      <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Objetivos</h5>
         <hr>
         @foreach($objetivos as $objetivo)
-        <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
+        <span id="texto-card-objetivo" class="card-texto">{!!substr($objetivo->objetivo, 0, 1250)!!}...</span>
         @endforeach
         <hr>
-        <button class="learn-more" style="position:relative; top:10px">
+        <button class="learn-more">
           <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
           </span>
@@ -414,30 +409,10 @@
       </div>
 
     </div>
-    <!-- <div class="card col-lg-4 col-md-10 sm-12 mb-3" style="padding:0% ">
-        <img style="margin: 0%; padding:0%;" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Historia</h5>
-          <hr>
-          @foreach($objetivos as $objetivo)
-          <p class="card-texto">{!!substr($objetivo->objetivo, 0, 546)!!}...</p>
-          @endforeach
-          <hr>
-          
-          <button class="learn-more">
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text" id="btn_sesion">Ver más</span>
-          </button>
-        </div>
-      </div> -->
   </div>
 </div>
 
 <!-- MODALS -->
-
-
 
 <div id="sesion" class="sesion">
   <div class="vent_sesion">
@@ -473,10 +448,11 @@
     </div>
 
     <div class="container-son">
-      @foreach($objetivos as $objetivo)
-      <p>{!! $objetivo->objetivo !!}</p>
-      @endforeach
-
+      <div>
+        @foreach($objetivos as $objetivo)
+        <p>{!! $objetivo->objetivo !!}</p>
+        @endforeach
+      </div>
     </div>
 
     <div class="btn_cerrar" id="btn_cerrar2">
@@ -514,5 +490,12 @@
     sesion2.classList.remove('show');
   });
 </script>
+btn_cerrar2.addEventListener('click', () => {
+sesion2.classList.remove('show');
+});
 
+
+window.document.onload()
+texto_objetivo.trimStart();
+</script>
 @endsection
