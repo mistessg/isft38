@@ -83,7 +83,7 @@
         @enderror
     </div>
     <div class="form-group" style="text-align:center;">
-        {{ Form::label("imagen", 'IMÁGEN', ['class' => 'control-label']) }}
+        {{ Form::label("imagen", 'IMAGEN', ['class' => 'control-label']) }}
         <br>
         {{ Form::file("imagen") }}
         @error('imagen')
