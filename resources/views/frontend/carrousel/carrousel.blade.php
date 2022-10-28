@@ -489,13 +489,13 @@
   btn_cerrar2.addEventListener('click', () => {
     sesion2.classList.remove('show');
   });
-</script>
-btn_cerrar2.addEventListener('click', () => {
-sesion2.classList.remove('show');
-});
+
+  btn_cerrar2.addEventListener('click', () => {
+    sesion2.classList.remove('show');
+  });
 
 
-window.document.onload()
-texto_objetivo.trimStart();
+  window.document.onload()
+  texto_objetivo.trimStart();
 </script>
 @endsection
