@@ -16,6 +16,6 @@ Route::get('/carreras', function () {
     $materias = Materia::all();
     return view('frontend.carreras.index', compact('carreras', 'materias'));
 })->name('carreras');
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('carrera', CarreraController::class);
 });

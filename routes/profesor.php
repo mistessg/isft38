@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfesorController;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('profesor', ProfesorController::class);
 });
 

@@ -9,10 +9,10 @@
         color: white;
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
-        position:relative;
+        position: relative;
     }
 
-    
+
 
     .links {
         padding: 25px;
@@ -50,8 +50,9 @@
         font-family: 'Quicksand', sans-serif;
 
     }
-    .form-check{
-        color:white;
+
+    .form-check {
+        color: white;
     }
 </style>
 <div class="Inicio">
@@ -61,28 +62,28 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Profesores</h5>
-        
-      </div>
-      <div class="modal-body">
-      <div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-  <label for="floatingInput">Usuario</label>
-</div>
-<div class="form-floating">
-  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-  <label for="floatingPassword">Contraseña</label>
-</div>
-      </div>
-      <div class="modal-footer">
-        
-        <button type="button" class="btn btn-primary">Ingresar</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Profesores</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Usuario</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary">Ingresar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div>
@@ -94,10 +95,10 @@
     @endif
 </div>
 <div class="links">
-<div class="d-grid gap-2 d-md-flex" style="justify-content: center;">
-  <button class="btn btn-primary me-md-3" type="button">Listado de programas</button>
-  <a href="http://isft38.edu.ar/programas/carreras/Plantilla%20Programas.doc"><button class="btn btn-primary" type="button">Plantilla para programas</button></a>
-</div>
+    <div class="d-grid gap-2 d-md-flex" style="justify-content: center;">
+        <button class="btn btn-primary me-md-3" type="button">Listado de programas</button>
+        <a href="http://isft38.edu.ar/programas/carreras/Plantilla%20Programas.doc"><button class="btn btn-primary" type="button">Plantilla para programas</button></a>
+    </div>
 
     {{ Form::open(['route' => 'programas.store', 'files' => true]) }}
     @csrf
@@ -145,7 +146,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-    
+
     <div class="form-group @if($errors->has('imagen')) has-error has-feedback @endif" style="text-align:center;">
         {{ Form::label("imagen", __('PROGRAMA'), ['class' => 'control-label']) }}
         <br>
@@ -168,30 +169,30 @@
 
 
 
-  
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
 <script type='text/javascript'>
     var checkbox = document.getElementById('leido');
     checkbox.addEventListener("change", validaCheckbox, false);
-    function validaCheckbox()
-    {
+
+    function validaCheckbox() {
         var checked = checkbox.checked;
-        if(checked){
+        if (checked) {
             $('#boton').prop('disabled', false);
-        }else{
+        } else {
             $('#boton').prop('disabled', true);
         }
     }
 
-    function search(){
+    function search() {
         var anio_id = document.getElementById('anio_id').value;
         var carrera_id = document.getElementById('carrera_id').value;
         var sede_id = document.getElementById('sede_id').value;
         //$('#materia_id').find('option').not(':first').remove();
         $('#materia_id').find('option').remove();
-        $('#materia_id').append($('<option></option>').html('Cargando datos...'));        
+        $('#materia_id').append($('<option></option>').html('Cargando datos...'));
         $.ajax({
             url: '/getMaterias/' + carrera_id + '/' + anio_id + '/' + sede_id,
             type: 'get',
@@ -205,7 +206,7 @@
 
                 if (len > 0) {
                     $('#materia_id').find('option').remove();
-                      $('#materia_id').append($('<option></option>').html('Seleccione una carrera...'));
+                    $('#materia_id').append($('<option></option>').html('Seleccione una carrera...'));
                     for (var i = 0; i < len; i++) {
 
                         var id = response['data'][i].id;
@@ -220,49 +221,49 @@
             }
         });
     }
-   
-    function searchCarreras(){
-    var sede_id = document.getElementById('sede_id').value;
-            //var sede_id = document.getElementById('sede_id').value;
-            var carrera_id = document.getElementById('carrera_id').value;
-            //$('#carrera_id').find('option').not(':first').remove();
-            $('#carrera_id').find('option').remove();
-            $('#carrera_id').append($('<option></option>').html('Cargando datos...'));            
 
-            $.ajax({
-                url: '/getCarreras/' + sede_id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response) {
+    function searchCarreras() {
+        var sede_id = document.getElementById('sede_id').value;
+        //var sede_id = document.getElementById('sede_id').value;
+        var carrera_id = document.getElementById('carrera_id').value;
+        //$('#carrera_id').find('option').not(':first').remove();
+        $('#carrera_id').find('option').remove();
+        $('#carrera_id').append($('<option></option>').html('Cargando datos...'));
 
-                    var len = 0;
-                    if (response['data'] != null) {
-                        len = response['data'].length;
-                    }
+        $.ajax({
+            url: '/getCarreras/' + sede_id,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
 
-                    if (len > 0) {
-                      $('#carrera_id').find('option').remove();
-                      $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
-
-                        for (var i = 0; i < len; i++) {
-
-                            var id = response['data'][i].id;
-                            var descripcion = response['data'][i].descripcion;
-
-                            var option = "<option value='" + id + "'>" + descripcion + "</option>";
-
-                            $("#carrera_id").append(option);
-                        }
-                    }
-
+                var len = 0;
+                if (response['data'] != null) {
+                    len = response['data'].length;
                 }
-            });
-  }
+
+                if (len > 0) {
+                    $('#carrera_id').find('option').remove();
+                    $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
+
+                    for (var i = 0; i < len; i++) {
+
+                        var id = response['data'][i].id;
+                        var descripcion = response['data'][i].descripcion;
+
+                        var option = "<option value='" + id + "'>" + descripcion + "</option>";
+
+                        $("#carrera_id").append(option);
+                    }
+                }
+
+            }
+        });
+    }
 
     $(document).ready(function() {
-        $("#exampleModal").modal("show");
+        //$("#exampleModal").modal("show");
         $('#anio_id').change(function() {
-            search(); 
+            search();
         });
         $('#carrera_id').change(function() {
             search();

@@ -1,6 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
- 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,40 +17,36 @@ use Illuminate\Support\Facades\Route;
 //------------------------------------------------------------------------//
 
 //Noticias-> Gisela
-Route::group([], __DIR__.'/blog.php');
+Route::group([], __DIR__ . '/blog.php');
 
 //Inicio-> Iván, Martín
-Route::group([], __DIR__.'/inicio.php');
+Route::group([], __DIR__ . '/inicio.php');
 
 //Carrera-> Iván, Martín
-Route::group([], __DIR__.'/carrera.php');
+Route::group([], __DIR__ . '/carrera.php');
 
 //Materia-> Iván, Martín
-Route::group([], __DIR__.'/materia.php');
+Route::group([], __DIR__ . '/materia.php');
 
 //Programa-> Alejandro, Brian
-Route::group([], __DIR__.'/programa.php');
+Route::group([], __DIR__ . '/programa.php');
 
 //Horario y Módulo horario-> Aylén, Sofía, Ulises
-Route::group([], __DIR__.'/horario.php');
+Route::group([], __DIR__ . '/horario.php');
 
 //Comision y Año-> Aylén, Sofía, Ulises
-Route::group([], __DIR__.'/comision.php');
+Route::group([], __DIR__ . '/comision.php');
 
 //Profesor-> Aylén, Sofía, Ulises
-Route::group([], __DIR__.'/profesor.php');
+Route::group([], __DIR__ . '/profesor.php');
 
 //Historia y Objetivo-> Alejo, Esteban
-Route::group([], __DIR__.'/historia.php');
+Route::group([], __DIR__ . '/historia.php');
 
 //Contacto y Sede-> Alejo, Esteban
-Route::group([], __DIR__.'/contacto.php');
+Route::group([], __DIR__ . '/contacto.php');
 
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

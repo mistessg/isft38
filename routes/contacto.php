@@ -13,7 +13,7 @@ use App\Models\Sede;
 */
 
 Route::resource('contacto', ContactoController::class);
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('sede', SedeController::class);
     Route::resource('sedeemail', SedeemailController::class);
     Route::resource('sedetelefono', SedetelefonoController::class);

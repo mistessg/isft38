@@ -9,7 +9,7 @@ use App\Http\Controllers\ModuloController;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('modulo', moduloController::class);
     Route::resource('horario', HorarioController::class);
     Route::post('horario/search', [HorarioController::class, 'search'])->name('horario.search');

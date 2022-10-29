@@ -9,7 +9,7 @@ use App\Http\Controllers\AnioController;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('comision', ComisionController::class);
     Route::resource('anio', AnioController::class);
 });

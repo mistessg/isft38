@@ -8,6 +8,6 @@ use App\Http\Controllers\MateriaController;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('materia', MateriaController::class);
 });

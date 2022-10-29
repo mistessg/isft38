@@ -9,7 +9,7 @@ use App\Http\Controllers\ObjetivoController;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('historia', HistoriaController::class);
     Route::resource('objetivo', ObjetivoController::class);
 });

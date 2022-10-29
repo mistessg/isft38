@@ -10,11 +10,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EtiquetaController;
 use App\Http\Controllers\MailController;
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::resource('noticias', NoticiaController::class);
     Route::resource('etiquetas', EtiquetaController::class);
     Route::resource('users', UserController::class);
-    });
+});
 
 Route::get('blog', [NoticiaController::class, 'blog'])->name('noticias.blog');
 Route::get('blog/noticia/{id}', [NoticiaController::class, 'leerNoticia'])->name('blog.noticias.leer');
