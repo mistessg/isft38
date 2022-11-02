@@ -46,14 +46,14 @@ class materiaController extends Controller
             'anio_id' => 'required'
             ]
          );
-        $materia = new Materia(); 
+        $materia = new Materia();
         $materia->descripcion = $request->input('descripcion');
         $materia->carrera_id = $request->input('carrera_id');
         $materia->anio_id = $request->input('anio_id');
         $materia->save();
 
        $request->session()->flash('status', 'Se guardó correctamente la materia '. $materia->descripcion);
-       return redirect()->route('materia.create'); 
+       return redirect()->route('materia.create');
     }
 
     /**
@@ -79,7 +79,6 @@ class materiaController extends Controller
             ->select('materias.id', 'materias.descripcion')
             ->where('materias.carrera_id', $carrera_id)
             ->get();
-
         return response()->json($materias);
     }
 
@@ -112,8 +111,8 @@ class materiaController extends Controller
         $materia->descripcion = $request->input('descripcion');
         $materia->carrera_id = $request->input('carrera_id');
         $materia->anio_id = $request->input('anio_id');
-        $materia->save($validatedData);  
-        return redirect()->route('materia.index');  
+        $materia->save($validatedData);
+        return redirect()->route('materia.index');
     }
 
     /**

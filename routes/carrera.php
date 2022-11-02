@@ -13,7 +13,7 @@ use App\Models\Materia;
 
 Route::get('/carreras', function () {
     $carreras = Carrera::all();
-    $materias = Materia::all();
+    $materias = Materia::all()->sortBy('anio_id');
     return view('frontend.carreras.index', compact('carreras', 'materias'));
 })->name('carreras');
 Route::group(['middleware' => ['admin']], function () {
