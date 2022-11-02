@@ -96,7 +96,7 @@
 </div>
 <div class="links">
     <div class="d-grid gap-2 d-md-flex" style="justify-content: center;">
-        <button class="btn btn-primary me-md-3" type="button">Listado de programas</button>
+        <a href="{{route('programas')}}"><button class="btn btn-primary me-md-3" type="button">Listado de programas</button></a>
         <a href="http://isft38.edu.ar/programas/carreras/Plantilla%20Programas.doc"><button class="btn btn-primary" type="button">Plantilla para programas</button></a>
     </div>
 
