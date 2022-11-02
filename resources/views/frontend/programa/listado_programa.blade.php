@@ -128,7 +128,7 @@
     </div>
 
     <div class="d-grid gap-2">
-      <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
+      <button class="btn btn-outline-dark" type="submit" id="boton" disabled aria-label="consultar">Consultar</button>
     </div>
 
 
@@ -194,12 +194,29 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- Script Get Materias -->
   <script type='text/javascript'>
+
+ 
+    function validation(){
+      var txt1 = document.getElementById('comision_id').value;
+      var txt2 = document.getElementById('carrera_id').value;
+      var txt3 = document.getElementById('sede_id').value;
+      var txt4 = document.getElementById('anio_id').value;
+      console.log(txt1);
+      if(txt1 != ""
+        && txt2 != ""
+        && txt3 != ""
+        && txt4 != ""){
+          $('#boton').prop('disabled', false);
+        }
+    }
+  
+
+
     function search() {
       var sede_id = document.getElementById('sede_id').value;
       //var sede_id = document.getElementById('sede_id').value;
       var carrera_id = document.getElementById('carrera_id').value;
       $('#carrera_id').find('option').not(':first').remove();
-
 
       $.ajax({
         url: '/getCarreras/' + sede_id,
@@ -234,7 +251,16 @@
 
       $('#sede_id').change(function() {
         search();
-
+        validation();
+      });
+      $('#comision_id').change(function() {
+        validation();
+      });
+      $('#carrera_id').change(function() {
+        validation();
+      });
+      $('#anio_id').change(function() {
+        validation();
       });
     });
   </script>
