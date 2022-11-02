@@ -46,13 +46,13 @@
 
   .fondoCards {
     background-color: #212121;
-    padding-top:40px;
+    padding-top: 40px;
   }
 
   .card-texto {
     text-align: justify;
     margin: 0 10px;
-    display:inline-block;
+    display: inline-block;
   }
 
   .card-link1 {
@@ -111,12 +111,13 @@
     display: flex;
     justify-content: center;
   }
-  .row .row-hijos{
+
+  .row .row-hijos {
     padding: 0;
   }
-  
-  @media (max-width:768px){
-    .row .row-hijos{
+
+  @media (max-width:768px) {
+    .row .row-hijos {
       width: 350px;
     }
   }
@@ -281,9 +282,9 @@
     overflow: auto;
   }
 
-  @media (max-width:768px){
-    .container-son{
-      width:320px;
+  @media (max-width:768px) {
+    .container-son {
+      width: 320px;
     }
   }
 
@@ -301,27 +302,24 @@
     border-radius: 50px;
   }
 
-  .box-body{
+  .box-body {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     padding: 30px;
   }
 
-  @media (max-width:400px){
-    .card-novedades{
-      margin:30px 0;
+  @media (max-width:400px) {
+    .card-novedades {
+      margin: 30px 0;
     }
   }
 
-  .imagen-card{
+  .imagen-card {
     width: 100%;
     height: 300px;
     object-fit: cover;
   }
-
-
-
 </style>
 
 <!-- Required meta tags -->
@@ -336,38 +334,43 @@
 </div>
 
 <div class="box-novedades">
-    <div class="box-header" style="text-align: center;">
-      <h1>Novedades</h1>
-    </div>
+  <div class="box-header" style="text-align: center;">
+    <h1>Novedades</h1>
+  </div>
+  <div>
+    @php($twice = 0 )
+    @foreach($novedades as $novedad)
+    @php($twice = $twice + 1 )
+    @if($twice == 1)
     <div class="row box-body">
-
-    <div class="card col-md-4 card-novedades">
-      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+      @endif
+      <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top img-fluid " alt="...">
+      <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
+      <p class="card-text">{!!$novedad->cuerpo!!}</p>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      @if($novedad->archivo1)
+      <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
+      @endif
+      @if($novedad->archivo2)
+      <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
+      @endif
+      @if($novedad->archivo3)
+      <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
+      @endif
+      @if($twice == 2)
     </div>
-
-    <div class="card col-md-4 card-novedades">
-      <img src="https://thumbs.dreamstime.com/b/nuevo-cartel-de-papel-con-los-movimientos-coloridos-del-cepillo-125472886.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-    
-    </div>
+    @php($twice = 0 )
+    @endif
+    @endforeach
+  </div>
 </div>
 
-<div class="fondoCards">
-    <div class="row" >
+  <div class="fondoCards">
+    <div class="row">
 
-      <div class="card col-lg-4 col-md-10 sm-12 row-hijos" >
-          <img class="card-img-top imagen-card"  src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
-        <div class="card-body"> 
+      <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
+        <img class="card-img-top imagen-card" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+        <div class="card-body">
           <h5 class="card-title">Historia</h5>
           <div>
             <hr>
@@ -376,20 +379,20 @@
             @endforeach
             <hr>
           </div>
-            
+
           <button class="learn-more"">
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
+            <span class=" circle" aria-hidden="true">
+            <span class="icon arrow"></span>
             </span>
             <span class="button-text" id="btn_sesion">Ver más</span>
           </button>
         </div>
-      </div> 
+      </div>
 
       <!--CARD 2-->
-      
+
       <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
-          <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
+        <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Objetivos</h5>
           <div>
@@ -403,16 +406,16 @@
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
-            <span class="button-text" id="btn_sesion"  >Ver más</span>
+            <span class="button-text" id="btn_sesion">Ver más</span>
           </button>
-        </div> 
+        </div>
       </div>
-      
+
     </div>
   </div>
 
   <!-- MODALS -->
-  
+
   <div id="sesion" class="sesion">
     <div class="vent_sesion">
 
@@ -422,9 +425,9 @@
 
       <div class="container-son">
         <div>
-            @foreach($historias as $historia)
-            <p>{!!$historia->historia!!}</p>
-            @endforeach
+          @foreach($historias as $historia)
+          <p>{!!$historia->historia!!}</p>
+          @endforeach
         </div>
       </div>
 
