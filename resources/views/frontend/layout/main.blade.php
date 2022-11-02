@@ -32,6 +32,14 @@
     }
   }
 
+  /* @media all and (min-width: 1024px) {
+    .rogelio ul li a {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  } */
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -133,6 +141,7 @@
     transition-duration: 400ms;
     transition-property: width, left;
   }
+  
 </style>
 
 <body>
