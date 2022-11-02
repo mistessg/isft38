@@ -32,5 +32,11 @@
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
   </div>
+  <div class="form-group">
+    {{ Form::checkbox('is_admin', null, null, ['class' => 'check-input',  "readonly" ]) }}{{ Form::label("is_admin", 'Admin?', ['class' => 'control-label']) }}
+    @error('is_admin')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+  </div>
   {!!Form::close()!!}
   @endsection

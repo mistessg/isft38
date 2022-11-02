@@ -47,6 +47,12 @@
     @error('password-confirm')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+    <div class="form-group">
+      {{ Form::checkbox('is_admin', null, null, ['class' => 'check-input']) }}{{ Form::label("is_admin", 'Admin?', ['class' => 'control-label']) }}
+      @error('is_admin')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+    </div>
   </div>
   </br><button type="submit" class="btn btn-success form-control">{{__('noticias.guardar')}}</button>
 </div>
