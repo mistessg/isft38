@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ModuloController;
+use App\Models\Profesor;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,7 @@ Route::get('horarios/{sede}/{carrera}/{anio}/{comision}', [HorarioController::cl
 
 
 Route::get('/horariosProfesor', [HorarioController::class, 'porProfesor'])->name('horarios.porProfesor');
+
 Route::post('/horariosProfesor', [HorarioController::class, 'searchProfesor'])->name('horarios.show.porProfesor');
 Route::get('/horariosDiaHora', [HorarioController::class, 'porDiaHora'])->name('horarios.PorDiaHora');
 Route::post('/horariosDiaHora', [HorarioController::class, 'searchPorDiaHora'])->name('horarios.searchPorDiaHora');
