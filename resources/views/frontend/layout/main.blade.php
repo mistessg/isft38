@@ -46,12 +46,18 @@
   body {
     background: #212529;
     width: 100vw;
+    min-height: 100vh;
+    position: absolute;
   }
 
   .footer {
     color: white;
     text-align: center;
     padding: 20px;
+
+    position: relative;
+    bottom: 0;
+    height: 100%;
   }
 
   ul li {

@@ -5,17 +5,30 @@
     
 <style>
 
-
+.container{
+    min-height: 80vh;
+}
     .texto-tabla {
         font-size: .8em;
     }
+    .table {
+    margin-top: 3rem;
+}
+
+label{
+    width: 100% !important;
+    margin: 1rem 0;
+}
+input{
+    width: 100% !important;
+}
 
 </style>
 
 
 <div class="container">
 <table class="table m-o mt-4" style="background-color: #3A70FF;">
-    <tr class="text-dark" style="background-color: #3A70FF;">
+    <tr class="text-light" style="background-color: #3A70FF;">
             <th class="align-middle ps-5">Horario</th>
             <th class="align-middle">Profesor</th>
             <th class="align-middle">Materia</th>

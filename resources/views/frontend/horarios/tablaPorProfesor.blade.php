@@ -4,20 +4,33 @@
 @section('content')
 
 <style>
-
+.container{
+    min-height: 80vh;
+}
     .texto-tabla {
         font-size: .8em;
     }
-    .tablaScroll{
-        overflow-x: scroll;
-    overflow-y: hidden;
-    
-    white-space:nowrap;
-    }
+   
     th, td{
         width:10rem;
     }
-    
+    .table {
+    margin-top: 3rem;
+}
+@media(max-width:1050px){
+.container div{
+    flex-direction: column;
+    margin: auto;
+}
+label{
+    width: 100% !important;
+    margin: 1rem 0;
+}
+input{
+    width: 100% !important;
+}
+
+}
 </style>
 
    <div class="tablaScroll">
