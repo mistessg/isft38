@@ -363,7 +363,6 @@ class ProgramaController extends Controller
 
     public function getMaterias($carrera_id = 0, $anio_id = 0, $sede_id = 0)
     {
-        dd($carrera_id, $anio_id, $sede_id);
         $materias['data'] = Materia::join('carrerasedes','materias.carrera_id' , '=', 'carrerasedes.carrera_id')
             ->select('materias.id', 'materias.descripcion')
             ->where('materias.carrera_id', $carrera_id)

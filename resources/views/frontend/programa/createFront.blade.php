@@ -127,7 +127,7 @@
 
     <div class="form-group">
         {{ Form::label("materia_id", __('MATERIAS'), ['class' => 'control-label']) }}
-        {{Form::select("materia_id", $materias, old("materia_id"), ["class" => "form-control", "placeholder" => "Seleccione una materia"]) }}
+        {{Form::select("materia_id", $materias, null, ["class" => "form-control", "placeholder" => "Seleccione una materia"]) }}
         @error('materia_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -186,11 +186,13 @@
         }
     }
 
+    
+
     function search() {
         var anio_id = document.getElementById('anio_id').value;
         var carrera_id = document.getElementById('carrera_id').value;
         var sede_id = document.getElementById('sede_id').value;
-        //$('#materia_id').find('option').not(':first').remove();
+        $('#materia_id').find('option').not(':first').remove();
         $('#materia_id').find('option').remove();
         $('#materia_id').append($('<option></option>').html('Cargando datos...'));
         $.ajax({
@@ -260,10 +262,22 @@
         });
     }
 
+   
+
     $(document).ready(function() {
+        //var miDato = localStorage.getItem("nombre").value;
+        if(localStorage.getItem("nombre").value != "Cargando datos..."){
+            $('#materia_id').find('option').remove();
+            $('#materia_id').append($('<option></option>').html('Seleccione una carrera...'));
+            
+            $("#materia_id").append(localStorage.getItem("nombre").value);
+        }
+        
+
         //$("#exampleModal").modal("show");
         $('#anio_id').change(function() {
             search();
+            
         });
         $('#carrera_id').change(function() {
             search();
@@ -272,6 +286,11 @@
             searchCarreras();
             search();
         });
+        $('#materia_id').change(function() {
+            localStorage.clear();
+            localStorage.setItem("nombre", document.getElementById('materia_id').value);
+        });
     });
+
 </script>
 @endsection
