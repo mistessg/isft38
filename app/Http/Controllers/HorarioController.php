@@ -119,7 +119,7 @@ class HorarioController extends Controller
         $carrera = Carrera::find($request->input('carrera_id'));
         $anio = Anio::find($request->input('anio_id'));
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-            ->pluck('nombrecompleto', 'id');
+            ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         $materias = Materia::where('carrera_id', $carrera->id)
             ->where('anio_id', $anio->id)
             ->pluck('descripcion', 'id');
@@ -184,7 +184,7 @@ class HorarioController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->where('dia', $request->input('dia'))
             ->where('comentario', $request->input('comentario'))
-            ->where('materia', $request->input('materia_id'))
+            ->where('materia_id', $request->input('materia_id'))
             ->where('modulohorario_id', $request->input('modulohorario_id'))->first();
 
         if (empty($horario)) {
