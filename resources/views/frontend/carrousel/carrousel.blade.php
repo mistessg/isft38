@@ -41,7 +41,7 @@
 
   .card-img-top {
     height: 250px;
-    background-size: contain;
+    object-fit: cover;
   }
 
   .fondoCards {
@@ -119,6 +119,11 @@
   @media (max-width:768px) {
     .row .row-hijos {
       width: 350px;
+    }
+
+    .carousel-inner img{
+      height: 50vh;
+
     }
   }
 
@@ -374,9 +379,6 @@
 
 <!--Inicio Novedades -->
 <div class="box-novedades">
-  <div class="box-header" style="text-align: center;">
-    <h1>Novedades</h1>
-  </div>
 
   @php($twice = 0 )
   @foreach($novedades as $novedad)
@@ -385,7 +387,9 @@
   <div class="row box-body">
     @endif
     <div class="card col-md-4 card-novedades">
-      <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top img-fluid " alt="...">
+      <div class="caja-imagen-novedades">
+        <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top" alt="...">
+      </div>
       <div class="card-body">
         <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
         <p class="card-text">{!!$novedad->cuerpo!!}</p>
@@ -407,6 +411,7 @@
   @endif
   @endforeach
 </div>
+
 <!--Fin Novedades -->
 
 

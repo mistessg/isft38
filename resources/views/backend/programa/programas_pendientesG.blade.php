@@ -4,6 +4,32 @@
 
 @section('content')
 
+
+<style>
+
+.form-group {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .form-group label {
+        color: white;
+        outline: none;
+        margin-bottom: 5px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+    .form-control {
+        border: 1px solid gray;
+        padding: 10px;
+        outline: none;
+    }
+
+</style>
+
+
 <div class="container my-4">
 
   <div class="card">
@@ -13,16 +39,16 @@
       {{ Form::open(['route' => 'programa.pendiente.search']) }}
       @csrf
 
-      <div class="input-group mb-3">
-        {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("anio_id", 'Periodo', ['class' => 'control-label']) }}
         {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
         @error('año')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
 
-      <div class="input-group mb-3">
-        {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("sede_id", 'Sede', ['class' => 'control-label']) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
         @error('sede')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -30,8 +56,8 @@
       </div>
 
 
-      <div class="input-group mb-3">
-        {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("carrera_id", 'Carrera', ['class' => 'control-label']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
         @error('carrera')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -39,8 +65,8 @@
 
       </div>
 
-      <div class="input-group mb-3">
-        {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
+      <div class="form-group">
+        {{ Form::label("comision_id", 'Comisión', ['class' => 'control-label']) }}
         {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}
         @error('carrera')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -55,35 +81,7 @@
       <br>
 
     </div>
-    <style>
-      .titulo {
-        text-align: center;
-        background-color: #141E27;
-        color:aliceblue;
-        border-radius: 15px;
-        /*margin-left: 140px;
-        margin-right: 140px; */
-      }
-
-      .btno {
-        margin-left: 800px;
-        margin-right: 150px;
-      }
-      .p{
-        text-align: center;
-        font-family: varela;
-      }
-      .entre{
-        background-color: #3CCF4E;
-        border-radius: 20px;
-        text-align: center;
-      }
-      .pendientes{
-        background-color: #EB1D36;
-        border-radius: 20px;
-        text-align: center;
-      }
-    </style>
+ 
 
     @foreach($anios as $a)
 

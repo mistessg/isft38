@@ -5,7 +5,9 @@
 @section('content')
 
 <style>
-
+.card{
+    width: 54%;
+}
     label {
         width: 4rem;
     }
