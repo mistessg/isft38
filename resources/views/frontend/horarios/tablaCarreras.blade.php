@@ -5,24 +5,45 @@
 
 <style>
 
-
+/* body{
+    height: 100vh;
+} */
+.container{
+    min-height: 80vh;
+}
     .texto-tabla {
         font-size: .8em;
     }
-    .tablaScroll{
-        overflow-x: scroll;
-    overflow-y: hidden;
     
-    white-space:nowrap;
-    }
-    th, td{
+    .table {
+    margin-top: 3rem;
+}
+@media(max-width:1050px){
+.container div{
+    flex-direction: column;
+    margin: auto;
+}
+label{
+    width: 100% !important;
+    margin: 1rem 0;
+}
+input{
+    width: 100% !important;
+}
+
+}
+
+.text th, td{
         width:10rem;
     }
+    label {
+    width: 6rem;
+}
 </style>
 
 <div class="container">   
         {{ Form::open(['route' => 'horario.createHorario']) }}
-        <div class="row mt-4 mb-1">
+        <div class="row mt-4 mb-3 div-cnt">
 
             <div class="input-group col">
                 <label class="input-group-text bg-dark text-light"for="#">Sede</label>
@@ -38,19 +59,19 @@
             </div>
         </div>
 
-        <div class="row mb-2">
-        <div class="input-group col">
-            <label class="input-group-text bg-dark text-light" for="#">Año</label>
-            {{Form::text("anio_id", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
-            {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
+        <div class="row mb-2 div-cnt">
+            <div class="input-group col">
+                <label class="input-group-text bg-dark text-light" for="#">Año</label>
+                {{Form::text("anio_id", $anio->descripcion , ["class" => "form-control", "readonly" ])}}
+                {{Form::text("anio_id", $anio->id , ["class" => "form-control", "hidden" ])}}
 
-        </div>
-        <div class="input-group col">
-            <label class="input-group-text bg-dark text-light" for="#">Comisión</label>
-            {{Form::text("comision_id", $comision->comision , ["class" => "form-control", "readonly" ])}}
-            {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
+            </div>
+            <div class="input-group col">
+                <label class="input-group-text bg-dark text-light" for="#">Comisión</label>
+                {{Form::text("comision_id", $comision->comision , ["class" => "form-control", "readonly" ])}}
+                {{Form::text("comision_id", $comision->id , ["class" => "form-control", "hidden" ])}}
 
-        </div>
+            </div>
         </div>
     
 {!!Form::close()!!}

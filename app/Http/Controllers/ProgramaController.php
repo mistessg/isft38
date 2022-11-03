@@ -12,6 +12,7 @@ use App\Models\Comision;
 use App\Models\Carrerasede;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 
 class ProgramaController extends Controller
 {
@@ -106,7 +107,8 @@ class ProgramaController extends Controller
         $anios = Anio::pluck('descripcion', 'id');
         $materias = array(); //Materia::pluck('descripcion', 'id');
         $comisiones = Comision::pluck('comision', 'id');
-        $profesores = Profesor::pluck('nombre', 'id');
+        $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
+        ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         return view('backend.programa.create', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
     }
     public function createFront()
@@ -116,7 +118,8 @@ class ProgramaController extends Controller
         $anios = Anio::pluck('descripcion', 'id');
         $materias = array(); //Materia::pluck('descripcion', 'id');
         $comisiones = Comision::pluck('comision', 'id');
-        $profesores = Profesor::pluck('nombre', 'id');
+        $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
+        ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         //dd("entro al create del front");
         return view('frontend.programa.createFront', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
     }
@@ -348,7 +351,8 @@ class ProgramaController extends Controller
         $carreras = Carrera::pluck('descripcion', 'id');
         $comisiones = Comision::pluck('comision', 'id');
         $materias = Materia::pluck('descripcion', 'id');
-        $profesores = Profesor::pluck('nombre', 'apellido', 'id');
+        $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
+        ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         $year = date("Y");
         $periodo = '';
@@ -363,7 +367,6 @@ class ProgramaController extends Controller
 
     public function getMaterias($carrera_id = 0, $anio_id = 0, $sede_id = 0)
     {
-        dd($carrera_id, $anio_id, $sede_id);
         $materias['data'] = Materia::join('carrerasedes','materias.carrera_id' , '=', 'carrerasedes.carrera_id')
             ->select('materias.id', 'materias.descripcion')
             ->where('materias.carrera_id', $carrera_id)

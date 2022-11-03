@@ -46,6 +46,8 @@
   body {
     background: #212529;
     width: 100vw;
+    min-height: 100vh;
+    position: absolute;
   }
 
   .footer {
