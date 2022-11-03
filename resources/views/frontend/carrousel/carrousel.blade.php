@@ -372,37 +372,42 @@
   </button>
 </div>
 
+<!--Inicio Novedades -->
 <div class="box-novedades">
   <div class="box-header" style="text-align: center;">
     <h1>Novedades</h1>
   </div>
-  <div>
-    @php($twice = 0 )
-    @foreach($novedades as $novedad)
-    @php($twice = $twice + 1 )
-    @if($twice == 1)
-    <div class="row box-body">
-      @endif
-      <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top img-fluid " alt="...">
-      <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
-      <p class="card-text">{!!$novedad->cuerpo!!}</p>
-      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      @if($novedad->archivo1)
-      <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
-      @endif
-      @if($novedad->archivo2)
-      <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
-      @endif
-      @if($novedad->archivo3)
-      <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
-      @endif
-      @if($twice == 2)
-    </div>
-    @php($twice = 0 )
+
+  @php($twice = 0 )
+  @foreach($novedades as $novedad)
+  @php($twice = $twice + 1 )
+  @if($twice == 1)
+  <div class="row box-body">
     @endif
-    @endforeach
+    <div class="card col-md-4 card-novedades">
+      <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top img-fluid " alt="...">
+      <div class="card-body">
+        <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
+        <p class="card-text">{!!$novedad->cuerpo!!}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        @if($novedad->archivo1)
+        <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
+        @endif
+        @if($novedad->archivo2)
+        <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
+        @endif
+        @if($novedad->archivo3)
+        <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
+        @endif
+      </div>
+    </div>
+    @if($twice == 2)
   </div>
+  @php($twice = 0 )
+  @endif
+  @endforeach
 </div>
+<!--Fin Novedades -->
 
 
 
