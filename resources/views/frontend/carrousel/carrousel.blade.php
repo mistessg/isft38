@@ -320,6 +320,18 @@
     height: 300px;
     object-fit: cover;
   }
+  #mi-carousel{
+    width: 100vw;
+    height: 90vh;
+  }
+  .carousel-inner,.item-active, .item-{
+    width: 100%;
+    height: 100%;
+  }
+  .item-active, .item img{
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 <!-- Required meta tags -->
@@ -329,8 +341,35 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<div class="carrousel-padre">
-    
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="http://isft38.edu.ar/image/sede1.jpg" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="http://isft38.edu.ar/image/sede1.jpg" alt="Chicago" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://desarrolloweb.com/media/151/laravel-blade-sintaxis.jpg" alt="New York" class="d-block w-100">
+    </div>
+  </div>
+
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
 </div>
 
 <div class="box-novedades">
@@ -365,137 +404,139 @@
   </div>
 </div>
 
-  <div class="fondoCards">
-    <div class="row">
 
-      <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
-        <img class="card-img-top imagen-card" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Historia</h5>
-          <div>
-            <hr>
-            @foreach($historias as $historia)
-            <p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>
-            @endforeach
-            <hr>
-          </div>
 
-          <button class="learn-more"">
-            <span class=" circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-            </span>
-            <span class="button-text" id="btn_sesion">Ver más</span>
-          </button>
-        </div>
-      </div>
+<div class="fondoCards">
+  <div class="row">
 
-      <!--CARD 2-->
-
-      <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
-        <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Objetivos</h5>
-          <div>
-            <hr>
-            @foreach($objetivos as $objetivo)
-            <span id="texto-card-objetivo" class="card-texto">{!!substr($objetivo->objetivo, 0, 1250)!!}...</span>
-            @endforeach
-            <hr>
-          </div>
-          <button class="learn-more" style="position: relative; bottom: 6px;">
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text" id="btn_sesion">Ver más</span>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODALS -->
-
-  <div id="sesion" class="sesion">
-    <div class="vent_sesion">
-
-      <div class="container-historia">
-        <h1>Historia</h1>
-      </div>
-
-      <div class="container-son">
+    <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
+      <img class="card-img-top imagen-card" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Historia</h5>
         <div>
+          <hr>
           @foreach($historias as $historia)
-          <p>{!!$historia->historia!!}</p>
+          <p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>
           @endforeach
+          <hr>
         </div>
-      </div>
 
-      <div class="btn_cerrar" id="btn_cerrar">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>
+        <button class="learn-more"">
+            <span class=" circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+          </span>
+          <span class="button-text" id="btn_sesion">Ver más</span>
+        </button>
       </div>
-
     </div>
-  </div>
 
+    <!--CARD 2-->
 
-
-  <div id="sesion2" class="sesion">
-    <div class="vent_sesion">
-      <div class="container-objetivo">
-        <h1>Objetivos</h1>
-      </div>
-
-      <div class="container-son">
+    <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
+      <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Objetivos</h5>
         <div>
+          <hr>
           @foreach($objetivos as $objetivo)
-          <p>{!! $objetivo->objetivo !!}</p>
+          <span id="texto-card-objetivo" class="card-texto">{!!substr($objetivo->objetivo, 0, 1250)!!}...</span>
           @endforeach
+          <hr>
         </div>
+        <button class="learn-more" style="position: relative; bottom: 6px;">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text" id="btn_sesion">Ver más</span>
+        </button>
       </div>
-
-      <div class="btn_cerrar" id="btn_cerrar2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>
-      </div>
-
     </div>
+
   </div>
+</div>
+
+<!-- MODALS -->
+
+<div id="sesion" class="sesion">
+  <div class="vent_sesion">
+
+    <div class="container-historia">
+      <h1>Historia</h1>
+    </div>
+
+    <div class="container-son">
+      <div>
+        @foreach($historias as $historia)
+        <p>{!!$historia->historia!!}</p>
+        @endforeach
+      </div>
+    </div>
+
+    <div class="btn_cerrar" id="btn_cerrar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+      </svg>
+    </div>
+
+  </div>
+</div>
 
 
-  <script type="text/javascript">
-    const btn_sesion = document.getElementById('btn_sesion');
-    const btn_sesion2 = document.getElementById('btn_sesion2');
-    const sesion = document.getElementById('sesion');
-    const sesion2 = document.getElementById('sesion2');
-    const btn_cerrar = document.getElementById('btn_cerrar');
-    const btn_cerrar2 = document.getElementById('btn_cerrar2');
-    const texto_objetivo = document.getElementById('texto-card-objetivo');
 
-    btn_sesion.addEventListener('click', () => {
-      sesion.classList.add('show');
-    });
+<div id="sesion2" class="sesion">
+  <div class="vent_sesion">
+    <div class="container-objetivo">
+      <h1>Objetivos</h1>
+    </div>
 
-    btn_cerrar.addEventListener('click', () => {
-      sesion.classList.remove('show');
-    });
+    <div class="container-son">
+      <div>
+        @foreach($objetivos as $objetivo)
+        <p>{!! $objetivo->objetivo !!}</p>
+        @endforeach
+      </div>
+    </div>
 
-    btn_sesion2.addEventListener('click', () => {
-      sesion2.classList.add('show');
-    });
+    <div class="btn_cerrar" id="btn_cerrar2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+      </svg>
+    </div>
 
-    btn_cerrar2.addEventListener('click', () => {
-      sesion2.classList.remove('show');
-    });
+  </div>
+</div>
 
 
-    window.document.onload()
-    texto_objetivo.trimStart();
-  </script>
+<script type="text/javascript">
+  const btn_sesion = document.getElementById('btn_sesion');
+  const btn_sesion2 = document.getElementById('btn_sesion2');
+  const sesion = document.getElementById('sesion');
+  const sesion2 = document.getElementById('sesion2');
+  const btn_cerrar = document.getElementById('btn_cerrar');
+  const btn_cerrar2 = document.getElementById('btn_cerrar2');
+  const texto_objetivo = document.getElementById('texto-card-objetivo');
 
-  @endsection
+  btn_sesion.addEventListener('click', () => {
+    sesion.classList.add('show');
+  });
+
+  btn_cerrar.addEventListener('click', () => {
+    sesion.classList.remove('show');
+  });
+
+  btn_sesion2.addEventListener('click', () => {
+    sesion2.classList.add('show');
+  });
+
+  btn_cerrar2.addEventListener('click', () => {
+    sesion2.classList.remove('show');
+  });
+
+
+  window.document.onload()
+  texto_objetivo.trimStart();
+</script>
+
+@endsection
