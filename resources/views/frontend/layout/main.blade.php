@@ -32,13 +32,6 @@
     }
   }
 
-  /* @media all and (min-width: 1024px) {
-    .rogelio ul li a {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  }
-  } */
 
   ::-webkit-scrollbar {
     display: none;
@@ -77,6 +70,14 @@
     display: flex;
     justify-content: center;
     text-align: center;
+  }
+
+  @media all and (min-width: 1024px) {
+    .rogelio ul li a {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
   }
 
   @media (max-width: 768px) {
@@ -141,6 +142,10 @@
     transition-duration: 400ms;
     transition-property: width, left;
   }
+  .nav-ul{
+    display: flex;
+    justify-content: center;
+  }
   
 </style>
 
@@ -155,7 +160,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse rogelio" id="navbarToggleExternalContent">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex justify-content-around" style="--bs-scroll-height: 400px;">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll nav-ul" style="--bs-scroll-height: 400px;">
           <li class="nav-item">
             <a href="{{ route('carreras') }}" class="nav-link border-effect">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
