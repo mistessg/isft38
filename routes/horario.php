@@ -17,14 +17,14 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('horario/createHorario', [HorarioController::class, 'createHorario'])->name('horario.createHorario');
 });
 
-Route::get('/horarios/porCarrera', [HorarioController::class, 'porCarrera'])->name('horarios.porCarrera');
+Route::get('/horariosCarrera', [HorarioController::class, 'porCarrera'])->name('horarios.porCarrera');
 
 
 Route::post('horarios/searchPorCarrera', [HorarioController::class, 'searchCarreraUser'])->name('horarios.searchPorCarrera');
 Route::get('horarios/{sede}/{carrera}/{anio}/{comision}', [HorarioController::class, 'searchCarreraUser'])->name('horarios.search.PorCarrera');
 
 
-Route::get('/horarios/porProfesor', [HorarioController::class, 'porProfesor'])->name('horarios.porProfesor');
-Route::post('/horarios/porProfesor', [HorarioController::class, 'searchProfesor'])->name('horarios.show.porProfesor');
-Route::get('/horarios/porDiaHora', [HorarioController::class, 'porDiaHora'])->name('horarios.PorDiaHora');
-Route::post('/horarios/porDiaHora', [HorarioController::class, 'searchPorDiaHora'])->name('horarios.searchPorDiaHora');
+Route::get('/horariosProfesor', [HorarioController::class, 'porProfesor'])->name('horarios.porProfesor');
+Route::post('/horariosProfesor', [HorarioController::class, 'searchProfesor'])->name('horarios.show.porProfesor');
+Route::get('/horariosDiaHora', [HorarioController::class, 'porDiaHora'])->name('horarios.PorDiaHora');
+Route::post('/horariosDiaHora', [HorarioController::class, 'searchPorDiaHora'])->name('horarios.searchPorDiaHora');

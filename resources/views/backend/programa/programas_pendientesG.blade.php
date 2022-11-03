@@ -4,6 +4,14 @@
 
 @section('content')
 
+
+<style>
+
+
+
+</style>
+
+
 <div class="container my-4">
 
   <div class="card">
@@ -13,7 +21,7 @@
       {{ Form::open(['route' => 'programa.pendiente.search']) }}
       @csrf
 
-      <div class="input-group mb-3">
+      <div class="form-group">
         {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
         {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
         @error('año')
@@ -21,7 +29,7 @@
         @enderror
       </div>
 
-      <div class="input-group mb-3">
+      <div class="form-group">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
         @error('sede')
@@ -30,7 +38,7 @@
       </div>
 
 
-      <div class="input-group mb-3">
+      <div class="form-group">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
         @error('carrera')
@@ -39,7 +47,7 @@
 
       </div>
 
-      <div class="input-group mb-3">
+      <div class="form-group">
         {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
         {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}
         @error('carrera')
@@ -55,35 +63,7 @@
       <br>
 
     </div>
-    <style>
-      .titulo {
-        text-align: center;
-        background-color: #141E27;
-        color:aliceblue;
-        border-radius: 15px;
-        /*margin-left: 140px;
-        margin-right: 140px; */
-      }
-
-      .btno {
-        margin-left: 800px;
-        margin-right: 150px;
-      }
-      .p{
-        text-align: center;
-        font-family: varela;
-      }
-      .entre{
-        background-color: #3CCF4E;
-        border-radius: 20px;
-        text-align: center;
-      }
-      .pendientes{
-        background-color: #EB1D36;
-        border-radius: 20px;
-        text-align: center;
-      }
-    </style>
+ 
 
     @foreach($anios as $a)
 
