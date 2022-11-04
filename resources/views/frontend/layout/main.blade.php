@@ -46,13 +46,18 @@
   body {
     background: #212529;
     width: 100vw;
+    min-height: 100vh;
+    position: absolute;
   }
 
   .footer {
     color: white;
     text-align: center;
     padding: 20px;
+    min-height: calc(100vh - 40rem);
   }
+
+
 
   ul li {
     width: 100%;
@@ -241,17 +246,17 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li class="nav-li">
-                <a href="{{ route('horarios.porCarrera') }}" class="nav-link">
+                <a href="{{ route('horarios.porCarrera') }}" class="nav-link d-flex justify-content-start">
                   Por Carrera
                 </a>
               </li>
               <li class="nav-li">
-                <a href="{{ route('horarios.porProfesor') }}" class="nav-link">
+                <a href="{{ route('horarios.porProfesor') }}" class="nav-link d-flex justify-content-start">
                   Por Profesor
                 </a>
               </li>
               <li class="nav-li">
-                <a href="{{ route('horarios.PorDiaHora') }}" class="nav-link">
+                <a href="{{ route('horarios.PorDiaHora') }}" class="nav-link d-flex justify-content-start">
                   Por dia / hora
                 </a>
               </li>

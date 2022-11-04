@@ -7,33 +7,34 @@
 
 <style>
 
-.form-group {
-        margin-top: 10px;
-        justify-content: center;
-    }
+.container{
+  width: 100%;
+  height: 70%;
+}
 
-    .form-group label {
-        color: white;
-        outline: none;
-        margin-bottom: 5px;
+.Inicio {
+        text-align: center;
+        margin: 20px;
+        color: black;
         font-family: 'Quicksand', sans-serif;
         font-weight: 800;
-        font-size: 20px;
+        position: relative;
     }
 
-    .form-control {
-        border: 1px solid gray;
-        padding: 10px;
-        outline: none;
-    }
+  .titulo{
+    text-align: center;
+  }  
 
 </style>
 
+<div class="Inicio">
+    <h1 class="TextoInicio">Programas Pendiente</h1>
+</div>
 
-<div class="container my-4">
+<div class="container">
 
   <div class="card">
-    <h5 class="card-header" style=" background-color: #181818; color: white;">Programas pendientes</h5>
+    <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte</h5>
     <div class="card-body">
 
       {{ Form::open(['route' => 'programa.pendiente.search']) }}
@@ -73,58 +74,68 @@
         @enderror
       </div>
 
-
+      <hr>
 
       <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
       </div>
       <br>
-
     </div>
- 
-
-    @foreach($anios as $a)
-
-    <h5 class="titulo"> {{$a->descripcion}} <br>
-      @php($m=0)
-      @php($e=0)
-    </h5>
-
-    @foreach($materias as $materia)
-    @if($a->id == $materia->anio_id)
-    Materia:{{$materia->descripcion}}<br>
-    @php($m++)
-    
-    
-    @foreach($programas as $programa)
-    @if($materia->id == $programa->materia_id)
-    
-    @php($e++)
   
-    Programa:{{$programa->materia->descripcion}} -{{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
-    <br>
-    @endif
+  </div>
 
-    @endforeach
+  
+  @foreach($anios as $a)
+  <h5 class="titulo"> {{$a->descripcion}} <br>
+  @php($m=0)
+  @php($e=0)
+  </h5>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Materia</th>
+    </tr>
+  </thead>
+  </table>
 
-    @endif
-
-    @endforeach
-      
-
-    @php($p = $m - $e)
-    <div class="d-grid gap-2 btno">
-      <p class="entre">ENTREGADOS:{{$e}}</p>  
-      <p class="pendientes">PENDIENTES:{{$p}}</p>
-    </div>
-    @endforeach
+  @foreach($materias as $materia)
+  @if($a->id == $materia->anio_id)
+  {{$materia->descripcion}}<br>
+  @php($m++)
 
 
+  @foreach($programas as $programa)
+  @if($materia->id == $programa->materia_id)
 
-    @endsection
+  @php($e++)
+
+  Programa:{{$programa->materia->descripcion}} -{{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
+  <br>  
+  @endif
+
+  @endforeach
+
+  @endif
+
+  @endforeach
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  @php($p = $m - $e)
+
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-success me-md-2 entregados" type="button">ENTREGADOS:{{$e}}</button>
+  <button class="btn btn-danger pendientes" type="button">PENDIENTES:{{$p}}</button>
+  </div>
+
+  @endforeach
+   
+</div>
+
+@endsection
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
 <script type='text/javascript'>
 

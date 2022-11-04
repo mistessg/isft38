@@ -4,7 +4,59 @@
 
 @section('content')
 
-<div class="container my-4">
+<style>
+  .container{
+    width: 100%;
+    height: 70%;
+  }
+      label {
+        width: 6rem;
+      }
+
+      @media (max-width: 450px) {
+
+        .card {
+          margin: 1rem 1rem 1rem 1rem;
+
+        }
+      }
+
+      @media (max-width: 380px) {
+
+        .card {
+          margin: 1rem 1rem 1rem 1rem;
+
+        }
+      }
+
+      @media (max-width: 400px) {
+
+        .card {
+          margin: 1rem 1rem 1rem 1rem;
+
+        }
+
+      }
+
+      .Inicio {
+        text-align: center;
+        margin: 20px;
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800;
+        position: relative;
+    }
+
+  .titulo{
+    text-align: center;
+  }  
+</style>
+
+<div class="Inicio">
+    <h1 class="TextoInicio">Programas Pendientes</h1>
+</div>
+
+<div class="container">
 
   <div class="card">
     <h5 class="card-header" style=" background-color: #181818; color: white;">Programas pendientes</h5>
@@ -55,61 +107,6 @@
       <br>
 
     </div>
-    <style>
-      .titulo {
-        text-align: center;
-        background-color: #141E27;
-        color:aliceblue;
-        border-radius: 15px;
-        /*margin-left: 140px;
-        margin-right: 140px; */
-      }
-
-      .btno {
-        margin-left: 800px;
-        margin-right: 150px;
-      }
-      .p{
-        text-align: center;
-        font-family: varela;
-      }
-      .entre{
-        background-color: #3CCF4E;
-        border-radius: 20px;
-        text-align: center;
-      }
-      .pendientes{
-        background-color: #EB1D36;
-        border-radius: 20px;
-        text-align: center;
-      }
-      label {
-        width: 6rem;
-    }
-
-    @media (max-width: 450px) {
-    
-    .card{
-        margin: 1rem 1rem 1rem 1rem;
-
-    }
-    }
-    @media (max-width: 380px) {
-  
-  .card{
-    margin: 1rem 1rem 1rem 1rem;
-
-  }
-    }
-  @media (max-width: 400px) {
-  
-  .card{
-    margin: 1rem 1rem 1rem 1rem;
-
-  }
-
-}
-    </style>
 
     @foreach($anios as $a)
 
@@ -117,20 +114,26 @@
       @php($m=0)
       @php($e=0)
     </h5>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Materia</th>
+    </tr>
+  </thead>
+  </table>
 
 
-    
     @foreach($materias as $materia)
     @if($a->id == $materia->anio_id)
-    Materia:{{$materia->descripcion}}<br>
+    {{$materia->descripcion}}<br>
     @php($m++)
-    
-    
+
+
     @foreach($programas as $programa)
     @if($materia->id == $programa->materia_id)
-    
+
     @php($e++)
-  
+
     Programa:{{$programa->materia->descripcion}} -{{$programa->profesor->apellido}}, {{$programa->profesor->nombre}}
     <br>
     @endif
@@ -140,67 +143,67 @@
     @endif
 
     @endforeach
-      
+
 
     @php($p = $m - $e)
-    <div class="d-grid gap-2 btno">
-      <p class="entre">ENTREGADOS:{{$e}}</p>  
-      <p class="pendientes">PENDIENTES:{{$p}}</p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-success me-md-2 entregados" type="button">ENTREGADOS:{{$e}}</button>
+      <button class="btn btn-danger pendientes" type="button">PENDIENTES:{{$p}}</button>
     </div>
     @endforeach
 
   </div>
-  </div>
-
-    @endsection
+</div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+@endsection
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Script Get Materias -->
 <script type='text/javascript'>
-
-  function search(){
+  function search() {
     var sede_id = document.getElementById('sede_id').value;
-            //var sede_id = document.getElementById('sede_id').value;
-            var carrera_id = document.getElementById('carrera_id').value;
-            //$('#carrera_id').find('option').not(':first').remove();
-            $('#carrera_id').find('option').remove();
-            $('#carrera_id').append($('<option></option>').html('Cargando datos...'));
-            $.ajax({
-                url: '/getCarreras/' + sede_id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response) {
+    //var sede_id = document.getElementById('sede_id').value;
+    var carrera_id = document.getElementById('carrera_id').value;
+    //$('#carrera_id').find('option').not(':first').remove();
+    $('#carrera_id').find('option').remove();
+    $('#carrera_id').append($('<option></option>').html('Cargando datos...'));
+    $.ajax({
+      url: '/getCarreras/' + sede_id,
+      type: 'get',
+      dataType: 'json',
+      success: function(response) {
 
-                    var len = 0;
-                    if (response['data'] != null) {
-                        len = response['data'].length;
-                    }
+        var len = 0;
+        if (response['data'] != null) {
+          len = response['data'].length;
+        }
 
-                    if (len > 0) {
-                      $('#carrera_id').find('option').remove();
-                      $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
-                        for (var i = 0; i < len; i++) {
+        if (len > 0) {
+          $('#carrera_id').find('option').remove();
+          $('#carrera_id').append($('<option></option>').html('Seleccione una carrera...'));
+          for (var i = 0; i < len; i++) {
 
-                            var id = response['data'][i].id;
-                            var descripcion = response['data'][i].descripcion;
+            var id = response['data'][i].id;
+            var descripcion = response['data'][i].descripcion;
 
-                            var option = "<option value='" + id + "'>" + descripcion + "</option>";
+            var option = "<option value='" + id + "'>" + descripcion + "</option>";
 
-                            $("#carrera_id").append(option);
-                        }
-                    }
+            $("#carrera_id").append(option);
+          }
+        }
 
-                }
-            });
+      }
+    });
   }
 
 
-    $(document).ready(function() {
+  $(document).ready(function() {
 
-        $('#sede_id').change(function() {
-          search();
-            
-        });
+    $('#sede_id').change(function() {
+      search();
+
     });
+  });
 </script>
