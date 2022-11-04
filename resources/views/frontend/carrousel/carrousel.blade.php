@@ -121,7 +121,7 @@
       width: 350px;
     }
 
-    .carousel-inner img{
+    .carousel-inner img {
       height: 50vh;
 
     }
@@ -325,15 +325,21 @@
     height: 300px;
     object-fit: cover;
   }
-  #mi-carousel{
+
+  #mi-carousel {
     width: 100vw;
     height: 90vh;
   }
-  .carousel-inner,.item-active, .item-{
+
+  .carousel-inner,
+  .item-active,
+  .item- {
     width: 100%;
     height: 100%;
   }
-  .item-active, .item img{
+
+  .item-active,
+  .item img {
     width: 100%;
     height: 100%;
   }
@@ -376,66 +382,58 @@
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
-
-<!--Inicio Novedades -->
-<div class="box-novedades">
-
-  @php($twice = 0 )
-  @foreach($novedades as $novedad)
-  @php($twice = $twice + 1 )
-  @if($twice == 1)
-  <div class="row box-body">
-    @endif
-    <div class="card col-md-4 card-novedades">
-      <div class="caja-imagen-novedades">
-        <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top" alt="...">
-      </div>
-      <div class="card-body">
-        <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
-        <p class="card-text">{!!$novedad->cuerpo!!}</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        @if($novedad->archivo1)
-        <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
-        @endif
-        @if($novedad->archivo2)
-        <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
-        @endif
-        @if($novedad->archivo3)
-        <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
-        @endif
-      </div>
-    </div>
-    @if($twice == 2)
-  </div>
-  @php($twice = 0 )
-  @endif
-  @endforeach
-</div>
-
-<!--Fin Novedades -->
-
-
-
 <div class="fondoCards">
+  <!--Inicio Novedades -->
+  <div class="box-novedades">
+
+    @php($twice = 0 )
+    @foreach($novedades as $novedad)
+    @php($twice = $twice + 1 )
+    @if($twice == 1)
+    <div class="row">
+      <!-- box-body"> -->
+      @endif
+      <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
+        <div class="caja-imagen-novedades">
+          <img src="{{ asset('./storage/'. $novedad->imagen) }}" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><b>{{$novedad->titulo}}</b></h4>
+          <p class="card-text">{!!$novedad->cuerpo!!}</p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          @if($novedad->archivo1)
+          <a href="{{ asset('./storage/'.$novedad->archivo1) }}" target="_blank">{{ basename($novedad->archivo1) }}</a>
+          @endif
+          @if($novedad->archivo2)
+          <a href="{{ asset('./storage/'. $novedad->archivo2) }}" target="_blank">{{ basename($novedad->archivo2) }}</a>
+          @endif
+          @if($novedad->archivo3)
+          <a href="{{ asset('./storage/'. $novedad->archivo3) }}" target="_blank">{{ basename($novedad->archivo3) }}</a>
+          @endif
+        </div>
+      </div>
+      @if($twice == 2)
+    </div>
+    @php($twice = 0 )
+    @endif
+    @endforeach
+  </div>
+
+  <!--Fin Novedades -->
+
+
+
+
   <div class="row">
 
     <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
       <img class="card-img-top imagen-card" src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png?resize=640%2C360" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Historia</h5>
-        <div>
-          <hr>
-          @foreach($historias as $historia)
-          <p class="card-texto">{!!substr($historia->historia, 0, 450)!!}...</p>
-          @endforeach
-          <hr>
-        </div>
-
-        <button class="learn-more"">
-            <span class=" circle" aria-hidden="true">
-          <span class="icon arrow"></span>
+        <button class="learn-more">
+          <span class=" circle" aria-hidden="true">
+            <span class="icon arrow"></span>
           </span>
-          <span class="button-text" id="btn_sesion">Ver más</span>
+          <span class="button-text" id="btn_sesion">Historia</span>
         </button>
       </div>
     </div>
@@ -445,19 +443,12 @@
     <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
       <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Objetivos</h5>
-        <div>
-          <hr>
-          @foreach($objetivos as $objetivo)
-          <span id="texto-card-objetivo" class="card-texto">{!!substr($objetivo->objetivo, 0, 1250)!!}...</span>
-          @endforeach
-          <hr>
-        </div>
-        <button class="learn-more" style="position: relative; bottom: 6px;">
-          <span class="circle" aria-hidden="true">
+
+        <button class="learn-more">
+          <span class=" circle" aria-hidden="true">
             <span class="icon arrow"></span>
           </span>
-          <span class="button-text" id="btn_sesion">Ver más</span>
+          <span class="button-text" id="btn_sesion2">Objetivos</span>
         </button>
       </div>
     </div>
