@@ -331,6 +331,12 @@
     height: 90vh;
   }
 
+  @media (max-width:500px) {
+  .carousel-inner img {
+    height: 30vh;
+}
+  }
+
   .carousel-inner,
   .item-active,
   .item- {
@@ -359,18 +365,22 @@
     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+     <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
   </div>
 
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="http://isft38.edu.ar/image/sede1.jpg" class="d-block w-100">
+      <img src="sede.jpg" class="d-block w-100">
     </div>
     <div class="carousel-item">
-      <img src="http://isft38.edu.ar/image/sede1.jpg" alt="Chicago" class="d-block w-100">
+      <img src="collage1.jpg" alt="Chicago" class="d-block w-100">
     </div>
     <div class="carousel-item">
-      <img src="https://desarrolloweb.com/media/151/laravel-blade-sintaxis.jpg" alt="New York" class="d-block w-100">
+      <img src="collage2.jpg" alt="New York" class="d-block w-100">
+    </div>
+        <div class="carousel-item">
+      <img src="collage3.jpg" alt="New York" class="d-block w-100">
     </div>
   </div>
 
