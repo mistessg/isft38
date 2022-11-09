@@ -88,8 +88,8 @@
 }
     
 </style>
+
 <div class="titulo">
-    <img src="" alt="">
     <h1>Carreras</h1>
 </div>
 <div class="carreras">
