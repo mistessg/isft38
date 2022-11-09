@@ -410,7 +410,7 @@ class HorarioController extends Controller
         $horario->modulohorario_id = $request->input('modulohorario_id');
         //$horario->duracion = $request->input('duracion');    
         $horario->save();
-
+ 
         $request->session()->flash('status', 'Se modificó correctamente el horario');
         return redirect()->route('horario.search.carrera', ['sede' => $horario->sede_id, 'carrera' => $horario->carrera_id, 'anio' => $horario->anio_id, 'comision' => $horario->comision_id]);
     }
