@@ -44,7 +44,6 @@
   }
 
   body {
-    background: #212529;
     width: 100vw;
     min-height: 100vh;
     position: absolute;
@@ -55,6 +54,7 @@
     text-align: center;
     padding: 20px;
     min-height: calc(100vh - 40rem);
+    background-color: #181818;
   }
 
 
@@ -216,7 +216,7 @@
                 </a>
               </li>
               <li class="nav-li">
-                <a href="{{ route('horarios.porCarrera') }}" class="nav-link d-flex justify-content-start">
+                <a href="http://docs.isft38.edu.ar/" class="nav-link d-flex justify-content-start">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -283,7 +283,7 @@
 
   <!-- FOOTER -->
 
-  <div class="footer" style="background:#212121;">
+  <div class="footer">
     <footer>
       <div style="text-align:center">
         <p>Sede Central San Nicolás</p>

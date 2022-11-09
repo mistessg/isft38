@@ -45,7 +45,7 @@
   }
 
   .fondoCards {
-    background-color: #212121;
+    background-color: #f8f9f9;
     padding-top: 40px;
   }
 
@@ -331,7 +331,7 @@
     height: 90vh;
   }
 
-  @media (max-width:500px) {
+  @media (max-width:768px) {
   .carousel-inner img {
     height: 30vh;
 }
@@ -365,7 +365,7 @@
     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-     <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
   </div>
 
   <!-- The slideshow/carousel -->
@@ -374,13 +374,13 @@
       <img src="sede.jpg" class="d-block w-100">
     </div>
     <div class="carousel-item">
-      <img src="collage1.jpg" alt="Chicago" class="d-block w-100">
+      <img src="collage1.jpg" class="d-block w-100">
     </div>
     <div class="carousel-item">
-      <img src="collage2.jpg" alt="New York" class="d-block w-100">
+      <img src="collage2.jpg" class="d-block w-100">
     </div>
-        <div class="carousel-item">
-      <img src="collage3.jpg" alt="New York" class="d-block w-100">
+    <div class="carousel-item">
+      <img src="collage3.jpg" class="d-block w-100">
     </div>
   </div>
 
@@ -392,10 +392,10 @@
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
+
 <div class="fondoCards">
   <!--Inicio Novedades -->
   <div class="box-novedades">
-
     @php($twice = 0 )
     @foreach($novedades as $novedad)
     @php($twice = $twice + 1 )
