@@ -5,34 +5,34 @@
 @section('content')
 
 <style>
-
     label {
         width: 4rem;
     }
 
     @media (max-width: 450px) {
-    
-    .card{
-        margin: 1rem 1rem 1rem 1rem;
 
+        .card {
+            margin: 1rem 1rem 1rem 1rem;
+
+        }
     }
-    }
+
     @media (max-width: 380px) {
-  
-  .card{
-    margin: 1rem 1rem 1rem 1rem;
 
-  }
+        .card {
+            margin: 1rem 1rem 1rem 1rem;
+
+        }
     }
-  @media (max-width: 400px) {
-  
-  .card{
-    margin: 1rem 1rem 1rem 1rem;
 
-  }
+    @media (max-width: 400px) {
 
-}
+        .card {
+            margin: 1rem 1rem 1rem 1rem;
 
+        }
+
+    }
 </style>
 
 
@@ -73,7 +73,7 @@
             @enderror
 
             <div class="input-group mb-3">
-                <div class="input-group-text"> 
+                <div class="input-group-text">
                     {{ Form::label("año", 'Año', ['class' => 'control-label']) }}
                 </div>
                 {{Form::select("anio_id", $anios, null, ["class" => "form-control", "placeholder" => "Seleccione el año" ]) }}

@@ -80,10 +80,15 @@
   }
 </style>
 
+<div>
+  @if(Session::has('status'))
+  <div class="alert alert-success">{{ Session('status')}}</div>
+  @endif
+</div>
+
 <div class="Inicio">
   <h1 class="TextoInicio">Listado de programas</h1>
 </div>
-
 
 
 <div class="card">
@@ -96,39 +101,42 @@
     <div class="input-group mb-3">
       {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
       {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
-      @error('año')
-      <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
     </div>
+    @error('anio_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
 
     <div class="input-group mb-3">
       {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
       {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
-      @error('sede')
-      <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
     </div>
+    @error('sede_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
 
 
     <div class="input-group mb-3">
       {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
       {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
-      @error('carrera')
-      <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-
     </div>
+    @error('carrera_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
+
 
     <div class="input-group mb-3">
       {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
       {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}
-      @error('carrera')
-      <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
     </div>
+    @error('comision_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
-    <div class="d-grid gap-2">
-      <button class="btn btn-outline-dark" type="submit" id="boton" disabled aria-label="consultar">Consultar</button>
+    <div class="d-grid gap-2 col my-2 mx-auto">
+      <button class="form-control btn btn-outline-dark" style="margin-top:1rem;" type="submit">Consultar</button>
     </div>
 
 
@@ -194,22 +202,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- Script Get Materias -->
   <script type='text/javascript'>
-
- 
-    function validation(){
+    function validation() {
       var txt1 = document.getElementById('comision_id').value;
       var txt2 = document.getElementById('carrera_id').value;
       var txt3 = document.getElementById('sede_id').value;
       var txt4 = document.getElementById('anio_id').value;
       console.log(txt1);
-      if(txt1 != ""
-        && txt2 != ""
-        && txt3 != ""
-        && txt4 != ""){
-          $('#boton').prop('disabled', false);
-        }
+      if (txt1 != "" &&
+        txt2 != "" &&
+        txt3 != "" &&
+        txt4 != "") {
+        $('#boton').prop('disabled', false);
+      }
     }
-  
+
 
 
     function search() {

@@ -229,13 +229,18 @@ class ProgramaController extends Controller
                 'carrera_id' => 'required',
                 'anio_id' => 'required',
                 'comision_id' => 'required'
+                
             ]
+            
         );
+        
         return redirect()->route('programa.search.list', ['periodo' => $request->input('anio_id'), 'sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'comision' => $request->input('comision_id')]);
+        
     }
     
     public function searchPrograma($periodo, $sede, $carrera, $comision)
     {
+        
         $periodos = array();
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion', 'id');
@@ -319,6 +324,17 @@ class ProgramaController extends Controller
     }
     public function searchProgramas(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'sede_id' => 'required',
+                'carrera_id' => 'required',
+                'anio_id' => 'required',
+                'comision_id' => 'required'
+                
+            ]
+            
+        );
+        
         $periodos = array();
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion', 'id');
@@ -341,7 +357,9 @@ class ProgramaController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
+            
         return view('frontend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
+        
     }
     public function programas()
     {
