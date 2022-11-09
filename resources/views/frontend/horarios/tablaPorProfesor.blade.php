@@ -31,6 +31,16 @@ input{
 }
 
 }
+@media(max-width:1000px){
+    .table{
+        margin:auto;
+    }
+}
+@media(max-width:850px){
+    .table{
+        overflow-x: auto;
+    }
+}
 </style>
 
    <div class="tablaScroll">

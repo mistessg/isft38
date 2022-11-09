@@ -31,7 +31,7 @@
       <div class="input-group mb-3">
         {{ Form::label("sede_id", 'Sede', ['class' => 'input-group-text']) }}
         {{Form::select("sede_id", $sedes, $sede, ["class" => "form-select", "placeholder" => "Seleccione una sede"]) }}
-        @error('sede')
+        @error('sede_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
@@ -40,7 +40,7 @@
       <div class="input-group mb-3">
         {{ Form::label("carrera_id", 'Carrera', ['class' => 'input-group-text']) }}
         {{Form::select("carrera_id", $carreras, $carrera, ["class" => "form-select", "placeholder" => "Seleccione una carrera"]) }}
-        @error('carrera')
+        @error('carrera_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
@@ -49,7 +49,7 @@
       <div class="input-group mb-3">
         {{ Form::label("anio_id", 'Año', ['class' => 'input-group-text']) }}
         {{Form::select("anio_id", $anios, $anio, ["class" => "form-select", "placeholder" => "Seleccione un año"]) }}
-        @error('carrera')
+        @error('anio_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
@@ -58,7 +58,7 @@
       <div class="input-group mb-3">
         {{ Form::label("materia_id", 'Materia', ['class' => 'input-group-text']) }}
         {{Form::select("materia_id", $materias, $materia, ["class" => "form-select", "placeholder" => "Seleccione una materia"]) }}
-        @error('carrera')
+        @error('materia_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
@@ -66,7 +66,7 @@
       <div class="input-group mb-3">
         {{ Form::label("comision_id", 'Comisión', ['class' => 'input-group-text']) }}
         {{Form::select("comision_id", $comisiones, $comision, ["class" => "form-select", "placeholder" => "Seleccione una comisión"]) }}
-        @error('carrera')
+        @error('comision_id')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
@@ -74,9 +74,9 @@
 
 
 
-      <div class="d-grid gap-2">
-        <button class="btn btn-outline-dark" type="submit" aria-label="consultar">Consultar</button>
-      </div>
+      <div class="d-grid gap-2 col my-2 mx-auto">
+      <button class="form-control btn btn-outline-dark" style="margin-top:1rem;" type="submit">Consultar</button>
+    </div>
 </div>
 
 
