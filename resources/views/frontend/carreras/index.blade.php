@@ -53,7 +53,7 @@
   .botonMateria {
     padding: 17px 40px;
     border-radius: 7px;
-    border: 0;
+    border-color: #B2B2B2;
     background-color: white;
     box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     letter-spacing: 1.5px;
@@ -62,6 +62,7 @@
     transition: all .5s ease;
   }
 
+  
   .botonMateria:hover {
     letter-spacing: 3px;
     background-color: #FF4A4A;
@@ -117,7 +118,12 @@
             <div class="d-flex justify-content-between align-items-center mt-4">
               <div class="btn-group">
                 <button id="{{$carrera->descripcion}}" onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$carrera->id}}">
-                  Materias
+                  Asignaturas
+                </button>
+              </div>
+              <div class="btn-group">
+                <button  onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal">
+                 Preinscripción
                 </button>
               </div>
             </div>
