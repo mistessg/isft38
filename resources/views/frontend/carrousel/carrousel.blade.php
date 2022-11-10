@@ -332,9 +332,9 @@
   }
 
   @media (max-width:768px) {
-  .carousel-inner img {
-    height: 30vh;
-}
+    .carousel-inner img {
+      height: 30vh;
+    }
   }
 
   .carousel-inner,
@@ -349,6 +349,16 @@
     width: 100%;
     height: 100%;
   }
+
+  .overlay {
+    color: #fff;
+    position: absolute;
+    z-index: 12;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    text-align: left;
+  }
 </style>
 
 <!-- Required meta tags -->
@@ -358,6 +368,9 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+<div class="overlay">
+  <h2>Bienvenidos al ISFT N° 38</h2>
+</div>
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
   <!-- Indicators/dots -->
