@@ -122,9 +122,9 @@
                 </button>
               </div>
               <div class="btn-group">
-                <button  onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal">
+                <a href="https://cfg.com.ar/sistema/"><button  onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal">
                  Preinscripción
-                </button>
+                </button></a>
               </div>
             </div>
           </div>
