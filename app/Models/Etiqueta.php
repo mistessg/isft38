@@ -28,4 +28,9 @@ class Etiqueta extends Model
           ->withTimestamps()
           ->using(NoticiaEtiqueta::class);
     }
+    public function cartelera(){
+        return $this->belongsToMany(Noticia::class, 'noticias_etiquetas')
+          ->withTimestamps()
+          ->using(NoticiaEtiqueta::class);
+    }
     }

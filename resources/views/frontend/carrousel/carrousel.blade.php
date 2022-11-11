@@ -359,6 +359,120 @@
     width: 100%;
     text-align: left;
   }
+  #present, .title {
+    text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F;
+      font-size: 2.3vw;
+      width: 40%;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 30%;
+      z-index: 1000;
+      color: #fff;
+  }
+  .title{
+    top: 35%;
+    font-size: 3vw;
+    text-align: center;
+  }
+  #present::after {
+      content: "";
+      border-left: 3px solid #fff;
+      height: 100%;
+      animation: write 2s infinite alternate steps(14); }
+
+  .bottonAutoScroll{
+    width: 30%;
+    position: absolute;
+    bottom: 5%;
+    left: 40%;
+    color: #fff;
+  }
+  .hero__scroll {
+  position: absolute;
+  text-align: center;
+  bottom: 60px;
+  width: 200px;
+  margin: auto;
+  display: block;
+  cursor: pointer;
+  padding-bottom: 40px;
+  left: 0;
+  right: 0;
+  text-transform: uppercase; }
+  .hero__scroll .chevron {
+    margin-top: 20px;
+    display: block;
+    -webkit-animation: pulse 2s infinite;
+            animation: pulse 2s infinite;
+    color: #FF4081; }
+  .chevron::before {
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  content: '';
+  display: inline-block;
+  height: 20px;
+  position: relative;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  vertical-align: top;
+  width: 20px; }
+
+.chevron.right:before {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg); }
+
+.chevron.bottom:before {
+  top: 0;
+  -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+          transform: rotate(135deg); }
+
+.chevron.left:before {
+  left: 0.25em;
+  -webkit-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+          transform: rotate(-135deg); }
+
+i {
+  text-align: center;
+}
+
+#cuerpoCartel{
+  margin-left: -100%;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+  50% {
+    -webkit-transform: translate(0, 10px);
+            transform: translate(0, 10px); }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); } }
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+  50% {
+    -webkit-transform: translate(0, 10px);
+            transform: translate(0, 10px); }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); } }
+
+  @keyframes write {
+  from {
+    width: 100%; }
+  to {
+    width: 0; } }
+    
 </style>
 
 <!-- Required meta tags -->
@@ -367,12 +481,10 @@
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<div class="overlay">
-  <h2>Bienvenidos al ISFT N° 38</h2>
-</div>
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
+  
   <!-- Indicators/dots -->
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -383,6 +495,12 @@
 
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
+
+  @foreach($cartelera as $cartel)
+    <h1 class="title"> Bienvenidos </h2>
+    <h2 id="present"></h2>
+    <span id="cuerpoCartel">{{$cartel->cuerpo}}</span>
+  @endforeach
     <div class="carousel-item active">
       <img src="sede.jpg" class="d-block w-100">
     </div>
@@ -396,7 +514,38 @@
       <img src="collage3.jpg" class="d-block w-100">
     </div>
   </div>
-
+  <span class="hero__scroll aos-init aos-animate bottonAutoScroll" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="800">
+				Scroll down <br>
+				<a href="#section2"><i class="chevron bottom"></i></a>
+			</span>
+  <script>
+    var h22 = document.getElementById('present');
+    var cuerpoCartel = document.getElementById('cuerpoCartel');
+    console.log("h22", h22);
+    let write = (texto='', etiqueta='') => {
+        let arrfromstr = texto.split('');
+        let i = 0;
+        let j = texto.length;
+        etiqueta.innerHTML = '';
+        let printstr = setInterval(function(){
+            if(i === arrfromstr.length){
+                etiqueta.innerHTML = texto.substring(0, j);
+                j--;
+                if(j === 1){
+                    etiqueta.innerHTML = '';
+                    i = 0;
+                    j = texto.length;
+                }
+            }else{
+                etiqueta.innerHTML += arrfromstr[i];
+                i++;
+            }
+  
+        },200);
+    };
+  
+    write(cuerpoCartel.innerHTML, h22);
+  </script>
   <!-- Left and right controls/icons -->
   <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -406,7 +555,7 @@
   </button>
 </div>
 
-<div class="fondoCards">
+<div id="section2" class="fondoCards">
   <!--Inicio Novedades -->
   <div class="box-novedades">
     @php($twice = 0 )
@@ -532,8 +681,14 @@
   </div>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+</script>
 
 <script type="text/javascript">
+
+  
   const btn_sesion = document.getElementById('btn_sesion');
   const btn_sesion2 = document.getElementById('btn_sesion2');
   const sesion = document.getElementById('sesion');
@@ -561,6 +716,9 @@
 
   window.document.onload()
   texto_objetivo.trimStart();
+
+  
+
 </script>
 
 @endsection
