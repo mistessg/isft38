@@ -116,14 +116,24 @@
               <p>Resolución: {{ $carrera->resolucion }}</p>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-4">
-              <div class="btn-group">
+              <!-- <div class="btn-group">
                 <button id="{{$carrera->descripcion}}" onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$carrera->id}}">
                   Asignaturas
                 </button>
               </div>
               <div class="btn-group">
                 <a href="https://cfg.com.ar/sistema/" target="_blank"><button onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal">
-                    Preinscripción online
+                    Preinscripción
+                  </button></a>
+              </div> -->
+              <div class="btn-group">
+                <button id="{{$carrera->descripcion}}" onClick="reply_click(this.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$carrera->id}}">
+                  Asignaturas
+                </button>
+              </div>
+              <div class="btn-group">
+                <a href="https://cfg.com.ar/sistema/" target="_blank"><button data-aos="zoom-in-up" onClick="reply_click(this.id)" type="button" class="btn btn-success" data-bs-toggle="modal">
+                    Inscribite!
                   </button></a>
               </div>
             </div>
