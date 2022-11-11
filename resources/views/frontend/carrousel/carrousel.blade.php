@@ -374,7 +374,7 @@
   }
 
   .title {
-    top: 35%;
+    top: 25%;
     font-size: 3vw;
     text-align: center;
   }
@@ -457,6 +457,7 @@
 
   #cuerpoCartel {
     margin-left: -100%;
+    margin-top: -100%;
   }
 
   @-webkit-keyframes pulse {
@@ -550,7 +551,7 @@
       </div>
   </div>
   <span class="hero__scroll aos-init aos-animate bottonAutoScroll" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="800">
-    <a class="news" href="#novedades"> Novedades
+    <a class="news d-none d-md-block" href="#novedades"> Novedades
       <i class="chevron bottom"></i></a>
   </span>
   <script>

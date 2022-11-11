@@ -62,7 +62,7 @@
     transition: all .5s ease;
   }
 
-  
+
   .botonMateria:hover {
     letter-spacing: 3px;
     background-color: #FF4A4A;
@@ -122,9 +122,9 @@
                 </button>
               </div>
               <div class="btn-group">
-                <a href="https://cfg.com.ar/sistema/"><button  onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal">
-                 Preinscripción
-                </button></a>
+                <a href="https://cfg.com.ar/sistema/" target="_blank"><button onClick="reply_click(this.id)" type="button" class="botonMateria" data-bs-toggle="modal">
+                    Preinscripción online
+                  </button></a>
               </div>
             </div>
           </div>

@@ -25,5 +25,5 @@ Route::get('/', function () {
   if (!empty($c)) {
     $cartelera = $c->cartelera()->get();
   }
-  return view('frontend.carrousel.carrousel', compact('novedades', 'carreras', 'historias', 'objetivos','cartelera'));
+  return view('frontend.carrousel.carrousel', compact('novedades', 'carreras', 'historias', 'objetivos', 'cartelera'));
 })->name('inicio');

@@ -232,7 +232,7 @@
 
         <div class="bgImg" style="
             width:60%;
-            background-image:url(https://img.huffingtonpost.com/asset/5b476ec01900002a00c65851.jpeg?ops=1200_630);
+            background-image:url(contacto.jpeg);
             background-size:cover;">
         </div>
     </div>
