@@ -526,7 +526,6 @@
     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
   </div>
 
   <!-- The slideshow/carousel -->
@@ -545,9 +544,6 @@
       </div>
       <div class="carousel-item">
         <img src="collage2.jpg" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="collage3.jpg" class="d-block w-100">
       </div>
   </div>
   <span class="hero__scroll aos-init aos-animate bottonAutoScroll" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="800">
