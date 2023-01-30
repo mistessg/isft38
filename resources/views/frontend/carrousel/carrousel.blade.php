@@ -627,7 +627,7 @@
 
 
 
-
+  <!-- CARD 1
   <div class="row">
 
     <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
@@ -640,9 +640,9 @@
           <span class="button-text" id="btn_sesion">Historia</span>
         </button>
       </div>
-    </div>
+    </div> -->
 
-    <!--CARD 2-->
+  <!--CARD 2
 
     <div class="card col-lg-4 col-md-10 sm-12 row-hijos">
       <img class="card-img-top imagen-card" src="https://us.123rf.com/450wm/andreypopov/andreypopov1701/andreypopov170100862/69612698-vista-de-%C3%A1ngulo-alto-de-una-persona-que-escribe-nota-en-diario-en-blanco-en-el-escritorio-de-madera.jpg?ver=6" alt="Card image cap">
@@ -658,94 +658,94 @@
     </div>
 
   </div>
-</div>
+</div>-->
 
-<!-- MODALS -->
+  <!-- MODALS -->
 
-<div id="sesion" class="sesion">
-  <div class="vent_sesion">
+  <div id="sesion" class="sesion">
+    <div class="vent_sesion">
 
-    <div class="container-historia">
-      <h1>Historia</h1>
-    </div>
-
-    <div class="container-son">
-      <div>
-        @foreach($historias as $historia)
-        <p>{!!$historia->historia!!}</p>
-        @endforeach
+      <div class="container-historia">
+        <h1>Historia</h1>
       </div>
-    </div>
 
-    <div class="btn_cerrar" id="btn_cerrar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-      </svg>
-    </div>
-
-  </div>
-</div>
-
-
-
-<div id="sesion2" class="sesion">
-  <div class="vent_sesion">
-    <div class="container-objetivo">
-      <h1>Objetivos</h1>
-    </div>
-
-    <div class="container-son">
-      <div>
-        @foreach($objetivos as $objetivo)
-        <p>{!! $objetivo->objetivo !!}</p>
-        @endforeach
+      <div class="container-son">
+        <div>
+          @foreach($historias as $historia)
+          <p>{!!$historia->historia!!}</p>
+          @endforeach
+        </div>
       </div>
-    </div>
 
-    <div class="btn_cerrar" id="btn_cerrar2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-      </svg>
-    </div>
+      <div class="btn_cerrar" id="btn_cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </div>
 
+    </div>
   </div>
-</div>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-<script type="text/javascript">
-  const btn_sesion = document.getElementById('btn_sesion');
-  const btn_sesion2 = document.getElementById('btn_sesion2');
-  const sesion = document.getElementById('sesion');
-  const sesion2 = document.getElementById('sesion2');
-  const btn_cerrar = document.getElementById('btn_cerrar');
-  const btn_cerrar2 = document.getElementById('btn_cerrar2');
-  const texto_objetivo = document.getElementById('texto-card-objetivo');
-
-  btn_sesion.addEventListener('click', () => {
-    sesion.classList.add('show');
-  });
-
-  btn_cerrar.addEventListener('click', () => {
-    sesion.classList.remove('show');
-  });
-
-  btn_sesion2.addEventListener('click', () => {
-    sesion2.classList.add('show');
-  });
-
-  btn_cerrar2.addEventListener('click', () => {
-    sesion2.classList.remove('show');
-  });
 
 
-  window.document.onload()
-  texto_objetivo.trimStart();
-</script>
 
-@endsection
+  <div id="sesion2" class="sesion">
+    <div class="vent_sesion">
+      <div class="container-objetivo">
+        <h1>Objetivos</h1>
+      </div>
+
+      <div class="container-son">
+        <div>
+          @foreach($objetivos as $objetivo)
+          <p>{!! $objetivo->objetivo !!}</p>
+          @endforeach
+        </div>
+      </div>
+
+      <div class="btn_cerrar" id="btn_cerrar2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-x-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <script type="text/javascript">
+    const btn_sesion = document.getElementById('btn_sesion');
+    const btn_sesion2 = document.getElementById('btn_sesion2');
+    const sesion = document.getElementById('sesion');
+    const sesion2 = document.getElementById('sesion2');
+    const btn_cerrar = document.getElementById('btn_cerrar');
+    const btn_cerrar2 = document.getElementById('btn_cerrar2');
+    const texto_objetivo = document.getElementById('texto-card-objetivo');
+
+    btn_sesion.addEventListener('click', () => {
+      sesion.classList.add('show');
+    });
+
+    btn_cerrar.addEventListener('click', () => {
+      sesion.classList.remove('show');
+    });
+
+    btn_sesion2.addEventListener('click', () => {
+      sesion2.classList.add('show');
+    });
+
+    btn_cerrar2.addEventListener('click', () => {
+      sesion2.classList.remove('show');
+    });
+
+
+    window.document.onload()
+    texto_objetivo.trimStart();
+  </script>
+
+  @endsection
