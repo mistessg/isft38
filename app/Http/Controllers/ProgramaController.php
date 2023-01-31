@@ -36,7 +36,7 @@ class ProgramaController extends Controller
         $sede = '';
         $carrera = '';
         $comision = '';
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         return view('backend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
@@ -45,7 +45,7 @@ class ProgramaController extends Controller
     {
         return view('frontend.programa.cargar_programa');
     }
-    
+
     public function ProgramasPendientes()
     {
         $periodos = array();
@@ -61,7 +61,7 @@ class ProgramaController extends Controller
         $sede = '';
         $carrera = '';
         $comision = '';
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         //dd($materias);
@@ -77,7 +77,7 @@ class ProgramaController extends Controller
         $profesores = Profesor::pluck('nombre', 'apellido', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         $year = date("Y");
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         $periodo = $request->input('anio_id');
@@ -91,7 +91,7 @@ class ProgramaController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
-            //dd($programas);
+        //dd($programas);
         $materias = Materia::where('carrera_id', $request->input('carrera_id'))->get();
         return view('backend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
     }
@@ -108,7 +108,7 @@ class ProgramaController extends Controller
         $materias = array(); //Materia::pluck('descripcion', 'id');
         $comisiones = Comision::pluck('comision', 'id');
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-        ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
+            ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         return view('backend.programa.create', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
     }
     public function createFront()
@@ -119,7 +119,7 @@ class ProgramaController extends Controller
         $materias = array(); //Materia::pluck('descripcion', 'id');
         $comisiones = Comision::pluck('comision', 'id');
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-        ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
+            ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         //dd("entro al create del front");
         return view('frontend.programa.createFront', compact('sede', 'carreras', 'anios', 'materias', 'profesores', 'comisiones'));
     }
@@ -144,10 +144,9 @@ class ProgramaController extends Controller
             ->where('anio_id', $request->input('anio_id'))
             ->where('materia_id', $request->input('materia_id'))
             ->where('profesor_id', $request->input('profesor_id'))->first();
-            //dd($programaEncontrado);
+        //dd($programaEncontrado);
 
-        if(!empty($programaEncontrado))
-        {
+        if (!empty($programaEncontrado)) {
             $request->session()->flash('status-error', 'Ya existe un programa igual');
             return redirect()->route('programa.create');
         }
@@ -171,7 +170,7 @@ class ProgramaController extends Controller
         $request->session()->flash('status', 'Se guardó correctamente el programa ');
         return redirect()->route('programa.create');
     }
- 
+
     public function storeFront(Request $request)
     {
         $validatedData = $request->validate(
@@ -192,10 +191,9 @@ class ProgramaController extends Controller
             ->where('anio_id', $request->input('anio_id'))
             ->where('materia_id', $request->input('materia_id'))
             ->where('profesor_id', $request->input('profesor_id'))->first();
-            //dd($programaEncontrado);
+        //dd($programaEncontrado);
 
-        if(!empty($programaEncontrado))
-        {
+        if (!empty($programaEncontrado)) {
             $request->session()->flash('status-error', 'Ya existe un programa igual');
             return redirect()->route('programas.create');
         }
@@ -229,18 +227,17 @@ class ProgramaController extends Controller
                 'carrera_id' => 'required',
                 'anio_id' => 'required',
                 'comision_id' => 'required'
-                
+
             ]
-            
+
         );
-        
+
         return redirect()->route('programa.search.list', ['periodo' => $request->input('anio_id'), 'sede' => $request->input('sede_id'), 'carrera' => $request->input('carrera_id'), 'comision' => $request->input('comision_id')]);
-        
     }
-    
+
     public function searchPrograma($periodo, $sede, $carrera, $comision)
     {
-        
+
         $periodos = array();
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion', 'id');
@@ -249,7 +246,7 @@ class ProgramaController extends Controller
         $profesores = Profesor::pluck('nombre', 'apellido', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         $year = date("Y");
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         /* $periodo =$request->input('anio_id');
@@ -263,7 +260,7 @@ class ProgramaController extends Controller
             ->where('comision_id', $comision)
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
-       
+
         return view('backend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
     }
     public function show($id)
@@ -330,11 +327,11 @@ class ProgramaController extends Controller
                 'carrera_id' => 'required',
                 'anio_id' => 'required',
                 'comision_id' => 'required'
-                
+
             ]
-            
+
         );
-        
+
         $periodos = array();
         $anios = Anio::all();
         $carreras = Carrera::pluck('descripcion', 'id');
@@ -343,7 +340,7 @@ class ProgramaController extends Controller
         $profesores = Profesor::pluck('nombre', 'apellido', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         $year = date("Y");
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         $periodo = $request->input('anio_id');
@@ -357,9 +354,8 @@ class ProgramaController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
-            
+
         return view('frontend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
-        
     }
     public function programas()
     {
@@ -370,14 +366,14 @@ class ProgramaController extends Controller
         $comisiones = Comision::pluck('comision', 'id');
         $materias = Materia::pluck('descripcion', 'id');
         $profesores = Profesor::select("id", DB::raw("CONCAT(profesors.apellido,', ',profesors.nombre) as nombrecompleto"))
-        ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
+            ->orderby('nombrecompleto', 'ASC')->pluck('nombrecompleto', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         $year = date("Y");
         $periodo = '';
         $sede = '';
         $carrera = '';
         $comision = '';
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         return view('frontend.programa.listado_programa', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodos', 'periodo', 'sede', 'carrera', 'comision'));
@@ -385,7 +381,7 @@ class ProgramaController extends Controller
 
     public function getMaterias($carrera_id = 0, $anio_id = 0, $sede_id = 0)
     {
-        $materias['data'] = Materia::join('carrerasedes','materias.carrera_id' , '=', 'carrerasedes.carrera_id')
+        $materias['data'] = Materia::join('carrerasedes', 'materias.carrera_id', '=', 'carrerasedes.carrera_id')
             ->select('materias.id', 'materias.descripcion')
             ->where('materias.carrera_id', $carrera_id)
             ->where('materias.anio_id', $anio_id)
@@ -407,14 +403,15 @@ class ProgramaController extends Controller
         return response()->json($materias);
     }*/
 
-    public function getCarreras($sede_id = 0){
+    public function getCarreras($sede_id = 0)
+    {
 
-      //  $modulosHorarios  = 
-      
-        $carreras['data'] = Carrerasede::join('carreras','carrerasedes.carrera_id' , '=', 'carreras.id')
-        ->where('sede_id', $sede_id)
-        ->get(['carreras.id', 'descripcion']);
-          
+        //  $modulosHorarios  = 
+
+        $carreras['data'] = Carrerasede::join('carreras', 'carrerasedes.carrera_id', '=', 'carreras.id')
+            ->where('sede_id', $sede_id)
+            ->get(['carreras.id', 'descripcion']);
+
         return response()->json($carreras);
     }
 
@@ -434,7 +431,7 @@ class ProgramaController extends Controller
         $sede = '';
         $carrera = '';
         $comision = '';
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         //dd($materias);
@@ -450,7 +447,7 @@ class ProgramaController extends Controller
         $profesores = Profesor::pluck('nombre', 'apellido', 'id');
         $sedes = Sede::pluck('descripcion', 'id');
         $year = date("Y");
-        for ($i = $year; $i >= $year - 10; $i--) {
+        for ($i = $year; $i >= $year; $i--) {
             $periodos[$i] = $i;
         }
         $periodo = $request->input('anio_id');
@@ -464,7 +461,7 @@ class ProgramaController extends Controller
             ->where('comision_id', $request->input('comision_id'))
             ->whereBetween('created_at', [$startDate, $endDate])
             ->OrderBy('anio_id')->get();
-            //dd($programas);
+        //dd($programas);
         $materias = Materia::where('carrera_id', $request->input('carrera_id'))->get();
         return view('frontend.programa.programas_pendientesG', compact('carreras', 'sedes', 'comisiones', 'materias', 'profesores', 'anios', 'programas', 'periodo', 'periodos', 'sede', 'carrera', 'comision'));
     }

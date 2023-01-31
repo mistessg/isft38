@@ -109,8 +109,8 @@
     }
 </style>
 
-<div style="display:flex;justify-content:center;align-items:center;">
-    <div class="alert alert-primary alert-dismissible fade show" style="height:auto;position:fixed;top:100px;z-index:2;margin:20px;text-align:center;" role="alert">
+<div>
+    <div class="alert alert-primary alert-dismissible fade show" style="text-align:center;" role="alert">
         <i>Atención de secretaría: Lunes a Viernes, de 17:45 a 22:00hs</i>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

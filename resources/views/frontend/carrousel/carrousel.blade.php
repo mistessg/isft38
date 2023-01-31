@@ -333,7 +333,7 @@
 
   @media (max-width:768px) {
     .carousel-inner img {
-      height: 30vh;
+      height: 20vh;
     }
   }
 
@@ -363,7 +363,7 @@
   #present,
   .title {
     text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F;
-    font-size: 2.3vw;
+    font-size: 4vw;
     width: 40%;
     text-align: center;
     position: absolute;

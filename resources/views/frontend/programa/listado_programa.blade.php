@@ -89,10 +89,15 @@
 <div class="Inicio">
   <h1 class="TextoInicio">Listado de programas</h1>
 </div>
- 
+
 
 <div class="card">
-  <h5 class="card-header" style=" background-color: #181818; color: white;">Consulte su programa</h5>
+  <form action="./programs/programas/index.php" class="card-header" style=" background-color: #181818; color: white;">
+    <h5>Consulta de Propuestas Pedagógicas</h5>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn btn-light me-md-2"> Propuestas Pedagógicas de años anteriores </button>
+    </div>
+  </form>
   <div class="card-body">
 
     {{ Form::open(['route' => 'programas.search']) }}
