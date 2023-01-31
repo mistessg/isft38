@@ -158,7 +158,7 @@
     </br>
     <div class="form-check">
         <input class="form-check-input" id="leido" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
+        <label class="form-check-label text-dark" for="flexCheckDefault">
             He leído y declaro que el programa adjunto se realizó conforme a la: <a target="_blank" class="btn btn-danger" href="{{asset('./Disposicion.pdf')}}">Disposición 30/05</a>
         </label>
     </div>
@@ -186,7 +186,7 @@
         }
     }
 
-    
+
 
     function search() {
         var anio_id = document.getElementById('anio_id').value;
@@ -262,35 +262,34 @@
         });
     }
 
-   
+
 
     $(document).ready(function() {
         //var miDato = localStorage.getItem("nombre").value;
-        if(localStorage.getItem("nombre").value != "Cargando datos..."){
+        if (localStorage.getItem("nombre").value != "Cargando datos...") {
             $('#materia_id').find('option').remove();
             $('#materia_id').append($('<option></option>').html('Seleccione una carrera...'));
-            
+
             $("#materia_id").append(localStorage.getItem("nombre").value);
         }
-        
-
-        //$("#exampleModal").modal("show");
-        $('#anio_id').change(function() {
-            search();
-            
-        });
-        $('#carrera_id').change(function() {
-            search();
-        });
-        $('#sede_id').change(function() {
-            searchCarreras();
-            search();
-        });
-        $('#materia_id').change(function() {
-            localStorage.clear();
-            localStorage.setItem("nombre", document.getElementById('materia_id').value);
-        });
     });
 
+
+    //$("#exampleModal").modal("show");
+    $('#anio_id').change(function() {
+        search();
+
+    });
+    $('#carrera_id').change(function() {
+        search();
+    });
+    $('#sede_id').change(function() {
+        searchCarreras();
+        search();
+    });
+    $('#materia_id').change(function() {
+        localStorage.clear();
+        localStorage.setItem("nombre", document.getElementById('materia_id').value);
+    });
 </script>
 @endsection

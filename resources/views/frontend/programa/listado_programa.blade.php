@@ -87,7 +87,7 @@
 </div>
 
 <div class="Inicio">
-  <h1 class="TextoInicio">Listado de programas</h1>
+  <h1 class="TextoInicio text-dark">Propuestas Pedagógicas</h1>
 </div>
 
 
@@ -104,7 +104,7 @@
     @csrf
 
     <div class="input-group mb-3">
-      {{ Form::label("anio_id", 'Periodo', ['class' => 'input-group-text']) }}
+      {{ Form::label("anio_id", 'Período', ['class' => 'input-group-text']) }}
       {{Form::select("anio_id", $periodos, $periodo, ["class" => "form-select", "placeholder" => "Seleccione un período"]) }}
     </div>
     @error('anio_id')
