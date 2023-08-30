@@ -534,7 +534,7 @@
     @foreach($cartelera as $cartel)
     <h1 class="title"> Bienvenidos </h2>
       <h2 id="present"></h2>
-      <span id="cuerpoCartel">{{$cartel->cuerpo}}</span>
+      <span id="cuerpoCartel">{{$cartel->titulo}}</span>
       @endforeach
       <div class="carousel-item active">
         <img src="sede.jpg" class="d-block w-100">
@@ -547,7 +547,8 @@
       </div>
   </div>
   <span class="hero__scroll aos-init aos-animate bottonAutoScroll" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="800">
-    <a class="news d-none d-md-block" href="#novedades"> Novedades
+    {!!$cartel->cuerpo!!}
+    <a class="news d-none d-md-block" href="#novedades">
       <i class="chevron bottom"></i></a>
   </span>
   <script>

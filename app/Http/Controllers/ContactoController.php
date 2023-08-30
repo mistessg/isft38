@@ -29,7 +29,7 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-//Agregar mensajes de error en vista y mostrar mensaje flash        
+        //Agregar mensajes de error en vista y mostrar mensaje flash        
         $validatedData = $request->validate(
             [
                 'nombre' => 'required',
@@ -38,17 +38,17 @@ class ContactoController extends Controller
                 'mensaje' => 'required'
             ]
         );
-     
+
         $nombre = $request->input('nombre');
         $respuesta = $request->input('email');
         $mensaje = $request->input('mensaje');
-        //$mail = $request->input('sede'); //NO BORRAR
-        $mail = 'gagusti@isft38.edu.ar';
+        $mail = $request->input('sede'); //NO BORRAR
+        //$mail = 'gagusti@isft38.edu.ar';
 
         $asunto    = 'Consulta desde www.isft38.edu.ar';
         $noreply   = 'no-reply@isft38.edu.ar';
         $mensaje1 = $request->input('mensaje');
-        
+
         $headers = "";
         $headers .= "From: I.S.F.T N° 38 <" . $noreply . ">\r\n";
         $headers .= "Reply-To: " . $nombre . " <" . $respuesta . ">\r\n";
@@ -58,7 +58,7 @@ class ContactoController extends Controller
         $mensaje2  = "<strong>Consulta realizada por " . $nombre . ": \r\n </strong>";
         $mensaje2 .= '<br> <br>';
         $mensaje2 .= nl2br($mensaje1);
-    
+
         $resultado = mail($mail, $asunto, $mensaje2, $headers);
 
         if ($resultado == true) {

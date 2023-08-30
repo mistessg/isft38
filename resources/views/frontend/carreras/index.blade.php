@@ -132,7 +132,7 @@
                 </button>
               </div>
               <div class="btn-group">
-                <a href="https://cfg.com.ar/turnos/" target="_blank"><button data-aos="zoom-in-up" onClick="reply_click(this.id)" type="button" class="btn btn-success" data-bs-toggle="modal">
+                <a href="/.formulario.blade.php" target="_blank"><button data-aos="zoom-in-up" onClick="reply_click(this.id)" type="button" class="btn btn-success" data-bs-toggle="modal">
                     Inscribite!
                   </button></a>
               </div>

@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormularioController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Confirmacion;
+use App\Http\Controllers\HorariosController;
+use App\Http\Controllers\InscripcionesController;
+use App\Http\Controllers\CancelarTurnoController;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //  NO modificar web.php, hacer los cambios en los archivos de cada equipo
 //  que están en la carpeta routes.
 //  Cada archivo tiene el nombre de los responsables.
-//                       Gracias! 
+//                       Gracias!
 //                                              Gisela
 //------------------------------------------------------------------------//
 
@@ -46,8 +54,48 @@ Route::group([], __DIR__ . '/historia.php');
 //Contacto y Sede-> Alejo, Esteban
 Route::group([], __DIR__ . '/contacto.php');
 
-
-
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/formulario', [FormularioController::class, 'mostrarFormulario'])->name('formulario');
+
+Route::post('/procesar-formulario', [FormularioController::class, 'procesarFormulario'])->name('procesarFormulario');
+
+//Route::post('/guardar-formulario', [FormularioController::class, 'guardar'])->name('guardarFormulario');
+
+//Route::post('/guardar-configuracion', [AdmiController::class, 'guardarConfiguracion'])->name('guardarConfiguracion');
+
+//Route::get('/confirmacion', [AdminController::class, 'confirmacion'])->name('confirmacion');
+
+Route::get('/formulario', [HorariosController::class, 'mostrarFormulario'])->name('mostrarFormulario');
+
+Route::post('/guardar-horarios', [HorariosController::class, 'guardarHorarios'])->name('guardarHorarios');
+
+Route::get('/inscribirse', [HorariosController::class, 'mostrarInscribirse'])->name('inscribirse');
+
+Route::post('/guardarTurno', [HorariosController::class, 'guardarTurno'])->name('guardarTurno');
+
+Route::get('/tablainscripciones', [InscripcionesController::class, 'tablaInscripciones'])->name('tablainscripciones');
+Route::get('/tablainscripciones', [InscripcionesController::class, 'index'])->name('tablainscripciones.index');
+Route::get('/tablainscripciones/create', [InscripcionesController::class, 'create'])->name('tablainscripciones.create');
+Route::post('/tablainscripciones', [InscripcionesController::class, 'store'])->name('tablainscripciones.store');
+Route::get('/tablainscripciones/{inscripcion}/edit', [InscripcionesController::class, 'edit'])->name('tablainscripciones.edit');
+Route::put('/tablainscripciones/{inscripcion}', [InscripcionesController::class, 'update'])->name('tablainscripciones.update');
+Route::delete('/tablainscripciones/{inscripcion}', [InscripcionesController::class, 'destroy'])->name('tablainscripciones.destroy');
+
+Route::get('/fechas', function () {
+    $fechaSemanaActual = Carbon::now();
+    $fechaSemanaActual->locale('es');
+    $diasSemana = [];
+    for ($i = 0; $i < 7; $i++) {
+        $dia = $fechaSemanaActual->copy()->addDays($i);
+        $diasSemana[$i]['value'] = $dia->format('Y-m-d');
+        $diasSemana[$i]['text'] = Str::ucfirst($dia->getTranslatedDayName()) . ' ' . $dia->format('d-M-Y');
+    }
+});
+
+/*Route::get('/cancelarturno', [CancelarTurnoController::class, 'cancelarturno'])->name('cancelarturno');
+Route::post('/eliminardatos', [CancelarTurnoController::class, 'eliminarDatos'])->name('eliminarDatos');
+*/
+Route::get('/cancelarturno/{codigo}', [CancelarTurnoController::class, 'cancelar'])->name('cancelar');
+
+    Auth::routes();

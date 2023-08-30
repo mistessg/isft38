@@ -11,10 +11,10 @@ use App\Models\Sede;
 class Carrera extends Model
 {
     use HasFactory;
-    
+
      protected $fillable = [
         'descripcion',
-    ];  
+    ];
 
     public function noticias(){
         return $this->hasMany(Noticia::class, 'carrera_id');
@@ -28,6 +28,10 @@ class Carrera extends Model
         return $this->belongsToMany(Sede::class, 'carrerasedes')
             ->withTimestamps()
             ->using(Carrerasede::class);
+    }
+
+    public function inscripciones(){
+        return $this->hasMany(Inscripcion::class, 'carrera_id');
     }
 
  }
